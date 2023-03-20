@@ -29,6 +29,7 @@ Characters:
 Puzzles:
 ##########
 - ID: rmc-copper-synthesis
+  Music: Solving4
   Inputs:
   - Elemental Tin
   - Elemental Gold
@@ -36,12 +37,14 @@ Puzzles:
   - Elemental Copper
 ##########
 - ID: rmc-golden-thread-recycling
+  Music: Solving6
   Inputs:
   - Golden Thread
   Outputs:
   - Very Dark Thread
 ##########
 - ID: rmc-lesson-rejection
+  Music: Solving1
   Inputs:
   - Elemental Water
   - Elemental Copper
@@ -50,6 +53,7 @@ Puzzles:
   - Quickiron
 ##########
 - ID: rmc-lesson-splitting
+  Music: Solving1
   Inputs:
   - Elemental Gold
   Outputs:
@@ -58,6 +62,7 @@ Puzzles:
   - Elemental Lead
 ##########
 - ID: rmc-patina-processing
+  Music: Solving2
   Inputs:
   - Copper Patina
   Outputs:
@@ -65,6 +70,7 @@ Puzzles:
   - "'Spooky Tin'"
 ##########
 - ID: rmc-precision-machine-oil-cabinet
+  Music: Solving6
   Inputs:
   - Elemental Water
   - Elemental Iron
@@ -72,6 +78,7 @@ Puzzles:
   - Precision Machine Oil
 ##########
 - ID: rmc-ravari-requiescence
+  Music: Solving5
   Inputs:
   - Ravari's Wheel, Incorrect
   - Quicksilver
@@ -79,6 +86,7 @@ Puzzles:
   - Ravari's Wheel
 ##########
 - ID: rmc-reactive-litharge
+  Music: Solving5
   Inputs:
   - Elemental Lead
   - Elemental Lead
@@ -90,7 +98,15 @@ Puzzles:
   Outputs:
   - Reactive Litharge
 ##########
+- ID: rmc-ring-purification
+  Music: Solving3
+  Inputs:
+  - Rose-Gold Ring
+  Outputs:
+  - Gold Ring
+##########
 - ID: rmc-sanitizing-dust
+  Music: Solving3
   Inputs:
   - Elemental Gold
   - Elemental Earth
@@ -102,12 +118,14 @@ Puzzles:
   - Sanitizing Dust, Part C
 ##########
 - ID: rmc-solder-wire
+  Music: Solving4
   Inputs:
   - Elemental Gold
   Outputs:
   - Solder Wire
 ##########
 - ID: rmc-you-drive-me-to-drink
+  Music: Solving2
   Inputs:
   - Tinstone
   Outputs:

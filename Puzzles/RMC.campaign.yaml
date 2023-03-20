@@ -18,6 +18,10 @@ Chapters:
     Title: Ravari's Requiescence
     Puzzle: ch1/rmc-ravari-requiescence
     Requires: "rmc-lesson-rejection"
+  - ID: rmc-ring-purification
+    Title: Ring Purification
+    Puzzle: ch1/rmc-ring-purification
+    Requires: "rmc-lesson-rejection"
   - ID: rmc-patina-processing
     Title: Patina Processing
     Puzzle: ch1/rmc-patina-processing

@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
-using YamlDotNet;
 
 namespace ReductiveMetallurgyCampaign;
 
@@ -19,6 +18,7 @@ using Permissions = enum_149;
 //using AtomTypes = class_175;
 using PartTypes = class_191;
 using Texture = class_256;
+using Song = class_186;
 
 public class PuzzleModelRMC
 {
@@ -74,6 +74,25 @@ public class MainClass : QuintessentialMod
 
 	private static void modifyCampaignLevelsRMC()
 	{
+		var songList = new Dictionary<string, Song>()
+		{
+			{"Solving1", class_238.field_1992.field_970},
+			{"Solving2", class_238.field_1992.field_971},
+			{"Solving3", class_238.field_1992.field_972},
+			{"Solving4", class_238.field_1992.field_973},
+			{"Solving5", class_238.field_1992.field_974},
+			{"Solving6", class_238.field_1992.field_975},
+		};
+		var fanfareList = new Dictionary<string, Sound>()
+		{
+			{"Solving1", class_238.field_1991.field_1830},
+			{"Solving2", class_238.field_1991.field_1831},
+			{"Solving3", class_238.field_1991.field_1832},
+			{"Solving4", class_238.field_1991.field_1833},
+			{"Solving5", class_238.field_1991.field_1834},
+			{"Solving6", class_238.field_1991.field_1835},
+		};
+
 		Logger.Log("[ReductiveMetallurgyCampaign] Modifying campaign levels.");
 		CampaignChapter[] field2309 = campaign_self.field_2309;
 		foreach (var campaignChapter in field2309)
@@ -146,9 +165,6 @@ public class MainClass : QuintessentialMod
 					if (dictionary.ContainsKey(field2766))
 					{
 						PuzzleModelRMC puzzleModel = dictionary[field2766];
-						processIO(true);
-						processIO(false);
-
 						void processIO(bool doInputs)
 						{
 							List<string> stringList = doInputs ? puzzleModel.Inputs : puzzleModel.Outputs;
@@ -156,6 +172,15 @@ public class MainClass : QuintessentialMod
 							int num = Math.Min(puzzleInputOutputArray.Length, stringList.Count);
 							for (int index = 0; index < num; ++index)
 								puzzleInputOutputArray[index].field_2813.field_2639 = (Maybe<LocString>)class_134.method_253(stringList[index], string.Empty);
+						}
+
+						processIO(true);
+						processIO(false);
+
+						if (!string.IsNullOrEmpty(puzzleModel.Music) && songList.Keys.Contains(puzzleModel.Music))
+						{
+							campaignItem.field_2328 = songList[puzzleModel.Music];
+							campaignItem.field_2329 = fanfareList[puzzleModel.Music];
 						}
 					}
 				}
