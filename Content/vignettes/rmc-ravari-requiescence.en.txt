@@ -1,0 +1,20 @@
+Verrin Ravari (Frustrated): Hello, anyone?
+Pugano (Left): Sorry, I was in the back grabbing something. How can I help you today?
+Verrin Ravari (Frustrated): Please let me borrow a transmutation engine quick, I need to fix something _immediately_.
+Pugano (Left): I don't know if I can let you do that, but if it's a small job, I can take care of it.
+Verrin Ravari (Frustrated): I'd rather do it myself - the chirality of the substance in this vial is backwards, and fixing it requires a lot of restructuring.
+Pugano (Left): But the compound looks metallic... I might be able to fix it more efficiently.
+Verrin Ravari (Frustrated): I'd love to see it.
+
+-----------
+
+Verrin Ravari: Thank you so much for your help.
+Verrin Ravari: It's nice to work with _competent_ alchemists for a change.
+Pugano (Left): Our pleasure, we hope to see you again.
+Saverio (Right): I'm back! Did I miss anything?
+Pugano (Left): Prescient as usual.
+Pugano (Left): A house alchemist wanted to fix the chirality of something.
+Saverio (Right): Interesting.
+Saverio (Right): And based on the engine layout... huh.
+Saverio (Right): ...is the chirality important?
+Pugano (Left): Not a clue.

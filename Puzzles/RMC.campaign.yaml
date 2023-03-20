@@ -1,0 +1,62 @@
+Name: ReductiveMetallurgyCampaign
+Title: "Reductive Metallurgy"
+Chapters:
+- Title: Chapter I
+  Subtitle: The New Boys in Town
+  Place: "Saverio's Atelier"
+  Background: backgrounds/saverio_atelier
+  Entries:
+  - ID: rmc-lesson-rejection
+    Title: "Lesson: Rejection"
+    Puzzle: ch1/rmc-lesson-rejection
+    Requires: ""
+  - ID: rmc-copper-synthesis
+    Title: Copper Synthesis
+    Puzzle: ch1/rmc-copper-synthesis
+    Requires: "rmc-lesson-rejection"
+  - ID: rmc-ravari-requiescence
+    Title: Ravari's Requiescence
+    Puzzle: ch1/rmc-ravari-requiescence
+    Requires: "rmc-lesson-rejection"
+  - ID: rmc-patina-processing
+    Title: Patina Processing
+    Puzzle: ch1/rmc-patina-processing
+    Requires: "rmc-lesson-rejection"
+- Title: Chapter II
+  Subtitle: Open for Business
+  Place: "Westington Shopping District"
+  Background: backgrounds/shopping_district
+  Entries:
+  - ID: rmc-lesson-splitting
+    Title: "Lesson: Splitting"
+    Puzzle: ch2/rmc-lesson-splitting
+    Requires: ""
+  - ID: rmc-solder-wire
+    Title: Solder Wire
+    Puzzle: ch2/rmc-solder-wire
+    Requires: "rmc-lesson-splitting"
+  - ID: rmc-golden-thread-recycling
+    Title: Golden Thread Recycling
+    Puzzle: ch2/rmc-golden-thread-recycling
+    Requires: "rmc-solder-wire"
+- Title: Chapter III
+  Subtitle: More Money, More Puzzles
+  Place: "The Greathall, House Van Tassen"
+  Background: textures/cinematic/backgrounds/greathall_b
+  Entries:
+  - ID: rmc-you-drive-me-to-drink
+    Title: You Drive Me To Drink
+    Puzzle: ch3/rmc-you-drive-me-to-drink
+    Requires: ""
+  - ID: rmc-reactive-litharge
+    Title: Reactive Litharge
+    Puzzle: ch3/rmc-reactive-litharge
+    Requires: "rmc-you-drive-me-to-drink"
+  - ID: rmc-precision-machine-oil-cabinet
+    Title: Precision Machine Oil Cabinet
+    Puzzle: ch3/rmc-precision-machine-oil-cabinet
+    Requires: ""
+  - ID: rmc-sanitizing-dust
+    Title: Sanitizing Dust
+    Puzzle: ch3/rmc-sanitizing-dust
+    Requires: ""

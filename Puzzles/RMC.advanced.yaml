@@ -1,0 +1,115 @@
+Characters:
+- ID: "Saverio (Left)"
+  Name: "Saverio Daas"
+  SmallPortrait: portraits/saverio_small
+  LargePortrait: portraits/saverio_large
+  Color: 9916761
+  IsOnLeft: true
+- ID: "Saverio (Right)"
+  Name: "Saverio Daas"
+  SmallPortrait: portraits/saverio_small
+  LargePortrait: portraits/saverio_large
+  Color: 9916761
+- ID: "Pugano (Left)"
+  Name: "Jay Pugano"
+  SmallPortrait: portraits/pugano_small
+  LargePortrait: portraits/pugano_large
+  Color: 5210265
+  IsOnLeft: true
+- ID: "Pugano (Right)"
+  Name: "Jay Pugano"
+  SmallPortrait: portraits/pugano_small
+  LargePortrait: portraits/pugano_large
+  Color: 5210265
+- ID: "Shelf of Reagents"
+  Name: "Shelf of Reagents"
+  SmallPortrait: portraits/reagents_small
+  Color: 6706256
+##################################################
+Puzzles:
+##########
+- ID: rmc-copper-synthesis
+  Inputs:
+  - Elemental Tin
+  - Elemental Gold
+  Outputs:
+  - Elemental Copper
+##########
+- ID: rmc-golden-thread-recycling
+  Inputs:
+  - Golden Thread
+  Outputs:
+  - Very Dark Thread
+##########
+- ID: rmc-lesson-rejection
+  Inputs:
+  - Elemental Water
+  - Elemental Copper
+  Outputs:
+  - Reactive Water
+  - Quickiron
+##########
+- ID: rmc-lesson-splitting
+  Inputs:
+  - Elemental Gold
+  Outputs:
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+##########
+- ID: rmc-patina-processing
+  Inputs:
+  - Copper Patina
+  Outputs:
+  - Elemental Gold
+  - "'Spooky Tin'"
+##########
+- ID: rmc-precision-machine-oil-cabinet
+  Inputs:
+  - Elemental Water
+  - Elemental Iron
+  Outputs:
+  - Precision Machine Oil
+##########
+- ID: rmc-ravari-requiescence
+  Inputs:
+  - Ravari's Wheel, Incorrect
+  - Quicksilver
+  Outputs:
+  - Ravari's Wheel
+##########
+- ID: rmc-reactive-litharge
+  Inputs:
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  Outputs:
+  - Reactive Litharge
+##########
+- ID: rmc-sanitizing-dust
+  Inputs:
+  - Elemental Gold
+  - Elemental Earth
+  - Elemental Earth
+  - Elemental Earth
+  Outputs:
+  - Sanitizing Dust, Part A
+  - Sanitizing Dust, Part B
+  - Sanitizing Dust, Part C
+##########
+- ID: rmc-solder-wire
+  Inputs:
+  - Elemental Gold
+  Outputs:
+  - Solder Wire
+##########
+- ID: rmc-you-drive-me-to-drink
+  Inputs:
+  - Tinstone
+  Outputs:
+  - Distilled Alcohol
+  - Elemental Lead
