@@ -22,16 +22,12 @@ using Texture = class_256;
 
 public class PuzzleModelRMC
 {
-	public string ID;
-	public List<string> Inputs;
-	public List<string> Outputs;
+	public string ID, Music;
+	public List<string> Inputs, Outputs;
 }
 public class CharacterModelRMC
 {
-	public string ID;
-	public string Name;
-	public string SmallPortrait;
-	public string LargePortrait;
+	public string ID, Name, SmallPortrait, LargePortrait;
 	public int Color;
 	public bool IsOnLeft;
 }
@@ -80,10 +76,10 @@ public class MainClass : QuintessentialMod
 	{
 		Logger.Log("[ReductiveMetallurgyCampaign] Modifying campaign levels.");
 		CampaignChapter[] field2309 = campaign_self.field_2309;
-		foreach (CampaignChapter campaignChapter in field2309)
+		foreach (var campaignChapter in field2309)
 		{
 			if (campaignChapter.field_2310 == 1) campaignChapter.field_2321 = true;
-			foreach (CampaignItem campaignItem in campaignChapter.field_2314)
+			foreach (var campaignItem in campaignChapter.field_2314)
 			{
 				if (campaignItem.field_2325.method_1085())
 				{
@@ -98,34 +94,36 @@ public class MainClass : QuintessentialMod
 							new HexIndex(4, 0),
 							new HexIndex(6, 0)
 						};
-						foreach (HexIndex hexIndex2 in hexIndexArray)
+						foreach (var hexIndex2 in hexIndexArray)
+						{
 							class157List.Add(new class_157()
 							{
 								field_1597 = PartTypes.field_1760,
 								field_1598 = hexIndex1 + hexIndex2
 							});
+						}
 						class157List.Add(new class_157()
 						{
 							field_1597 = goldenThreadPolymerInput,
 							field_1598 = hexIndex1 + new HexIndex(6, -2),
 							field_1602 = new HexIndex[15]
-						  {
-							hexIndex1 + new HexIndex(6, -2),
-							hexIndex1 + new HexIndex(5, -2),
-							hexIndex1 + new HexIndex(4, -2),
-							hexIndex1 + new HexIndex(3, -2),
-							hexIndex1 + new HexIndex(2, -2),
-							hexIndex1 + new HexIndex(1, -2),
-							hexIndex1 + new HexIndex(0, -1),
-							hexIndex1 + new HexIndex(0, 0),
-							hexIndex1 + new HexIndex(-1, 1),
-							hexIndex1 + new HexIndex(-1, 2),
-							hexIndex1 + new HexIndex(0, 2),
-							hexIndex1 + new HexIndex(1, 2),
-							hexIndex1 + new HexIndex(2, 2),
-							hexIndex1 + new HexIndex(3, 2),
-							hexIndex1 + new HexIndex(4, 2)
-						  }
+							{
+								hexIndex1 + new HexIndex(6, -2),
+								hexIndex1 + new HexIndex(5, -2),
+								hexIndex1 + new HexIndex(4, -2),
+								hexIndex1 + new HexIndex(3, -2),
+								hexIndex1 + new HexIndex(2, -2),
+								hexIndex1 + new HexIndex(1, -2),
+								hexIndex1 + new HexIndex(0, -1),
+								hexIndex1 + new HexIndex(0, 0),
+								hexIndex1 + new HexIndex(-1, 1),
+								hexIndex1 + new HexIndex(-1, 2),
+								hexIndex1 + new HexIndex(0, 2),
+								hexIndex1 + new HexIndex(1, 2),
+								hexIndex1 + new HexIndex(2, 2),
+								hexIndex1 + new HexIndex(3, 2),
+								hexIndex1 + new HexIndex(4, 2)
+							}
 						});
 						puzzle.field_2772 = new class_157[class157List.Count];
 						for (int index = 0; index < class157List.Count; ++index)
@@ -137,9 +135,9 @@ public class MainClass : QuintessentialMod
 		Dictionary<string, PuzzleModelRMC> dictionary = new Dictionary<string, PuzzleModelRMC>();
 		foreach (PuzzleModelRMC puzzle in fetchCampaignModel().Puzzles)
 			dictionary.Add(puzzle.ID, puzzle);
-		foreach (CampaignChapter campaignChapter in field2309)
+		foreach (var campaignChapter in field2309)
 		{
-			foreach (CampaignItem campaignItem in campaignChapter.field_2314)
+			foreach (var campaignItem in campaignChapter.field_2314)
 			{
 				if (campaignItem.field_2325.method_1085())
 				{
@@ -201,13 +199,23 @@ public class MainClass : QuintessentialMod
 
 		QApi.AddPartType(goldenThreadPolymerInput, (part, pos, editor, renderer) =>
 		{
+			void drawVoidHex(HexIndex hex, float alpha)
+			{
+				Vector2 vec2 = class_187.field_1742.method_491(hex, renderer.field_1797) - tex_hole.field_2056.ToVector2() / 2;
+				class_135.method_271(tex_hole, Color.White.WithAlpha(alpha), vec2.Rounded());
+			}
+			drawVoidHex(new HexIndex(-5, 2), 1f);
+			drawVoidHex(new HexIndex(-3, 2), 0.75f);
+			drawVoidHex(new HexIndex(-1, 2), 0.5f);
+
+			//copied from track-drawing code
 			var trackList = part.method_1189();
 
 			HexIndex func(int num)
 			{
 				return trackList[class_162.method_408(num, trackList.Count)]; //note: class_162.method_408(num, trackList.Count) == (num % trackList.Count + trackList.Count) % trackList.Count;
 			}
-			bool track_is_a_loop = HexIndex.Distance(trackList.First<HexIndex>(), trackList.Last<HexIndex>()) == 1 & trackList.Count > 2;
+			bool track_is_a_loop = HexIndex.Distance(trackList.First(), trackList.Last()) == 1 & trackList.Count > 2;
 			bool flag = track_is_a_loop;
 			for (int index1 = 0; index1 < 2; ++index1)
 			{
@@ -356,12 +364,7 @@ public class MainClass : QuintessentialMod
 		});
 
 
-
-
-
-
 		modifyCampaignLevelsRMC();
-
 
 		//------------------------- HOOKING -------------------------//
 		hook_Sim_method_1835 = new Hook(
@@ -369,8 +372,8 @@ public class MainClass : QuintessentialMod
 		typeof(MainClass).GetMethod("OnSimMethod1835", BindingFlags.Static | BindingFlags.NonPublic)
 		);
 	}
-
-	private static void OnSimMethod1835(MainClass.orig_Sim_method_1835 orig, Sim sim_self)
+	private delegate void orig_Sim_method_1835(Sim self);
+	private static void OnSimMethod1835(orig_Sim_method_1835 orig, Sim sim_self)
 	{
 		My_Method_1835(sim_self);
 		orig(sim_self);
@@ -378,31 +381,31 @@ public class MainClass : QuintessentialMod
 
 	public static void My_Method_1835(Sim sim_self)
 	{
-		DynamicData dynamicData = new DynamicData((object)sim_self);
-		SolutionEditorBase solutionEditorBase = dynamicData.Get<SolutionEditorBase>("field_3818");
-		Solution solution = solutionEditorBase.method_502();
-		List<Part> field3919 = solution.field_3919;
-		List<Sim.struct_122> struct122List1 = dynamicData.Get<List<Sim.struct_122>>("field_3826");
-		solution.method_1934();
+		var sim_dyn = new DynamicData(sim_self);
+		var solutionEditorBase = sim_dyn.Get<SolutionEditorBase>("field_3818");
+		var solution = solutionEditorBase.method_502();
+		var field3919 = solution.field_3919;
+		var struct122List1 = sim_dyn.Get<List<Sim.struct_122>>("field_3826");
+
 		List<Vector2> vector2List = new List<Vector2>();
-		double num1 = 20.0;
+		float num1 = 20f;
 		List<PartType> class139List = new List<PartType>();
 		class139List.Add(goldenThreadPolymerInput);
 		List<PartType> polymerInputs = class139List;
 		List<Sim.struct_122> struct122List2 = new List<Sim.struct_122>();
-		foreach (Part part in field3919.Where(x => polymerInputs.Contains(x.method_1159())))
+		foreach (var part in field3919.Where(x => polymerInputs.Contains(x.method_1159())))
 		{
 			foreach (HexIndex hexIndex in (IEnumerable<HexIndex>)part.method_1189())
 				vector2List.Add(hexGraphicalOffset(part.method_1184(hexIndex)));
 		}
 		if (vector2List.Count == 0)
 			return;
-		float num2 = dynamicData.Get<float>("field_3827");
-		for (float num3 = num2; (double)num3 <= 1.0; num3 += num2)
+		float num2 = sim_dyn.Get<float>("field_3827");
+		for (float num3 = num2; num3 <= 1f; num3 += num2)
 		{
 			List<Sim.struct_122> struct122List3 = new List<Sim.struct_122>();
 			struct122List3.AddRange(struct122List1.Where(x => x.field_3850 == 0));
-			foreach (Molecule molecule in solutionEditorBase.method_507().method_483())
+			foreach (var molecule in solutionEditorBase.method_507().method_483())
 			{
 				Part part;
 				Vector2 vector2_1;
@@ -422,28 +425,28 @@ public class MainClass : QuintessentialMod
 					hexIndex = new HexIndex(0, 0);
 					radians = 0.0f;
 				}
-				foreach (KeyValuePair<HexIndex, Atom> keyValuePair in (IEnumerable<KeyValuePair<HexIndex, Atom>>)molecule.method_1100())
+				foreach (var keyValuePair in (IEnumerable<KeyValuePair<HexIndex, Atom>>)molecule.method_1100())
 				{
 					HexIndex key = keyValuePair.Key;
 					Vector2 vector2_2 = vector2_1 + hexGraphicalOffset(key - hexIndex).Rotated(radians);
 					struct122List3.Add(new Sim.struct_122(0, vector2_2));
 				}
 			}
-			foreach (Part part in solution.method_1937().Where(x => x.method_1202()))
+			foreach (var part in solution.method_1937().Where(x => x.method_1202()))
 			{
 				class_236 class236 = solutionEditorBase.method_1990(part, Vector2.Zero, num3);
 				foreach (HexIndex key in part.method_1159().field_1544.Keys)
 				{
 					Vector2 vector2_3 = hexGraphicalOffset(key);
-					Vector2 vector2_4 = class236.field_1984 + vector2_3.Rotated((float)class236.field_1985);
+					Vector2 vector2_4 = class236.field_1984 + vector2_3.Rotated(class236.field_1985);
 					struct122List3.Add(new Sim.struct_122(0, vector2_4));
 				}
 			}
-			foreach (Vector2 a in vector2List)
+			foreach (var a in vector2List)
 			{
 				foreach (Sim.struct_122 struct122 in struct122List3)
 				{
-					if ((double)Vector2.Distance(a, struct122.field_3851) < (double)struct122.field_3852 + num1)
+					if (Vector2.Distance(a, struct122.field_3851) < struct122.field_3852 + num1)
 					{
 						float num4 = class_162.method_405(num3, 0.0f, 0.999f);
 						solutionEditorBase.method_518(num4, (string)class_134.method_253("Atoms cannot pass through the guiding rail.", string.Empty), new Vector2[1]
@@ -461,9 +464,7 @@ public class MainClass : QuintessentialMod
 		hook_Sim_method_1835.Dispose();
 	}
 
-	public override void PostLoad()
-	{
-	}
+	public override void PostLoad() { }
 
 	public static void Class172_Method_480(On.class_172.orig_method_480 orig)
 	{
@@ -524,7 +525,4 @@ public class MainClass : QuintessentialMod
 		}
 	}
 
-
-
-	private delegate void orig_Sim_method_1835(Sim self);
 }
