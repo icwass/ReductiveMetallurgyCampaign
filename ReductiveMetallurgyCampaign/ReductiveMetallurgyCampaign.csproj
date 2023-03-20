@@ -24,6 +24,9 @@
     <Reference Include="MonoMod.Utils">
       <HintPath>bin\Debug\net452\MonoMod.Utils.dll</HintPath>
     </Reference>
+    <Reference Include="YamlDotNet">
+      <HintPath>bin\Debug\net452\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
