@@ -13,19 +13,19 @@ Chapters:
   - ID: rmc-copper-synthesis
     Title: Copper Synthesis
     Puzzle: ch1/rmc-copper-synthesis
-    Requires: "rmc-lesson-rejection"
+    Requires: ""
   - ID: rmc-ravari-requiescence
     Title: Ravari's Requiescence
     Puzzle: ch1/rmc-ravari-requiescence
-    Requires: "rmc-lesson-rejection"
+    Requires: ""
   - ID: rmc-ring-purification
     Title: Ring Purification
     Puzzle: ch1/rmc-ring-purification
-    Requires: "rmc-lesson-rejection"
+    Requires: ""
   - ID: rmc-patina-processing
     Title: Patina Processing
     Puzzle: ch1/rmc-patina-processing
-    Requires: "rmc-lesson-rejection"
+    Requires: ""
 - Title: Chapter II
   Subtitle: Open for Business
   Place: "Westington Shopping District"
@@ -38,11 +38,11 @@ Chapters:
   - ID: rmc-solder-wire
     Title: Solder Wire
     Puzzle: ch2/rmc-solder-wire
-    Requires: "rmc-lesson-splitting"
+    Requires: ""
   - ID: rmc-golden-thread-recycling
     Title: Golden Thread Recycling
     Puzzle: ch2/rmc-golden-thread-recycling
-    Requires: "rmc-solder-wire"
+    Requires: ""
 - Title: Chapter III
   Subtitle: More Money, More Puzzles
   Place: "The Greathall, House Van Tassen"
@@ -55,7 +55,11 @@ Chapters:
   - ID: rmc-reactive-litharge
     Title: Reactive Litharge
     Puzzle: ch3/rmc-reactive-litharge
-    Requires: "rmc-you-drive-me-to-drink"
+    Requires: ""
+  - ID: rmc-saverio-transformer
+    Title: Saverio's Transformer
+    Puzzle: ch3/rmc-saverio-transformer
+    Requires: ""
   - ID: rmc-precision-machine-oil-cabinet
     Title: Precision Machine Oil Cabinet
     Puzzle: ch3/rmc-precision-machine-oil-cabinet
@@ -63,4 +67,17 @@ Chapters:
   - ID: rmc-sanitizing-dust
     Title: Sanitizing Dust
     Puzzle: ch3/rmc-sanitizing-dust
+    Requires: ""
+- Title: Chapter IV
+  Subtitle: Ravari's Wheel
+  Place: "The Greathall, House Van Tassen"
+  Background: textures/cinematic/backgrounds/greathall_a
+  Entries:
+  - ID: rmc-ravari-repine
+    Title: Ravari's Repine
+    Puzzle: ch4/rmc-ravari-repine
+    Requires: ""
+  - ID: rmc-pugano-transformer
+    Title: Pugano's Transformer
+    Puzzle: ch4/rmc-pugano-transformer
     Requires: ""

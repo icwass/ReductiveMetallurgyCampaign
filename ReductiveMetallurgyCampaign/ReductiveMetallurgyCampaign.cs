@@ -168,6 +168,8 @@ public class MainClass : QuintessentialMod
 						void processIO(bool doInputs)
 						{
 							List<string> stringList = doInputs ? puzzleModel.Inputs : puzzleModel.Outputs;
+							if (stringList == null) return;
+
 							PuzzleInputOutput[] puzzleInputOutputArray = doInputs ? puzzle.field_2770 : puzzle.field_2771;
 							int num = Math.Min(puzzleInputOutputArray.Length, stringList.Count);
 							for (int index = 0; index < num; ++index)

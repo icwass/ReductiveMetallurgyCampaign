@@ -25,6 +25,10 @@ Characters:
   Name: "Shelf of Reagents"
   SmallPortrait: portraits/reagents_small
   Color: 6706256
+- ID: "Verrin Ravari (Livid)"
+  Name: "Verrin Ravari"
+  SmallPortrait: portraits/verrin_livid_small
+  Color: 6691857
 ##################################################
 Puzzles:
 ##########
@@ -67,7 +71,7 @@ Puzzles:
   - Copper Patina
   Outputs:
   - Elemental Gold
-  - "'Spooky Tin'"
+  - Limbal Essence
 ##########
 - ID: rmc-precision-machine-oil-cabinet
   Music: Solving6
@@ -131,3 +135,26 @@ Puzzles:
   Outputs:
   - Distilled Alcohol
   - Elemental Lead
+##########
+- ID: rmc-ravari-repine
+  Music: Solving5
+  Outputs:
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Quicksilver
+##########
+- ID: rmc-saverio-transformer
+  Music: Solving3
+  Inputs:
+  - Elemental Lead
+  Outputs:
+  - Elemental Quicksilver
+##########
+- ID: rmc-pugano-transformer
+  Music: Solving4
+  Inputs:
+  - Fragrant Fragment
+  - Elemental Quicksilver
+  Outputs:
+  - Elemental Lead
+##########

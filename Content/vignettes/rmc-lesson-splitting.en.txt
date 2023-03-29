@@ -1,12 +1,15 @@
 Pugano (Left): And here it is. This is my first time dabbling in glyph research, but I think these turned out well.
-Saverio (Right): So how does it work?
-Pugano (Left): Well, while your rejection glyph reverses the process of projection, these glyphs reverse the process of purification.
-Saverio (Right): So it splits them apart, then! Neat.
-Pugano (Left): However, it seems I can't perfect the process, so it's not an exact inverse of the purification glyph.
-Saverio (Right): Still, rather impressive! Show me how it works.
+Saverio (Right): Is this from my notes on reversing purification?
+Pugano (Left): Well, the implementation was quite poor, but with some tinkering I got it working.
+Saverio (Right): So it succeeds in splitting metals apart, then? This is excellent!
+Pugano (Left): It's not quite a "split" - the metal is subjected to high pressure and deposited onto a membrane, then extracted. Observe:
 
 -----------
 
-Saverio (Right): Ooh, that's useful.
-Saverio (Right): Rejection can extract quicksilver, but this can extract metal atoms!
-Pugano (Left): Exactly. I want to tinker with them some more, but it should be a nice addition to our tool set.
+Pugano (Left): As you can see, this results in two products of half the metallicity of the input. Alchemical laws remain intact.
+Saverio (Right): Well, splitting can be a challenge for another time then.
+Pugano (Left): What do you mean, "another time"? The law of equivalent exchange is sacrosanct, you cannot break it!
+Saverio (Right): Just because it hasn't been done doesn't mean it can't be done!
+Saverio (Right): Besides, the glyph of purification seems to _destroy_ metal. Where's the equivalent exchange there? 
+Saverio (Right): Have some faith, Jay; my research into copper-iron alloys will soon bear fruit. For now, focus on improving the glyph's reliability - it will be important for future endeavors.
+Pugano (Left): My financial security requires me to wish you the best of luck.

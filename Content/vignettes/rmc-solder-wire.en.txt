@@ -1,13 +1,17 @@
-Saverio (Right): Jay, we've got another customer, and I want you to use that new glyph.
-Pugano (Left): Wait, what? It's still in development!
-Saverio (Right): Then consider it a stress-test! Look at this order.
-Pugano (Left): ...
-Pugano (Left): ...
-Pugano (Left): You want to use their payment as the reagent, don't you.
-Saverio (Right): They will literally get their money's worth.
+Saverio (Right): Dear assistant.
+Pugano (Left): Uh-huh.
+Saverio (Right): Dearest, beloved assistant.
+Pugano (Left): Okay, what did you do?
+Saverio (Right): You know that new glyph I gave you, that you've just started working with and understand perfectly?
+Pugano (Left): You mean the one _I_ got working three days ago?
+Saverio (Right): Ancient history, my friend. A customer has bulk ordered some solder wire, so I'll need you to make some, and quickly.
+Pugano (Left): What, bu-... how do you suppose we find the material for this much wire?
+Saverio (Right): They *did* give us an advance, use that. It should provide plenty of material.
 
 -----------
 
-Pugano (Left): Well, that's that.
-Pugano (Left): An economist would have a field day with this one.
-Saverio (Right): Heh.
+Saverio (Right): I must say, it's quite remarkable how well you work under pressure.
+Pugano (Left): ...
+Pugano (Left): Dear leader, how nice of you to give me the remainder of the advance from this assignment.
+Pugano (Left): I will use it wonderfully these next few days you've given me off.
+Saverio (Right): I- uh, fine. I am ever so gracious after all.
