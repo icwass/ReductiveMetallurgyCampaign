@@ -19,6 +19,7 @@ using Permissions = enum_149;
 using PartTypes = class_191;
 using Texture = class_256;
 using Song = class_186;
+using Tip = class_215;
 
 public class PuzzleModelRMC
 {
@@ -92,6 +93,30 @@ public class MainClass : QuintessentialMod
 			{"Solving5", class_238.field_1991.field_1834},
 			{"Solving6", class_238.field_1991.field_1835},
 		};
+		Tip tipPolymerInput = new Tip()
+		{
+			field_1899 = "RMCT000",
+			field_1900 = class_134.method_253("Repeating Reagents", string.Empty),
+			field_1901 = class_134.method_253("Some reagents repeat infintely, and must be fed into the transmutation engine with the help of a guiding rail.\n\nArms can be mounted on the rail, but atoms are not allowed to pass through it.", string.Empty),
+			field_1902 = "RMCrejection",
+			field_1903 = class_235.method_615("tips/polymer_inputs")
+		};
+		Tip tipRejection = new Tip()
+		{
+			field_1899 = "RMCT001",
+			field_1900 = class_134.method_253("Glyph of Rejection", string.Empty),
+			field_1901 = class_134.method_253("The *glyph of rejection* can demote an atom of metal to its next lower form, producing an atom of quicksilver.\n\nBy doing this repeatedly, even gold — the finest metal — can be transmuted into base lead.", string.Empty),
+			field_1902 = "RMCrejection",
+			field_1904 = new Vector2(-42f, 0f)
+		};
+		Tip tipSplitting = new Tip()
+		{
+			field_1899 = "RMCT002",
+			field_1900 = class_134.method_253("Glyph of Splitting", string.Empty),
+			field_1901 = class_134.method_253("The *glyph of splitting* transmutes one atom of metal into two atoms of a lower form.\n\nNote that the resulting metals need not be of the next lower form, nor need they be the same metal.", string.Empty),
+			field_1902 = "RMCsplitting",
+			field_1904 = new Vector2(0.0f, -40f)
+		};
 
 		Logger.Log("[ReductiveMetallurgyCampaign] Modifying campaign levels.");
 		CampaignChapter[] field2309 = campaign_self.field_2309;
@@ -103,8 +128,24 @@ public class MainClass : QuintessentialMod
 				if (campaignItem.field_2325.method_1085())
 				{
 					Puzzle puzzle = campaignItem.field_2325.method_1087();
-					if (puzzle.field_2766 == "rmc-golden-thread-recycling")
+
+					if (puzzle.field_2766 == "rmc-lesson-rejection")
 					{
+						puzzle.field_2769 = tipRejection;
+					}
+					else if (puzzle.field_2766 == "rmc-lesson-splitting")
+					{
+						puzzle.field_2769 = tipSplitting;
+					}
+					else if (puzzle.field_2766 == "asdf")
+					{
+						//
+
+
+					}
+					else if (puzzle.field_2766 == "rmc-golden-thread-recycling")
+					{
+						puzzle.field_2769 = tipPolymerInput;
 						HexIndex hexIndex1 = new HexIndex(1, 0);
 						List<class_157> class157List = new List<class_157>();
 						HexIndex[] hexIndexArray = new HexIndex[3]
@@ -491,7 +532,25 @@ public class MainClass : QuintessentialMod
 		hook_Sim_method_1835.Dispose();
 	}
 
-	public override void PostLoad() { }
+	public override void PostLoad()
+	{
+		On.Solution.method_1958 += Solution_Method_1958;
+	}
+	public Maybe<Solution> Solution_Method_1958(On.Solution.orig_method_1958 orig, string filePath)
+	{
+		if (filePath == "Content\\tips\\RMCrejection.solution" || filePath == "Content\\tips\\RMCsplitting.solution")
+		{
+			foreach (var dir in QuintessentialLoader.ModContentDirectories)
+			{
+				try
+				{
+					return orig(Path.Combine(dir, filePath));
+				}
+				catch (Exception) { }
+			}
+		}
+		return orig(filePath);
+	}
 
 	public static void Class172_Method_480(On.class_172.orig_method_480 orig)
 	{
