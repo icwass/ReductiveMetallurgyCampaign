@@ -36,6 +36,7 @@ public class CampaignModelRMC
 {
 	public List<PuzzleModelRMC> Puzzles;
 	public List<CharacterModelRMC> Characters;
+	public List<DocumentModelRMC> Documents;
 }
 
 public class MainClass : QuintessentialMod
@@ -166,12 +167,6 @@ public class MainClass : QuintessentialMod
 					{
 						puzzle.field_2769 = tipSplitting;
 					}
-					else if (puzzle.field_2766 == "asdf")
-					{
-						//
-
-
-					}
 					else if (puzzle.field_2766 == "rmc-golden-thread-recycling")
 					{
 						puzzle.field_2769 = tipPolymerInput;
@@ -221,9 +216,18 @@ public class MainClass : QuintessentialMod
 				}
 			}
 		}
-		Dictionary<string, PuzzleModelRMC> dictionary = new Dictionary<string, PuzzleModelRMC>();
+		Dictionary<string, PuzzleModelRMC> puzzleDictionary = new Dictionary<string, PuzzleModelRMC>();
+		List<string> documentIDList = new List<string>();
 		foreach (PuzzleModelRMC puzzle in fetchCampaignModel().Puzzles)
-			dictionary.Add(puzzle.ID, puzzle);
+		{
+			puzzleDictionary.Add(puzzle.ID, puzzle);
+		}
+		var DocumentModels = fetchCampaignModel().Documents;
+		Document.LoadDocuments(DocumentModels);
+		foreach (DocumentModelRMC document in DocumentModels)
+		{
+			documentIDList.Add(document.ID);
+		}
 		foreach (var campaignChapter in field2309)
 		{
 			foreach (var campaignItem in campaignChapter.field_2314)
@@ -232,9 +236,14 @@ public class MainClass : QuintessentialMod
 				{
 					Puzzle puzzle = campaignItem.field_2325.method_1087();
 					string field2766 = puzzle.field_2766;
-					if (dictionary.ContainsKey(field2766))
+					if (documentIDList.Contains(field2766))
 					{
-						PuzzleModelRMC puzzleModel = dictionary[field2766];
+						// change item into a document
+						campaignItem.field_2324 = (enum_129)2;
+					}
+					else if (puzzleDictionary.ContainsKey(field2766))
+					{
+						PuzzleModelRMC puzzleModel = puzzleDictionary[field2766];
 						void processIO(bool doInputs)
 						{
 							List<string> stringList = doInputs ? puzzleModel.Inputs : puzzleModel.Outputs;
@@ -287,6 +296,7 @@ public class MainClass : QuintessentialMod
 	{
 		On.class_172.method_480 += new On.class_172.hook_method_480(Class172_Method_480);
 		On.Solution.method_1958 += Solution_Method_1958;
+		Document.Load();
 	}
 	public Maybe<Solution> Solution_Method_1958(On.Solution.orig_method_1958 orig, string filePath)
 	{

@@ -1,0 +1,7 @@
+﻿[DO NOT PARSE]
+
+This is the first text item. Every text item needs an associated entry in the DrawItems list for the document in RMC.advanced.yaml.
+
+You can have multiple lines - the pound symbol is used to denote when to start the next text item.
+
+#Note to self - stop putting coffee cups on important documents.

@@ -30,6 +30,34 @@ Characters:
   SmallPortrait: portraits/verrin_livid_small
   Color: 6691857
 ##################################################
+Documents:
+- ID: rmc-document-resume # needs to be the same as the puzzleID it needs to replace
+  Texture: textures/documents/letter_5 # the base texture
+  DrawItems:
+  ## this first item shows all options available for drawing a text item
+  ## the only option not defined here is Texture - whether Texture is defined determines whether the item is an image or a piece of text
+  - Position: 300.0, 650.0 # in pixels from the bottom-left corner of the base texture
+    Font: "cormorant 15"
+    Color: 9043968 # Colors are RGB values in decimal
+    Align: center # use "right" for right-aligned, "center" for center-aligned, anything else is interpreted as left-aligned
+    LineSpacing: 2.0
+    ColumnWidth: 350.0
+    Handwritten: false
+  ## this item shows all the options required for drawing an image item - other options are ignored if Texture is defined
+  - Position: 100, 100
+    Texture: documents/coffee_stain
+  ## this item shows you don't need to define all the options for text items, since there are default values
+  - Position: 300, 200 # default is 0, 0
+    # default Font is "cormorant 15"
+    # default Color is 2299924, a color close to black
+    # default Align is left-aligned
+    # default LineSpacing is 1
+    # default ColumnWidth is float.MaxValue
+    Handwritten: true # default is false
+# Available fonts:
+#   "crimson 9.75"      "crimson 10.5"      "crimson 12"        "crimson 13"        "crimson 15"        "crimson 16.5"      "crimson 21"
+#   "cormorant 11"      "cormorant 12.75"   "cormorant 15"      "cormorant 18"      "cormorant 22.5"    "cinzel 21"         "naver 17.25"       "reenie 17.25"
+##################################################
 Puzzles:
 ##########
 - ID: rmc-copper-synthesis

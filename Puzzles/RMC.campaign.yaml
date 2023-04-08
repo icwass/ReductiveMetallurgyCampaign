@@ -6,6 +6,10 @@ Chapters:
   Place: "Saverio's Atelier"
   Background: backgrounds/saverio_atelier
   Entries:
+  - ID: rmc-document-resume
+    Title: "Applicant's Resume"
+    Puzzle: document/empty
+    Requires: ""
   - ID: rmc-lesson-rejection
     Title: "Lesson: Rejection"
     Puzzle: ch1/rmc-lesson-rejection
