@@ -32,17 +32,25 @@ public class CharacterModelRMC
 	public int Color;
 	public bool IsOnLeft;
 }
+
+public class SigmarsGardenRMC
+{
+	public string ID;
+}
+
+
 public class CampaignModelRMC
 {
 	public List<PuzzleModelRMC> Puzzles;
 	public List<CharacterModelRMC> Characters;
 	public List<DocumentModelRMC> Documents;
+	public List<SigmarsGardenRMC> SigmarsGardens;
 }
 
 public class MainClass : QuintessentialMod
 {
 	private static IDetour hook_Sim_method_1835;
-	private static Campaign campaign_self;
+	public static Campaign campaign_self;
 
 	private static bool findModMetaFilepath(string name, out string filepath)
 	{
@@ -218,6 +226,7 @@ public class MainClass : QuintessentialMod
 		}
 		Dictionary<string, PuzzleModelRMC> puzzleDictionary = new Dictionary<string, PuzzleModelRMC>();
 		List<string> documentIDList = new List<string>();
+		List<string> sigmarsGardensIDList = new List<string>();
 		foreach (PuzzleModelRMC puzzle in fetchCampaignModel().Puzzles)
 		{
 			puzzleDictionary.Add(puzzle.ID, puzzle);
@@ -227,6 +236,10 @@ public class MainClass : QuintessentialMod
 		foreach (DocumentModelRMC document in DocumentModels)
 		{
 			documentIDList.Add(document.ID);
+		}
+		foreach (SigmarsGardenRMC garden in fetchCampaignModel().SigmarsGardens)
+		{
+			sigmarsGardensIDList.Add(garden.ID);
 		}
 		foreach (var campaignChapter in field2309)
 		{
@@ -240,6 +253,11 @@ public class MainClass : QuintessentialMod
 					{
 						// change item into a document
 						campaignItem.field_2324 = (enum_129)2;
+					}
+					else if (sigmarsGardensIDList.Contains(field2766))
+					{
+						// change item into a Sigmars Garden
+						campaignItem.field_2324 = (enum_129)3;
 					}
 					else if (puzzleDictionary.ContainsKey(field2766))
 					{
@@ -294,10 +312,11 @@ public class MainClass : QuintessentialMod
 
 	public override void Load()
 	{
+		Document.Load();
 		On.class_172.method_480 += new On.class_172.hook_method_480(Class172_Method_480);
 		On.Solution.method_1958 += Solution_Method_1958;
-		Document.Load();
 	}
+
 	public Maybe<Solution> Solution_Method_1958(On.Solution.orig_method_1958 orig, string filePath)
 	{
 		if (filePath == "Content\\tips\\RMCrejection.solution" || filePath == "Content\\tips\\RMCsplitting.solution")
@@ -336,5 +355,8 @@ public class MainClass : QuintessentialMod
 		}
 	}
 
-	public override void PostLoad() { }
+	public override void PostLoad()
+	{
+		SigmarGardenPatcher.Load();
+	}
 }

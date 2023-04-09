@@ -30,6 +30,8 @@ Characters:
   SmallPortrait: portraits/verrin_livid_small
   Color: 6691857
 ##################################################
+SigmarsGardens:
+- ID: rmc-sigmars-garden-1
 Documents:
 - ID: rmc-document-resume # needs to be the same as the puzzleID it needs to replace
   Texture: textures/documents/letter_5 # the base texture

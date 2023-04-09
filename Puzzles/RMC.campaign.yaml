@@ -39,6 +39,10 @@ Chapters:
     Title: "Lesson: Splitting"
     Puzzle: ch2/rmc-lesson-splitting
     Requires: ""
+  - ID: rmc-sigmars-garden-1
+    Title: Sigmar's Garden
+    Puzzle: document/empty
+    Requires: ""
   - ID: rmc-solder-wire
     Title: Solder Wire
     Puzzle: ch2/rmc-solder-wire
