@@ -31,17 +31,77 @@ public static class SigmarGardenPatcher
 
 	public static void Load()
 	{
+		getSigmarWins_RMC();
+		On.class_198.method_537 += Class198_Method_537;
 		On.CampaignItem.method_825 += CampaignItem_Method_825;
 		On.SolitaireGameState.method_1885 += SolitaireGameState_Method_1885;
 		On.SolitaireScreen.method_50 += SolitaireScreen_Method_50;
-		getSigmarWins_RMC();
+	}
+	public static SolitaireGameState Class198_Method_537(On.class_198.orig_method_537 orig, bool param_3874)
+	{
+		if (!currentCampaignIsRMC) return orig(param_3874);
+
+		string path = "";
+		string filePath = "Content/solitaire-rmc.dat";
+
+		// find solitaire_rmc.dat
+		foreach (var dir in QuintessentialLoader.ModContentDirectories)
+		{
+			Logger.Log(Path.Combine(dir, filePath));
+			if (File.Exists(Path.Combine(dir, filePath)))
+			{
+				path = Path.Combine(dir, filePath);
+				break;
+			}
+		}
+
+		if (path == "") return orig(param_3874);
+
+		int field1811 = 55;
+		int field1812 = field1811 * 3;
+
+		using (BinaryReader binaryReader = new BinaryReader((Stream)new FileStream(path, FileMode.Open, FileAccess.Read)))
+		{
+			int num = binaryReader.ReadInt32();
+			int boardID = class_269.field_2103.method_299(0, num);
+			binaryReader.BaseStream.Seek(boardID * field1812, SeekOrigin.Current);
+			HexRotation rotation = new HexRotation(class_269.field_2103.method_299(0, 6));
+			SolitaireGameState solitaireGameState = new SolitaireGameState();
+			AtomType[] atomTypes = new AtomType[17]
+			{
+				default(AtomType), // 00 - filler
+				class_175.field_1675, // 01 - salt
+				class_175.field_1676, // 02 - air
+				class_175.field_1677, // 03 - earth
+				class_175.field_1678, // 04 - fire
+				class_175.field_1679, // 05 - water
+				class_175.field_1680, // 06 - quicksilver
+				class_175.field_1686, // 07 - gold
+				class_175.field_1685, // 08 - silver
+				class_175.field_1682, // 09 - copper
+				class_175.field_1684, // 10 - iron
+				class_175.field_1683, // 11 - tin
+				class_175.field_1681, // 12 - lead
+				class_175.field_1687, // 13 - vitae
+				class_175.field_1688, // 14 - mors
+				default(AtomType), // 15 - filler
+				class_175.field_1690, // 16 - quintessence
+			};
+			for (int index = 0; index < field1811; ++index)
+			{
+				AtomType atomType = atomTypes[binaryReader.ReadByte()];
+				HexIndex key = new HexIndex(binaryReader.ReadSByte(), binaryReader.ReadSByte());
+				//key = key.RotatedAround(new HexIndex(5, 0), rotation);
+				solitaireGameState.field_3864.Add(key, atomType);
+			}
+			return solitaireGameState;
+		}
 	}
 	public static bool CampaignItem_Method_825(On.CampaignItem.orig_method_825 orig, CampaignItem item_self)
 	{
 		bool ret = orig(item_self);
-
-		if (currentCampaignIsRMC) ret = ret || (item_self.field_2324 == (enum_129)3 && sigmarWins_RMC > 0);
-
+		if (currentCampaignIsRMC)
+			ret = ret || (item_self.field_2324 == (enum_129)3 && sigmarWins_RMC > 0);
 		return ret;
 	}
 
@@ -54,9 +114,7 @@ public static class SigmarGardenPatcher
 	}
 	public static void SolitaireScreen_Method_50(On.SolitaireScreen.orig_method_50 orig, SolitaireScreen screen_self, float timeDelta)
 	{
-
 		currentCampaignIsRMC = MainClass.campaign_self == Campaigns.field_2330;
-
 		if (currentCampaignIsRMC)
 		{
 			var screen_dyn = new DynamicData(screen_self);
@@ -71,9 +129,6 @@ public static class SigmarGardenPatcher
 				screen_dyn.Set("field_3872", new StoryPanel((Maybe<class_264>)class264, true));
 			}
 		}
-
-
-
 		orig(screen_self, timeDelta);
 	}
 
