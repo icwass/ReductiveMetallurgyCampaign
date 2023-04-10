@@ -24,8 +24,12 @@ namespace ReductiveMetallurgyCampaign;
 
 public static class SigmarGardenPatcher
 {
+	private static IDetour hook_SolitaireScreen_method_1889;
+	private static IDetour hook_SolitaireScreen_method_1890;
+
+	private static SolitaireState solitaireState_RMC;
 	private static int sigmarWins_RMC = 0;
-	private static bool currentCampaignIsRMC = false;
+	private static bool currentCampaignIsRMC() => MainClass.campaign_self == Campaigns.field_2330;
 	private static void setSigmarWins_RMC() => GameLogic.field_2434.field_2451.field_1929.method_858("RMC-SigmarWins", sigmarWins_RMC.method_453());
 	private static void getSigmarWins_RMC() { sigmarWins_RMC = GameLogic.field_2434.field_2451.field_1929.method_862<int>(new delegate_384<int>(int.TryParse), "RMC-SigmarWins").method_1090(0); }
 
@@ -36,10 +40,45 @@ public static class SigmarGardenPatcher
 		On.CampaignItem.method_825 += CampaignItem_Method_825;
 		On.SolitaireGameState.method_1885 += SolitaireGameState_Method_1885;
 		On.SolitaireScreen.method_50 += SolitaireScreen_Method_50;
+
+		hook_SolitaireScreen_method_1889 = new Hook(
+		typeof(SolitaireScreen).GetMethod("method_1889", BindingFlags.Instance | BindingFlags.NonPublic),
+		typeof(SigmarGardenPatcher).GetMethod("OnSolitaireScreen_Method_1889", BindingFlags.Static | BindingFlags.NonPublic)
+		);
+		hook_SolitaireScreen_method_1890 = new Hook(
+		typeof(SolitaireScreen).GetMethod("method_1890", BindingFlags.Instance | BindingFlags.NonPublic),
+		typeof(SigmarGardenPatcher).GetMethod("OnSolitaireScreen_Method_1890", BindingFlags.Static | BindingFlags.NonPublic)
+		);
 	}
+	private delegate SolitaireState orig_SolitaireScreen_method_1889(SolitaireScreen self);
+	private delegate void orig_SolitaireScreen_method_1890(SolitaireScreen self, SolitaireState param_5433);
+	private static SolitaireState OnSolitaireScreen_Method_1889(orig_SolitaireScreen_method_1889 orig, SolitaireScreen screen_self)
+	{
+		if (currentCampaignIsRMC()) return solitaireState_RMC;
+		return orig(screen_self);
+	}
+	private static void OnSolitaireScreen_Method_1890(orig_SolitaireScreen_method_1890 orig, SolitaireScreen screen_self, SolitaireState param_5433)
+	{
+		if (currentCampaignIsRMC())
+		{
+			solitaireState_RMC = param_5433;
+			return;
+		}
+		orig(screen_self, param_5433);
+	}
+
+
+	public static void Unload()
+	{
+		hook_SolitaireScreen_method_1889.Dispose();
+		hook_SolitaireScreen_method_1890.Dispose();
+	}
+
+
+
 	public static SolitaireGameState Class198_Method_537(On.class_198.orig_method_537 orig, bool param_3874)
 	{
-		if (!currentCampaignIsRMC) return orig(param_3874);
+		if (!currentCampaignIsRMC()) return orig(param_3874);
 
 		string path = "";
 		string filePath = "Content/solitaire-rmc.dat";
@@ -100,7 +139,7 @@ public static class SigmarGardenPatcher
 	public static bool CampaignItem_Method_825(On.CampaignItem.orig_method_825 orig, CampaignItem item_self)
 	{
 		bool ret = orig(item_self);
-		if (currentCampaignIsRMC)
+		if (currentCampaignIsRMC())
 			ret = ret || (item_self.field_2324 == (enum_129)3 && sigmarWins_RMC > 0);
 		return ret;
 	}
@@ -108,14 +147,13 @@ public static class SigmarGardenPatcher
 	public static bool SolitaireGameState_Method_1885(On.SolitaireGameState.orig_method_1885 orig, SolitaireGameState state_self)
 	{
 		bool ret = orig(state_self);
-		if (ret && currentCampaignIsRMC) sigmarWins_RMC++;
+		if (ret && currentCampaignIsRMC()) sigmarWins_RMC++;
 		setSigmarWins_RMC();
 		return ret;
 	}
 	public static void SolitaireScreen_Method_50(On.SolitaireScreen.orig_method_50 orig, SolitaireScreen screen_self, float timeDelta)
 	{
-		currentCampaignIsRMC = MainClass.campaign_self == Campaigns.field_2330;
-		if (currentCampaignIsRMC)
+		if (currentCampaignIsRMC())
 		{
 			var screen_dyn = new DynamicData(screen_self);
 			screen_dyn.Set("field_3871", sigmarWins_RMC);
@@ -123,7 +161,6 @@ public static class SigmarGardenPatcher
 			var stringArray = new DynamicData(currentStoryPanel).Get<string[]>("field_4093");
 			if (!stringArray.Any(x => x.Contains("Saverio") || x.Contains("Pugano")))
 			{
-				currentCampaignIsRMC = true;
 				var class264 = new class_264("solitaire-rmc");
 				class264.field_2090 = "solitaire";
 				screen_dyn.Set("field_3872", new StoryPanel((Maybe<class_264>)class264, true));

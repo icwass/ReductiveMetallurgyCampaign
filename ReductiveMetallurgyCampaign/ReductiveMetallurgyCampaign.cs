@@ -307,6 +307,7 @@ public class MainClass : QuintessentialMod
 
 	public override void Unload() {
 		hook_Sim_method_1835.Dispose();
+		SigmarGardenPatcher.Unload();
 	}
 
 
