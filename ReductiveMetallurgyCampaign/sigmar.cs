@@ -40,6 +40,8 @@ public static class SigmarGardenPatcher
 		On.CampaignItem.method_825 += CampaignItem_Method_825;
 		On.SolitaireGameState.method_1885 += SolitaireGameState_Method_1885;
 		On.SolitaireScreen.method_50 += SolitaireScreen_Method_50;
+		On.SolitaireGameState.class_301.method_1888 += Class301_Method_1888;
+
 
 		hook_SolitaireScreen_method_1889 = new Hook(
 		typeof(SolitaireScreen).GetMethod("method_1889", BindingFlags.Instance | BindingFlags.NonPublic),
@@ -151,6 +153,7 @@ public static class SigmarGardenPatcher
 		setSigmarWins_RMC();
 		return ret;
 	}
+
 	public static void SolitaireScreen_Method_50(On.SolitaireScreen.orig_method_50 orig, SolitaireScreen screen_self, float timeDelta)
 	{
 		if (currentCampaignIsRMC())
@@ -169,6 +172,12 @@ public static class SigmarGardenPatcher
 		orig(screen_self, timeDelta);
 	}
 
+	public static bool Class301_Method_1888(On.SolitaireGameState.class_301.orig_method_1888 orig, SolitaireGameState.class_301 class301_self, AtomType param_5430, AtomType param_5431)
+	{
+		bool atomTypeIsMetal = param_5430.field_2297.method_1085();
+		if (currentCampaignIsRMC() && param_5430 == param_5431 && atomTypeIsMetal) return true;
+		return orig(class301_self, param_5430, param_5431);
+	}
 
 
 
