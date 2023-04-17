@@ -30,6 +30,11 @@ public static class SigmarGardenPatcher
 	private static SolitaireState solitaireState_RMC;
 	private static int sigmarWins_RMC = 0;
 	private static bool currentCampaignIsRMC() => MainClass.campaign_self == Campaigns.field_2330;
+	private static bool isQuintessenceSigmarGarden(SolitaireScreen screen) => new DynamicData(screen).Get<bool>("field_3874");
+	private static bool currentCampaignIsRMC(SolitaireScreen screen)
+	{
+		return currentCampaignIsRMC() && !isQuintessenceSigmarGarden(screen);
+	}
 	private static void setSigmarWins_RMC() => GameLogic.field_2434.field_2451.field_1929.method_858("RMC-SigmarWins", sigmarWins_RMC.method_453());
 	private static void getSigmarWins_RMC() { sigmarWins_RMC = GameLogic.field_2434.field_2451.field_1929.method_862<int>(new delegate_384<int>(int.TryParse), "RMC-SigmarWins").method_1090(0); }
 
@@ -56,12 +61,12 @@ public static class SigmarGardenPatcher
 	private delegate void orig_SolitaireScreen_method_1890(SolitaireScreen self, SolitaireState param_5433);
 	private static SolitaireState OnSolitaireScreen_Method_1889(orig_SolitaireScreen_method_1889 orig, SolitaireScreen screen_self)
 	{
-		if (currentCampaignIsRMC()) return solitaireState_RMC;
+		if (currentCampaignIsRMC(screen_self)) return solitaireState_RMC;
 		return orig(screen_self);
 	}
 	private static void OnSolitaireScreen_Method_1890(orig_SolitaireScreen_method_1890 orig, SolitaireScreen screen_self, SolitaireState param_5433)
 	{
-		if (currentCampaignIsRMC())
+		if (currentCampaignIsRMC(screen_self))
 		{
 			solitaireState_RMC = param_5433;
 			return;
@@ -78,9 +83,9 @@ public static class SigmarGardenPatcher
 
 
 
-	public static SolitaireGameState Class198_Method_537(On.class_198.orig_method_537 orig, bool param_3874)
+	public static SolitaireGameState Class198_Method_537(On.class_198.orig_method_537 orig, bool quintessenceSigmar)
 	{
-		if (!currentCampaignIsRMC()) return orig(param_3874);
+		if (!currentCampaignIsRMC() || quintessenceSigmar) return orig(quintessenceSigmar);
 
 		string path = "";
 		string filePath = "Content/solitaire-rmc.dat";
@@ -96,12 +101,12 @@ public static class SigmarGardenPatcher
 			}
 		}
 
-		if (path == "") return orig(param_3874);
+		if (path == "") return orig(quintessenceSigmar);
 
 		int field1811 = 55;
 		int field1812 = field1811 * 3;
 
-		using (BinaryReader binaryReader = new BinaryReader((Stream)new FileStream(path, FileMode.Open, FileAccess.Read)))
+		using (BinaryReader binaryReader = new BinaryReader(new FileStream(path, FileMode.Open, FileAccess.Read)))
 		{
 			int num = binaryReader.ReadInt32();
 			int boardID = class_269.field_2103.method_299(0, num);
@@ -149,14 +154,15 @@ public static class SigmarGardenPatcher
 	public static bool SolitaireGameState_Method_1885(On.SolitaireGameState.orig_method_1885 orig, SolitaireGameState state_self)
 	{
 		bool ret = orig(state_self);
-		if (ret && currentCampaignIsRMC()) sigmarWins_RMC++;
+		AtomType quintessence = class_175.field_1690;
+		if (ret && currentCampaignIsRMC() && !state_self.field_3864.ContainsValue(quintessence)) sigmarWins_RMC++;
 		setSigmarWins_RMC();
 		return ret;
 	}
 
 	public static void SolitaireScreen_Method_50(On.SolitaireScreen.orig_method_50 orig, SolitaireScreen screen_self, float timeDelta)
 	{
-		if (currentCampaignIsRMC())
+		if (currentCampaignIsRMC(screen_self))
 		{
 			var screen_dyn = new DynamicData(screen_self);
 			screen_dyn.Set("field_3871", sigmarWins_RMC);
