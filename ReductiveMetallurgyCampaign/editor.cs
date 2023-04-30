@@ -30,32 +30,43 @@ public class BoardEditorScreen : IScreen
 	public bool method_1037() => false;
 	public void method_47(bool param_5434) {
 		GameLogic.field_2434.field_2443.method_673(class_238.field_1992.field_969);
-		if (dirPath == "")
+		string testPath = "Content/solitaire-rmc.dat";
+		foreach (var dir in QuintessentialLoader.ModContentDirectories.Where(dir => File.Exists(Path.Combine(dir, testPath))))
 		{
-			string filePath = "Content/solitaire-rmc.dat";
-
-			// find solitaire_rmc.dat
-			foreach (var dir in QuintessentialLoader.ModContentDirectories)
+			if (File.Exists(Path.Combine(dir, testPath)))
 			{
-				if (File.Exists(Path.Combine(dir, filePath)))
-				{
-					dirPath = dir;
-					break;
-				}
+				dirPath = dir;
+				break;
 			}
 		}
 
 		boards = new List<editableBoard>();
-
-		if (File.Exists(Path.Combine(dirPath, filePath)))
+		string fullFilePath = Path.Combine(dirPath, filePath);
+		if (File.Exists(fullFilePath))
 		{
 			// load existing boards
+			using (BinaryReader binaryReader = new BinaryReader(new FileStream(fullFilePath, FileMode.Open, FileAccess.Read), Encoding.ASCII))
+			{
+				long size = binaryReader.BaseStream.Length;
+				string buffer = "";
+				for (long i = 0; i < size; i++)
+				{
+					char c = binaryReader.ReadChar();
+					if (c == ';')
+					{
+						//process board, open next one
+						boards.Add(new editableBoard(buffer));
+						buffer = "";
+					}
+					else
+					{
+						buffer += c;
+					}
+				}
+				if (buffer != "") boards.Add(new editableBoard(buffer));
+			}
 		}
-		
-		if (boards.Count == 0)
-		{
-			boards.Add(new editableBoard("ExampleBoard|settings|G46,L56,S45,Q55,T65,C54,I64"));
-		}
+		if (boards.Count == 0) boards.Add(new editableBoard());
 	}
 	public void method_48() { }
 	public void method_50(float timeDelta) { DrawFunction(); }
@@ -148,6 +159,7 @@ public class BoardEditorScreen : IScreen
 	int atomSwatch = 1;
 	List<editableBoard> boards;
 	int currentBoardIndex = 0;
+	Maybe<string> newBoardName = (Maybe<string>)struct_18.field_1431;
 	public void DrawFunction()
 	{
 		//=========================//
@@ -173,25 +185,64 @@ public class BoardEditorScreen : IScreen
 		class_135.method_272(class_238.field_1989.field_102.field_825, origin + new Vector2(66f, 76f)); // window/vertical_bar_left
 		class_135.method_272(class_238.field_1989.field_102.field_824, origin + new Vector2(574f, 76f)); // window/vertical_bar_center
 
-		if (UI.DrawAndCheckCloseButton(origin, windowFrameSize, new Vector2(104, 98)))
+		if (UI.DrawAndCheckCloseButton(origin, windowFrameSize, new Vector2(104, 98))) closeScreen();
+
+		//=========================//
+		// choose/change current board
+		if (Input.IsSdlKeyPressed(SDL.enum_160.SDLK_LEFT) && currentBoardIndex > 0)
 		{
-			closeScreen();
+			currentBoardIndex--;
+			playButtonClick();
+		}
+		if (Input.IsSdlKeyPressed(SDL.enum_160.SDLK_RIGHT) && currentBoardIndex < boards.Count-1)
+		{
+			currentBoardIndex++;
+			playButtonClick();
+		}
+
+		var board = boards[currentBoardIndex];
+		class_135.method_290(class_134.method_253("Board #", string.Empty).method_1060().method_441(), origin + new Vector2(1384f, 137f), class_238.field_1990.field_2142, Color.White, (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, -2, Color.Black, class_238.field_1989.field_99.field_706.field_751, int.MaxValue, false, true);
+		class_135.method_290("" + (currentBoardIndex + 1) + "/" + boards.Count, origin + new Vector2(1385f, 106f), class_238.field_1990.field_2143, Color.FromHex(3483687), (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, 0, new Color(), (class_256)null, int.MaxValue, false, true);
+
+		//=========================//
+		// draw/change board name
+		Texture nameBox = class_238.field_1989.field_100.field_126;
+		Vector2 namePos = new Vector2(1018f, 874f);
+		class_135.method_272(nameBox, origin + namePos - new Vector2(nameBox.field_2056.X/2, nameBox.field_2056.Y*0.25f));
+		class_135.method_290(class_134.method_253(board.name, string.Empty).method_1058(), origin + namePos, class_238.field_1990.field_2146, Color.White, (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, -2, Color.Black, class_238.field_1989.field_99.field_706.field_751, int.MaxValue, false, true);
+
+		ButtonDrawingLogic buttonDrawingLogic = class_140.method_313((string)class_134.method_253("Edit Name", string.Empty), origin + new Vector2(604f, 99f), 132, 53);
+		if (buttonDrawingLogic.method_824(true, true))
+		{
+			var editBox = MessageBoxScreen.method_1096(Bounds2.WithSize(origin, windowFrameSize), false, (string)class_134.method_253("Please edit the board name:", string.Empty), board.name, (string)class_134.method_253("Save Changes", string.Empty), new Action<string>(x => { newBoardName = (Maybe<string>) x; }));
+			GameLogic.field_2434.method_946(editBox);
+			playButtonClick();
+			return;
+		}
+
+		if (newBoardName.method_1085())
+		{
+			board.name = newBoardName.method_1087();
+			newBoardName = (Maybe<string>)struct_18.field_1431;
 		}
 
 		//=========================//
 		// draw atom pallete
-		Vector2 boardCenter = origin + new Vector2(337f, 637f);
+		Vector2 boardCenter = origin + new Vector2(73f, 637f);
 		Vector2 marblePosition(float x, float y) => boardCenter + new Vector2(66f * (x + 0.5f * y), 57f * y);
 		var swatches = new Dictionary<int, float[]>()
 		{
-			{11, new float[2]{ -4, 3} },    {6, new float[2]{ 0, 3} },
-			{12, new float[2]{ -3, 3} },    {1, new float[2]{ 1, 3} },
-			{ 8, new float[2]{ -4, 2} },    {5, new float[2]{ 0, 2} },
-			{10, new float[2]{ -3, 2} },    {7, new float[2]{ 1, 2} },
-			{ 9, new float[2]{ -2, 2} },    {2, new float[2]{ 2, 2} },
-			{13, new float[2]{ -3, 1} },    {4, new float[2]{ 1, 1} },
-			{14, new float[2]{ -2, 1} },    {3, new float[2]{ 2, 1} },
-			{15, new float[2]{ -0.5f, 1} },
+			{11, new float[2]{ 0, 3} }, {12, new float[2]{ 1, 3} }, {13, new float[2]{ 2, 3} }, {14, new float[2]{ 3, 3} },
+			{4, new float[2]{ 1, 2} }, {5, new float[2]{ 2, 2} }, {6, new float[2]{ 3, 2} }, {10, new float[2]{ 4, 2} },
+			{1, new float[2]{ 2, 1} }, {2, new float[2]{ 3, 1} }, {3, new float[2]{ 4, 1} }, {7, new float[2]{ 5, 1} },
+			{15, new float[2]{ 3, 0} }, {8, new float[2]{ 4, 0} }, {9, new float[2]{ 5, 0} },
+		};
+		var swatchKeys = new Dictionary<string, int>()
+		{
+			{"1", 11 },{"2", 12 },{"3", 13 },{"4", 14 },
+			{"Q", 4 },{"W", 5 },{"E", 6 },{"R", 10 },
+			{"A", 1 },{"S", 2 },{"D", 3 },{"F", 7 },
+			{"Z", 15 },{"X", 8 },{"C", 9 },
 		};
 
 		foreach (var swatch in swatches)
@@ -206,12 +257,17 @@ public class BoardEditorScreen : IScreen
 				playButtonClick();
 			}
 		}
+		foreach (var swatch in swatchKeys.Where(x => Input.IsKeyPressed(x.Key)))
+		{
+			atomSwatch = swatch.Value;
+			playButtonClick();
+		}
+
+
 
 		//=========================//
 		// draw marbles on the board
 		boardCenter = origin + new Vector2(1017f, 507f);
-
-		var board = boards[currentBoardIndex];
 
 		for (int i = 0; i < board.marbles.Count; i++)
 		{
@@ -252,8 +308,7 @@ public class BoardEditorScreen : IScreen
 
 		SolitaireScreen.class_412 class412 = new SolitaireScreen.class_412();
 
-		class_135.method_290(class_134.method_253("Wins", string.Empty).method_1060().method_441(), origin + new Vector2(1384f, 137f), class_238.field_1990.field_2142, Color.White, (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, -2, Color.Black, class_238.field_1989.field_99.field_706.field_751, int.MaxValue, false, true);
-		class_135.method_290(this.field_3871.ToString(), origin + new Vector2(1385f, 106f), class_238.field_1990.field_2143, Color.FromHex(3483687), (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, 0, new Color(), (class_256)null, int.MaxValue, false, true);
+		
 		Action<AtomType, Vector2> action = new Action<AtomType, Vector2>(class412.method_1901);
 		this.field_3873 = (Maybe<AtomType>)struct_18.field_1431;
 		Vector2 vector2_2 = origin + new Vector2(770f, (float)sbyte.MaxValue);
@@ -320,8 +375,9 @@ public class BoardEditorScreen : IScreen
 			{
 				if (!boards[i].marbles.Keys.Any(x => boards[i].marbles[x] != 0)) continue;
 				boardStr = boards[i].saveBoard();
-				if (!firstBoard) boardStr = ";\n" + boardStr;
+				if (!firstBoard) boardStr = ";" + boardStr;
 				binaryWriter.Write(boardStr.ToCharArray());
+				firstBoard = false;
 			}
 		}
 	}
@@ -358,13 +414,18 @@ public class editableBoard
 	const string posChars = "0123456789x";
 	//Dictionary<char, int> settings;
 
-	public editableBoard(string boardString = "")
+	public editableBoard(string boardString = "ExampleBoard|settings|G46,L56,S45,Q55,T65,C54,I64")
 	{
 		marbles = new Dictionary<HexIndex, int>();
 		var data = boardString.Split('|');
 		if (data.Length != 3)
 		{
-			return;
+			data = new string[3]
+			{
+				"MALFORMED BOARD",
+				"settings",
+				"R46,R65,R54",
+			};
 		}
 		name = data[0];
 		settingsString = data[1];
@@ -372,6 +433,7 @@ public class editableBoard
 		for (int i = 0; i < marbleStrings.Length; i++)
 		{
 			string str = marbleStrings[i];
+			if (str.Length != 3) continue;
 			int atomInt, Q, R;
 			atomInt = 0;
 			for (int j = 0; j < atomChars.Length; j++)
@@ -401,7 +463,7 @@ public class editableBoard
 			}
 		}
 	}
-	string filterDelimiter(string str)
+	string filterDelimiters(string str)
 	{
 		if (str == "") return "";
 		string ret = "";
@@ -411,13 +473,13 @@ public class editableBoard
 			char c = str[i];
 
 			if (c == ';' || c == '|') c = ':';
-			ret += c;
+			if (c != '\n') ret += c;
 		}
 		return ret;
 	}
 	public string saveBoard()
 	{
-		string ret = filterDelimiter(name) + "|";
+		string ret = filterDelimiters(name) + "|";
 		ret += "000" + "|";
 		bool firstMarble = true;
 		foreach (var hex in marbles.Keys.Where(x => marbles[x] != 0))
