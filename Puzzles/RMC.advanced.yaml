@@ -111,6 +111,13 @@ Puzzles:
   Outputs:
   - Precision Machine Oil
 ##########
+- ID: rmc-plumbous-wheel
+  Music: Solving3
+  Inputs:
+  - Elemental Iron
+  Outputs:
+  - Plumbous Wheel
+##########
 - ID: rmc-ravari-requiescence
   Music: Solving5
   Inputs:
@@ -151,6 +158,15 @@ Puzzles:
   - Sanitizing Dust, Part B
   - Sanitizing Dust, Part C
 ##########
+- ID: rmc-silver-phosphate
+  Music: Solving5
+  Inputs:
+  - Elemental Air
+  - Elemental Iron
+  - Elemental Copper
+  Outputs:
+  - Silver Phosphate
+##########
 - ID: rmc-solder-wire
   Music: Solving4
   Inputs:
@@ -174,7 +190,7 @@ Puzzles:
   - Elemental Quicksilver
 ##########
 - ID: rmc-saverio-transformer
-  Music: Solving3
+  Music: Solving1
   Inputs:
   - Elemental Lead
   Outputs:

@@ -217,14 +217,94 @@ public class BoardEditorScreen : IScreen
 			var editBox = MessageBoxScreen.method_1096(Bounds2.WithSize(origin, windowFrameSize), false, (string)class_134.method_253("Please edit the board name:", string.Empty), board.name, (string)class_134.method_253("Save Changes", string.Empty), new Action<string>(x => { newBoardName = (Maybe<string>) x; }));
 			GameLogic.field_2434.method_946(editBox);
 			playButtonClick();
-			return;
 		}
 
 		if (newBoardName.method_1085())
 		{
 			board.name = newBoardName.method_1087();
 			newBoardName = (Maybe<string>)struct_18.field_1431;
+			return;
 		}
+
+		//=========================//
+		// change board order/amount
+
+		var buttonPosition = origin + new Vector2(746f, 99f);
+		var buttonWidth = 132;
+		var buttonOffset = new Vector2(buttonWidth + 2f, 0f);
+
+		//add board
+		Maybe<editableBoard> newBoard = (Maybe<editableBoard>)struct_18.field_1431;
+		if (class_140.method_313((string)class_134.method_253("Add Board", string.Empty), buttonPosition, buttonWidth, 53).method_824(true, true))
+		{
+			newBoard = new editableBoard();
+		}
+		buttonPosition += buttonOffset;
+		if (class_140.method_313((string)class_134.method_253("Copy Board", string.Empty), buttonPosition, buttonWidth, 53).method_824(true, true))
+		{
+			newBoard = new editableBoard(board);
+		}
+		if (newBoard.method_1085())
+		{
+			//insert board into lineup
+			boards.Add(new editableBoard()); // place holder
+			int lastBoard = boards.Count - 1;
+			for (int i = lastBoard - 1; i > currentBoardIndex; i--)
+			{
+				boards[i + 1] = boards[i];
+			}
+			currentBoardIndex++;
+			boards[currentBoardIndex] = newBoard.method_1087();
+			playButtonClick();
+		}
+
+		//delete board
+		buttonPosition += buttonOffset;
+		if (class_140.method_313((string)class_134.method_253("Delete Board", string.Empty), origin + new Vector2(1014f, 99f), buttonWidth, 53).method_824(boards.Count > 1, true))
+		{
+			boards.Remove(boards[currentBoardIndex]);
+			currentBoardIndex = Math.Min(currentBoardIndex,boards.Count - 1);
+			playButtonClick();
+		}
+
+		buttonPosition += buttonOffset;
+		if (class_140.method_313((string)class_134.method_253("placeholder", string.Empty), buttonPosition, buttonWidth, 53).method_824(false, true))
+		{
+			playButtonClick();
+		}
+
+		//=========================//
+		// transform board
+
+		buttonPosition = origin + new Vector2(90f, 99f);
+		buttonWidth = 120;
+		buttonOffset = new Vector2(buttonWidth + 2f, 0f);
+		if (class_140.method_313((string)class_134.method_253("Rotate CCW", string.Empty), buttonPosition, buttonWidth, 53).method_824(true, true))
+		{
+			board.rotateBoard(1);
+			playButtonClick();
+		}
+		buttonPosition += buttonOffset;
+		if (class_140.method_313((string)class_134.method_253("Rotate CW", string.Empty), buttonPosition, buttonWidth, 53).method_824(true, true))
+		{
+			board.rotateBoard(-1);
+			playButtonClick();
+		}
+		buttonPosition += buttonOffset;
+		if (class_140.method_313((string)class_134.method_253("Mirror Horz", string.Empty), buttonPosition, buttonWidth, 53).method_824(true, true))
+		{
+			board.mirror60();
+			board.rotateBoard(2);
+			playButtonClick();
+		}
+		buttonPosition += buttonOffset;
+		if (class_140.method_313((string)class_134.method_253("Mirror Vert", string.Empty), buttonPosition, buttonWidth, 53).method_824(true, true))
+		{
+			board.mirror60();
+			board.rotateBoard(-1);
+			playButtonClick();
+		}
+
 
 		//=========================//
 		// draw atom pallete
@@ -283,7 +363,8 @@ public class BoardEditorScreen : IScreen
 				board.marbles[hex] = atomSwatch;
 				playButtonClick();
 			}
-			class_135.method_290("" + Q + "," + R, marblePosition(Q, R) + new Vector2(0f, -35f), class_238.field_1990.field_2143, Color.FromHex(3483687), (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, 0, new Color(), null, int.MaxValue, false, true);
+			//DEBUG: draw coordinates
+			//class_135.method_290("" + Q + "," + R, marblePosition(Q, R) + new Vector2(0f, -35f), class_238.field_1990.field_2143, Color.FromHex(3483687), (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, 0, new Color(), null, int.MaxValue, false, true);
 		}
 
 		/*
@@ -375,7 +456,7 @@ public class BoardEditorScreen : IScreen
 			{
 				if (!boards[i].marbles.Keys.Any(x => boards[i].marbles[x] != 0)) continue;
 				boardStr = boards[i].saveBoard();
-				if (!firstBoard) boardStr = ";" + boardStr;
+				if (!firstBoard) boardStr = ";\n" + boardStr;
 				binaryWriter.Write(boardStr.ToCharArray());
 				firstBoard = false;
 			}
@@ -407,12 +488,12 @@ public class BoardEditorScreen : IScreen
 
 public class editableBoard
 {
+	const string atomChars = "?LTICSGQVMOAWFER!";
+	const string posChars = "0123456789x";
+
 	public string name;
 	public string settingsString;
 	public Dictionary<HexIndex, int> marbles;
-	const string atomChars = "?LTICSGQVMOAWFER!";
-	const string posChars = "0123456789x";
-	//Dictionary<char, int> settings;
 
 	public editableBoard(string boardString = "ExampleBoard|settings|G46,L56,S45,Q55,T65,C54,I64")
 	{
@@ -427,7 +508,7 @@ public class editableBoard
 				"R46,R65,R54",
 			};
 		}
-		name = data[0];
+		name = filterDelimiters(data[0]);
 		settingsString = data[1];
 		var marbleStrings = data[2].Split(',');
 		for (int i = 0; i < marbleStrings.Length; i++)
@@ -463,6 +544,18 @@ public class editableBoard
 			}
 		}
 	}
+	public editableBoard(editableBoard boardToCopy)
+	{
+		name = boardToCopy.name + " (Copy)";
+		settingsString = boardToCopy.settingsString;
+		marbles = new Dictionary<HexIndex, int>();
+		foreach (var marble in boardToCopy.marbles)
+		{
+			marbles.Add(marble.Key, marble.Value);
+		}
+	}
+
+
 	string filterDelimiters(string str)
 	{
 		if (str == "") return "";
@@ -473,7 +566,7 @@ public class editableBoard
 			char c = str[i];
 
 			if (c == ';' || c == '|') c = ':';
-			if (c != '\n') ret += c;
+			if (c != '\n' && c != '\r') ret += c;
 		}
 		return ret;
 	}
@@ -491,5 +584,23 @@ public class editableBoard
 			firstMarble = false;
 		}
 		return ret;
+	}
+	public void rotateBoard(int turns)
+	{
+		var newMarbles = new Dictionary<HexIndex, int>();
+		foreach (var marble in marbles)
+		{
+			newMarbles.Add(marble.Key.Rotated(new HexRotation(turns)), marble.Value);
+		}
+		marbles = newMarbles;
+	}
+	public void mirror60()
+	{
+		var newMarbles = new Dictionary<HexIndex, int>();
+		foreach (var marble in marbles)
+		{
+			newMarbles.Add(new HexIndex(marble.Key.R, marble.Key.Q), marble.Value);
+		}
+		marbles = newMarbles;
 	}
 }

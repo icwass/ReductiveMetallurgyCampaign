@@ -47,6 +47,10 @@ Chapters:
     Title: Solder Wire
     Puzzle: ch2/rmc-solder-wire
     Requires: ""
+  - ID: rmc-silver-phosphate
+    Title: Silver Phosphate
+    Puzzle: ch2/rmc-silver-phosphate
+    Requires: ""
   - ID: rmc-golden-thread-recycling
     Title: Golden Thread Recycling
     Puzzle: ch2/rmc-golden-thread-recycling
@@ -63,6 +67,10 @@ Chapters:
   - ID: rmc-reactive-litharge
     Title: Reactive Litharge
     Puzzle: ch3/rmc-reactive-litharge
+    Requires: ""
+  - ID: rmc-plumbous-wheel
+    Title: Plumbous Wheel
+    Puzzle: ch3/rmc-plumbous-wheel
     Requires: ""
   - ID: rmc-saverio-transformer
     Title: Saverio's Transformer
