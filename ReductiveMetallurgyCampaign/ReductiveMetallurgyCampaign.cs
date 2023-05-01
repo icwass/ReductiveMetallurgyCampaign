@@ -44,6 +44,7 @@ public class CampaignModelRMC
 	public List<PuzzleModelRMC> Puzzles;
 	public List<CharacterModelRMC> Characters;
 	public List<DocumentModelRMC> Documents;
+	public List<CutsceneModelRMC> Cutscenes;
 	public List<SigmarsGardenRMC> SigmarsGardens;
 }
 
@@ -115,21 +116,31 @@ public class MainClass : QuintessentialMod
 
 		var songList = new Dictionary<string, Song>()
 		{
+			{"Map", class_238.field_1992.field_968},
+			{"Solitaire", class_238.field_1992.field_969},
 			{"Solving1", class_238.field_1992.field_970},
 			{"Solving2", class_238.field_1992.field_971},
 			{"Solving3", class_238.field_1992.field_972},
 			{"Solving4", class_238.field_1992.field_973},
 			{"Solving5", class_238.field_1992.field_974},
 			{"Solving6", class_238.field_1992.field_975},
+			{"Story1", class_238.field_1992.field_976},
+			{"Story2", class_238.field_1992.field_977},
+			{"Title", class_238.field_1992.field_978},
 		};
 		var fanfareList = new Dictionary<string, Sound>()
 		{
+			{"Map", class_238.field_1991.field_1832},
+			{"Solitaire", class_238.field_1991.field_1832},
 			{"Solving1", class_238.field_1991.field_1830},
 			{"Solving2", class_238.field_1991.field_1831},
 			{"Solving3", class_238.field_1991.field_1832},
 			{"Solving4", class_238.field_1991.field_1833},
 			{"Solving5", class_238.field_1991.field_1834},
 			{"Solving6", class_238.field_1991.field_1835},
+			{"Story1", class_238.field_1991.field_1832},
+			{"Story2", class_238.field_1991.field_1832},
+			{"Title", class_238.field_1991.field_1832},
 		};
 		Tip tipPolymerInput = new Tip()
 		{
@@ -226,6 +237,7 @@ public class MainClass : QuintessentialMod
 		}
 		Dictionary<string, PuzzleModelRMC> puzzleDictionary = new Dictionary<string, PuzzleModelRMC>();
 		List<string> documentIDList = new List<string>();
+		Dictionary<string, string> cutsceneIDList = new Dictionary<string, string>();
 		List<string> sigmarsGardensIDList = new List<string>();
 		foreach (PuzzleModelRMC puzzle in fetchCampaignModel().Puzzles)
 		{
@@ -233,11 +245,24 @@ public class MainClass : QuintessentialMod
 		}
 		var DocumentModels = fetchCampaignModel().Documents;
 		Document.LoadDocuments(DocumentModels);
-		foreach (DocumentModelRMC document in DocumentModels)
+		foreach (var document in DocumentModels)
 		{
 			documentIDList.Add(document.ID);
 		}
-		foreach (SigmarsGardenRMC garden in fetchCampaignModel().SigmarsGardens)
+		var CutsceneModels = fetchCampaignModel().Cutscenes;
+		CutscenePatcher.LoadCutscenes(CutsceneModels);
+		foreach (var cutscene in CutsceneModels)
+		{
+			if (string.IsNullOrEmpty(cutscene.Music))
+			{
+				cutsceneIDList.Add(cutscene.ID, "Story1");
+			}
+			else
+			{
+				cutsceneIDList.Add(cutscene.ID, cutscene.Music);
+			}
+		}
+		foreach (var garden in fetchCampaignModel().SigmarsGardens)
 		{
 			sigmarsGardensIDList.Add(garden.ID);
 		}
@@ -248,7 +273,14 @@ public class MainClass : QuintessentialMod
 				if (campaignItem.field_2325.method_1085())
 				{
 					Puzzle puzzle = campaignItem.field_2325.method_1087();
+					//campaignItem.field_2324 defaults to (enum_129)0, i.e. a puzzle
 					string field2766 = puzzle.field_2766;
+					if (cutsceneIDList.Keys.Contains(field2766))
+					{
+						// change item into a cutscene
+						campaignItem.field_2324 = (enum_129)1;
+						campaignItem.field_2328 = songList[cutsceneIDList[field2766]];
+					}
 					if (documentIDList.Contains(field2766))
 					{
 						// change item into a document
@@ -315,6 +347,7 @@ public class MainClass : QuintessentialMod
 	{
 		Document.Load();
 		BoardEditorScreen.Load();
+		CutscenePatcher.Load();
 		On.class_172.method_480 += new On.class_172.hook_method_480(Class172_Method_480);
 		On.Solution.method_1958 += Solution_Method_1958;
 	}

@@ -8,7 +8,11 @@ Chapters:
   Entries:
   - ID: rmc-document-resume
     Title: "Applicant's Resume"
-    Puzzle: document/empty
+    Puzzle: other/empty
+    Requires: ""
+  - ID: rmc-cutscene-interview
+    Title: "The Interview"
+    Puzzle: other/empty
     Requires: ""
   - ID: rmc-lesson-rejection
     Title: "Lesson: Rejection"
@@ -41,7 +45,7 @@ Chapters:
     Requires: ""
   - ID: rmc-sigmars-garden-1
     Title: Sigmar's Garden
-    Puzzle: document/empty
+    Puzzle: other/empty
     Requires: ""
   - ID: rmc-solder-wire
     Title: Solder Wire

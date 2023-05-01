@@ -8,7 +8,8 @@ Characters:
 - ID: "Saverio (Right)"
   Name: "Saverio Daas"
   SmallPortrait: portraits/saverio_small
-  LargePortrait: portraits/saverio_large
+  LargePortrait: portraits/saverio_large_reversed
+  Color: 9916761
   Color: 9916761
 - ID: "Pugano (Left)"
   Name: "Jay Pugano"
@@ -32,6 +33,13 @@ Characters:
 ##################################################
 SigmarsGardens:
 - ID: rmc-sigmars-garden-1
+##################################################
+Cutscenes:
+- ID: rmc-cutscene-interview
+  Location: Saverio's Office
+  Background: backgrounds/saverio_office
+  Music: Story1
+##################################################
 Documents:
 - ID: rmc-document-resume # needs to be the same as the puzzleID it needs to replace
   Texture: textures/documents/letter_5 # the base texture

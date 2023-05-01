@@ -1,0 +1,15 @@
+Portraits: Saverio (Left)
+
+Saverio (Left): Ah, right on time! Do come in.
+Action: Enter, Pugano (Left)
+Pugano (Left): Good afternoon, Mr. Daas.
+Saverio (Left): And to you, uh ...
+Action: Change, Saverio (Left), Saverio (Right)
+Saverio (Right): ... I swear I had your resume here just a moment ago.
+Action: Change, Saverio (Right), Saverio (Left)
+Saverio (Left): Ah, here we go - Jay Pugano! A pleasure to meet you.
+Saverio (Left): And as I had remembered, your qualifications here are superb.
+Pugano (Left): Thank you.
+Saverio (Left): But a resume alone is not sufficient to judge an alchemist.
+Saverio (Left): I need an assistant with not just good academic fundamentals, but hands-on capabilities, and an aptitude for adapting quickly.
+Saverio (Left): So, if you could come with me to my workshop, I have a practical test for you to attempt.
