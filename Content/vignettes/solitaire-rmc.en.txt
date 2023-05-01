@@ -2,7 +2,9 @@ Pugano (Right): Ah, taking a break with a nice game of Sigmar’s Garden, I see.
 Saverio (Left): Yes, but I'm trying to spice it up a bit by including more of each metal.
 Pugano (Right): How would that work?
 Saverio (Left): Well, you need to clear all of the lead atoms before you can clear any tin, for example.
-Pugano (Right): Ah, that's reasonable. Compatible with the original game, in fact.
+Saverio (Left): Additionally, you can match two metals if they are the same.
+Pugano (Right): Ah, that's reasonable.
+Saverio (Left): And techincally, it's compatible with the original game!
 Pugano (Right): Well, go on then, I want to see how it plays out.
  
 ----- After winning 1 game.

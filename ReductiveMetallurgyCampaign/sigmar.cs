@@ -29,9 +29,9 @@ public static class SigmarGardenPatcher
 
 	public static AtomType nullAtom;
 
-	private static SolitaireState solitaireState_RMC;
+	public static SolitaireState solitaireState_RMC;
 	private static int sigmarWins_RMC = 0;
-	private static bool currentCampaignIsRMC() => MainClass.campaign_self == Campaigns.field_2330;
+	public static bool currentCampaignIsRMC() => MainClass.campaign_self == Campaigns.field_2330;
 	private static bool isQuintessenceSigmarGarden(SolitaireScreen screen) => new DynamicData(screen).Get<bool>("field_3874");
 	private static bool currentCampaignIsRMC(SolitaireScreen screen)
 	{
@@ -39,7 +39,29 @@ public static class SigmarGardenPatcher
 	}
 	private static void setSigmarWins_RMC() => GameLogic.field_2434.field_2451.field_1929.method_858("RMC-SigmarWins", sigmarWins_RMC.method_453());
 	private static void getSigmarWins_RMC() { sigmarWins_RMC = GameLogic.field_2434.field_2451.field_1929.method_862<int>(new delegate_384<int>(int.TryParse), "RMC-SigmarWins").method_1090(0); }
-
+	public static AtomType getAtomType(int i)
+	{
+		return new AtomType[17]
+		{
+			SigmarGardenPatcher.nullAtom, // 00 - filler
+			class_175.field_1681, // 01 - lead
+			class_175.field_1683, // 02 - tin
+			class_175.field_1684, // 03 - iron
+			class_175.field_1682, // 04 - copper
+			class_175.field_1685, // 05 - silver
+			class_175.field_1686, // 06 - gold
+			class_175.field_1680, // 07 - quicksilver
+			class_175.field_1687, // 08 - vitae
+			class_175.field_1688, // 09 - mors
+			class_175.field_1675, // 10 - salt
+			class_175.field_1676, // 11 - air
+			class_175.field_1679, // 12 - water
+			class_175.field_1678, // 13 - fire
+			class_175.field_1677, // 14 - earth
+			class_175.field_1689, // 15 - repeat
+			class_175.field_1690, // 16 - quintessence
+		}[i];
+	}
 	public static void Load()
 	{
 		getSigmarWins_RMC();
@@ -127,36 +149,37 @@ public static class SigmarGardenPatcher
 		{
 			int num = binaryReader.ReadInt32();
 			int boardID = class_269.field_2103.method_299(0, num);
-			binaryReader.BaseStream.Seek(boardID * field1812, SeekOrigin.Current);
-			HexRotation rotation = new HexRotation(class_269.field_2103.method_299(0, 6));
+			binaryReader.BaseStream.Seek(boardID * 200, SeekOrigin.Current);
+			//bytes used:
+			// 1 for leading BB byte
+			// 16 for setting
+			// 182 (=91*2) for marbles
+			// 1 for trailing DD byte
+			byte header = binaryReader.ReadByte();
+			if (header != 0xBB) throw new Exception("[RMC:SigmarGardenPatcher] Invalid header byte for solitaire board: " + header);
+
+			//no settings, currently - skip
+			binaryReader.BaseStream.Seek(16, SeekOrigin.Current);
+
+			HexRotation rotation = new HexRotation(0);
+
 			SolitaireGameState solitaireGameState = new SolitaireGameState();
-			AtomType[] atomTypes = new AtomType[17]
+			for (int index = 0; index < 91; ++index)
 			{
-				nullAtom, // 00 - filler
-				class_175.field_1675, // 01 - salt
-				class_175.field_1676, // 02 - air
-				class_175.field_1677, // 03 - earth
-				class_175.field_1678, // 04 - fire
-				class_175.field_1679, // 05 - water
-				class_175.field_1680, // 06 - quicksilver
-				class_175.field_1686, // 07 - gold
-				class_175.field_1685, // 08 - silver
-				class_175.field_1682, // 09 - copper
-				class_175.field_1684, // 10 - iron
-				class_175.field_1683, // 11 - tin
-				class_175.field_1681, // 12 - lead
-				class_175.field_1687, // 13 - vitae
-				class_175.field_1688, // 14 - mors
-				class_175.field_1689, // 15 - repeat
-				class_175.field_1690, // 16 - quintessence
-			};
-			for (int index = 0; index < field1811; ++index)
-			{
-				AtomType atomType = atomTypes[binaryReader.ReadByte()];
-				HexIndex key = new HexIndex(binaryReader.ReadSByte(), binaryReader.ReadSByte());
-				//key = key.RotatedAround(new HexIndex(5, 0), rotation);
-				solitaireGameState.field_3864.Add(key, atomType);
+				// read in the next marble
+				int atomInt = binaryReader.ReadByte() & 0x000F;
+				byte pos = binaryReader.ReadByte();
+				// if not a blank spot, add marble to board
+				if (atomInt == 0) continue;
+				int R = (pos & 0x000F) - 5;
+				int Q = (pos >> 4) & 0x000F;
+				HexIndex hex = new HexIndex(Q,R).RotatedAround(new HexIndex(5, 0), rotation);
+				solitaireGameState.field_3864.Add(hex, getAtomType(atomInt));
 			}
+
+			byte trailing = binaryReader.ReadByte();
+			if (trailing != 0xDD) throw new Exception("[RMC:SigmarGardenPatcher] Invalid trailing byte for solitaire board: " + trailing);
+
 			return solitaireGameState;
 		}
 	}

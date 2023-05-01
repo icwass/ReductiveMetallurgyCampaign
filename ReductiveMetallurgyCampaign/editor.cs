@@ -76,30 +76,6 @@ public class BoardEditorScreen : IScreen
 	{
 		On.class_178.method_50 += Class178_Method_50;
 	}
-	public static AtomType getAtomType(int i)
-	{
-		return new AtomType[17]
-		{
-			SigmarGardenPatcher.nullAtom, // 00 - filler
-			class_175.field_1681, // 01 - lead
-			class_175.field_1683, // 02 - tin
-			class_175.field_1684, // 03 - iron
-			class_175.field_1682, // 04 - copper
-			class_175.field_1685, // 05 - silver
-			class_175.field_1686, // 06 - gold
-			class_175.field_1680, // 07 - quicksilver
-			class_175.field_1687, // 08 - vitae
-			class_175.field_1688, // 09 - mors
-			class_175.field_1675, // 10 - salt
-			class_175.field_1676, // 11 - air
-			class_175.field_1679, // 12 - water
-			class_175.field_1678, // 13 - fire
-			class_175.field_1677, // 14 - earth
-			class_175.field_1689, // 15 - repeat
-			class_175.field_1690, // 16 - quintessence
-		}[i];
-	}
-
 	public static bool AtomButtonClicked(Vector2 position, bool rightClick = false)
 	{
 		// check if clicked
@@ -120,7 +96,7 @@ public class BoardEditorScreen : IScreen
 			class_135.method_271(field551, color, vec2);
 		}
 		// draw atom
-		if (atomType != getAtomType(0))
+		if (atomType != SigmarGardenPatcher.getAtomType(0))
 		{
 			float num2 = bright ? 1f : 0.2f;
 			float num3 = bright ? 0.45f : 0.0f;
@@ -155,6 +131,7 @@ public class BoardEditorScreen : IScreen
 	//=========================//
 	// "real" stuff
 	const string filePath = "Content/solitaire-rmc.txt";
+	const string datPath = "Content/solitaire-rmc.dat";
 	string dirPath = "";
 	int atomSwatch = 1;
 	List<editableBoard> boards;
@@ -189,15 +166,21 @@ public class BoardEditorScreen : IScreen
 
 		//=========================//
 		// choose/change current board
-		if (Input.IsSdlKeyPressed(SDL.enum_160.SDLK_LEFT) && currentBoardIndex > 0)
+
+		bool inClickBox = Bounds2.WithSize(origin + new Vector2(1337, 98), new Vector2(96, 57)).Contains(Input.MousePos());
+
+		bool tryToDecrementBoardIndex = Input.IsSdlKeyPressed(SDL.enum_160.SDLK_LEFT) || (Input.IsLeftClickPressed() && inClickBox);
+		bool tryToIncrementBoardIndex = Input.IsSdlKeyPressed(SDL.enum_160.SDLK_RIGHT) || (Input.IsRightClickPressed() && inClickBox);
+
+		if (tryToDecrementBoardIndex && currentBoardIndex > 0)
 		{
+			playButtonClick();
 			currentBoardIndex--;
-			playButtonClick();
 		}
-		if (Input.IsSdlKeyPressed(SDL.enum_160.SDLK_RIGHT) && currentBoardIndex < boards.Count-1)
+		if (tryToIncrementBoardIndex && currentBoardIndex < boards.Count-1)
 		{
-			currentBoardIndex++;
 			playButtonClick();
+			currentBoardIndex++;
 		}
 
 		var board = boards[currentBoardIndex];
@@ -214,9 +197,9 @@ public class BoardEditorScreen : IScreen
 		ButtonDrawingLogic buttonDrawingLogic = class_140.method_313((string)class_134.method_253("Edit Name", string.Empty), origin + new Vector2(604f, 99f), 132, 53);
 		if (buttonDrawingLogic.method_824(true, true))
 		{
+			playButtonClick();
 			var editBox = MessageBoxScreen.method_1096(Bounds2.WithSize(origin, windowFrameSize), false, (string)class_134.method_253("Please edit the board name:", string.Empty), board.name, (string)class_134.method_253("Save Changes", string.Empty), new Action<string>(x => { newBoardName = (Maybe<string>) x; }));
 			GameLogic.field_2434.method_946(editBox);
-			playButtonClick();
 		}
 
 		if (newBoardName.method_1085())
@@ -227,7 +210,7 @@ public class BoardEditorScreen : IScreen
 		}
 
 		//=========================//
-		// change board order/amount
+		// add/delete/export boards
 
 		var buttonPosition = origin + new Vector2(746f, 99f);
 		var buttonWidth = 132;
@@ -246,6 +229,7 @@ public class BoardEditorScreen : IScreen
 		}
 		if (newBoard.method_1085())
 		{
+			playButtonClick();
 			//insert board into lineup
 			boards.Add(new editableBoard()); // place holder
 			int lastBoard = boards.Count - 1;
@@ -255,22 +239,25 @@ public class BoardEditorScreen : IScreen
 			}
 			currentBoardIndex++;
 			boards[currentBoardIndex] = newBoard.method_1087();
-			playButtonClick();
 		}
 
 		//delete board
 		buttonPosition += buttonOffset;
 		if (class_140.method_313((string)class_134.method_253("Delete Board", string.Empty), origin + new Vector2(1014f, 99f), buttonWidth, 53).method_824(boards.Count > 1, true))
 		{
+			playButtonClick();
 			boards.Remove(boards[currentBoardIndex]);
 			currentBoardIndex = Math.Min(currentBoardIndex,boards.Count - 1);
-			playButtonClick();
 		}
 
 		buttonPosition += buttonOffset;
-		if (class_140.method_313((string)class_134.method_253("placeholder", string.Empty), buttonPosition, buttonWidth, 53).method_824(false, true))
+		if (class_140.method_313((string)class_134.method_253("Playtest", string.Empty), buttonPosition, buttonWidth, 53).method_824(SigmarGardenPatcher.currentCampaignIsRMC(), true))
 		{
 			playButtonClick();
+			var solitaireGame = new SolitaireScreen(false);
+			SolitaireGameState solitaireGameState = board.solitaireGameState();
+			SigmarGardenPatcher.solitaireState_RMC = SolitaireState.method_1918(new SolitaireGameState(), solitaireGameState, new class_179<float>(-0.4f), new class_179<int>(0), new Dictionary<HexIndex, float>());
+			GameLogic.field_2434.method_945(solitaireGame, (Maybe<class_124>)struct_18.field_1431, (Maybe<class_124>)struct_18.field_1431);
 		}
 
 		//=========================//
@@ -281,30 +268,66 @@ public class BoardEditorScreen : IScreen
 		buttonOffset = new Vector2(buttonWidth + 2f, 0f);
 		if (class_140.method_313((string)class_134.method_253("Rotate CCW", string.Empty), buttonPosition, buttonWidth, 53).method_824(true, true))
 		{
-			board.rotateBoard(1);
 			playButtonClick();
+			board.rotateBoard(1);
 		}
 		buttonPosition += buttonOffset;
 		if (class_140.method_313((string)class_134.method_253("Rotate CW", string.Empty), buttonPosition, buttonWidth, 53).method_824(true, true))
 		{
-			board.rotateBoard(-1);
 			playButtonClick();
+			board.rotateBoard(-1);
 		}
 		buttonPosition += buttonOffset;
 		if (class_140.method_313((string)class_134.method_253("Mirror Horz", string.Empty), buttonPosition, buttonWidth, 53).method_824(true, true))
 		{
+			playButtonClick();
 			board.mirror60();
 			board.rotateBoard(2);
-			playButtonClick();
 		}
 		buttonPosition += buttonOffset;
 		if (class_140.method_313((string)class_134.method_253("Mirror Vert", string.Empty), buttonPosition, buttonWidth, 53).method_824(true, true))
 		{
+			playButtonClick();
 			board.mirror60();
 			board.rotateBoard(-1);
-			playButtonClick();
 		}
 
+		if (Input.IsSdlKeyPressed(SDL.enum_160.SDLK_F3))
+		{
+			playButtonClick();
+			var tempBoard = board;
+
+			using (BinaryWriter binaryWriter = new BinaryWriter(new FileStream(Path.Combine(dirPath, datPath), FileMode.Create, FileAccess.Write), Encoding.ASCII))
+			{
+				binaryWriter.Write(boards.Count);
+
+				for (int i = 0; i < boards.Count; i++)
+				{
+					board = boards[i];
+					//bytes used:
+					// 1 for leading BB byte
+					// 16 for setting
+					// 182 (=91*2) for marbles
+					// 1 for trailing DD byte
+					binaryWriter.Write((byte) 0xBB);
+					for (int b = 0; b < 16; b++)
+					{
+						binaryWriter.Write((byte)0x00);
+					}
+					foreach (var marble in board.marbles)
+					{
+						var hex = marble.Key;
+						byte pos = (byte) (((hex.Q + 5) << 4) | (hex.R + 5));
+						byte atom = (byte) (marble.Value + 0xF0);
+						binaryWriter.Write(atom);
+						binaryWriter.Write(pos);
+					}
+					binaryWriter.Write((byte)0xDD);
+				}
+			}
+
+			board = tempBoard;
+		}
 
 		//=========================//
 		// draw atom pallete
@@ -331,7 +354,7 @@ public class BoardEditorScreen : IScreen
 			var marbleInt = swatch.Key;
 			Texture selected = class_238.field_1989.field_98.field_543;
 			if (marbleInt == atomSwatch) class_135.method_271(selected, Color.White.WithAlpha(1f), marblePos + new Vector2(-37f, -38f));
-			if (DrawAtomButton(marblePos, getAtomType(marbleInt)))
+			if (DrawAtomButton(marblePos, SigmarGardenPatcher.getAtomType(marbleInt)))
 			{
 				atomSwatch = swatch.Key;
 				playButtonClick();
@@ -342,8 +365,6 @@ public class BoardEditorScreen : IScreen
 			atomSwatch = swatch.Value;
 			playButtonClick();
 		}
-
-
 
 		//=========================//
 		// draw marbles on the board
@@ -358,7 +379,7 @@ public class BoardEditorScreen : IScreen
 			{
 				board.marbles[hex] = 0; playButtonClick();
 			}
-			else if (DrawAtomButton(marblePosition(Q, R), getAtomType(board.marbles[hex])))
+			else if (DrawAtomButton(marblePosition(Q, R), SigmarGardenPatcher.getAtomType(board.marbles[hex])))
 			{
 				board.marbles[hex] = atomSwatch;
 				playButtonClick();
@@ -602,5 +623,16 @@ public class editableBoard
 			newMarbles.Add(new HexIndex(marble.Key.R, marble.Key.Q), marble.Value);
 		}
 		marbles = newMarbles;
+	}
+
+	public SolitaireGameState solitaireGameState()
+	{
+		var ret = new SolitaireGameState();
+
+		foreach (var marble in marbles.Where(marble => marble.Value != 0))
+		{
+			ret.field_3864.Add(marble.Key + new HexIndex(5, 0), SigmarGardenPatcher.getAtomType(marble.Value));
+		}
+		return ret;
 	}
 }
