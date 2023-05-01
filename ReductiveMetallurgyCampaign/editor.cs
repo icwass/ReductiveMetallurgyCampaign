@@ -40,6 +40,8 @@ public class BoardEditorScreen : IScreen
 			}
 		}
 
+		if (boards != null) return;
+
 		boards = new List<editableBoard>();
 		string fullFilePath = Path.Combine(dirPath, filePath);
 		if (File.Exists(fullFilePath))
@@ -182,10 +184,9 @@ public class BoardEditorScreen : IScreen
 			playButtonClick();
 			currentBoardIndex++;
 		}
-
 		var board = boards[currentBoardIndex];
 		class_135.method_290(class_134.method_253("Board #", string.Empty).method_1060().method_441(), origin + new Vector2(1384f, 137f), class_238.field_1990.field_2142, Color.White, (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, -2, Color.Black, class_238.field_1989.field_99.field_706.field_751, int.MaxValue, false, true);
-		class_135.method_290("" + (currentBoardIndex + 1) + "/" + boards.Count, origin + new Vector2(1385f, 106f), class_238.field_1990.field_2143, Color.FromHex(3483687), (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, 0, new Color(), (class_256)null, int.MaxValue, false, true);
+		class_135.method_290("" + (currentBoardIndex + 1) + "/" + boards.Count, origin + new Vector2(1385f, 106f), class_238.field_1990.field_2143, Color.FromHex(3483687), (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, 0, new Color(), null, int.MaxValue, false, true);
 
 		//=========================//
 		// draw/change board name
@@ -239,6 +240,7 @@ public class BoardEditorScreen : IScreen
 			}
 			currentBoardIndex++;
 			boards[currentBoardIndex] = newBoard.method_1087();
+			board = boards[currentBoardIndex];
 		}
 
 		//delete board
