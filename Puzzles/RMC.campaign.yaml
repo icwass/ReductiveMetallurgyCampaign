@@ -39,9 +39,9 @@ Chapters:
   Place: "Westington Shopping District"
   Background: backgrounds/shopping_district
   Entries:
-  - ID: rmc-lesson-splitting
-    Title: "Lesson: Splitting"
-    Puzzle: ch2/rmc-lesson-splitting
+  - ID: rmc-lesson-deposition
+    Title: "Lesson: Deposition"
+    Puzzle: ch2/rmc-lesson-deposition
     Requires: ""
   - ID: rmc-sigmars-garden-1
     Title: Sigmar's Garden

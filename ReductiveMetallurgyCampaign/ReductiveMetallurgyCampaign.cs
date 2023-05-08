@@ -158,12 +158,12 @@ public class MainClass : QuintessentialMod
 			field_1902 = "RMCrejection",
 			field_1904 = new Vector2(-42f, 0f)
 		};
-		Tip tipSplitting = new Tip()
+		Tip tipDeposition = new Tip()
 		{
 			field_1899 = "RMCT002",
-			field_1900 = class_134.method_253("Glyph of Splitting", string.Empty),
-			field_1901 = class_134.method_253("The *glyph of splitting* transmutes one atom of metal into two atoms of a lower form.\n\nNote that the resulting metals need not be of the next lower form, nor need they be the same metal.", string.Empty),
-			field_1902 = "RMCsplitting",
+			field_1900 = class_134.method_253("Glyph of Deposition", string.Empty),
+			field_1901 = class_134.method_253("The *glyph of deposition* transmutes one atom of metal into two atoms of a lower form.\n\nNote that the resulting metals need not be of the next lower form, nor need they be the same metal.", string.Empty),
+			field_1902 = "RMCdeposition",
 			field_1904 = new Vector2(0.0f, -40f)
 		};
 
@@ -182,9 +182,9 @@ public class MainClass : QuintessentialMod
 					{
 						puzzle.field_2769 = tipRejection;
 					}
-					else if (puzzle.field_2766 == "rmc-lesson-splitting")
+					else if (puzzle.field_2766 == "rmc-lesson-deposition")
 					{
-						puzzle.field_2769 = tipSplitting;
+						puzzle.field_2769 = tipDeposition;
 					}
 					else if (puzzle.field_2766 == "rmc-golden-thread-recycling")
 					{
@@ -354,7 +354,7 @@ public class MainClass : QuintessentialMod
 
 	public Maybe<Solution> Solution_Method_1958(On.Solution.orig_method_1958 orig, string filePath)
 	{
-		if (filePath == "Content\\tips\\RMCrejection.solution" || filePath == "Content\\tips\\RMCsplitting.solution")
+		if (filePath == "Content\\tips\\RMCrejection.solution" || filePath == "Content\\tips\\RMCdeposition.solution")
 		{
 			foreach (var dir in QuintessentialLoader.ModContentDirectories)
 			{
@@ -374,8 +374,8 @@ public class MainClass : QuintessentialMod
 		Logger.Log("[ReductiveMetallurgyCampaign] Adding vignette actors.");
 		class_172.field_1670["Verrin Ravari"] = new class_230(class_134.method_253("Verrin Ravari", string.Empty), class_238.field_1989.field_93.field_693, class_235.method_615("portraits/verrin_small"), Color.FromHex(6691857), false);
 		class_172.field_1670["Verrin Ravari (Shabby)"] = new class_230(class_134.method_253("Verrin Ravari", string.Empty), class_238.field_1989.field_93.field_694, class_235.method_615("portraits/verrin_shabby_small"), Color.FromHex(6691857), false);
-		class_172.field_1670["Taros Colvan"] = new class_230(class_134.method_253("Taros Colvan", string.Empty), class_238.field_1989.field_93.field_676, class_235.method_615("portraits/taros_small"), Color.FromHex(7873302), false);
-		class_172.field_1670["Armand Van Tassen"] = new class_230(class_134.method_253("Armand Van Tassen", string.Empty), class_238.field_1989.field_93.field_694, class_235.method_615("portraits/armand_small"), Color.FromHex(6434368), false);
+		class_172.field_1670["Taros Colvan"] = new class_230(class_134.method_253("Taros Colvan", string.Empty), class_238.field_1989.field_93.field_692, class_235.method_615("portraits/taros_small"), Color.FromHex(7873302), false);
+		class_172.field_1670["Armand Van Tassen"] = new class_230(class_134.method_253("Armand Van Tassen", string.Empty), class_238.field_1989.field_93.field_676, class_235.method_615("portraits/armand_small"), Color.FromHex(6434368), false);
 		class_172.field_1670.Add("Verrin Ravari (Frustrated)", new class_230(class_134.method_253("Verrin Ravari", string.Empty), null, class_235.method_615("portraits/verrin_frustrated_small"), Color.FromHex(6691857), false));
 		foreach (CharacterModelRMC character in fetchCampaignModel().Characters)
 		{
