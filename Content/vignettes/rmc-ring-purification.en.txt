@@ -1,7 +1,7 @@
-Saverio (Right): Some customer came in with a ring. 
-Saverio (Right): Apparently their wife is in tears because the ring they got isn't pure gold, only rose gold.
-Pugano (Left): Sounds like we have to metallurgy it to make it better.
+Research Notes: Now to check the stability of planetary metals. Tin and lead have already been excluded, as they melt far too easily.
+Research Notes: This next test will analyze those remaining - as the composition of the sample is changed, the apparatus analyzing the reagent and product vials should provide a comparative reading.
 
 -----------
 
-Saverio (Right): After-solve text.
+Research Notes: The copper-gold alloy had a better response than the pure silver sample.
+Research Notes: Further testing is needed, but this is a promising lead.

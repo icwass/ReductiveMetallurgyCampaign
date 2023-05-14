@@ -10,7 +10,11 @@ Characters:
   SmallPortrait: portraits/saverio_small
   LargePortrait: portraits/saverio_large_reversed
   Color: 9916761
+- ID: "Research Notes"
+  Name: "Saverio's Research Notes"
+  SmallPortrait: portraits/research_notes_small
   Color: 9916761
+  IsOnLeft: true
 - ID: "Pugano (Left)"
   Name: "Jay Pugano"
   SmallPortrait: portraits/pugano_small
