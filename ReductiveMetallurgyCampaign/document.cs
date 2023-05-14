@@ -31,7 +31,7 @@ public class DocumentModelRMC
 
 public class DrawItemModelRMC
 {
-	public string Position, Texture, Font, Color, Align, LineSpacing, ColumnWidth;
+	public string Position, Texture, Rotation, Scale, Alpha, Font, Color, Align, LineSpacing, ColumnWidth;
 
 	public bool Handwritten;
 }
@@ -97,7 +97,7 @@ public class Document
 			for (int i = 0; i < maxIndex; i++)
 			{
 				var item = d.DrawItems[i];
-				drawItems.Add(new DrawItem(item.Position, item.Texture, item.Font, item.Color, item.Align, item.LineSpacing, item.ColumnWidth, item.Handwritten));
+				drawItems.Add(new DrawItem(item.Position, item.Texture, item.Rotation, item.Scale, item.Alpha, item.Font, item.Color, item.Align, item.LineSpacing, item.ColumnWidth, item.Handwritten));
 			}
 			new Document(d.ID, base_texture, drawItems);
 		}
@@ -140,6 +140,9 @@ public class Document
 	{
 		Vector2 position = new Vector2(0f, 0f);
 		Texture texture = null;
+		float rotation = 0f;
+		float scale = 1f;
+		float alpha = 1f;
 		Font font = class_238.field_1990.field_2150;
 		Color color = DocumentScreen.field_2410;
 		enum_0 alignment = (enum_0)0;
@@ -156,13 +159,15 @@ public class Document
 			this.columnWidth = columnWidth;
 			this.handwritten = handwritten;
 		}
-		public DrawItem(Vector2 position, Texture texture)
+		public DrawItem(Vector2 position, Texture texture, float rotation, float scale)
 		{
 			this.position = position;
 			this.texture = texture;
+			this.rotation = rotation;
+			this.scale = scale;
 		}
 
-		public DrawItem(string position, string texture, string font, string color, string alignment, string lineSpacing, string columnWidth, bool handwritten)
+		public DrawItem(string position, string texture, string rotation, string scale, string alpha, string font, string color, string alignment, string lineSpacing, string columnWidth, bool handwritten)
 		{
 			Dictionary<string, Font> FontBank = new()
 			{
@@ -185,7 +190,7 @@ public class Document
 				{"naver 17.25", class_238.field_1990.field_2154},
 			};
 
-			void conditionalSet<T>(string input, ref T field, Func<string, T> func) { if (!string.IsNullOrEmpty(input)) field = func(input); };
+			void conditionalSet<T>(string input, ref T field, Func<string, T> func, bool check = true) { if (!string.IsNullOrEmpty(input) && check) field = func(input); };
 
 			if (!string.IsNullOrEmpty(position))
 			{
@@ -201,6 +206,14 @@ public class Document
 			{
 				//make graphic item
 				conditionalSet(texture, ref this.texture, x => class_235.method_615(texture));
+				this.color = Color.White;
+				conditionalSet(color, ref this.color, x => Color.FromHex(int.Parse(x)));
+				float temp = 0f;
+				conditionalSet(rotation, ref this.rotation, x => temp, float.TryParse(rotation, out temp));
+				temp = 1f;
+				conditionalSet(scale, ref this.scale, x => temp, float.TryParse(scale, out temp));
+				temp = 1f;
+				conditionalSet(alpha, ref this.alpha, x => temp, float.TryParse(alpha, out temp));
 			}
 			else
 			{
@@ -237,7 +250,12 @@ public class Document
 			// returns true if it drew as text
 			if (this.texture != null)
 			{
-				class_135.method_272(this.texture, origin + this.position);
+				Vector2 textureDimensions = this.texture.field_2056.ToVector2();
+				Matrix4 Translation = Matrix4.method_1070((origin + this.position).ToVector3(0.0f));
+				Matrix4 Rotation = Matrix4.method_1073(this.rotation);
+				Matrix4 Scaling = Matrix4.method_1074((textureDimensions * this.scale).ToVector3(0.0f));
+				Matrix4 Transformation = Translation * Rotation * Scaling; // order is important
+				class_135.method_262(this.texture, this.color.WithAlpha(this.alpha), Transformation);
 			}
 			else if (!string.IsNullOrEmpty(text))
 			{

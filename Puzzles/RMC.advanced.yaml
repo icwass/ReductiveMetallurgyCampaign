@@ -41,29 +41,70 @@ Cutscenes:
   Music: Story1
 ##################################################
 Documents:
-- ID: rmc-document-resume # needs to be the same as the puzzleID it needs to replace
-  Texture: textures/documents/letter_5 # the base texture
+- ID: rmc-document-debug # needs to be the same as the puzzleID it needs to replace
+  Texture: documents/resume # the base texture
   DrawItems:
-  ## this first item shows all options available for drawing a text item
-  ## the only option not defined here is Texture - whether Texture is defined determines whether the item is an image or a piece of text
-  - Position: 300.0, 650.0 # in pixels from the bottom-left corner of the base texture
-    Font: "cormorant 15"
-    Color: 9043968 # Colors are RGB values in decimal
+  - Position: 100, 820
+- ID: rmc-document-resume # needs to be the same as the puzzleID it needs to replace
+  Texture: documents/resume # the base texture
+  DrawItems:
+  ## DrawItems are drawn in the order they are listed
+  ##   so, for example, these skewed "resume" images are drawn under the other texts and images
+  - Texture: documents/resume
+    Position: 9, -6
+    Rotation: 0.03
+  - Texture: documents/resume
+    Position: -9, 4
+    Rotation: -0.03
+  - Texture: documents/resume
+  ## this item shows all options used for drawing a text item
+  ## the only options not defined or used here are Texture, Scale and Rotation - whether Texture is defined determines whether the item is an image or a piece of text
+  - Position: 325.0, 820.0 # in pixels from the bottom-left corner of the base texture
+    Font: "cormorant 18"
+    Color: 2299924 # Colors are RGB values in decimal
     Align: center # use "right" for right-aligned, "center" for center-aligned, anything else is interpreted as left-aligned
-    LineSpacing: 2.0
-    ColumnWidth: 350.0
+    LineSpacing: 1.0
+    ColumnWidth: 400.0
     Handwritten: false
-  ## this item shows all the options required for drawing an image item - other options are ignored if Texture is defined
-  - Position: 100, 100
-    Texture: documents/coffee_stain
   ## this item shows you don't need to define all the options for text items, since there are default values
-  - Position: 300, 200 # default is 0, 0
-    # default Font is "cormorant 15"
+  - Position: 325, 780 # default is 0, 0
+    Font: "cormorant 15" # default Font is "cormorant 15"
     # default Color is 2299924, a color close to black
-    # default Align is left-aligned
+    Align: center # default Align is left-aligned
     # default LineSpacing is 1
     # default ColumnWidth is float.MaxValue
-    Handwritten: true # default is false
+    # default Handwritten is false
+  ## remaining text items
+  ## this item shows all the options used for drawing an image item - other options are ignored if Texture is defined
+  - Position: 381, 577 # in pixels from the bottom-left corner of the base texture
+    Texture: documents/pugano_photo # file path to the image
+    Color: 0 # again, Colors are RGB values in decimal
+    Alpha: 0.7 # gives the image transparency - between 0.0 (full transparency) and 1.0
+    Scale: 0.5 # scales the image by multiplying the dimensions by the specified value
+    Rotation: -0.2 # rotates the image counterclockwise, measured in radians
+  ## this item shows you don't need to define all the options for texture items, since there are default values
+  - Position: 380, 580 # default is 0, 0
+    Texture: documents/pugano_photo # THE ONLY REQUIRED ITEM, otherwise it draws a text item
+    # defalt Color is 16777215, i.e. white
+    # default Alpha is 1
+    Scale: 0.5 # default Scale is 1
+    Rotation: -0.2 # default Rotation is 0
+  ## remaining items
+  - Position: 150, 803
+    Texture: documents/horizontal_bar
+  - Position: 125, 710
+    Font: "cormorant 12.75"
+    LineSpacing: 1.5
+    ColumnWidth: 400
+  - Position: 540, 130
+    Font: "cormorant 11"
+    Align: right
+  - Position: 100, 100
+    Texture: documents/coffee_stain
+  - Position: 300, 220
+    ColumnWidth: 240
+    Color: 931443
+    Handwritten: true
 # Available fonts:
 #   "crimson 9.75"      "crimson 10.5"      "crimson 12"        "crimson 13"        "crimson 15"        "crimson 16.5"      "crimson 21"
 #   "cormorant 11"      "cormorant 12.75"   "cormorant 15"      "cormorant 18"      "cormorant 22.5"    "cinzel 21"         "naver 17.25"       "reenie 17.25"

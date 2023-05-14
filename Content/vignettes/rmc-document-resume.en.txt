@@ -1,7 +1,23 @@
 ﻿[DO NOT PARSE]
 
-This is the first text item. Every text item needs an associated entry in the DrawItems list for the document in RMC.advanced.yaml.
+Jay MiddleName Pugano
+#1234 Streetway Lane • Downriver Quarters
 
-You can have multiple lines - the pound symbol is used to denote when to start the next text item.
+#*Education*
+College of Alchemical Engineering
+• Graduated _magna cum laude_
 
-#Note to self - stop putting coffee cups on important documents.
+*Work Experience*
+• Alchemical Technician Lead
+  _Schwinde Alchemical Engineering_
+- Collaborated with a team to research alloy compositions.
+- Designed and implemented production processes in both cabinet and modern enclosures.
+
+• Journeyman Alchemist
+  _Bokhlov Alchemicals_
+- Installed and maintained transmutation engines in a manufactory environment.
+- Assisted quality-control team with inspections.
+
+#Page 1
+
+#Both theoretical and practical experience. One of the more promising applicants.

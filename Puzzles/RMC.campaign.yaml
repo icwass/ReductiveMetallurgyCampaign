@@ -34,6 +34,10 @@ Chapters:
     Title: Patina Processing
     Puzzle: ch1/rmc-patina-processing
     Requires: ""
+  - ID: rmc-document-debug
+    Title: "CH1 END DOC"
+    Puzzle: other/empty
+    Requires: ""
 - Title: Chapter II
   Subtitle: Open for Business
   Place: "Westington Shopping District"
@@ -58,6 +62,10 @@ Chapters:
   - ID: rmc-golden-thread-recycling
     Title: Golden Thread Recycling
     Puzzle: ch2/rmc-golden-thread-recycling
+    Requires: ""
+  - ID: rmc-document-debug
+    Title: "CH2 END DOC"
+    Puzzle: other/empty
     Requires: ""
 - Title: Chapter III
   Subtitle: More Money, More Puzzles
@@ -88,6 +96,10 @@ Chapters:
     Title: Sanitizing Dust
     Puzzle: ch3/rmc-sanitizing-dust
     Requires: ""
+  - ID: rmc-document-debug
+    Title: "CH3 END DOC"
+    Puzzle: other/empty
+    Requires: ""
 - Title: Chapter IV
   Subtitle: Ravari's Wheel
   Place: "The Greathall, House Van Tassen"
@@ -100,4 +112,8 @@ Chapters:
   - ID: rmc-pugano-transformer
     Title: Pugano's Transformer
     Puzzle: ch4/rmc-pugano-transformer
+    Requires: ""
+  - ID: rmc-document-debug
+    Title: "CH4 END DOC"
+    Puzzle: other/empty
     Requires: ""
