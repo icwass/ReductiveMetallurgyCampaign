@@ -96,8 +96,7 @@ public class Document
 			int maxIndex = d.DrawItems == null ? 0 : d.DrawItems.Count;
 			for (int i = 0; i < maxIndex; i++)
 			{
-				var item = d.DrawItems[i];
-				drawItems.Add(new DrawItem(item.Position, item.Texture, item.Rotation, item.Scale, item.Alpha, item.Font, item.Color, item.Align, item.LineSpacing, item.ColumnWidth, item.Handwritten));
+				drawItems.Add(new DrawItem(d.DrawItems[i]));
 			}
 			new Document(d.ID, base_texture, drawItems);
 		}
@@ -167,7 +166,52 @@ public class Document
 			this.scale = scale;
 		}
 
-		public DrawItem(string position, string texture, string rotation, string scale, string alpha, string font, string color, string alignment, string lineSpacing, string columnWidth, bool handwritten)
+		//item.Position, item.Texture, item.Rotation, item.Scale, item.Alpha, item.Font, item.Color, item.Align, item.LineSpacing, item.ColumnWidth, item.Handwritten
+
+		public DrawItem(DrawItemModelRMC item)
+		{
+			void conditionalSet<T>(string input, ref T field, Func<string, T> func, bool check = true) { if (!string.IsNullOrEmpty(input) && check) field = func(input); };
+
+			if (!string.IsNullOrEmpty(item.Position))
+			{
+				float x, y;
+				string pos = item.Position;
+				if (float.TryParse(pos.Split(',')[0], out x) && float.TryParse(pos.Split(',')[1], out y))
+				{
+					this.position = new Vector2(x, y);
+				}
+			}
+
+			if (!string.IsNullOrEmpty(item.Texture))
+			{
+				//make graphic item
+				conditionalSet(item.Texture, ref this.texture, x => class_235.method_615(item.Texture));
+				this.color = Color.White;
+				conditionalSet(item.Color, ref this.color, x => Color.FromHex(int.Parse(x)));
+				float temp = 0f;
+				conditionalSet(item.Rotation, ref this.rotation, x => temp, float.TryParse(item.Rotation, out temp));
+				temp = 1f;
+				conditionalSet(item.Scale, ref this.scale, x => temp, float.TryParse(item.Scale, out temp));
+				temp = 1f;
+				conditionalSet(item.Alpha, ref this.alpha, x => temp, float.TryParse(item.Alpha, out temp));
+			}
+			else
+			{
+				//make a text item
+				if (!string.IsNullOrEmpty(item.Align))
+				{
+					if (item.Align.ToLower() == "center") this.alignment = (enum_0)1;
+					if (item.Align.ToLower() == "right") this.alignment = (enum_0)2;
+				}
+				conditionalSet(item.Font, ref this.font, x => getFont(item.Font));
+				conditionalSet(item.Color, ref this.color, x => Color.FromHex(int.Parse(x)));
+				conditionalSet(item.LineSpacing, ref this.lineSpacing, x => float.Parse(x));
+				conditionalSet(item.ColumnWidth, ref this.columnWidth, x => float.Parse(x));
+				this.handwritten = item.Handwritten;
+			}
+		}
+
+		public static Font getFont(string font)
 		{
 			Dictionary<string, Font> FontBank = new()
 			{
@@ -189,61 +233,10 @@ public class Document
 				{"reenie 17.25", class_238.field_1990.field_2153},
 				{"naver 17.25", class_238.field_1990.field_2154},
 			};
-
-			void conditionalSet<T>(string input, ref T field, Func<string, T> func, bool check = true) { if (!string.IsNullOrEmpty(input) && check) field = func(input); };
-
-			if (!string.IsNullOrEmpty(position))
-			{
-				float x, y;
-				string pos = position;
-				if (float.TryParse(pos.Split(',')[0], out x) && float.TryParse(pos.Split(',')[1], out y))
-				{
-					this.position = new Vector2(x, y);
-				}
-			}
-
-			if (!string.IsNullOrEmpty(texture))
-			{
-				//make graphic item
-				conditionalSet(texture, ref this.texture, x => class_235.method_615(texture));
-				this.color = Color.White;
-				conditionalSet(color, ref this.color, x => Color.FromHex(int.Parse(x)));
-				float temp = 0f;
-				conditionalSet(rotation, ref this.rotation, x => temp, float.TryParse(rotation, out temp));
-				temp = 1f;
-				conditionalSet(scale, ref this.scale, x => temp, float.TryParse(scale, out temp));
-				temp = 1f;
-				conditionalSet(alpha, ref this.alpha, x => temp, float.TryParse(alpha, out temp));
-			}
-			else
-			{
-				//make a text item
-				if (!string.IsNullOrEmpty(font) && FontBank.ContainsKey(font))
-				{
-					this.font = FontBank[font];
-				}
-				if (!string.IsNullOrEmpty(alignment))
-				{
-					if (alignment.ToLower() == "center")
-					{
-						this.alignment = (enum_0)1;
-					}
-					else if (alignment.ToLower() == "right")
-					{
-						this.alignment = (enum_0)2;
-					}
-				}
-				conditionalSet(color, ref this.color, x => Color.FromHex(int.Parse(x)));
-				conditionalSet(lineSpacing, ref this.lineSpacing, x => float.Parse(x));
-				conditionalSet(columnWidth, ref this.columnWidth, x => float.Parse(x));
-				this.handwritten = handwritten;
-			}
+			return FontBank.ContainsKey(font) ? FontBank[font] : class_238.field_1990.field_2150;
 		}
 
-		public static Font getHandwrittenFont()
-		{
-			return class_134.field_1504 == Language.Korean ? class_238.field_1990.field_2154 /*naver_regular_17_25*/ : class_238.field_1990.field_2153 /*reenie_regular_17_25*/;
-		}
+		public static Font getHandwrittenFont() => getFont(class_134.field_1504 == Language.Korean ? "naver 17.25" : "reenie 17.25");
 
 		public bool draw(Vector2 origin, string text)
 		{

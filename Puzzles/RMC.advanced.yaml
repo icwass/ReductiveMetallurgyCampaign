@@ -41,8 +41,8 @@ Cutscenes:
   Music: Story1
 ##################################################
 Documents:
-- ID: rmc-document-debug # needs to be the same as the puzzleID it needs to replace
-  Texture: documents/resume # the base texture
+- ID: rmc-document-debug
+  Texture: documents/resume
   DrawItems:
   - Position: 100, 820
 - ID: rmc-document-resume # needs to be the same as the puzzleID it needs to replace
