@@ -1,10 +1,10 @@
 Name: ReductiveMetallurgyCampaign
 Title: "Reductive Metallurgy Campaign"
-Version: 0.1.2
+Version: 0.2.0
 Desc: "A campaign of puzzles for the Reductive Metallurgy mod."
 DLL: "ReductiveMetallurgyCampaign/bin/Debug/net452/ReductiveMetallurgyCampaign.dll"
 Dependencies:
 - Name: Quintessential
   Version: 0.3.0
 - Name: ReductiveMetallurgy
-  Version: 0.0.6
+  Version: 0.1.0
