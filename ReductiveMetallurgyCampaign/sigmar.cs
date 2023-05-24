@@ -132,7 +132,6 @@ public static class SigmarGardenPatcher
 		// find solitaire_rmc.dat
 		foreach (var dir in QuintessentialLoader.ModContentDirectories)
 		{
-			Logger.Log(Path.Combine(dir, filePath));
 			if (File.Exists(Path.Combine(dir, filePath)))
 			{
 				path = Path.Combine(dir, filePath);
@@ -142,19 +141,16 @@ public static class SigmarGardenPatcher
 
 		if (path == "") return orig(quintessenceSigmar);
 
-		int field1811 = 55;
-		int field1812 = field1811 * 3;
-
 		using (BinaryReader binaryReader = new BinaryReader(new FileStream(path, FileMode.Open, FileAccess.Read)))
 		{
+			const int bytesPerBoard = 200;
+			// 1 for leading 0xBB byte
+			// 16 for settings
+			// 182 (=91*2) for marbles
+			// 1 for trailing 0xDD byte
 			int num = binaryReader.ReadInt32();
 			int boardID = class_269.field_2103.method_299(0, num);
-			binaryReader.BaseStream.Seek(boardID * 200, SeekOrigin.Current);
-			//bytes used:
-			// 1 for leading BB byte
-			// 16 for setting
-			// 182 (=91*2) for marbles
-			// 1 for trailing DD byte
+			binaryReader.BaseStream.Seek(boardID * bytesPerBoard, SeekOrigin.Current);
 			byte header = binaryReader.ReadByte();
 			if (header != 0xBB) throw new Exception("[RMC:SigmarGardenPatcher] Invalid header byte for solitaire board: " + header);
 
