@@ -129,13 +129,13 @@ Chapters:
     Title: Sigmar's Garden
     Puzzle: other/empty
     Requires: ""
-  - ID: rmc-pugano-transformer
-    Title: Pugano's Transformer
-    Puzzle: ch4/rmc-pugano-transformer
-    Requires: ""
   - ID: rmc-saverio-transformer
     Title: Saverio's Transformer
     Puzzle: ch4/rmc-saverio-transformer
+    Requires: ""
+  - ID: rmc-pugano-transformer
+    Title: Pugano's Transformer
+    Puzzle: ch4/rmc-pugano-transformer
     Requires: ""
   - ID: rmc-document-debug
     Title: "CH4 END DOC"
