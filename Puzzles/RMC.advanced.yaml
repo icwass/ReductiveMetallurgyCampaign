@@ -123,6 +123,14 @@ Puzzles:
   Outputs:
   - Elemental Copper
 ##########
+- ID: rmc-galena-separation
+  Music: Solving1
+  Inputs:
+  - Galena
+  Outputs:
+  - Elemental Iron
+  - Elemental Salt
+##########
 - ID: rmc-golden-thread-recycling
   Music: Solving6
   Inputs:
@@ -148,6 +156,26 @@ Puzzles:
   - Elemental Lead
   - Elemental Lead
 ##########
+- ID: rmc-lesson-proliferation
+  Music: Solving6
+  Inputs:
+  - Elemental Gold
+  - Elemental Quicksilver
+  Outputs:
+  - Elemental Gold
+  - Elemental Iron
+  - Elemental Tin
+  - Elemental Lead
+##########
+- ID: rmc-mercurial-capacitor
+  Music: Solving3
+  Inputs:
+  - Mercurial Capacitor, Depleted
+  - Elemental Copper
+  Outputs:
+  - Mercurial Capacitor, Filled
+  - Elemental Lead
+##########
 - ID: rmc-patina-processing
   Music: Solving2
   Inputs:
@@ -163,13 +191,6 @@ Puzzles:
   - Elemental Iron
   Outputs:
   - Precision Machine Oil
-##########
-- ID: rmc-plumbous-wheel
-  Music: Solving3
-  Inputs:
-  - Elemental Iron
-  Outputs:
-  - Plumbous Wheel
 ##########
 - ID: rmc-ravari-requiescence
   Music: Solving5
@@ -198,6 +219,13 @@ Puzzles:
   - Rose-Gold Ring
   Outputs:
   - Gold Ring
+##########
+- ID: rmc-plumbous-wheel
+  Music: Solving3
+  Inputs:
+  - Elemental Iron
+  Outputs:
+  - Plumbous Wheel
 ##########
 - ID: rmc-sanitizing-dust
   Music: Solving3

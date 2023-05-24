@@ -22,13 +22,13 @@ Chapters:
     Title: Copper Synthesis
     Puzzle: ch1/rmc-copper-synthesis
     Requires: ""
-  - ID: rmc-ravari-requiescence
-    Title: Ravari's Requiescence
-    Puzzle: ch1/rmc-ravari-requiescence
-    Requires: ""
   - ID: rmc-ring-purification
-    Title: Ring Purification
+    Title: Ring Oscillator
     Puzzle: ch1/rmc-ring-purification
+    Requires: ""
+  - ID: rmc-galena-separation
+    Title: Galena Separation
+    Puzzle: ch1/rmc-galena-separation
     Requires: ""
   - ID: rmc-patina-processing
     Title: Patina Processing
@@ -51,17 +51,25 @@ Chapters:
     Title: Sigmar's Garden
     Puzzle: other/empty
     Requires: ""
+  - ID: rmc-stannous-crystal
+    Title: "Stannous Crystal"
+    Puzzle: ch2/rmc-stannous-crystal
+    Requires: ""
   - ID: rmc-solder-wire
     Title: Solder Wire
     Puzzle: ch2/rmc-solder-wire
+    Requires: ""
+  - ID: rmc-plumbous-wheel
+    Title: Plumbous Wheel
+    Puzzle: ch2/rmc-plumbous-wheel
     Requires: ""
   - ID: rmc-silver-phosphate
     Title: Silver Phosphate
     Puzzle: ch2/rmc-silver-phosphate
     Requires: ""
-  - ID: rmc-golden-thread-recycling
-    Title: Golden Thread Recycling
-    Puzzle: ch2/rmc-golden-thread-recycling
+  - ID: rmc-you-drive-me-to-drink
+    Title: You Drive Me To Drink
+    Puzzle: ch2/rmc-you-drive-me-to-drink
     Requires: ""
   - ID: rmc-document-debug
     Title: "CH2 END DOC"
@@ -72,25 +80,29 @@ Chapters:
   Place: "The Greathall, House Van Tassen"
   Background: textures/cinematic/backgrounds/greathall_b
   Entries:
-  - ID: rmc-you-drive-me-to-drink
-    Title: You Drive Me To Drink
-    Puzzle: ch3/rmc-you-drive-me-to-drink
+  - ID: rmc-ravari-requiescence
+    Title: Ravari's Requiescence
+    Puzzle: ch3/rmc-ravari-requiescence
+    Requires: ""  
+  - ID: rmc-sigmars-garden-1
+    Title: Sigmar's Garden
+    Puzzle: other/empty
     Requires: ""
+  - ID: rmc-mercurial-capacitor
+    Title: Mercurial Capacitor
+    Puzzle: ch3/rmc-mercurial-capacitor
+    Requires: ""  
   - ID: rmc-reactive-litharge
     Title: Reactive Litharge
     Puzzle: ch3/rmc-reactive-litharge
     Requires: ""
-  - ID: rmc-plumbous-wheel
-    Title: Plumbous Wheel
-    Puzzle: ch3/rmc-plumbous-wheel
-    Requires: ""
-  - ID: rmc-saverio-transformer
-    Title: Saverio's Transformer
-    Puzzle: ch3/rmc-saverio-transformer
-    Requires: ""
   - ID: rmc-precision-machine-oil-cabinet
     Title: Precision Machine Oil Cabinet
     Puzzle: ch3/rmc-precision-machine-oil-cabinet
+    Requires: ""
+  - ID: rmc-golden-thread-recycling
+    Title: Golden Thread Recycling
+    Puzzle: ch3/rmc-golden-thread-recycling
     Requires: ""
   - ID: rmc-sanitizing-dust
     Title: Sanitizing Dust
@@ -109,9 +121,21 @@ Chapters:
     Title: Ravari's Repine
     Puzzle: ch4/rmc-ravari-repine
     Requires: ""
+  - ID: rmc-lesson-proliferation
+    Title: "Lesson: Proliferation"
+    Puzzle: ch4/rmc-lesson-proliferation
+    Requires: ""
+  - ID: rmc-sigmars-garden-1
+    Title: Sigmar's Garden
+    Puzzle: other/empty
+    Requires: ""
   - ID: rmc-pugano-transformer
     Title: Pugano's Transformer
     Puzzle: ch4/rmc-pugano-transformer
+    Requires: ""
+  - ID: rmc-saverio-transformer
+    Title: Saverio's Transformer
+    Puzzle: ch4/rmc-saverio-transformer
     Requires: ""
   - ID: rmc-document-debug
     Title: "CH4 END DOC"
