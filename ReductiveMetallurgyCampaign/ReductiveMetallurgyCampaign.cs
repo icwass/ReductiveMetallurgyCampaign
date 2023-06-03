@@ -207,7 +207,7 @@ public class MainClass : QuintessentialMod
 						}
 						class157List.Add(new class_157()
 						{
-							field_1597 = GoldenThreadPolymerInput.partType,
+							field_1597 = PolymerInput.partTypeGoldenThread,
 							field_1598 = hexIndex1 + new HexIndex(6, -2),
 							field_1602 = new HexIndex[15]
 							{
@@ -226,6 +226,64 @@ public class MainClass : QuintessentialMod
 								hexIndex1 + new HexIndex(2, 2),
 								hexIndex1 + new HexIndex(3, 2),
 								hexIndex1 + new HexIndex(4, 2)
+							}
+						});
+						puzzle.field_2772 = new class_157[class157List.Count];
+						for (int index = 0; index < class157List.Count; ++index)
+							puzzle.field_2772[index] = class157List[index];
+					}
+					else if (puzzle.field_2766 == "rmc-synthesis-via-chain")
+					{
+						puzzle.field_2769 = tipPolymerInput;
+						HexIndex hexIndex1 = new HexIndex(1, 0);
+						List<class_157> class157List = new List<class_157>();
+						HexIndex[] hexIndexArray = new HexIndex[]
+						{
+							new HexIndex(0, 0),
+							new HexIndex(4, 0),
+							new HexIndex(8, 0)
+						};
+						foreach (var hexIndex2 in hexIndexArray)
+						{
+							class157List.Add(new class_157()
+							{
+								field_1597 = PartTypes.field_1760, // input
+								field_1598 = hexIndex1 + hexIndex2
+							});
+						}
+						class157List.Add(new class_157()
+						{
+							field_1597 = PolymerInput.partTypeBerloChain,
+							field_1598 = hexIndex1 + new HexIndex(12, -2),
+							field_1602 = new HexIndex[]
+							{
+								hexIndex1 + new HexIndex(12, -2),
+								hexIndex1 + new HexIndex(11, -2),
+								hexIndex1 + new HexIndex(10, -2),
+								hexIndex1 + new HexIndex(9, -2),
+								hexIndex1 + new HexIndex(8, -2),
+								hexIndex1 + new HexIndex(7, -2),
+								hexIndex1 + new HexIndex(6, -2),
+								hexIndex1 + new HexIndex(5, -2),
+								hexIndex1 + new HexIndex(4, -2),
+								hexIndex1 + new HexIndex(3, -2),
+								hexIndex1 + new HexIndex(2, -2),
+								hexIndex1 + new HexIndex(1, -2),
+								hexIndex1 + new HexIndex(0, -1),
+								hexIndex1 + new HexIndex(-1, 0),
+								hexIndex1 + new HexIndex(-1, 1),
+								hexIndex1 + new HexIndex(-1, 2),
+								hexIndex1 + new HexIndex(0, 2),
+								hexIndex1 + new HexIndex(1, 2),
+								hexIndex1 + new HexIndex(2, 2),
+								hexIndex1 + new HexIndex(3, 2),
+								hexIndex1 + new HexIndex(4, 2),
+								hexIndex1 + new HexIndex(5, 2),
+								hexIndex1 + new HexIndex(6, 2),
+								hexIndex1 + new HexIndex(7, 2),
+								hexIndex1 + new HexIndex(8, 2),
+								hexIndex1 + new HexIndex(9, 2),
+								hexIndex1 + new HexIndex(10, 2)
 							}
 						});
 						puzzle.field_2772 = new class_157[class157List.Count];
@@ -321,7 +379,7 @@ public class MainClass : QuintessentialMod
 
 	public override void LoadPuzzleContent()
 	{
-		GoldenThreadPolymerInput.LoadContent();
+		PolymerInput.LoadContent();
 		modifyCampaignLevelsRMC();
 
 		//------------------------- HOOKING -------------------------//
@@ -333,7 +391,7 @@ public class MainClass : QuintessentialMod
 	private delegate void orig_Sim_method_1835(Sim self);
 	private static void OnSimMethod1835(orig_Sim_method_1835 orig, Sim sim_self)
 	{
-		GoldenThreadPolymerInput.My_Method_1835(sim_self);
+		PolymerInput.My_Method_1835(sim_self);
 		orig(sim_self);
 	}
 

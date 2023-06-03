@@ -255,6 +255,13 @@ Puzzles:
   Outputs:
   - Solder Wire
 ##########
+- ID: rmc-synthesis-via-chain
+  Music: Solving4
+  Inputs:
+  - Van Berlo's Chain
+  Outputs:
+  - Quintessence
+##########
 - ID: rmc-you-drive-me-to-drink
   Music: Solving2
   Inputs:

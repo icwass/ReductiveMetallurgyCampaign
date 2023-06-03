@@ -21,10 +21,10 @@ using Texture = class_256;
 using Song = class_186;
 using Tip = class_215;
 
-public static class GoldenThreadPolymerInput
+public static class PolymerInput
 {
 	//
-	public static PartType partType;
+	public static PartType partTypeGoldenThread, partTypeBerloChain;
 
 
 	private static Vector2 hexGraphicalOffset(HexIndex hex) => class_187.field_1742.method_492(hex);
@@ -36,7 +36,7 @@ public static class GoldenThreadPolymerInput
 		if (contentLoaded) return;
 		contentLoaded = true;
 
-		partType = new PartType()
+		partTypeGoldenThread = new PartType()
 		{
 			field_1528 = "rmc-golden-thread-polymer-input",
 			field_1529 = class_134.method_253("Guiding Rail", string.Empty),
@@ -54,6 +54,22 @@ public static class GoldenThreadPolymerInput
 			field_1551 = Permissions.None
 		};
 
+		partTypeBerloChain = new PartType()
+		{
+			field_1528 = "rmc-berlo-chain-polymer-input",
+			field_1529 = class_134.method_253("Guiding Rail", string.Empty),
+			field_1530 = class_134.method_253("This rail helps guide the input polymer into the machine. Arms can be mounted on it, but atoms are not allowed to pass through it.", string.Empty),
+			field_1532 = (enum_2)2,
+			field_1538 = new class_222[2]
+			{
+				new class_222(new HexIndex(-9, 2), new HexIndex(-8, 2), (enum_126) 1, (Maybe<AtomType>) struct_18.field_1431),
+				new class_222(new HexIndex(-5, 2), new HexIndex(-4, 2), (enum_126) 1, (Maybe<AtomType>) struct_18.field_1431)
+			},
+			field_1539 = true,
+			field_1542 = true,
+			field_1551 = Permissions.None
+		};
+
 		Texture tex_bend, tex_end, tex_sharp, tex_single, tex_straight, tex_hole;
 		string str = "textures/parts/guide_rail/";
 		tex_bend = class_235.method_615(str + "bend_hex");
@@ -63,17 +79,8 @@ public static class GoldenThreadPolymerInput
 		tex_straight = class_235.method_615(str + "straight_hex");
 		tex_hole = class_235.method_615(str + "hole");
 
-		QApi.AddPartType(partType, (part, pos, editor, renderer) =>
+		void drawPolymerInput(class_195 renderer, Part part, Vector2 pos)
 		{
-			void drawVoidHex(HexIndex hex, float alpha)
-			{
-				Vector2 vec2 = class_187.field_1742.method_491(hex, renderer.field_1797) - tex_hole.field_2056.ToVector2() / 2;
-				class_135.method_271(tex_hole, Color.White.WithAlpha(alpha), vec2.Rounded());
-			}
-			drawVoidHex(new HexIndex(-5, 2), 1f);
-			drawVoidHex(new HexIndex(-3, 2), 0.75f);
-			drawVoidHex(new HexIndex(-1, 2), 0.5f);
-
 			//copied from track-drawing code
 			var trackList = part.method_1189();
 
@@ -226,6 +233,41 @@ public static class GoldenThreadPolymerInput
 					}
 				}
 			}
+		}
+
+		QApi.AddPartType(partTypeGoldenThread, (part, pos, editor, renderer) =>
+		{
+			void drawVoidHex(HexIndex hex, float alpha)
+			{
+				Vector2 vec2 = class_187.field_1742.method_491(hex, renderer.field_1797) - tex_hole.field_2056.ToVector2() / 2;
+				class_135.method_271(tex_hole, Color.White.WithAlpha(alpha), vec2.Rounded());
+			}
+			drawVoidHex(new HexIndex(-5, 2), 1f);
+			drawVoidHex(new HexIndex(-3, 2), 0.75f);
+			drawVoidHex(new HexIndex(-1, 2), 0.5f);
+
+			drawPolymerInput(renderer, part, pos);
+		});
+
+		QApi.AddPartType(partTypeBerloChain, (part, pos, editor, renderer) =>
+		{
+			drawPolymerInput(renderer, part, pos);
+
+			void drawVoidHex(HexIndex hex, float alpha)
+			{
+				Vector2 vec2 = class_187.field_1742.method_491(hex, renderer.field_1797) - tex_hole.field_2056.ToVector2() / 2;
+				class_135.method_271(tex_hole, Color.White.WithAlpha(alpha), vec2.Rounded());
+			}
+			drawVoidHex(new HexIndex(-11, 3), 1f);
+			drawVoidHex(new HexIndex(-9, 3), 0.8f);
+			drawVoidHex(new HexIndex(-7, 3), 0.7f);
+			drawVoidHex(new HexIndex(-5, 3), 0.6f);
+			drawVoidHex(new HexIndex(-3, 3), 0.5f);
+			drawVoidHex(new HexIndex(-10, 1), 1f);
+			drawVoidHex(new HexIndex(-8, 1), 0.8f);
+			drawVoidHex(new HexIndex(-6, 1), 0.7f);
+			drawVoidHex(new HexIndex(-4, 1), 0.6f);
+			drawVoidHex(new HexIndex(-2, 1), 0.5f);
 		});
 	}
 
@@ -241,7 +283,7 @@ public static class GoldenThreadPolymerInput
 		List<Vector2> vector2List = new List<Vector2>();
 		float num1 = 20f;
 		List<Sim.struct_122> struct122List2 = new List<Sim.struct_122>();
-		foreach (var part in field3919.Where(x => x.method_1159() == GoldenThreadPolymerInput.partType))
+		foreach (var part in field3919.Where(x => x.method_1159() == partTypeGoldenThread || x.method_1159() == partTypeBerloChain))
 		{
 			foreach (HexIndex hexIndex in (IEnumerable<HexIndex>)part.method_1189())
 				vector2List.Add(hexGraphicalOffset(part.method_1184(hexIndex)));

@@ -83,7 +83,11 @@ Chapters:
   - ID: rmc-ravari-requiescence
     Title: Ravari's Requiescence
     Puzzle: ch3/rmc-ravari-requiescence
-    Requires: ""  
+    Requires: ""
+  - ID: rmc-synthesis-via-chain
+    Title: Servin's Presentation
+    Puzzle: ch3/rmc-synthesis-via-chain
+    Requires: ""
   - ID: rmc-sigmars-garden-1
     Title: Sigmar's Garden
     Puzzle: other/empty
