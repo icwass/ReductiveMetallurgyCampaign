@@ -11,8 +11,8 @@ using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
 
-using PartType = class_139;
-using Permissions = enum_149;
+//using PartType = class_139;
+//using Permissions = enum_149;
 //using BondType = enum_126;
 //using BondSite = class_222;
 //using AtomTypes = class_175;

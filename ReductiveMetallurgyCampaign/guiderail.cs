@@ -16,10 +16,10 @@ using Permissions = enum_149;
 //using BondType = enum_126;
 //using BondSite = class_222;
 //using AtomTypes = class_175;
-using PartTypes = class_191;
+//using PartTypes = class_191;
 using Texture = class_256;
-using Song = class_186;
-using Tip = class_215;
+//using Song = class_186;
+//using Tip = class_215;
 
 public static class PolymerInput
 {
@@ -79,162 +79,6 @@ public static class PolymerInput
 		tex_straight = class_235.method_615(str + "straight_hex");
 		tex_hole = class_235.method_615(str + "hole");
 
-		void drawPolymerInput(class_195 renderer, Part part, Vector2 pos)
-		{
-			//copied from track-drawing code
-			var trackList = part.method_1189();
-
-			HexIndex func(int num)
-			{
-				return trackList[class_162.method_408(num, trackList.Count)]; //note: class_162.method_408(num, trackList.Count) == (num % trackList.Count + trackList.Count) % trackList.Count;
-			}
-			bool track_is_a_loop = HexIndex.Distance(trackList.First(), trackList.Last()) == 1 & trackList.Count > 2;
-			for (int index1 = 0; index1 < 2; ++index1)
-			{
-				for (int index2 = 0; index2 < trackList.Count; ++index2)
-				{
-					HexIndex hexIndex1 = trackList[index2];
-					Maybe<Vector2> maybe1 = (Maybe<Vector2>)struct_18.field_1431;
-					Maybe<Vector2> maybe2 = (Maybe<Vector2>)struct_18.field_1431;
-					class_126 class126;
-					Texture class256_1;
-					Texture class256_2;
-					float num1;
-					HexRotation hexRotation1;
-					Vector2 vector2_3;
-					if (trackList.Count == 1)
-					{
-						class126 = class_238.field_1989.field_90.field_261; // textures/parts/track_single.lighting/...
-						class256_1 = class_238.field_1989.field_90.field_225; // "textures/parts/track_single_shadow"
-						class256_2 = tex_single; // "textures/parts/track_single_hex"
-						num1 = 0.0f;
-						maybe1 = (Maybe<Vector2>)new Vector2(30f, 0.0f);
-						maybe2 = (Maybe<Vector2>)new Vector2(-30f, 0.0f);
-					}
-					else if (!track_is_a_loop && (index2 == 0 || index2 == trackList.Count - 1))
-					{
-						class126 = class_238.field_1989.field_90.field_259; // textures/parts/track_end.lighting/...
-						class256_1 = class_238.field_1989.field_90.field_217; // "textures/parts/track_end_shadow"
-						class256_2 = tex_end; // "textures/parts/track_end_hex"
-						if (index2 == 0)
-						{
-							HexRotation hexRotation2 = HexRotation.Rounded(class_187.field_1742.method_492(func(index2 + 1) - hexIndex1).Angle());
-							hexRotation1 = hexRotation2.Opposite();
-							num1 = hexRotation1.ToRadians();
-							vector2_3 = new Vector2(30f, 0.0f).Rotated(hexRotation1.ToRadians());
-							maybe2 = (Maybe<Vector2>)vector2_3.Rounded();
-						}
-						else // index2 == trackList.Count - 1
-						{
-							HexRotation hexRotation3 = HexRotation.Rounded(class_187.field_1742.method_492(hexIndex1 - func(index2 - 1)).Angle());
-							num1 = hexRotation3.ToRadians();
-							vector2_3 = new Vector2(30f, 0.0f).Rotated(hexRotation3.ToRadians());
-							maybe1 = (Maybe<Vector2>)vector2_3.Rounded();
-						}
-					}
-					else
-					{
-						Vector2 vector2_4 = class_187.field_1742.method_492(hexIndex1 - func(index2 - 1));
-						Vector2 vector2_5 = class_187.field_1742.method_492(func(index2 + 1) - hexIndex1);
-						HexRotation hexRotation4 = HexRotation.Rounded(vector2_4.Angle());
-						HexRotation hexRotation5 = HexRotation.Rounded(vector2_5.Angle());
-						hexRotation1 = hexRotation5 - hexRotation4;
-						int numberOfTurns = hexRotation1.AsShortestAngle().GetNumberOfTurns();
-						HexRotation hexRotation6 = hexRotation4;
-						switch (numberOfTurns)
-						{
-							case -2:
-							case 2:
-								class126 = class_238.field_1989.field_90.field_260; // textures/parts/track_sharp.lighting/...
-								class256_1 = class_238.field_1989.field_90.field_223; // "textures/parts/track_sharp_shadow"
-								class256_2 = tex_sharp; // "textures/parts/track_sharp_hex"
-								if (numberOfTurns == -2)
-									hexRotation6 += HexRotation.R60;
-								break;
-							case -1:
-							case 1:
-								class126 = class_238.field_1989.field_90.field_258; // textures/parts/track_bend.lighting/...
-								class256_1 = class_238.field_1989.field_90.field_215; // "textures/parts/track_bend_shadow"
-								class256_2 = tex_bend; // "textures/parts/track_bend_hex"
-								if (numberOfTurns == -1)
-									hexRotation6 += HexRotation.R120;
-								break;
-							default:
-								class126 = class_238.field_1989.field_90.field_262; // textures/parts/track_straight.lighting/...
-								class256_1 = class_238.field_1989.field_90.field_227; // "textures/parts/track_straight_shadow"
-								class256_2 = tex_straight; // "textures/parts/track_straight_hex"
-								break;
-						}
-						num1 = hexRotation6.ToRadians();
-						if (track_is_a_loop && (index2 == 0 || index2 == trackList.Count - 1))
-						{
-							hexRotation1 = hexRotation5.Opposite();
-							double radians1 = (double)hexRotation1.ToRadians();
-							float radians2 = hexRotation4.ToRadians();
-							double num2 = (double)radians2;
-							float radians3 = class_162.method_410((float)radians1, (float)num2) / 2f + radians2;
-							if (numberOfTurns == 0)
-							{
-								int num3 = 0;
-								HexRotation rotation1 = HexRotation.Rounded(radians3 + 0.1f);
-								HexRotation rotation2 = HexRotation.Rounded(radians3 - 0.1f);
-								if (trackList.Contains<HexIndex>(hexIndex1 + new HexIndex(1, 0).Rotated(rotation1)))
-									++num3;
-								if (trackList.Contains<HexIndex>(hexIndex1 + new HexIndex(1, 0).Rotated(rotation2)))
-									++num3;
-								if (trackList.Contains<HexIndex>(hexIndex1 + new HexIndex(1, 0).Rotated(rotation1.Opposite())))
-									--num3;
-								if (trackList.Contains<HexIndex>(hexIndex1 + new HexIndex(1, 0).Rotated(rotation2.Opposite())))
-									--num3;
-								if (num3 > 0)
-									radians3 += 3.141593f;
-							}
-							vector2_3 = new Vector2(30f, 0.0f);
-							vector2_3 = vector2_3.Rotated(radians3);
-							Vector2 vector2_6 = vector2_3.Rounded();
-							if (index2 == 0)
-								maybe2 = (Maybe<Vector2>)vector2_6;
-							else
-								maybe1 = (Maybe<Vector2>)vector2_6;
-						}
-					}
-					HexIndex hexIndex2 = part.method_1161() + hexIndex1;
-					class_187.field_1742.method_491(hexIndex2, pos);
-					Vector2 vector2_7;
-					if (index1 == 0)
-					{
-						vector2_7 = new Vector2(42f, 49f);
-						renderer.method_526(class256_2, hexIndex1, new Vector2(-1f, -1f), vector2_7, num1);
-						vector2_3 = class256_1.field_2056.ToVector2() / 2;
-						Vector2 vector2_8 = vector2_3.Rounded();
-						renderer.method_526(class256_1, hexIndex1, new Vector2(0.0f, -7f), vector2_8, num1);
-						Texture field218 = class_238.field_1989.field_90.field_218; // textures/parts/track_hex_shadow
-						vector2_3 = field218.field_2056.ToVector2() / 2;
-						vector2_7 = vector2_3.Rounded();
-						renderer.method_526(field218, hexIndex1, new Vector2(0.0f, 0.0f), vector2_7, num1);
-					}
-					else
-					{
-						vector2_3 = class126.method_235().ToVector2() / 2;
-						vector2_7 = vector2_3.Rounded();
-						renderer.method_527(class126, hexIndex1, new Vector2(0.0f, 0.0f), vector2_7, num1);
-						if (maybe1.method_1085())
-						{
-							Texture field221 = class_238.field_1989.field_90.field_221; // "textures/parts/track_plus"
-							vector2_7 = field221.field_2056.ToVector2() / 2;
-							renderer.method_526(field221, hexIndex1, maybe1.method_1087(), vector2_7, 0.0f);
-						}
-						if (maybe2.method_1085())
-						{
-							Texture field219 = class_238.field_1989.field_90.field_219; // "textures/parts/track_minus"
-							vector2_7 = field219.field_2056.ToVector2() / 2;
-							renderer.method_526(field219, hexIndex1, maybe2.method_1087(), vector2_7, 0.0f);
-						}
-					}
-				}
-			}
-		}
-
 		QApi.AddPartType(partTypeGoldenThread, (part, pos, editor, renderer) =>
 		{
 			void drawVoidHex(HexIndex hex, float alpha)
@@ -246,29 +90,179 @@ public static class PolymerInput
 			drawVoidHex(new HexIndex(-3, 2), 0.75f);
 			drawVoidHex(new HexIndex(-1, 2), 0.5f);
 
-			drawPolymerInput(renderer, part, pos);
+			drawRailHexes(renderer, part, pos);
 		});
 
 		QApi.AddPartType(partTypeBerloChain, (part, pos, editor, renderer) =>
 		{
-			drawPolymerInput(renderer, part, pos);
-
+			drawRailHexes(renderer, part, pos);
 			void drawVoidHex(HexIndex hex, float alpha)
 			{
 				Vector2 vec2 = class_187.field_1742.method_491(hex, renderer.field_1797) - tex_hole.field_2056.ToVector2() / 2;
 				class_135.method_271(tex_hole, Color.White.WithAlpha(alpha), vec2.Rounded());
 			}
-			drawVoidHex(new HexIndex(-11, 3), 1f);
-			drawVoidHex(new HexIndex(-9, 3), 0.8f);
-			drawVoidHex(new HexIndex(-7, 3), 0.7f);
-			drawVoidHex(new HexIndex(-5, 3), 0.6f);
-			drawVoidHex(new HexIndex(-3, 3), 0.5f);
-			drawVoidHex(new HexIndex(-10, 1), 1f);
-			drawVoidHex(new HexIndex(-8, 1), 0.8f);
-			drawVoidHex(new HexIndex(-6, 1), 0.7f);
-			drawVoidHex(new HexIndex(-4, 1), 0.6f);
-			drawVoidHex(new HexIndex(-2, 1), 0.5f);
+			var holes = new Dictionary<HexIndex, float>() {
+				{new HexIndex(-10, 1), 1f },
+				{new HexIndex(-8,  1), 0.8f },
+				{new HexIndex(-6,  1), 0.7f },
+				{new HexIndex(-4,  1), 0.6f },
+				{new HexIndex(-2,  1), 0.5f }
+			};
+			foreach (var hole in holes)
+			{
+				drawVoidHex(hole.Key, hole.Value);
+				drawVoidHex(hole.Key + new HexIndex(-1, 2), hole.Value);
+			}
 		});
+
+		void drawRailHexes(class_195 renderer, Part part, Vector2 pos)
+		{
+			var trackList = part.method_1189();
+			// note: these arrays have a specific order so that code appearing later is simplified
+			class_126[] lighting_trackMetal = new class_126[5]
+			{
+				class_238.field_1989.field_90.field_262, //	textures/parts/track_straight.lighting/...
+				class_238.field_1989.field_90.field_258, //	textures/parts/track_bend.lighting/...
+				class_238.field_1989.field_90.field_260, //	textures/parts/track_sharp.lighting/...
+				class_238.field_1989.field_90.field_259, //	textures/parts/track_end.lighting/...
+				class_238.field_1989.field_90.field_261, //	textures/parts/track_single.lighting/...
+			};
+			Texture[] textures_trackShadow = new Texture[5]
+			{
+				class_238.field_1989.field_90.field_227, // textures/parts/track_straight_shadow
+				class_238.field_1989.field_90.field_215, // textures/parts/track_bend_shadow
+				class_238.field_1989.field_90.field_223, // textures/parts/track_sharp_shadow
+				class_238.field_1989.field_90.field_217, // textures/parts/track_end_shadow
+				class_238.field_1989.field_90.field_225, // textures/parts/track_single_shadow
+			};
+			Texture[] textures_trackBack = new Texture[5]
+			{
+				tex_straight,	// textures/parts/track_straight_hex
+				tex_bend,		// textures/parts/track_bend_hex
+				tex_sharp,		// textures/parts/track_sharp_hex
+				tex_end,		// textures/parts/track_end_hex
+				tex_single,		// textures/parts/track_single_hex
+			};
+			Texture track_hexShadow = class_238.field_1989.field_90.field_218;	// textures/parts/track_hex_shadow
+			Texture track_plus = class_238.field_1989.field_90.field_221;		// textures/parts/track_plus
+			Texture track_minus = class_238.field_1989.field_90.field_219;		// textures/parts/track_minus
+
+			////////////////////////////////
+			// determine the track hex angles
+			bool track_is_a_loop = trackList.Count > 2 && HexIndex.Distance(trackList.First(), trackList.Last()) == 1;
+			int[] hexTexIndex = new int[trackList.Count];
+			int[] hexTurns = new int[trackList.Count]; // in turns
+
+			HexIndex getTrackHex(int num) // assumes trackList.Count >= 2
+			{
+				if (!track_is_a_loop && num < 0) num = 1;
+				if (!track_is_a_loop && num >= trackList.Count) num = trackList.Count - 2;
+				return trackList[(num % trackList.Count + trackList.Count) % trackList.Count];
+			}
+			int convertRadiansToTurns(float radians)
+			{
+				float degrees = radians * (float)(180 / Math.PI);
+				int turns = (int)Math.Round(degrees / 60);
+				return (turns % 6 + 6) % 6;
+			}
+
+			if (trackList.Count == 1)
+			{
+				hexTexIndex[0] = 4;
+				hexTurns[0] = 0;
+			}
+			else
+			{
+				HexIndex hexPrev, hexNext, hexThis;
+				Vector2 vecPrev, vecNext;
+				int rotPrev, rotNext, rotDiff;
+				for (int i = 0; i < trackList.Count; i++)
+				{
+					hexThis = getTrackHex(i);
+					hexPrev = getTrackHex(i - 1);
+					hexNext = getTrackHex(i + 1);
+					// note: due to how getTrackHex is defined, we have hexPrev == hexNext whenever the following occurs:
+					// - hexThis is the first or the last hex in the track
+					// - the track is NOT a loop
+					// this is done purposely so the end-of-track case is taken care of automatically
+					vecPrev = hexGraphicalOffset(hexThis - hexPrev);
+					vecNext = hexGraphicalOffset(hexNext - hexThis);
+
+					rotPrev = convertRadiansToTurns(vecPrev.Angle());
+					rotNext = convertRadiansToTurns(vecNext.Angle());
+					rotDiff = (6 + rotNext - rotPrev) % 6;
+					// by calculating in this way, and by ordering the graphic arrays in a clever way,
+					// it's now really easy to determine the image and rotation we need to draw the hex.
+					// in particular, rotDiff = 3 can occur only at the end of a non-loop track, and is the end-of-track case
+					hexTexIndex[i] = Math.Min(rotDiff, 6 - rotDiff);
+					hexTurns[i] = (rotDiff < 4) ? rotPrev : rotNext + 3;
+				}
+			}
+			////////////////////////////////
+			// draw using the previously-determined information
+			Vector2 TextureCenter(Texture texture) => (texture.field_2056.ToVector2() / 2).Rounded();
+			float degrees(int deg) => deg * (float)(Math.PI / 180f);
+
+			for (int drawPass = 0; drawPass < 2; drawPass++)
+			{
+				for (int i = 0; i < trackList.Count; i++)
+				{
+					HexIndex hexThis = trackList[i];
+					int index = hexTexIndex[i];
+					float angle = hexTurns[i] * degrees(60);
+
+					if (drawPass == 0) // first pass
+					{
+						Texture track_back = textures_trackBack[index];
+						Texture track_shadow = textures_trackShadow[index];
+						renderer.method_526(track_back, hexThis, new Vector2(-1f, -1f), TextureCenter(track_back), angle);
+						renderer.method_526(track_shadow, hexThis, new Vector2(0f, -7f), TextureCenter(track_shadow), angle);
+						renderer.method_526(track_hexShadow, hexThis, new Vector2(0f, 0f), TextureCenter(track_hexShadow), angle);
+					}
+					else // second pass
+					{
+						class_126 track_metal = lighting_trackMetal[index];
+						renderer.method_527(track_metal, hexThis, new Vector2(0f, 0f), (track_metal.method_235().ToVector2() / 2).Rounded(), angle);
+
+						if (i == 0 || i == trackList.Count - 1) // then draw plus/minus symbols
+						{
+							float symbolAngle = angle;
+							if (track_is_a_loop)
+							{
+								//need to adjust the angle to place them well
+								symbolAngle += (3 - index) * degrees(-30);
+								// straight pieces have two good positions - we try to choose the "more open to air" position
+								if (index == 0)
+								{
+									int counter = 0;
+									HexIndex hex1 = new HexIndex(1, 0).Rotated(HexRotation.Rounded(angle - degrees(60)));
+									HexIndex hex2 = new HexIndex(1, 0).Rotated(HexRotation.Rounded(angle - degrees(120)));
+									if (trackList.Contains(hexThis + hex1)) ++counter;
+									if (trackList.Contains(hexThis + hex2)) ++counter;
+									if (trackList.Contains(hexThis - hex1)) --counter;
+									if (trackList.Contains(hexThis - hex2)) --counter;
+									if (counter > 0) symbolAngle += degrees(180);
+								}
+							}
+							Vector2 vec = new Vector2(30f, 0f).Rotated(symbolAngle).Rounded();
+
+							if (i == trackList.Count - 1)
+							{
+								renderer.method_526(track_plus, hexThis, vec, TextureCenter(track_plus), 0f);
+							}
+							if (i == 0)
+							{
+								if (trackList.Count == 1) vec = -vec;
+								renderer.method_526(track_minus, hexThis, vec, TextureCenter(track_minus), 0f);
+							}
+						}
+					}
+				}
+			}
+		}
+
+
+
 	}
 
 
