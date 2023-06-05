@@ -43,6 +43,18 @@ Cutscenes:
   Location: Saverio's Office
   Background: backgrounds/saverio_office
   Music: Story1
+- ID: rmc-cutscene-task
+  Location: Saverio's Office
+  Background: backgrounds/saverio_office
+  Music: Story1
+- ID: rmc-cutscene-meeting
+  Location: Saverio's Office
+  Background: backgrounds/saverio_office
+  Music: Story1
+- ID: rmc-cutscene-presentation
+  Location: Saverio's Office
+  Background: backgrounds/saverio_office
+  Music: Story1
 ##################################################
 Documents:
 - ID: rmc-document-debug
@@ -166,6 +178,16 @@ Puzzles:
   - Elemental Iron
   - Elemental Tin
   - Elemental Lead
+##########
+- ID: rmc-invariant-metal
+  Music: Solving5
+  Inputs:
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  Outputs:
+  - Invariant Metal
 ##########
 - ID: rmc-mercurial-capacitor
   Music: Solving3

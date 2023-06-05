@@ -34,6 +34,10 @@ Chapters:
     Title: Patina Processing
     Puzzle: ch1/rmc-patina-processing
     Requires: ""
+  - ID: rmc-cutscene-task
+    Title: "The Task"
+    Puzzle: other/empty
+    Requires: ""
   - ID: rmc-document-debug
     Title: "CH1 END DOC"
     Puzzle: other/empty
@@ -63,6 +67,10 @@ Chapters:
     Title: Plumbous Wheel
     Puzzle: ch2/rmc-plumbous-wheel
     Requires: ""
+  - ID: rmc-cutscene-meeting
+    Title: "Meeting with the Great House"
+    Puzzle: other/empty
+    Requires: ""
   - ID: rmc-silver-phosphate
     Title: Silver Phosphate
     Puzzle: ch2/rmc-silver-phosphate
@@ -80,10 +88,18 @@ Chapters:
   Place: "The Greathall, House Van Tassen"
   Background: textures/cinematic/backgrounds/greathall_b
   Entries:
+  - ID: rmc-cutscene-presentation
+    Title: "Reductive Metallurgy"
+    Puzzle: other/empty
+    Requires: ""
   - ID: rmc-ravari-requiescence
     Title: Ravari's Requiescence
     Puzzle: ch3/rmc-ravari-requiescence
     Requires: ""
+  - ID: rmc-mercurial-capacitor
+    Title: Mercurial Capacitor
+    Puzzle: ch3/rmc-mercurial-capacitor
+    Requires: ""  
   - ID: rmc-synthesis-via-chain
     Title: Servin's Presentation
     Puzzle: ch3/rmc-synthesis-via-chain
@@ -92,21 +108,9 @@ Chapters:
     Title: Sigmar's Garden
     Puzzle: other/empty
     Requires: ""
-  - ID: rmc-mercurial-capacitor
-    Title: Mercurial Capacitor
-    Puzzle: ch3/rmc-mercurial-capacitor
-    Requires: ""  
-  - ID: rmc-reactive-litharge
-    Title: Reactive Litharge
-    Puzzle: ch3/rmc-reactive-litharge
-    Requires: ""
-  - ID: rmc-precision-machine-oil-cabinet
-    Title: Precision Machine Oil Cabinet
-    Puzzle: ch3/rmc-precision-machine-oil-cabinet
-    Requires: ""
-  - ID: rmc-golden-thread-recycling
-    Title: Golden Thread Recycling
-    Puzzle: ch3/rmc-golden-thread-recycling
+  - ID: rmc-invariant-metal
+    Title: Invariant Metal
+    Puzzle: ch3/rmc-invariant-metal
     Requires: ""
   - ID: rmc-sanitizing-dust
     Title: Sanitizing Dust
@@ -121,10 +125,6 @@ Chapters:
   Place: "The Greathall, House Van Tassen"
   Background: textures/cinematic/backgrounds/greathall_a
   Entries:
-  - ID: rmc-ravari-repine
-    Title: Ravari's Repine
-    Puzzle: ch4/rmc-ravari-repine
-    Requires: ""
   - ID: rmc-lesson-proliferation
     Title: "Lesson: Proliferation"
     Puzzle: ch4/rmc-lesson-proliferation
@@ -132,14 +132,6 @@ Chapters:
   - ID: rmc-sigmars-garden-1
     Title: Sigmar's Garden
     Puzzle: other/empty
-    Requires: ""
-  - ID: rmc-saverio-transformer
-    Title: Saverio's Transformer
-    Puzzle: ch4/rmc-saverio-transformer
-    Requires: ""
-  - ID: rmc-pugano-transformer
-    Title: Pugano's Transformer
-    Puzzle: ch4/rmc-pugano-transformer
     Requires: ""
   - ID: rmc-document-debug
     Title: "CH4 END DOC"

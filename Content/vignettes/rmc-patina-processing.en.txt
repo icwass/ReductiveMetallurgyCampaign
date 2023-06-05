@@ -1,7 +1,7 @@
 Pugano (Right): Saverio, you must be terribly ill.
-Pugano (Right): You are CREATING gold, today.
+Pugano (Right): You are *creating* gold, today.
 Saverio (Left): A means to an end, Jay, we might have a prospective customer!
-Pugano (Right): Thank god, some revenue.
+Pugano (Right): So you do sometimes earn revenue!
 Saverio (Left): Quiet.
 Saverio (Left): Anyway, all I need to do is demonstrate our abilities.
 
@@ -10,6 +10,6 @@ Saverio (Left): Anyway, all I need to do is demonstrate our abilities.
 Saverio (Left): There.
 Saverio (Left): With this, the copper will come flowing in!
 Pugano (Right): ...
-Pugano (Right): You mean the GOLD will come flowing in.
+Pugano (Right): You mean the *gold* will come flowing in.
 Saverio (Left): Why would I want gold?
 Saverio (Left): Copper and iron, that's the ticket!

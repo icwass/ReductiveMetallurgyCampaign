@@ -1,11 +1,11 @@
 Pugano (Left): So is this a new plumbing sealant, or...?
-Saverio (Right): Nah, it's just an interesting idea I thought of.
-Saverio (Right): Although maybe it could be used for that.
-Saverio (Right): At any rate, try making some!
-Pugano (Left): A wage is a wage, I suppose.
+Saverio (Right): No, consider this a demonstration machine.
+Saverio (Right): I have found myself an audience with one of the great houses, and I think this will serve to present our inventions so far.
+Saverio (Right): This is important, so put together something that'll catch their interest.
+Pugano (Left): I'll be sure to give it a good effort.
 
 -----------
 
 Pugano (Left): That turned out to be quite pleasant.
 Pugano (Left): The stochiometry is nicely balanced.
-Saverio (Right): Stoikey-what, now?
+Saverio (Right): Perfect. It's not exactly what I expected, but it'll suit the purpose nonetheless.

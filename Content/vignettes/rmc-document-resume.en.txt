@@ -1,7 +1,7 @@
 ﻿[DO NOT PARSE]
 
-Jay MiddleName Pugano
-#1234 Streetway Lane • Downriver Quarters
+Jay Gordon Pugano
+#7291 Illistrad Lane • Downriver Quarters
 
 #*Education*
 College of Alchemical Engineering
@@ -10,7 +10,7 @@ College of Alchemical Engineering
 *Work Experience*
 • Alchemical Technician Lead
   _Schwinde Alchemical Engineering_
-- Collaborated with a team to research alloy compositions.
+- Collaborated to research compositions between metal alloys and cardinal elements.
 - Designed and implemented production processes in both cabinet and modern enclosures.
 
 • Journeyman Alchemist
