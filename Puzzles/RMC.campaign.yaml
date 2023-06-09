@@ -137,3 +137,36 @@ Chapters:
     Title: "CH4 END DOC"
     Puzzle: other/empty
     Requires: ""
+- Title: ayy lmao
+  Subtitle: Unused
+  Place: "Area 51"
+  Background: backgrounds/ayy
+  Entries:
+  - ID: rmc-golden-thread-recycling
+    Title: "Golden Thread Recycling"
+    Puzzle: other/rmc-golden-thread-recycling
+    Requires: ""
+  - ID: rmc-precision-machine-oil-cabinet
+    Title: "Precision Machine Oil Cabinet"
+    Puzzle: other/rmc-precision-machine-oil-cabinet
+    Requires: ""
+  - ID: rmc-pugano-transformer
+    Title: "Pugano Transformer"
+    Puzzle: other/rmc-pugano-transformer
+    Requires: ""
+  - ID: rmc-ravari-repine
+    Title: "Ravari's Repine"
+    Puzzle: other/rmc-ravari-repine
+    Requires: ""
+  - ID: rmc-reactive-litharge
+    Title: "Reactive Litharge"
+    Puzzle: other/rmc-reactive-litharge
+    Requires: ""
+  - ID: rmc-saverio-transformer
+    Title: "Saverio Transformer"
+    Puzzle: other/rmc-saverio-transformer
+    Requires: ""
+  - ID: rmc-document-debug
+    Title: "CH5 END DOC"
+    Puzzle: other/empty
+    Requires: ""
