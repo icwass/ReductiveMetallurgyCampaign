@@ -96,6 +96,10 @@ Chapters:
   Place: "The Greathall, House Van Tassen"
   Background: textures/cinematic/backgrounds/greathall_b
   Entries:
+  - ID: rmc-document-symposium-agenda
+    Title: "Symposium Agenda"
+    Puzzle: empty
+    Requires: ""
   - ID: rmc-cutscene-presentation
     Title: "Reductive Metallurgy"
     Puzzle: empty
@@ -174,5 +178,3 @@ Chapters:
     Title: "CH5 END DOC"
     Puzzle: empty
     Requires: ""
-    
-    
