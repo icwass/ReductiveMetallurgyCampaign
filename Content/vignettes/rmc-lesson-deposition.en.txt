@@ -1,6 +1,7 @@
 Pugano (Left): And here it is. This is my first time dabbling in glyph research, but I think these turned out well.
-Saverio (Right): Is this from my notes on reversing purification?
+Saverio (Right): Impressive work, how did you find my notes then?
 Pugano (Left): Well, the implementation was quite poor, but with some tinkering I got it working.
+Pugano (Left): It takes some affordances to get the desired outcome, but it seems reversing purification is possible.
 Saverio (Right): So it succeeds in splitting metals apart, then? This is excellent!
 Pugano (Left): It's not quite a "split" - the metal is subjected to high pressure and deposited onto a membrane, then extracted. Observe:
 

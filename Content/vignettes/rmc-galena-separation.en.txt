@@ -1,4 +1,4 @@
-Saverio (Right): Jay! Look at this galena ore I've acquired for a *bargain*. What's your appraisal of it?
+Saverio (Right): Jay! Look at this galena ore I've acquired for a _bargain_. What's your appraisal of it?
 Pugano (Left): Seems to be high quality, and not just in lead content. I should be able to extract plenty of silver from it.
 Saverio (Right): Right. Store it as iron, we will be needing more of it.
 Pugano (Left): ...

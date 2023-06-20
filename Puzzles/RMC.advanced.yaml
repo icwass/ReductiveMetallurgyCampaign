@@ -39,6 +39,10 @@ SigmarsGardens:
 - ID: rmc-sigmars-garden-1
 ##################################################
 Cutscenes:
+- ID: rmc-cutscene-prologue
+  Location: Saverio's Office
+  Background: backgrounds/saverio_office
+  Music: Story1
 - ID: rmc-cutscene-interview
   Location: Saverio's Office
   Background: backgrounds/saverio_office
@@ -117,38 +121,35 @@ Documents:
     Align: right
   - Position: 100, 100
     Texture: documents/coffee_stain
-  - Position: 300, 220
+  - Position: 300, 200
     ColumnWidth: 240
     Color: 931443
     Handwritten: true
 # Available fonts:
 #   "crimson 9.75"      "crimson 10.5"      "crimson 12"        "crimson 13"        "crimson 15"        "crimson 16.5"      "crimson 21"
 #   "cormorant 11"      "cormorant 12.75"   "cormorant 15"      "cormorant 18"      "cormorant 22.5"    "cinzel 21"         "naver 17.25"       "reenie 17.25"
+- ID: rmc-document-rejection-notes # needs to be the same as the puzzleID it needs to replace
+  Texture: documents/letter_2 # the base texture
+  DrawItems:
+  - Position: 325.0, 820.0 # in pixels from the bottom-left corner of the base texture
+    Font: "cormorant 18"
+    Color: 2299924 # Colors are RGB values in decimal
+    Align: center # use "right" for right-aligned, "center" for center-aligned, anything else is interpreted as left-aligned
+    LineSpacing: 1.0
+    ColumnWidth: 400.0
+    Handwritten: false
+- ID: rmc-document-deposition-notes # needs to be the same as the puzzleID it needs to replace
+  Texture: documents/letter_2 # the base texture
+  DrawItems:
+  - Position: 325.0, 820.0 
+    Font: "cormorant 18"
+    Color: 2299924 
+    Align: center 
+    LineSpacing: 1.0
+    ColumnWidth: 400.0
+    Handwritten: false
 ##################################################
 Puzzles:
-##########
-- ID: rmc-copper-synthesis
-  Music: Solving4
-  Inputs:
-  - Elemental Tin
-  - Elemental Gold
-  Outputs:
-  - Elemental Copper
-##########
-- ID: rmc-galena-separation
-  Music: Solving1
-  Inputs:
-  - Galena
-  Outputs:
-  - Elemental Iron
-  - Elemental Salt
-##########
-- ID: rmc-golden-thread-recycling
-  Music: Solving6
-  Inputs:
-  - Golden Thread
-  Outputs:
-  - Very Dark Thread
 ##########
 - ID: rmc-lesson-rejection
   Music: Solving1
@@ -159,44 +160,20 @@ Puzzles:
   - Reactive Water
   - Quickiron
 ##########
-- ID: rmc-lesson-deposition
-  Music: Solving1
+- ID: rmc-copper-synthesis
+  Music: Solving4
   Inputs:
-  - Elemental Gold
-  Outputs:
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-##########
-- ID: rmc-lesson-proliferation
-  Music: Solving6
-  Inputs:
-  - Elemental Gold
-  - Elemental Quicksilver
-  Outputs:
-  - Elemental Gold
-  - Elemental Iron
   - Elemental Tin
-  - Elemental Lead
-##########
-- ID: rmc-invariant-metal
-  Music: Solving5
-  Inputs:
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
+  - Elemental Gold
   Outputs:
-  - Invariant Metal
+  - Elemental Copper
 ##########
-- ID: rmc-mercurial-capacitor
+- ID: rmc-ring-oscillator
   Music: Solving3
   Inputs:
-  - Mercurial Capacitor, Depleted
-  - Elemental Copper
+  - Rose-Gold Ring
   Outputs:
-  - Mercurial Capacitor, Filled
-  - Elemental Lead
+  - Silver Ring
 ##########
 - ID: rmc-patina-processing
   Music: Solving2
@@ -206,13 +183,68 @@ Puzzles:
   - Elemental Gold
   - Limbal Essence
 ##########
-- ID: rmc-precision-machine-oil-cabinet
+- ID: rmc-galena-separation
+  Music: Solving1
+  Inputs:
+  - Galena
+  Outputs:
+  - Elemental Iron
+  - Elemental Salt
+##########
+##########
+##########
+- ID: rmc-lesson-deposition
+  Music: Solving1
+  Inputs:
+  - Elemental Gold
+  Outputs:
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+##########
+- ID: rmc-mysterious-crystal
   Music: Solving6
   Inputs:
-  - Elemental Water
+  - Elemental Iron
+  - Elemental Iron
+  - Elemental Earth
+  - Elemental Quintessence
+  Outputs:
+  - Mysterious Crystal
+##########
+- ID: rmc-solder-wire
+  Music: Solving4
+  Inputs:
+  - Elemental Gold
+  Outputs:
+  - Solder Wire
+##########
+- ID: rmc-plumbous-wheel
+  Music: Solving3
+  Inputs:
   - Elemental Iron
   Outputs:
-  - Precision Machine Oil
+  - Plumbous Wheel
+##########
+- ID: rmc-silver-phosphate
+  Music: Solving5
+  Inputs:
+  - Elemental Air
+  - Elemental Iron
+  - Elemental Copper
+  Outputs:
+  - Silver Phosphate
+##########
+- ID: rmc-you-drive-me-to-drink
+  Music: Solving2
+  Inputs:
+  - Tinstone
+  Outputs:
+  - Distilled Alcohol
+  - Elemental Lead
+  - Elemental Lead
+##########
+##########
 ##########
 - ID: rmc-ravari-requiescence
   Music: Solving5
@@ -222,32 +254,21 @@ Puzzles:
   Outputs:
   - Ravari's Wheel
 ##########
-- ID: rmc-reactive-litharge
-  Music: Solving5
-  Inputs:
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-  Outputs:
-  - Reactive Litharge
-##########
-- ID: rmc-ring-purification
+- ID: rmc-energetic-capacitor
   Music: Solving3
   Inputs:
-  - Rose-Gold Ring
+  - Energetic Capacitor, Depleted
+  - Elemental Copper
   Outputs:
-  - Gold Ring
+  - Energetic Capacitor, Filled
+  - Elemental Lead
 ##########
-- ID: rmc-plumbous-wheel
-  Music: Solving3
+- ID: rmc-synthesis-via-chain
+  Music: Solving4
   Inputs:
-  - Elemental Iron
+  - Van Berlo's Chain
   Outputs:
-  - Plumbous Wheel
+  - Elemental Quintessence
 ##########
 - ID: rmc-sanitizing-dust
   Music: Solving3
@@ -261,36 +282,58 @@ Puzzles:
   - Sanitizing Dust, Part B
   - Sanitizing Dust, Part C
 ##########
-- ID: rmc-silver-phosphate
+- ID: rmc-invariant-metal
   Music: Solving5
   Inputs:
-  - Elemental Air
-  - Elemental Iron
-  - Elemental Copper
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
   Outputs:
-  - Silver Phosphate
+  - Invariant Metal
 ##########
-- ID: rmc-solder-wire
-  Music: Solving4
+##########
+##########
+- ID: rmc-lesson-proliferation
+  Music: Solving6
   Inputs:
   - Elemental Gold
+  - Elemental Quicksilver
   Outputs:
-  - Solder Wire
-##########
-- ID: rmc-synthesis-via-chain
-  Music: Solving4
-  Inputs:
-  - Van Berlo's Chain
-  Outputs:
-  - Quintessence
-##########
-- ID: rmc-you-drive-me-to-drink
-  Music: Solving2
-  Inputs:
-  - Tinstone
-  Outputs:
-  - Distilled Alcohol
+  - Elemental Gold
+  - Elemental Iron
+  - Elemental Tin
   - Elemental Lead
+##########
+##########
+##########
+- ID: rmc-golden-thread-recycling
+  Music: Solving6
+  Inputs:
+  - Golden Thread
+  Outputs:
+  - Very Dark Thread
+##########
+- ID: rmc-precision-machine-oil-cabinet
+  Music: Solving6
+  Inputs:
+  - Elemental Water
+  - Elemental Iron
+  Outputs:
+  - Precision Machine Oil
+##########
+- ID: rmc-reactive-litharge
+  Music: Solving5
+  Inputs:
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  Outputs:
+  - Reactive Litharge
 ##########
 - ID: rmc-ravari-repine
   Music: Solving5
