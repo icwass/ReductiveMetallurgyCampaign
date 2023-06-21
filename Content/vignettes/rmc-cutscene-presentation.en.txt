@@ -1,3 +1,18 @@
 Portraits: Saverio (Left)
 
-Saverio (Left): Roll credits!
+Saverio (Left): And so, the glyphs of rejection and deposition serve at the forefront of a new field of alchemical development, that of _Reductive Metallurgy_.
+Saverio (Left): The work I have shown today has been the result of research by me and my workshop, so no protoype assemblages are at this time, but we would be happy to hear about interest.
+Saverio (Left): This concludes my presentation.
+Saverio (Left): I would like to extend my gratitude to House Soria, who allowed my entrance today, and my alchemical technician, Jay Pugano, who is doubtlessly working furiously on our next innovations.
+Saverio (Left): Thank you all for coming; there will be no questions.
+Action: Enter, Clara
+Clara: Surprisingly, you managed not to seem like a lunatic in front of esteemed alchemists.
+Clara: Maybe that is just the lack of questions, there are many mutters about.
+Saverio (Left): Certainly, they will have the same objection as you: whyever diminish gold?
+Saverio (Left): As long as some of these supposed alchemists see the possibilities, I will consider this a success.
+Clara: Pragmatic, I see. Good luck then, I see a particularly dour alchemist coming now, let us see how you handle him.
+Action: Enter, Verrin Ravari
+Verrin Ravari: Ah, Clara. It has been too long. You've found yourself an interesting one.
+Clara: Perhaps one day it will be longer yet. No time to chat, I was only here to act as benefactor.
+Verrin Ravari: Not concerning, I would like to talk to this proclaimed reductive metallurgist.
+Saverio (Left): Dour, indeed.

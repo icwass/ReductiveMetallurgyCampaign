@@ -34,11 +34,6 @@ Characters:
   Name: "Verrin Ravari"
   SmallPortrait: portraits/verrin_livid_small
   Color: 6691857
-- ID: "Clara Soria"
-  Name: "Clara Soria"
-  SmallPortrait: portraits/clara_small
-  LargePortrait: portraits/clara_large
-  Color: 6185010
 ##################################################
 SigmarsGardens:
 - ID: rmc-sigmars-garden-1

@@ -1,17 +1,17 @@
-Portraits: Clara Soria
+Portraits: Clara
 
-Clara Soria: Yet another freelancer alchemist coming to our court to grift snake oil, no doubt.
-Clara Soria: Well, let him in. Let's see how the princess will rebuke the dragon this time.
+Clara: Yet another freelancer alchemist coming to our court to grift snake oil, no doubt.
+Clara: Well, let him in. Let's see how the princess will rebuke the dragon this time.
 Action: Enter, Saverio (Left)
-Clara Soria: Welcome to House Soria, I hope the day has brought you good fortune. Your name was?
+Clara: Welcome to House Soria, I hope the day has brought you good fortune. Your name was?
 Saverio (Left): My name is Saverio Daas, ma'am. My entreaty today is for House Soria to act as my patron for this year's Alchemical Symposium.
 Saverio (Left): I have in my possession a new alchemical glyph, one that is able to reject quicksilver from higher metals, allowing for a positive corncopia of possibilities.
-Clara Soria: My, so you are suggesting you can turn gold into lead? Quite something for an alchemist unaffilated with a Great House. 
-Clara Soria: I must ask though, is it not the alchemist's prerogative to do quite the opposite? To turn lead into gold?
+Clara: My, so you are suggesting you can turn gold into lead? Quite something for an alchemist unaffilated with a Great House. 
+Clara: I must ask though, is it not the alchemist's prerogative to do quite the opposite? To turn lead into gold?
 Saverio (Left): My lady, I do not wish to so openly disagree with you, but anyone with experience in the world would know that gold has hardly any real use. It is brittle, heavy, and not very amenable to metal forming.
 Saverio (Left): Someone in your position may not understand, but the appearance of wealth does not drive innovation.
 Saverio (Left): It is iron that drives our labor and it is copper that guides our power.
-Clara Soria: Hoh, It seems a very heterodox alchemist has shown themselves before me.
-Clara Soria: Very well then, Mr. Daas. I will personally consider your request, as I doubt your habit will give you any credibility with the Lord of the House.
-Clara Soria: I trust you have a demonstration of your glyph prepared today?
+Clara: Hoh, It seems a very heterodox alchemist has shown themselves before me.
+Clara: Very well then, Mr. Daas. I will personally consider your request, as I doubt your habit will give you any credibility with the Lord of the House.
+Clara: I trust you have a demonstration of your glyph prepared today?
 Saverio (Left): Thank you kindly for your prospective patronage. I do have a demonstration here, now look closely:
