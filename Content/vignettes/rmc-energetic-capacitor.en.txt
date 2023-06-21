@@ -1,5 +1,19 @@
-Pugano (Left): Something something sanitizing dust.
+Verrin Ravari: Do you see this? The power of storing energy?
+Verrin Ravari: Once filled, it can be explosively discharged, causing havoc on our enemies.
+Verrin Ravari: Using elemental quicksilver to fill the capacitor can be dangerous, however.
+Verrin Ravari: Show us what your alchemy can do.
+Saverio (Left): Very interesting...
+Saverio (Left): I'll give it a go then.
 
 -----------
 
-Saverio (Right): Bottom text.
+Saverio (Left): Why does this capacitor need to be explosively discharged?
+Saverio (Left): Could you not discharge it using my glyphs and have it serve a more peaceful purpose?
+Verrin Ravari (Frustrated): Foolish, who would need to discharge the capacitor?
+Verrin Ravari (Frustrated): At its gold stage, it is perfect, no need to waste time on such folly.
+Saverio (Left): Very well then, I think I have had enough for one day.
+Saverio (Left): I don't think I got your name?
+Verrin Ravari: Verrin Ravari, head alchemist of House Colvan.
+Saverio (Left): Ah, of course. Verrin, you have been a model representative for alchemy today.
+Saverio (Left): Let us hope your ambition goes as far as your competence.
+Verrin Ravari: Thank you, pleased to have made your acquaintance.
