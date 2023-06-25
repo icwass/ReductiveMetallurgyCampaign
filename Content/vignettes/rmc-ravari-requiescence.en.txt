@@ -1,14 +1,13 @@
 Verrin Ravari: Do you see this here?
 Saverio (Left): It appears to be a wheel composed of the various metals.
 Verrin Ravari: Do you see what is wrong with it?
-Saverio (Left): Well, a metal wheel does seems to have limited utility to those of cardinal elements.
+Saverio (Left): Well, a metal wheel does seems to have limited utility compared to those made of cardinal elements.
 Verrin Ravari (Frustrated): No, you cretin. I assure you the wheel has myriad uses.
 Verrin Ravari (Frustrated): It is the _order_ of the metals!
 Verrin Ravari (Frustrated): It should be obvious that the atoms should be arranged in clockwise order.
 Saverio (Left): ...of course, planetary metals must follow the chronology of the stars.
-Verrin Ravari: Ah, so you do understand.
-Verrin Ravari: Fix it then.
-Saverio (Left): Frankly, I do not understand, but let us see.
+Verrin Ravari: Ah, so you do understand. Fix it then.
+Saverio (Left): Frankly, I do not understand, but that has never stopped me before.
 
 -----------
 

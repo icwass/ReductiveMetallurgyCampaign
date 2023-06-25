@@ -1,11 +1,11 @@
 [DO NOT PARSE]
 
-Molecular Bond Distance Test
+Invariant Metal Notes
 
 #Ring Oscillator
 
-#It is a little known fact that despite the appearance of equal distance between bonds in alchemical prototyping boards, there is typically small variation in the intermolecular bonds in actual alchemical compounds. This fact remains in obscurity due to the relatively low impact these variations have on typical applications. The cardinal elements, for example, hardily experience quiescent conditions when deployed in the field, with the chaos of the real world adding eclipsing the variation caused by small bonds. Planetary metals, similarly, when formed into alloys, experience consistent deviation from the expected bond length, so it does not tend to be a concern here either.
+#It is a little known fact that, despite the appearance of equal distance between bonds in alchemical prototyping boards, there typically are length variations in the bonds of actual alchemical compounds. This fact remains obscure due to the relatively low impact these variations have on typical applications. The cardinal elements, for example, hardily experience quiescent conditions when deployed in the field, with the chaos of the real world far eclipsing the variation in the bond lengths. Similarly, alloys of planetary metals experience consistent deviation from the expected bond length, so it does not tend to be a concern here either.
 
-Indeed, the only application where intermolecular bond length matters is in high-pressure scenarios where precision is demanded. Under pressure, a metallic alloy's bonds can lengthen or contract in response to forces on the constituent compound. When a tight tolerance on deviation needs to be maintained, this response can be catastrophic on a given design. 
+However, there are applications where this matters quite significantly - the biological sciences, for one. Another is in high-pressure scenarios where precision is demanded. Under pressure, the bonds of an alloy can lengthen or contract in response to forces on the constituent compound. When a tight tolerance needs to be maintained, this response can be catastrophic.
 
-The purpose of this test is to ascertain which pair of metals introduces the smallest variation in bond length. The work will serve as a useful indicator for what the composition of a so-called invariant metal should be. Shown here is test 100 of 105, the transmutation of a combined copper-gold ring into a silver ring.
+The purpose of this test is to ascertain which pair of metals experience the smallest variation in bond length. Hopefully this will hint at the composition of a so-called invariant metal. Shown here is test 100 of 105, the transmutation of a combined copper-gold ring into a silver ring.

@@ -1,5 +1,5 @@
 Pugano (Left): And here it is. This is my first time dabbling in glyph research, but I think these turned out well.
-Saverio (Right): Impressive work, how did you find my notes then?
+Saverio (Right): Impressive work, what did you think of my notes, then?
 Pugano (Left): Well, the implementation was quite poor, but with some tinkering I got it working.
 Pugano (Left): It takes some affordances to get the desired outcome, but it seems reversing purification is possible.
 Saverio (Right): So it succeeds in splitting metals apart, then? This is excellent!
@@ -8,9 +8,9 @@ Pugano (Left): It's not quite a "split" - the metal is subjected to high pressur
 -----------
 
 Pugano (Left): As you can see, this results in two products of half the metallicity of the input. Alchemical laws remain intact.
-Saverio (Right): Well, splitting can be a challenge for another time then.
+Saverio (Right): Well, proper splitting can be a challenge for another time then.
 Pugano (Left): What do you mean, "another time"? The law of equivalent exchange is sacrosanct, you cannot break it!
-Saverio (Right): Just because it hasn't been done doesn't mean it can't be done!
+Saverio (Right): Just because it hasn't been done, doesn't mean it can't be done!
 Saverio (Right): Besides, the glyph of purification seems to _destroy_ metal. Where's the equivalent exchange there? 
-Saverio (Right): Have some faith, Jay; my research into copper-iron alloys will soon bear fruit. For now, focus on improving the glyph's reliability - it will be important for future endeavors.
+Saverio (Right): Have some faith, Jay - my research into copper-iron alloys will soon bear fruit. For now, focus on improving the glyph's reliability - it will be important for future endeavors.
 Pugano (Left): My financial security requires me to wish you the best of luck.

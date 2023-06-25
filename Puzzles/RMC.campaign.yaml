@@ -34,6 +34,10 @@ Chapters:
     Title: Copper Synthesis
     Puzzle: rmc-copper-synthesis
     Requires: ""
+  - ID: rmc-sigmars-garden-1
+    Title: Sigmar's Garden
+    Puzzle: empty
+    Requires: ""
   - ID: rmc-ring-oscillator
     Title: Ring Oscillator
     Puzzle: rmc-ring-oscillator

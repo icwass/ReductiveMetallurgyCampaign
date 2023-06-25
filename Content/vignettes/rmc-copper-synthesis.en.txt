@@ -21,5 +21,5 @@ Saverio (Right): The future is copper and iron!
 Saverio (Right): Excellent work!
 Pugano (Left): This new glyph of yours really turns things upside-down.
 Pugano (Left): Its ability to retrieve quicksilver is a miracle for conservation. Do you plan to go public with it?
-Saverio (Right): Why of course! I plan to be a special guest at the next Symposium. Once those haughty alchemists see the fruits of my labor, they'll see how their fixation on glinty metals was folly.
-Pugano (Left): Interesting indeed. Better hope your haughty fellows can still see then.
+Saverio (Right): Why of course! I plan to be a special guest at the next Symposium. Once those haughty alchemists see the fruits of my labor, they'll realize how their fixation on glinty metals was folly.
+Pugano (Left): Interesting indeed. Better hope your haughty fellows can still see, then.

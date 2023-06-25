@@ -34,6 +34,11 @@ Characters:
   Name: "Verrin Ravari"
   SmallPortrait: portraits/verrin_livid_small
   Color: 6691857
+- ID: "Symposium Attendees"
+  Name: "Symposium Attendees"
+  SmallPortrait: portraits/saverio_small
+  LargePortrait: portraits/saverio_large
+  Color: 9916761
 ##################################################
 SigmarsGardens:
 - ID: rmc-sigmars-garden-1
@@ -57,7 +62,7 @@ Cutscenes:
   Music: Story1
 - ID: rmc-cutscene-presentation
   Location: Saverio's Office
-  Background: backgrounds/saverio_office
+  Background: backgrounds/symposium
   Music: Story1
 ##################################################
 Documents:
@@ -128,18 +133,18 @@ Documents:
 # Available fonts:
 #   "crimson 9.75"      "crimson 10.5"      "crimson 12"        "crimson 13"        "crimson 15"        "crimson 16.5"      "crimson 21"
 #   "cormorant 11"      "cormorant 12.75"   "cormorant 15"      "cormorant 18"      "cormorant 22.5"    "cinzel 21"         "naver 17.25"       "reenie 17.25"
-- ID: rmc-document-rejection-notes # needs to be the same as the puzzleID it needs to replace
-  Texture: documents/letter_2 # the base texture
+- ID: rmc-document-rejection-notes
+  Texture: textures/documents/letter_2
   DrawItems:
-  - Position: 325.0, 820.0 # in pixels from the bottom-left corner of the base texture
+  - Position: 325.0, 820.0
     Font: "cormorant 18"
-    Color: 2299924 # Colors are RGB values in decimal
-    Align: center # use "right" for right-aligned, "center" for center-aligned, anything else is interpreted as left-aligned
+    Color: 2299924
+    Align: center
     LineSpacing: 1.0
     ColumnWidth: 400.0
     Handwritten: false
-- ID: rmc-document-deposition-notes # needs to be the same as the puzzleID it needs to replace
-  Texture: documents/letter_2 # the base texture
+- ID: rmc-document-deposition-notes
+  Texture: textures/documents/letter_2
   DrawItems:
   - Position: 325.0, 820.0 
     Font: "cormorant 18"
@@ -148,8 +153,8 @@ Documents:
     LineSpacing: 1.0
     ColumnWidth: 400.0
     Handwritten: false
-- ID: rmc-document-symposium-agenda # needs to be the same as the puzzleID it needs to replace
-  Texture: documents/letter_2 # the base texture
+- ID: rmc-document-symposium-agenda
+  Texture: textures/documents/letter_2
   DrawItems:
   - Position: 325.0, 820.0 
     Font: "cormorant 18"
@@ -218,7 +223,7 @@ Puzzles:
   - Elemental Iron
   - Elemental Iron
   - Elemental Earth
-  - Elemental Quintessence
+  - Mysterious Core
   Outputs:
   - Mysterious Crystal
 ##########

@@ -4,8 +4,7 @@ Saverio (Right): Orthodox teaching tells us they act as catalysts, but how, and 
 Pugano (Left): You should spend less time thinking my friend, it only matters that we meet the customer request.
 Pugano (Left): Imagine if we pondered the use of tin in a crystal. We'd be losing valuable business!
 Saverio (Right): You're right, what use could such a pauper metal have in this circumstance?
-Saverio (Right): And moreover, why would the customer provide the material for the core?
-Saverio (Right): Quite a puzzle indeed.
+Saverio (Right): And moreover, why would the customer provide the material for the core? Quite a puzzle indeed.
 Pugano (Left): It's just work, and work I guess I will do, since you appear to be too invested in the details.
 
 -----------
