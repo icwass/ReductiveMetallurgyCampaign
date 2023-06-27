@@ -12,5 +12,6 @@ Pugano (Right): Alright, let's see those schematics...
 -----------
 
 Pugano (Left): Nothing like some alchemy to work through a hangover.
-Pugano (Right): Saverio's gone into his hole for the day, and there's no orders to fulfill.
-Pugano (Left): Guess I'll clean up and try not to sleep on a workshop floor tonight.
+Shelf of Reagents: ...
+Pugano (Left): Better than using alchemy to work out a hangover cure.
+Pugano (Left): ...I had better clean this mess up.

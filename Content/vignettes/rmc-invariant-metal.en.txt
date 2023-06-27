@@ -1,5 +1,20 @@
-Pugano (Left): Man I'm feeling really inspired right now to make invariant metal!
+Saverio (Left): According to my notes, a copper-iron ring has the lowest variation in bond length.
+Saverio (Left): Unfortunately it is not perfect. If only there was a metal with properties between iron and copper, but no such metal exists.
+Saverio (Left): I will change the formulation to have iron at the center, it should change the proportions subtly to have greater strength.
+Saverio (Left): This will take quite a bit of quicksilver...
+Saverio (Right): Jay, have you finished cleaning that lead yet?
+Pugano (Left): Just about. Do you need the reagents prepared?
+Saverio (Right): Certainly. I have an idea.
 
 -----------
 
-Pugano (Left): lol, shouldn't Saverio say that?
+Pugano (Left): So this is your magic metal then? The legendary copper-iron alloy?
+Saverio (Right): Precisely. According to my research, it does not change shape in response to pressure.
+Saverio (Right): Suppose we used this with the glyph of deposition. I believe the delivered metal would find no space to dissolve, resulting in receiving an unchanged metal as a result.
+Pugano (Left): Quite likely I imagine, where are you going with this?
+Saverio (Right): Now suppose we add some 'kick' to the process. Elemental quicksilver is added in.
+Saverio (Right): The invariant metal forces the same metal to be deposited once more, but what of the quicksilver? It cannot become nothing, what would happen to it?
+Pugano (Left): I've no idea. Perhaps you'd break the machine.
+Saverio (Right): Or perhaps we'd come away with more metal than we started. This is my theory.
+Pugano (Left): _Hypothesis_. I would love to see you try. Could be a great laugh.
+Saverio (Right): A doubter still, I see. Very well, keep working then, I will show you some genuine magic soon.

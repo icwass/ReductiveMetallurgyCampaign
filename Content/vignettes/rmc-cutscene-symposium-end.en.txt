@@ -1,7 +1,7 @@
-Portraits: Clara, Saverio (Right)
+Portraits: Clara, Saverio (Left)
 
 Clara: So what did the reductive metallurgist think of the latest alchemy has to offer?
-Saverio (Right): I consider myself an _alchemical innovator_, it rather feels this reductive metallurgist title is set to make me just "that metals fellow".
+Saverio (Right): I consider myself an _alchemical innovator_, it rather feels this reductive metallurgist title is set to make me just 'that metals fellow'.
 Clara: Well, you have done good work in the field. Try it on for a bit - I'm sure someone like yourself will get inevitably bored of the feeling regardless.
 Saverio (Right): Perhaps. I have found symposium is the field in microcosm. Some too focused on ambition and the appearance of prestige and others genuinely interested in furthering alchemy.
 Saverio (Right): Strangely, I feel motivated by both of them.
