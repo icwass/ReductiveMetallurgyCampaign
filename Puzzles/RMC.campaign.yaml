@@ -120,6 +120,10 @@ Chapters:
     Title: Synthesis Via Chain
     Puzzle: rmc-synthesis-via-chain
     Requires: ""
+  - ID: rmc-cutscene-symposium-end
+    Title: "Symposium's End"
+    Puzzle: empty
+    Requires: ""
   - ID: rmc-sigmars-garden-1
     Title: Sigmar's Garden
     Puzzle: empty

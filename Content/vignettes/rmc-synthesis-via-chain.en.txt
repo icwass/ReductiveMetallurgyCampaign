@@ -1,7 +1,16 @@
-Henley: Yeah, I discovered something neat, watch me make it from Van Berlo's chain.
-Saverio (Left): _Fascinating_.
+Saverio (Left): Right, after that travesty, one would hope there is still alchemy occurring at the Symposium.
+Saverio (Left): I see that the Imperial University has a presentation on quintessence synthesis.
+Saverio (Left): Early results by Professor Tolomeo, and H. Servin? I don't believe I am familiar with the latter.
+Saverio (Left): Better hurry, it has already started.
+Henley: -tessence has been the jewel of alchemical research for centuries, and after much hypothesizing and testing, we finally have synthesized it.
+Henley: No applications are yet known, but it does serve as a method for compact storage of the cardinals.
+Henley: We have prepared a demonstration machine for its synthesis, please watch carefully:
+Saverio (Left): This is _fascinating_.
 
 -----------
 
-Saverio (Left): Neat presentation.
-Henley: Thanks! It definitely wasn't thrown together at the last minute.
+Henley: There is still more to discover, but this is the extent our knowledge so far. Any questions?
+Saverio (Left): Yes, I have a question: That rail construction you have for the chain reagent, what is that?
+Henley: Ah yes, this apparatus is called a guiding rail, it is able to direct a repeating reagent for use on the alchemical field.
+Henley: Quite the bespoke product however, it was just used for this research. Developing it for future use may happen, but is presently unlikely.
+Saverio (Left): Ah, very interesting. Thank you for your presentation.

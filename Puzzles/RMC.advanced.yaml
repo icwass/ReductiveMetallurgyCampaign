@@ -61,7 +61,11 @@ Cutscenes:
   Background: backgrounds/saverio_office
   Music: Story1
 - ID: rmc-cutscene-presentation
-  Location: Saverio's Office
+  Location: Alchemical Symposium
+  Background: backgrounds/symposium
+  Music: Story1
+- ID: rmc-cutscene-symposium-end
+  Location: Alchemical Symposium
   Background: backgrounds/symposium
   Music: Story1
 ##################################################
