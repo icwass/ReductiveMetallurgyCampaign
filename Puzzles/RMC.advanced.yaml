@@ -10,6 +10,18 @@ Characters:
   SmallPortrait: portraits/saverio_small
   LargePortrait: portraits/saverio_large_reversed
   Color: 9916761
+- ID: "Saverio (Left, Reversed)"
+  Name: "Saverio Daas"
+  SmallPortrait: portraits/saverio_small_reversed
+  LargePortrait: portraits/saverio_large
+  Color: 9916761
+  IsOnLeft: true
+- ID: "Saverio (Backdrop)"
+  Name: "Saverio Daas"
+  SmallPortrait: portraits/saverio_small_backdrop
+  LargePortrait: portraits/saverio_large
+  Color: 9916761
+  IsOnLeft: true
 - ID: "Research Notes"
   Name: "Saverio's Research Notes"
   SmallPortrait: portraits/research_notes_small
@@ -39,6 +51,10 @@ Characters:
   SmallPortrait: portraits/saverio_small
   LargePortrait: portraits/saverio_large
   Color: 9916761
+- ID: "Henley (Symposium)"
+  Name: "Henley Servin"
+  SmallPortrait: portraits/henley_small_symposium
+  Color: 6383694
 ##################################################
 SigmarsGardens:
 - ID: rmc-sigmars-garden-1

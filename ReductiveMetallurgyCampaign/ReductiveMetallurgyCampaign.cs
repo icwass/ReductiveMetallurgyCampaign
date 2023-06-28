@@ -52,6 +52,7 @@ public class MainClass : QuintessentialMod
 {
 	private static IDetour hook_Sim_method_1835;
 	public static Campaign campaign_self;
+	static Texture return_button, return_button_hover;
 
 	private static bool findModMetaFilepath(string name, out string filepath)
 	{
@@ -382,6 +383,10 @@ public class MainClass : QuintessentialMod
 		PolymerInput.LoadContent();
 		modifyCampaignLevelsRMC();
 
+		string path = "textures/story/";
+		return_button = class_235.method_615(path + "return_button_rmc");
+		return_button_hover = class_235.method_615(path + "return_button_hover_rmc");
+
 		//------------------------- HOOKING -------------------------//
 		hook_Sim_method_1835 = new Hook(
 		typeof(Sim).GetMethod("method_1835", BindingFlags.Instance | BindingFlags.NonPublic),
@@ -408,6 +413,23 @@ public class MainClass : QuintessentialMod
 		CutscenePatcher.Load();
 		On.class_172.method_480 += new On.class_172.hook_method_480(Class172_Method_480);
 		On.Solution.method_1958 += Solution_Method_1958;
+		On.class_135.method_272 += Class135_Method_272;
+	}
+
+	public static void Class135_Method_272(On.class_135.orig_method_272 orig, Texture texture, Vector2 position)
+	{
+		if (MainClass.campaign_self == Campaigns.field_2330)
+		{
+			if (texture == class_238.field_1989.field_100.field_134)
+			{
+				texture = return_button;
+			} else if (texture == class_238.field_1989.field_100.field_135)
+			{
+				texture = return_button_hover;
+			}
+		}
+		orig(texture, position);
+		return;
 	}
 
 	public Maybe<Solution> Solution_Method_1958(On.Solution.orig_method_1958 orig, string filePath)
