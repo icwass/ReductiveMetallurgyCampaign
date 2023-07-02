@@ -54,6 +54,16 @@ public class MainClass : QuintessentialMod
 	public static Campaign campaign_self;
 	static Texture return_button, return_button_hover;
 
+	string[] specialTipsPaths;
+	string[] specialTips = new string[]{
+		"RMCrejection",
+		"RMCdeposition",
+		"RMCproliferation",
+		"RMCravari",
+		"RMCravari2",
+	};
+
+
 	private static bool findModMetaFilepath(string name, out string filepath)
 	{
 		filepath = "";
@@ -165,7 +175,31 @@ public class MainClass : QuintessentialMod
 			field_1900 = class_134.method_253("Glyph of Deposition", string.Empty),
 			field_1901 = class_134.method_253("The *glyph of deposition* transmutes one atom of metal into two atoms of a lower form.\n\nNote that the resulting metals need not be of the next lower form, nor need they be the same metal.", string.Empty),
 			field_1902 = "RMCdeposition",
-			field_1904 = new Vector2(0.0f, -40f)
+			field_1904 = new Vector2(0f, -40f)
+		};
+		Tip tipProliferation = new Tip()
+		{
+			field_1899 = "RMCT003",
+			field_1900 = class_134.method_253("Glyph of Proliferation", string.Empty),
+			field_1901 = class_134.method_253("The *glyph of proliferation* does some amazing shit. Wowzers!", string.Empty),
+			field_1902 = "RMCproliferation",
+			field_1904 = new Vector2(-42f, 0f)
+		};
+		Tip tipRavari1 = new Tip()
+		{
+			field_1899 = "RMCT004",
+			field_1900 = class_134.method_253("Ravari's Wheel", string.Empty),
+			field_1901 = class_134.method_253("By using *Ravari's wheel* with the glyphs of projection and rejection, quicksilver can be stored or discharged.\n\nBecause it has metals with differing amounts of available quicksilver, Ravari's wheel could be called \"the metallurgist’s buffer.\"", string.Empty),
+			field_1902 = "RMCravari",
+			field_1904 = new Vector2(126f, 0f)
+		};
+		Tip tipRavari2 = new Tip()
+		{
+			field_1899 = "RMCT005",
+			field_1900 = class_134.method_253("Direct Quicksilver Transfer", string.Empty),
+			field_1901 = class_134.method_253("It is possible to use *Ravari's wheel* without manually handling the quicksilver.\n\nBy placing the wheel above the _quicksilver_ port of the glyphs of projection or rejection, one can directly transfer the quicksilver in and out of the wheel.", string.Empty),
+			field_1902 = "RMCravari2",
+			field_1904 = new Vector2(-126f, 0f)
 		};
 
 		Logger.Log("[ReductiveMetallurgyCampaign] Modifying campaign levels.");
@@ -186,6 +220,18 @@ public class MainClass : QuintessentialMod
 					else if (puzzle.field_2766 == "rmc-lesson-deposition")
 					{
 						puzzle.field_2769 = tipDeposition;
+					}
+					else if (puzzle.field_2766 == "rmc-lesson-proliferation")
+					{
+						puzzle.field_2769 = tipProliferation;
+					}
+					else if (puzzle.field_2766 == "rmc-ravari-requiescence")
+					{
+						puzzle.field_2769 = tipRavari1;
+					}
+					else if (puzzle.field_2766 == "rmc-energetic-capacitor")
+					{
+						puzzle.field_2769 = tipRavari2;
 					}
 					else if (puzzle.field_2766 == "rmc-golden-thread-recycling")
 					{
@@ -383,6 +429,13 @@ public class MainClass : QuintessentialMod
 		PolymerInput.LoadContent();
 		modifyCampaignLevelsRMC();
 
+
+		specialTipsPaths = new string[specialTips.Length];
+		for(int i=0; i < specialTips.Length; i++)
+		{
+			specialTipsPaths[i] = "Content\\tips\\" + specialTips[i] + ".solution";
+		}
+
 		string path = "textures/story/";
 		return_button = class_235.method_615(path + "return_button_rmc");
 		return_button_hover = class_235.method_615(path + "return_button_hover_rmc");
@@ -434,7 +487,7 @@ public class MainClass : QuintessentialMod
 
 	public Maybe<Solution> Solution_Method_1958(On.Solution.orig_method_1958 orig, string filePath)
 	{
-		if (filePath == "Content\\tips\\RMCrejection.solution" || filePath == "Content\\tips\\RMCdeposition.solution")
+		if (specialTipsPaths.Contains(filePath))
 		{
 			foreach (var dir in QuintessentialLoader.ModContentDirectories)
 			{
