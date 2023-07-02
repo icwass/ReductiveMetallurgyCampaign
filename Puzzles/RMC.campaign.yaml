@@ -2,19 +2,20 @@ Name: ReductiveMetallurgyCampaign
 Title: "Reductive Metallurgy"
 Chapters:
 - Title: Prologue
-  Subtitle: The Beginning
-  Place: "Saverio's Atelier"
+  Subtitle: A Day in a Great House
+  Place: "House Van Tassen"
+  Background: textures/puzzle_select/background_1
   Entries:
   - ID: rmc-document-rejection-notes
     Title: "Notes on Metal Rejection"
     Puzzle: empty
     Requires: ""
   - ID: rmc-cutscene-prologue
-    Title: "A Breakthrough"
+    Title: "Irreversible Consequences"
     Puzzle: empty
     Requires: ""
 - Title: Chapter I
-  Subtitle: The New Boys in Town
+  Subtitle: The New Hire
   Place: "Saverio's Atelier"
   Background: backgrounds/saverio_atelier
   Entries:
@@ -55,7 +56,7 @@ Chapters:
     Puzzle: empty
     Requires: ""
 - Title: Chapter II
-  Subtitle: Open for Business
+  Subtitle: Business Booms
   Place: "Westington Shopping District"
   Background: backgrounds/shopping_district
   Entries:
@@ -96,8 +97,8 @@ Chapters:
     Puzzle: rmc-you-drive-me-to-drink
     Requires: ""
 - Title: Chapter III
-  Subtitle: More Money, More Puzzles
-  Place: "The Greathall, House Van Tassen"
+  Subtitle: The Alchemical Symposium
+  Place: "The Conference Halls, House Montfort"
   Background: textures/cinematic/backgrounds/greathall_b
   Entries:
   - ID: rmc-document-symposium-agenda
@@ -105,7 +106,7 @@ Chapters:
     Puzzle: empty
     Requires: ""
   - ID: rmc-cutscene-presentation
-    Title: "The Alchemical Symposium"
+    Title: "Saverio's Debut"
     Puzzle: empty
     Requires: ""
   - ID: rmc-ravari-requiescence
@@ -137,7 +138,7 @@ Chapters:
     Puzzle: rmc-invariant-metal
     Requires: ""
 - Title: Chapter IV
-  Subtitle: Ravari's Wheel
+  Subtitle: Pushing the Boundaries
   Place: "The Greathall, House Van Tassen"
   Background: textures/cinematic/backgrounds/greathall_a
   Entries:

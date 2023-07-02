@@ -61,8 +61,8 @@ SigmarsGardens:
 ##################################################
 Cutscenes:
 - ID: rmc-cutscene-prologue
-  Location: Saverio's Office
-  Background: backgrounds/saverio_office
+  Location: Alchemist's Workshop, House Van Tassen
+  Background: textures/cinematic/backgrounds/workshop
   Music: Story1
 - ID: rmc-cutscene-interview
   Location: Saverio's Office

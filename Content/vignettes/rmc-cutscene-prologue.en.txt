@@ -1,4 +1,9 @@
-Portraits: Saverio (Left)
+Portraits: Anataeus, Concordia
 
-Saverio (Left): Yeah, I'm not writing this text right now.
-Saverio (Left): Let me just go on to the alchemical symposium and take the rejection glyphs with me.
+Concordia: So the machine oil is _not_ ready for the observatory, then?
+Anataeus: Unfortunately, this product is composed of iron, not tin...
+Concordia: Sounds like the great House Alchemist made a mistake!
+Anataeus: I'm not even sure how, but yes. Breaking this back down into individual components will be straightforward, but the metallic reagents are irrecoverable, to an extent.
+Anataeus: If only I hadn't over-projected the lead.
+Concordia: Something something good transition. Surely not every graduate from the College of Alchemical Engineering can be employed as a House Alchemist.
+Anataeus: Correct... I believe several of them work as freelance alchemists. In the streets somewhere, I assume.
