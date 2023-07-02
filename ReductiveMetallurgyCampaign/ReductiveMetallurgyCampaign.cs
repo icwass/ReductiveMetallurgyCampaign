@@ -202,6 +202,17 @@ public class MainClass : QuintessentialMod
 			field_1904 = new Vector2(-126f, 0f)
 		};
 
+		Dictionary<string, Tip> tipDict = new()
+		{
+			{"rmc-lesson-rejection", tipRejection },
+			{"rmc-lesson-deposition", tipDeposition },
+			{"rmc-lesson-proliferation", tipProliferation },
+			{"rmc-ravari-requiescence", tipRavari1 },
+			{"rmc-energetic-capacitor", tipRavari2 },
+			{"rmc-golden-thread-recycling", tipPolymerInput },
+			{"rmc-synthesis-via-chain", tipPolymerInput },
+		};
+		
 		Logger.Log("[ReductiveMetallurgyCampaign] Modifying campaign levels.");
 		CampaignChapter[] field2309 = campaign_self.field_2309;
 		foreach (var campaignChapter in field2309)
@@ -212,30 +223,12 @@ public class MainClass : QuintessentialMod
 				if (campaignItem.field_2325.method_1085())
 				{
 					Puzzle puzzle = campaignItem.field_2325.method_1087();
+					string puzzleID = puzzle.field_2766;
 
-					if (puzzle.field_2766 == "rmc-lesson-rejection")
+					if (tipDict.ContainsKey(puzzleID)) puzzle.field_2769 = tipDict[puzzleID];
+
+					if (puzzleID == "rmc-golden-thread-recycling")
 					{
-						puzzle.field_2769 = tipRejection;
-					}
-					else if (puzzle.field_2766 == "rmc-lesson-deposition")
-					{
-						puzzle.field_2769 = tipDeposition;
-					}
-					else if (puzzle.field_2766 == "rmc-lesson-proliferation")
-					{
-						puzzle.field_2769 = tipProliferation;
-					}
-					else if (puzzle.field_2766 == "rmc-ravari-requiescence")
-					{
-						puzzle.field_2769 = tipRavari1;
-					}
-					else if (puzzle.field_2766 == "rmc-energetic-capacitor")
-					{
-						puzzle.field_2769 = tipRavari2;
-					}
-					else if (puzzle.field_2766 == "rmc-golden-thread-recycling")
-					{
-						puzzle.field_2769 = tipPolymerInput;
 						HexIndex hexIndex1 = new HexIndex(1, 0);
 						List<class_157> class157List = new List<class_157>();
 						HexIndex[] hexIndexArray = new HexIndex[3]
@@ -279,9 +272,8 @@ public class MainClass : QuintessentialMod
 						for (int index = 0; index < class157List.Count; ++index)
 							puzzle.field_2772[index] = class157List[index];
 					}
-					else if (puzzle.field_2766 == "rmc-synthesis-via-chain")
+					else if (puzzleID == "rmc-synthesis-via-chain")
 					{
-						puzzle.field_2769 = tipPolymerInput;
 						HexIndex hexIndex1 = new HexIndex(1, 0);
 						List<class_157> class157List = new List<class_157>();
 						HexIndex[] hexIndexArray = new HexIndex[]
