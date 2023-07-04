@@ -52,7 +52,10 @@ public class MainClass : QuintessentialMod
 {
 	private static IDetour hook_Sim_method_1835;
 	public static Campaign campaign_self;
+	private static Puzzle optionsUnlock;
 	static Texture return_button, return_button_hover;
+
+	public static bool currentCampaignIsRMC() => campaign_self == Campaigns.field_2330;
 
 	string[] specialTipsPaths;
 	string[] specialTips = new string[]{
@@ -238,6 +241,11 @@ public class MainClass : QuintessentialMod
 					string puzzleID = puzzle.field_2766;
 
 					if (tipDict.ContainsKey(puzzleID)) puzzle.field_2769 = tipDict[puzzleID];
+
+					if (puzzleID == "rmc-lesson-rejection")
+					{
+						optionsUnlock = puzzle;
+					}
 
 					if (puzzleID == "rmc-golden-thread-recycling")
 					{
@@ -475,7 +483,7 @@ public class MainClass : QuintessentialMod
 
 	public static void Class135_Method_272(On.class_135.orig_method_272 orig, Texture texture, Vector2 position)
 	{
-		if (MainClass.campaign_self == Campaigns.field_2330)
+		if (currentCampaignIsRMC())
 		{
 			if (texture == class_238.field_1989.field_100.field_134)
 			{
@@ -526,9 +534,46 @@ public class MainClass : QuintessentialMod
 			class_172.field_1670.Add(character.ID, class230);
 		}
 	}
-
+	//benis
 	public override void PostLoad()
 	{
 		SigmarGardenPatcher.Load();
+		On.OptionsScreen.method_50 += OptionsScreen_Method_50;
+		On.StoryPanel.method_2172 += StoryPanel_Method_2172;
+	}
+	public static void OptionsScreen_Method_50(On.OptionsScreen.orig_method_50 orig, OptionsScreen screen_self, float timeDelta)
+	{
+		if (currentCampaignIsRMC())
+		{
+			var screen_dyn = new DynamicData(screen_self);
+			var currentStoryPanel = screen_dyn.Get<StoryPanel>("field_2680");
+			var stringArray = new DynamicData(currentStoryPanel).Get<string[]>("field_4093");
+			if (!stringArray.Any(x => x.Contains("Saverio") || x.Contains("Pugano")))
+			{
+				var class264 = new class_264("options-rmc");
+				class264.field_2090 = "rmc-options";
+				screen_dyn.Set("field_2680", new StoryPanel((Maybe<class_264>)class264, false));
+			}
+		}
+		orig(screen_self, timeDelta);
+	}
+
+	public static void StoryPanel_Method_2172(On.StoryPanel.orig_method_2172 orig, StoryPanel panel_self, float timeDelta, Vector2 pos, int index, Tuple<int, LocString>[] tuple)
+	{
+		if (currentCampaignIsRMC() && tuple.Length == 2 && tuple[0].Item2 == class_134.method_253("Complete the prologue", string.Empty))
+		{
+			// then we're doing the options code while in the campaign
+			// hijack the inputs so we draw it our way
+
+			bool flag = GameLogic.field_2434.field_2451.method_573(optionsUnlock);
+			index = flag ? 1 : 0;
+			tuple = new Tuple<int, LocString>[2]
+			{
+				Tuple.Create(1, class_134.method_253("Complete the practical interview", string.Empty)),
+				Tuple.Create(int.MaxValue, LocString.field_2597)
+			};
+		}
+		
+		orig(panel_self, timeDelta, pos, index, tuple);
 	}
 }

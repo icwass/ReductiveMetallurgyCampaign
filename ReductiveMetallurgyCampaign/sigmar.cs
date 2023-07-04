@@ -31,11 +31,10 @@ public static class SigmarGardenPatcher
 
 	public static SolitaireState solitaireState_RMC;
 	private static int sigmarWins_RMC = 0;
-	public static bool currentCampaignIsRMC() => MainClass.campaign_self == Campaigns.field_2330;
 	private static bool isQuintessenceSigmarGarden(SolitaireScreen screen) => new DynamicData(screen).Get<bool>("field_3874");
 	private static bool currentCampaignIsRMC(SolitaireScreen screen)
 	{
-		return currentCampaignIsRMC() && !isQuintessenceSigmarGarden(screen);
+		return MainClass.currentCampaignIsRMC() && !isQuintessenceSigmarGarden(screen);
 	}
 	private static void setSigmarWins_RMC() => GameLogic.field_2434.field_2451.field_1929.method_858("RMC-SigmarWins", sigmarWins_RMC.method_453());
 	private static void getSigmarWins_RMC() { sigmarWins_RMC = GameLogic.field_2434.field_2451.field_1929.method_862<int>(new delegate_384<int>(int.TryParse), "RMC-SigmarWins").method_1090(0); }
@@ -124,7 +123,7 @@ public static class SigmarGardenPatcher
 
 	public static SolitaireGameState Class198_Method_537(On.class_198.orig_method_537 orig, bool quintessenceSigmar)
 	{
-		if (!currentCampaignIsRMC() || quintessenceSigmar) return orig(quintessenceSigmar);
+		if (!MainClass.currentCampaignIsRMC() || quintessenceSigmar) return orig(quintessenceSigmar);
 
 		string path = "";
 		string filePath = "Content/solitaire-rmc.dat";
@@ -182,7 +181,7 @@ public static class SigmarGardenPatcher
 	public static bool CampaignItem_Method_825(On.CampaignItem.orig_method_825 orig, CampaignItem item_self)
 	{
 		bool ret = orig(item_self);
-		if (currentCampaignIsRMC())
+		if (MainClass.currentCampaignIsRMC())
 			ret = ret || (item_self.field_2324 == (enum_129)3 && sigmarWins_RMC > 0);
 		return ret;
 	}
@@ -191,7 +190,7 @@ public static class SigmarGardenPatcher
 	{
 		bool ret = orig(state_self);
 		AtomType quintessence = class_175.field_1690;
-		if (ret && currentCampaignIsRMC() && !state_self.field_3864.ContainsValue(quintessence)) sigmarWins_RMC++;
+		if (ret && MainClass.currentCampaignIsRMC() && !state_self.field_3864.ContainsValue(quintessence)) sigmarWins_RMC++;
 		setSigmarWins_RMC();
 		return ret;
 	}
@@ -207,7 +206,7 @@ public static class SigmarGardenPatcher
 			if (!stringArray.Any(x => x.Contains("Saverio") || x.Contains("Pugano")))
 			{
 				var class264 = new class_264("solitaire-rmc");
-				class264.field_2090 = "solitaire";
+				class264.field_2090 = "rmc-solitaire";
 				screen_dyn.Set("field_3872", new StoryPanel((Maybe<class_264>)class264, true));
 			}
 		}
@@ -217,7 +216,7 @@ public static class SigmarGardenPatcher
 	public static bool Class301_Method_1888(On.SolitaireGameState.class_301.orig_method_1888 orig, SolitaireGameState.class_301 class301_self, AtomType param_5430, AtomType param_5431)
 	{
 		bool atomTypeIsMetal = param_5430.field_2297.method_1085();
-		if (currentCampaignIsRMC() && param_5430 == param_5431 && atomTypeIsMetal) return true;
+		if (MainClass.currentCampaignIsRMC() && param_5430 == param_5431 && atomTypeIsMetal) return true;
 		return orig(class301_self, param_5430, param_5431);
 	}
 }

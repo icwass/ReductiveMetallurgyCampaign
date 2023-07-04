@@ -1,0 +1,14 @@
+﻿Saverio (Left): That should do it, all ready to go.
+Saverio (Left): The new hire will need to tweak it to his preferences, of course.
+
+-----------
+
+Saverio (Right): And this will be your main work station. Feel free to modify it as you see fit.
+Pugano (Left): Thank you. Looks like it has everything I need.
+Saverio (Right): Excellent. Call me if you need anything - I'll be in the back room doing inventory.
+Pugano (Left): ...
+Pugano (Left): Good god, what is this setup.
+Pugano (Left): No no no, this simply won't do.
+Pugano (Left): This needs to be set like _this_.
+Pugano (Right): And this needs to go over _here_.
+Pugano (Left): Well, this will have to do for now.
