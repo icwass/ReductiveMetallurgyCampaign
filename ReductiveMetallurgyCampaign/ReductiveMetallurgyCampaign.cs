@@ -55,6 +55,8 @@ public class MainClass : QuintessentialMod
 	private static Puzzle optionsUnlock;
 	static Texture return_button, return_button_hover;
 
+	public static MethodInfo PrivateMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
+
 	public static bool currentCampaignIsRMC() => campaign_self == Campaigns.field_2330;
 
 	string[] specialTipsPaths;
@@ -453,10 +455,7 @@ public class MainClass : QuintessentialMod
 		return_button_hover = class_235.method_615(path + "return_button_hover_rmc");
 
 		//------------------------- HOOKING -------------------------//
-		hook_Sim_method_1835 = new Hook(
-		typeof(Sim).GetMethod("method_1835", BindingFlags.Instance | BindingFlags.NonPublic),
-		typeof(MainClass).GetMethod("OnSimMethod1835", BindingFlags.Static | BindingFlags.NonPublic)
-		);
+		hook_Sim_method_1835 = new Hook(PrivateMethod<Sim>("method_1835"), OnSimMethod1835);
 	}
 	private delegate void orig_Sim_method_1835(Sim self);
 	private static void OnSimMethod1835(orig_Sim_method_1835 orig, Sim sim_self)

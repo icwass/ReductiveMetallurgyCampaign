@@ -26,6 +26,8 @@ public static class SigmarGardenPatcher
 {
 	private static IDetour hook_SolitaireScreen_method_1889;
 	private static IDetour hook_SolitaireScreen_method_1890;
+	private static IDetour hook_SolitaireScreen_method_1893;
+	private static IDetour hook_SolitaireScreen_method_1894;
 
 	public static AtomType nullAtom;
 
@@ -69,6 +71,7 @@ public static class SigmarGardenPatcher
 		On.SolitaireGameState.method_1885 += SolitaireGameState_Method_1885;
 		On.SolitaireScreen.method_50 += SolitaireScreen_Method_50;
 		On.SolitaireGameState.class_301.method_1888 += Class301_Method_1888;
+		On.class_16.method_50 += SolitaireRulesScreen_Method_50;
 
 		nullAtom = new AtomType()
 		{
@@ -86,17 +89,15 @@ public static class SigmarGardenPatcher
 		};
 
 
-		hook_SolitaireScreen_method_1889 = new Hook(
-		typeof(SolitaireScreen).GetMethod("method_1889", BindingFlags.Instance | BindingFlags.NonPublic),
-		typeof(SigmarGardenPatcher).GetMethod("OnSolitaireScreen_Method_1889", BindingFlags.Static | BindingFlags.NonPublic)
-		);
-		hook_SolitaireScreen_method_1890 = new Hook(
-		typeof(SolitaireScreen).GetMethod("method_1890", BindingFlags.Instance | BindingFlags.NonPublic),
-		typeof(SigmarGardenPatcher).GetMethod("OnSolitaireScreen_Method_1890", BindingFlags.Static | BindingFlags.NonPublic)
-		);
+		hook_SolitaireScreen_method_1889 = new Hook(MainClass.PrivateMethod<SolitaireScreen> ("method_1889"), OnSolitaireScreen_Method_1889);
+		hook_SolitaireScreen_method_1890 = new Hook(MainClass.PrivateMethod<SolitaireScreen>("method_1890"), OnSolitaireScreen_Method_1890);
+		hook_SolitaireScreen_method_1893 = new Hook(MainClass.PrivateMethod<SolitaireScreen>("method_1893"), OnSolitaireScreen_Method_1893);
+		hook_SolitaireScreen_method_1894 = new Hook(MainClass.PrivateMethod<SolitaireScreen>("method_1894"), OnSolitaireScreen_Method_1894);
 	}
 	private delegate SolitaireState orig_SolitaireScreen_method_1889(SolitaireScreen self);
 	private delegate void orig_SolitaireScreen_method_1890(SolitaireScreen self, SolitaireState param_5433);
+	private delegate bool orig_SolitaireScreen_method_1893(SolitaireScreen self);
+	private delegate bool orig_SolitaireScreen_method_1894(SolitaireScreen self);
 	private static SolitaireState OnSolitaireScreen_Method_1889(orig_SolitaireScreen_method_1889 orig, SolitaireScreen screen_self)
 	{
 		if (currentCampaignIsRMC(screen_self)) return solitaireState_RMC;
@@ -111,12 +112,33 @@ public static class SigmarGardenPatcher
 		}
 		orig(screen_self, param_5433);
 	}
+	private static bool OnSolitaireScreen_Method_1893(orig_SolitaireScreen_method_1894 orig, SolitaireScreen screen_self)
+	{
+		// used to show the rules button
+		if (currentCampaignIsRMC(screen_self))
+		{
+			var state = (SolitaireState)MainClass.PrivateMethod<SolitaireScreen>("method_1889").Invoke(screen_self, new object[] { });
+			return new DynamicData(screen_self).Get<StoryPanel>("field_3872").method_2170() >= 8;
+		}
+		return orig(screen_self);
+	}
+	private static bool OnSolitaireScreen_Method_1894(orig_SolitaireScreen_method_1894 orig, SolitaireScreen screen_self)
+	{
+		// used to enable the NEW GAME button
+		if (currentCampaignIsRMC(screen_self))
+		{
+			var state = (SolitaireState)MainClass.PrivateMethod<SolitaireScreen>("method_1889").Invoke(screen_self, new object[] { });
+			return new DynamicData(screen_self).Get<StoryPanel>("field_3872").method_2170() >= 8 && !state.method_1922();
+		}
+		return orig(screen_self);
+	}
 
 
 	public static void Unload()
 	{
 		hook_SolitaireScreen_method_1889.Dispose();
 		hook_SolitaireScreen_method_1890.Dispose();
+		hook_SolitaireScreen_method_1894.Dispose();
 	}
 
 
@@ -148,7 +170,16 @@ public static class SigmarGardenPatcher
 			// 182 (=91*2) for marbles
 			// 1 for trailing 0xDD byte
 			int num = binaryReader.ReadInt32();
+
 			int boardID = class_269.field_2103.method_299(0, num);
+			if (sigmarWins_RMC == 0)
+			{
+				//pick a specific board
+				boardID = 0;
+			}
+
+
+
 			binaryReader.BaseStream.Seek(boardID * bytesPerBoard, SeekOrigin.Current);
 			byte header = binaryReader.ReadByte();
 			if (header != 0xBB) throw new Exception("[RMC:SigmarGardenPatcher] Invalid header byte for solitaire board: " + header);
@@ -208,8 +239,11 @@ public static class SigmarGardenPatcher
 				var class264 = new class_264("solitaire-rmc");
 				class264.field_2090 = "rmc-solitaire";
 				screen_dyn.Set("field_3872", new StoryPanel((Maybe<class_264>)class264, true));
+				// force a new game to start
+				MainClass.PrivateMethod<SolitaireScreen>("method_1891").Invoke(screen_self, new object[] { });
 			}
 		}
+
 		orig(screen_self, timeDelta);
 	}
 
@@ -218,5 +252,17 @@ public static class SigmarGardenPatcher
 		bool atomTypeIsMetal = param_5430.field_2297.method_1085();
 		if (MainClass.currentCampaignIsRMC() && param_5430 == param_5431 && atomTypeIsMetal) return true;
 		return orig(class301_self, param_5430, param_5431);
+	}
+
+	public static void SolitaireRulesScreen_Method_50(On.class_16.orig_method_50 orig, class_16 screen_self, float timeDelta)
+	{
+		if (MainClass.currentCampaignIsRMC())
+		{
+			var screen_dyn = new DynamicData(screen_self);
+			string rule = "The metals match with themselves and with quicksilver, but only if there are no metals in the previous tier present.";
+			screen_dyn.Set("field_70", class_134.method_253(rule, string.Empty));
+		}
+
+		orig(screen_self, timeDelta);
 	}
 }
