@@ -5,7 +5,7 @@ Saverio (Right): 'Reductive metallurgist'... it rather feels this title is set t
 Clara: Well, you have done good work in the field. Try it on for a bit - though I'm sure someone like yourself will get bored of the feeling, regardless.
 Saverio (Right): Possibly. At any rate, I found Symposium to be the field in microcosm: some too focused on ambition and the appearance of prestige, others genuinely interested in furthering alchemy.
 Saverio (Right): Strangely, I feel motivated by both of them.
-Clara: As your benefactor, this is good news.
+Clara: Glad to see my support was well-placed!
 Clara: Though I suppose you have no interest in doing alchemical research at a Great House.
 Saverio (Right): Is House Soria not already gainfully employing alchemists?
 Clara: We are, but they are quite dull characters. With enough attention, gaps could be identified.

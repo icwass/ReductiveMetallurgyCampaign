@@ -1,6 +1,6 @@
 Pugano (Left): So is this a new plumbing sealant, or...?
 Saverio (Right): No, consider this a demonstration machine.
-Saverio (Right): I have found myself an audience with one of the great houses, and I think this will serve to present our inventions so far.
+Saverio (Right): I have found myself an audience with one of the Great Houses, and I think this will serve to present our inventions so far.
 Saverio (Right): This is important, so put together something that'll catch their interest.
 Pugano (Left): I'll be sure to give it a good effort.
 
@@ -9,5 +9,5 @@ Pugano (Left): I'll be sure to give it a good effort.
 Pugano (Left): That turned out to be quite pleasant.
 Pugano (Left): The stoichiometry is nicely balanced.
 Saverio (Right): Perfect. It's not exactly what I expected, but it'll suit the purpose nonetheless.
-Saverio (Right): I will be taking the glyphs of rejection with me while I'm away, so try not to design yourself into a corner.
+Saverio (Right): I will need to take the glyphs of rejection with me when I'm away, so try not to design yourself into a corner.
 

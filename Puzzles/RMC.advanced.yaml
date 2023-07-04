@@ -90,6 +90,14 @@ Documents:
   Texture: documents/resume
   DrawItems:
   - Position: 100, 820
+- ID: rmc-document-debug-wait
+  Texture: documents/resume
+  DrawItems:
+  - Position: 100, 820
+- ID: rmc-document-debug-locked
+  Texture: documents/resume
+  DrawItems:
+  - Position: 100, 820
 - ID: rmc-document-resume # needs to be the same as the puzzleID it needs to replace
   Texture: documents/resume # the base texture
   DrawItems:

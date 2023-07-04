@@ -220,6 +220,18 @@ public class MainClass : QuintessentialMod
 			if (campaignChapter.field_2310 == 1) campaignChapter.field_2321 = true;
 			foreach (var campaignItem in campaignChapter.field_2314)
 			{
+				// convert unlock requirement if needed
+				if (campaignItem.field_2326.GetType() == typeof(class_243))
+				{
+					class_243 stringUnlockRequirement = (class_243) campaignItem.field_2326;
+					int n;
+					if (int.TryParse(stringUnlockRequirement.field_2005, out n))
+					{
+						campaignItem.field_2326 = new class_265(n);
+					}
+				}
+
+				// process the puzzle, if it exists
 				if (campaignItem.field_2325.method_1085())
 				{
 					Puzzle puzzle = campaignItem.field_2325.method_1087();
