@@ -161,15 +161,22 @@ Documents:
 # Available fonts:
 #   "crimson 9.75"      "crimson 10.5"      "crimson 12"        "crimson 13"        "crimson 15"        "crimson 16.5"      "crimson 21"
 #   "cormorant 11"      "cormorant 12.75"   "cormorant 15"      "cormorant 18"      "cormorant 22.5"    "cinzel 21"         "naver 17.25"       "reenie 17.25"
-- ID: rmc-document-rejection-notes
-  Texture: textures/documents/letter_2
+- ID: rmc-document-prologue
+  Texture: textures/documents/letter_6
   DrawItems:
-  - Position: 325.0, 820.0
-    Font: "cormorant 18"
+  - Position: 200, 650
+    Font: "crimson 21"
     Color: 2299924
-    Align: center
+    Align: left
     LineSpacing: 1.0
     ColumnWidth: 400.0
+    Handwritten: false
+  - Position: 200, 600
+    Font: "crimson 15"
+    Color: 2299924
+    Align: left
+    LineSpacing: 1.0
+    ColumnWidth: 850
     Handwritten: false
 - ID: rmc-document-deposition-notes
   Texture: textures/documents/letter_2
@@ -182,7 +189,7 @@ Documents:
     ColumnWidth: 400.0
     Handwritten: false
 - ID: rmc-document-symposium-agenda
-  Texture: textures/documents/letter_2
+  Texture: textures/documents/letter_5
   DrawItems:
   - Position: 325.0, 820.0 
     Font: "cormorant 18"
