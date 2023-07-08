@@ -1,5 +1,5 @@
 Pugano (Right): Ah, taking a break with a nice game of Sigmar’s Garden, I see.
-Saverio (Left): Yes, but I'm trying to spice it up a bit by including more of each metal.
+Saverio (Left): Yes, but I'm trying to spice it up a bit by including more metals.
 Pugano (Right): How would that work?
 Saverio (Left): Well, you need to clear all of the lead atoms before you can clear any tin, for example.
 Saverio (Left): Additionally, you can match two metals if they are the same.
@@ -10,28 +10,40 @@ Pugano (Right): Well, go on then, I want to see how it plays out.
 ----- After winning 1 game.
  
 Saverio (Left): Well, it certainly plays differently.
-Pugano (Right): A bit tricky, what with the extra metals locking up more of the board.
-Pugano (Right): And with several of the same metal tier, one must choose which to eliminate first.
+Pugano (Right): A bit tricky, what with the metals locking up more of the board.
+Pugano (Right): And you need to carefully ration your quicksilver, or you can get stuck.
 Saverio (Left): True. But I do like the extra sheen the iron and copper proxies provide.
 Pugano (Right): "Iron and copper, copper and iron", do you ever stop thinking about them?
 Saverio (Left): Not really, no.
  
 ----- After winning 10 games.
  
-Saverio (Left): Nice, 10 games.
+Pugano (Right): I can't believe you're still playing that game. Don't we have work to do?
+Saverio (Left): Don't forget who's paying who.
+Saverio (Left): Besides, we're not in a big rush at the moment. It's not as if we have some nefarious plot to execute.
+Pugano (Right): ...please keep it that way.
  
 ----- After winning 25 games.
  
-Saverio (Left): Wow, 25 games.
+Saverio (Left): Good gravy, have I played this many games already?
+Saverio (Left, Reversed): At least the playtester seems to be enjoying this variant of Sigmar's Garden.
+Saverio (Left): But I'm running out of things to say! The devs haven't actually written this much dialogue yet.
+Pugano (Right): Stop making fourth-wall breaks, I beg of you.
+Saverio (Left): Maybe they could suggest something...
  
 ----- After winning 50 games.
  
 Saverio (Left): Amazing, 50 games.
+Verrin Ravari: What lazy writing.
+Verrin Ravari (Frustrated): And why am _I_ here anyway?
  
 ----- After winning 75 games.
  
 Saverio (Left): Sheesh, 75 games.
+Verrin Ravari (Frustrated): And _repetive_ writing, too!
+Verrin Ravari (Frustrated): I hope the playtester is in it for the solitaire - the dialogue leaves much to be desired.
  
 ----- After winning 100 games.
  
 Saverio (Left): Holy shit, 100 games.
+Verrin Ravari (Livid): WRITE SOME ACTUAL DIALOGUE

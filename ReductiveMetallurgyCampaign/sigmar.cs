@@ -329,7 +329,7 @@ public static class SigmarGardenPatcher
 		int RandomInt(int max) => class_269.field_2103.method_299(0, max);
 
 		if (!MainClass.currentCampaignIsRMC() || quintessenceSigmar) return orig(quintessenceSigmar);
-		if (sigmarWins_RMC == 0 || RandomInt(20000) == 69) return getSpecialSolitaireBoard();
+		//if (sigmarWins_RMC == 0 || RandomInt(20000) == 69) return getSpecialSolitaireBoard();
 
 		// try to find solitaire-bitboards.dat
 		string subpath = "/Content/solitaire-bitboards.dat";
