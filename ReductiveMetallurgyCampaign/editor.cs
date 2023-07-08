@@ -704,8 +704,7 @@ public class editableBoard
 				{
 					var uselessAtomByte = binaryReader.ReadByte();
 					int hexQ = binaryReader.ReadByte();
-					int hexR = binaryReader.ReadByte();
-					if (hexR > 128) hexR -= 256;
+					int hexR = binaryReader.ReadSByte();
 					var hexA = new HexIndex(hexQ, hexR);
 					var hexB = new HexIndex(hexQ + hexR, -hexR);
 					for (int r = 0; r < 6; r++)
