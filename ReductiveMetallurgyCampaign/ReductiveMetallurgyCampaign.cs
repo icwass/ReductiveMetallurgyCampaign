@@ -473,7 +473,7 @@ public class MainClass : QuintessentialMod
 	public override void Load()
 	{
 		Document.Load();
-		BoardEditorScreen.Load();
+		//BoardEditorScreen.Load();
 		CutscenePatcher.Load();
 		On.class_172.method_480 += new On.class_172.hook_method_480(Class172_Method_480);
 		On.Solution.method_1958 += Solution_Method_1958;

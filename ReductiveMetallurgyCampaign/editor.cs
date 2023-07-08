@@ -76,7 +76,7 @@ public class BoardEditorScreen : IScreen
 	// helpers
 	public static void Load()
 	{
-		On.class_178.method_50 += Class178_Method_50;
+		On.class_178.method_50 += DrawButtonForSigmarBoardEditor;
 	}
 	public static bool AtomButtonClicked(Vector2 position, bool rightClick = false)
 	{
@@ -505,7 +505,7 @@ public class BoardEditorScreen : IScreen
 
 	//=============================================================================================================================//
 	// hooking
-	public static void Class178_Method_50(On.class_178.orig_method_50 orig, class_178 class178_self, float timeDelta)
+	public static void DrawButtonForSigmarBoardEditor(On.class_178.orig_method_50 orig, class_178 class178_self, float timeDelta)
 	{
 		if (GameLogic.field_2434.method_938() is BoardEditorScreen)
 			return;
