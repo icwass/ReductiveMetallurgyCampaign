@@ -21,7 +21,7 @@ Chapters:
   Entries:
   - ID: rmc-document-resume
     Title: "Applicant's Resume"
-    Puzzle: rmc-sandbox
+    Puzzle: empty
     Requires: ""
   - ID: rmc-cutscene-interview
     Title: "The Interview"

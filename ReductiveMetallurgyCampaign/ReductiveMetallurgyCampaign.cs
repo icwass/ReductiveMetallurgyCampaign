@@ -443,12 +443,25 @@ public class MainClass : QuintessentialMod
 		PolymerInput.LoadContent();
 		modifyCampaignLevelsRMC();
 
-
+		
 		specialTipsPaths = new string[specialTips.Length];
 		for(int i=0; i < specialTips.Length; i++)
 		{
 			specialTipsPaths[i] = "Content\\tips\\" + specialTips[i] + ".solution";
 		}
+
+		// manually load the puzzle file needed for tips
+		string subpath = "/Puzzles/rmc-sandbox.puzzle";
+		string filepath;
+		if (!findModMetaFilepath("ReductiveMetallurgyCampaign", out filepath) || !File.Exists(filepath + subpath))
+		{
+			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'rmc-sandbox.puzzle' in the folder '" + filepath + "\\Puzzles\\'");
+			throw new Exception("LoadPuzzleContent: Tip data is missing.");
+		}
+		var tipsPuzzle = Puzzle.method_1249(filepath + subpath);
+		Array.Resize(ref Puzzles.field_2816, Puzzles.field_2816.Length + 1);
+		Puzzles.field_2816[Puzzles.field_2816.Length - 1] = tipsPuzzle;
+
 
 		string path = "textures/story/";
 		return_button = class_235.method_615(path + "return_button_rmc");
@@ -500,8 +513,18 @@ public class MainClass : QuintessentialMod
 	{
 		if (specialTipsPaths.Contains(filePath))
 		{
+			Logger.Log("[Solution_Method_1958] Looking for an RMC tip: " + filePath);
+			if (!Puzzles.method_1284("rmc-sandbox").method_1085())
+			{
+				Logger.Log("    WTF! Couldn't find rmc-sandbox !");
+				foreach (var puzzle in Puzzles.method_1282())
+				{
+					Logger.Log("      " + puzzle.field_2766);
+				}
+			};
 			foreach (var dir in QuintessentialLoader.ModContentDirectories)
 			{
+				Logger.Log("    " + dir);
 				try
 				{
 					return orig(Path.Combine(dir, filePath));
@@ -509,6 +532,7 @@ public class MainClass : QuintessentialMod
 				catch (Exception) { }
 			}
 		}
+
 		return orig(filePath);
 	}
 
