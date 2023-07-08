@@ -127,7 +127,7 @@ public static class SigmarGardenPatcher
 		if (currentCampaignIsRMC(screen_self))
 		{
 			var state = (SolitaireState)MainClass.PrivateMethod<SolitaireScreen>("method_1889").Invoke(screen_self, new object[] { });
-			return new DynamicData(screen_self).Get<StoryPanel>("field_3872").method_2170() >= 8 && !state.method_1922();
+			return new DynamicData(screen_self).Get<StoryPanel>("field_3872").method_2170() >= 1 && !state.method_1922();
 		}
 		return orig(screen_self);
 	}
@@ -177,8 +177,6 @@ public static class SigmarGardenPatcher
 				var class264 = new class_264("solitaire-rmc");
 				class264.field_2090 = "rmc-solitaire";
 				screen_dyn.Set("field_3872", new StoryPanel((Maybe<class_264>)class264, true));
-				// force a new game to start
-				MainClass.PrivateMethod<SolitaireScreen>("method_1891").Invoke(screen_self, new object[] { });
 			}
 		}
 
