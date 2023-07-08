@@ -583,7 +583,7 @@ public class MainClass : QuintessentialMod
 				Tuple.Create(50, class_134.method_253("Win 50 games", string.Empty)),
 				Tuple.Create(75, class_134.method_253("Win 75 games", string.Empty)),
 				Tuple.Create(99, class_134.method_253("Win 99 games", string.Empty)),
-				Tuple.Create(99, class_134.method_253("Win 100 games", string.Empty)),
+				Tuple.Create(100, class_134.method_253("Win 100 games", string.Empty)),
 				Tuple.Create(int.MaxValue, LocString.field_2597)
 			};
 		}
