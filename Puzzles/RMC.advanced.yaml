@@ -42,6 +42,10 @@ Characters:
   Name: "Shelf of Reagents"
   SmallPortrait: portraits/reagents_small
   Color: 6706256
+- ID: "Verrin Ravari (Frustrated)"
+  Name: "Verrin Ravari"
+  SmallPortrait: portraits/verrin_frustrated_small
+  Color: 6691857
 - ID: "Verrin Ravari (Livid)"
   Name: "Verrin Ravari"
   SmallPortrait: portraits/verrin_livid_small

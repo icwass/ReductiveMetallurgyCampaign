@@ -418,14 +418,14 @@ public static class SigmarGardenPatcher
 				marbleA = choosableMarbles[RandomInt(choosableMarbles.Count)];
 				choosableMarbles.Remove(marbleA); // don't accidentally choose A again when choosing B!
 				marbleB = choosableMarbles[RandomInt(choosableMarbles.Count)];
-				moveHistory.Add(new Tuple<HexIndex, HexIndex>(marbleA, marbleB));
+				moveHistory.Add(Tuple.Create(marbleA, marbleB));
 				marbleHexes.Remove(marbleA);
 				marbleHexes.Remove(marbleB);
 			}
 			else if (HexIsChoosable(center))
 			{
 				// only option is to choose Gold as our next move
-				moveHistory.Add(new Tuple<HexIndex, HexIndex>(center, center));
+				moveHistory.Add(Tuple.Create(center, center));
 				marbleHexes.Remove(center);
 			}
 			else
@@ -449,7 +449,7 @@ public static class SigmarGardenPatcher
 		// put animismus matches in the saltlikeBag
 		for (int i = 0; i < 2; i++)
 		{
-			saltlikeBag.Add(new Tuple<AtomType, AtomType>(getAtomType(8), getAtomType(9)));
+			saltlikeBag.Add(Tuple.Create(getAtomType(8), getAtomType(9)));
 		}
 		int[] cardinals = new int[5] { 4, 6, 6, 6, 6 }; // salt, air, water, fire, earth
 
@@ -460,13 +460,13 @@ public static class SigmarGardenPatcher
 			int match = RandomInt(5);
 			if (match == 0)
 			{
-				saltlikeBag.Add(new Tuple<AtomType, AtomType>(getAtomType(10), getAtomType(10)));
+				saltlikeBag.Add(Tuple.Create(getAtomType(10), getAtomType(10)));
 			}
 			else
 			{	
 				cardinals[match] -= 2;
-				saltlikeBag.Add(new Tuple<AtomType, AtomType>(getAtomType(10), getAtomType(10 + match)));
-				saltlikeBag.Add(new Tuple<AtomType, AtomType>(getAtomType(10), getAtomType(10 + match)));
+				saltlikeBag.Add(Tuple.Create(getAtomType(10), getAtomType(10 + match)));
+				saltlikeBag.Add(Tuple.Create(getAtomType(10), getAtomType(10 + match)));
 			}
 		}
 
@@ -476,7 +476,7 @@ public static class SigmarGardenPatcher
 			while (cardinals[i] > 0)
 			{
 				cardinals[i] -= 2;
-				saltlikeBag.Add(new Tuple<AtomType, AtomType>(getAtomType(10 + i), getAtomType(10 + i)));
+				saltlikeBag.Add(Tuple.Create(getAtomType(10 + i), getAtomType(10 + i)));
 			}
 		}
 
@@ -498,18 +498,18 @@ public static class SigmarGardenPatcher
 		for (int i = 5; i > 0; i--)
 		{
 			// generate temporary bag of marbles containing a specific tier of metal
-			List<Tuple<AtomType, AtomType>> tempBag = new() { new Tuple<AtomType, AtomType>(getAtomType(i), getAtomType(7)) };
+			List<Tuple<AtomType, AtomType>> tempBag = new() { Tuple.Create(getAtomType(i), getAtomType(7)) };
 			while (metals[i] > 0)
 			{
 				metals[i]--;
 				// add a projection match, or a purification match?
 				if (RandomInt(2) == 0)
 				{
-					tempBag.Add(new Tuple<AtomType, AtomType>(getAtomType(i), getAtomType(7)));
+					tempBag.Add(Tuple.Create(getAtomType(i), getAtomType(7)));
 				}
 				else
 				{
-					tempBag.Add(new Tuple<AtomType, AtomType>(getAtomType(i), getAtomType(i)));
+					tempBag.Add(Tuple.Create(getAtomType(i), getAtomType(i)));
 				}
 			}
 

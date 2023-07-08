@@ -520,7 +520,6 @@ public class MainClass : QuintessentialMod
 		class_172.field_1670["Verrin Ravari (Shabby)"] = new class_230(class_134.method_253("Verrin Ravari", string.Empty), class_238.field_1989.field_93.field_694, class_235.method_615("portraits/verrin_shabby_small"), Color.FromHex(6691857), false);
 		class_172.field_1670["Taros Colvan"] = new class_230(class_134.method_253("Taros Colvan", string.Empty), class_238.field_1989.field_93.field_692, class_235.method_615("portraits/taros_small"), Color.FromHex(7873302), false);
 		class_172.field_1670["Armand Van Tassen"] = new class_230(class_134.method_253("Armand Van Tassen", string.Empty), class_238.field_1989.field_93.field_676, class_235.method_615("portraits/armand_small"), Color.FromHex(6434368), false);
-		class_172.field_1670.Add("Verrin Ravari (Frustrated)", new class_230(class_134.method_253("Verrin Ravari", string.Empty), null, class_235.method_615("portraits/verrin_frustrated_small"), Color.FromHex(6691857), false));
 		foreach (CharacterModelRMC character in fetchCampaignModel().Characters)
 		{
 			Texture class256_1 = null;
@@ -561,7 +560,7 @@ public class MainClass : QuintessentialMod
 	{
 		if (currentCampaignIsRMC() && tuple.Length == 2 && tuple[0].Item2 == class_134.method_253("Complete the prologue", string.Empty))
 		{
-			// then we're doing the options code while in the campaign
+			// then we're doing the options code while in the RMC campaign
 			// hijack the inputs so we draw it our way
 
 			bool flag = GameLogic.field_2434.field_2451.method_573(optionsUnlock);
@@ -572,7 +571,23 @@ public class MainClass : QuintessentialMod
 				Tuple.Create(int.MaxValue, LocString.field_2597)
 			};
 		}
-		
+		else if (currentCampaignIsRMC() && tuple.Length == 7 && tuple[0].Item2 == class_134.method_253("Win 1 game", string.Empty))
+		{
+			// then we're doing the solitaire code while in the RMC campaign
+			// hijack the inputs so we draw it our way
+			tuple = new Tuple<int, LocString>[]
+			{
+				Tuple.Create(1, class_134.method_253("Win 1 game", string.Empty)),
+				Tuple.Create(10, class_134.method_253("Win 10 games", string.Empty)),
+				Tuple.Create(25, class_134.method_253("Win 25 games", string.Empty)),
+				Tuple.Create(50, class_134.method_253("Win 50 games", string.Empty)),
+				Tuple.Create(75, class_134.method_253("Win 75 games", string.Empty)),
+				Tuple.Create(99, class_134.method_253("Win 99 games", string.Empty)),
+				Tuple.Create(99, class_134.method_253("Win 100 games", string.Empty)),
+				Tuple.Create(int.MaxValue, LocString.field_2597)
+			};
+		}
+
 		orig(panel_self, timeDelta, pos, index, tuple);
 	}
 }
