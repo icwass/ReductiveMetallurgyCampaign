@@ -267,6 +267,7 @@ public class BoardEditorScreen : IScreen
 
 		buttonPosition = origin + new Vector2(90f, 99f);
 		buttonWidth = 120;
+		var buttonHeight = 60;
 		buttonOffset = new Vector2(buttonWidth + 2f, 0f);
 		if (class_140.method_313((string)class_134.method_253("Rotate CCW", string.Empty), buttonPosition, buttonWidth, 53).method_824(true, true))
 		{
@@ -292,6 +293,13 @@ public class BoardEditorScreen : IScreen
 			playButtonClick();
 			board.mirror60();
 			board.rotateBoard(-1);
+		}
+
+		buttonPosition += new Vector2(0f, buttonHeight) - 3*buttonOffset;
+		if (class_140.method_313((string)class_134.method_253("Randomize", string.Empty), buttonPosition, buttonWidth, 53).method_824(true, true))
+		{
+			playButtonClick();
+			board.randomize();
 		}
 
 		if (Input.IsSdlKeyPressed(SDL.enum_160.SDLK_F3))
@@ -330,6 +338,15 @@ public class BoardEditorScreen : IScreen
 
 			board = tempBoard;
 		}
+
+		if (Input.IsSdlKeyPressed(SDL.enum_160.SDLK_F5))
+		{
+			playButtonClick();
+			editableBoard.extractBitboards();
+			playButtonClick();
+		}
+
+
 
 		//=========================//
 		// draw atom pallete
@@ -555,17 +572,7 @@ public class editableBoard
 		}
 
 		// fill the rest of the board with blanks
-		for (int i = -5; i <= 5; i++)
-		{
-			for (int j = -5; j <= 5; j++)
-			{
-				var hex = new HexIndex(i,j);
-				if (-5 <= i + j && i + j <= 5 && !marbles.ContainsKey(hex))
-				{
-					marbles.Add(hex, 0);
-				}
-			}
-		}
+		fillInHolesWithBlanks();
 	}
 	public editableBoard(editableBoard boardToCopy)
 	{
@@ -577,7 +584,20 @@ public class editableBoard
 			marbles.Add(marble.Key, marble.Value);
 		}
 	}
-
+	void fillInHolesWithBlanks()
+	{
+		for (int i = -5; i <= 5; i++)
+		{
+			for (int j = -5; j <= 5; j++)
+			{
+				var hex = new HexIndex(i, j);
+				if (-5 <= i + j && i + j <= 5 && !marbles.ContainsKey(hex))
+				{
+					marbles.Add(hex, 0);
+				}
+			}
+		}
+	}
 
 	string filterDelimiters(string str)
 	{
@@ -627,6 +647,24 @@ public class editableBoard
 		marbles = newMarbles;
 	}
 
+	public void randomize()
+	{
+		// implement later?
+
+
+		// randomize the board with whatever i want
+
+
+
+
+
+
+
+
+
+	}
+
+
 	public SolitaireGameState solitaireGameState()
 	{
 		var ret = new SolitaireGameState();
@@ -636,5 +674,88 @@ public class editableBoard
 			ret.field_3864.Add(marble.Key + new HexIndex(5, 0), SigmarGardenPatcher.getAtomType(marble.Value));
 		}
 		return ret;
+	}
+
+
+
+	public static void extractBitboards()
+	{
+		List<string> bitboards = new();
+		// read in the boards from solitaire.dat
+		// and remove duplicates that are isomorphics up to rotation and mirroring
+		// total number of isomorphic boards: 16968
+		using (BinaryReader binaryReader = new BinaryReader(new FileStream(Path.Combine("Content", "solitaire.dat"), FileMode.Open, FileAccess.Read)))
+		{
+			int boardCount = binaryReader.ReadInt32();
+			Logger.Log("Extracting from solitaire.dat");
+			Logger.Log("0 %");
+			for (int b = 0; b < boardCount; b++)
+			{
+				if (b % 500 == 499) Logger.Log(((b+1)/500) + " %");
+				char[,] boards = new char[12, 121];
+				for (int i = 0; i < 12; i++)
+				{
+					for (int j = 0; j < 121; j++)
+					{
+						boards[i, j] = '.';
+					}
+				}
+				for (int a = 0; a < 55; a++)
+				{
+					var uselessAtomByte = binaryReader.ReadByte();
+					int hexQ = binaryReader.ReadByte();
+					int hexR = binaryReader.ReadByte();
+					if (hexR > 128) hexR -= 256;
+					var hexA = new HexIndex(hexQ, hexR);
+					var hexB = new HexIndex(hexQ + hexR, -hexR);
+					for (int r = 0; r < 6; r++)
+					{
+						boards[r, hexA.Q * 11 + hexA.R + 5] = 'X';
+						boards[r + 6, hexB.Q * 11 + hexB.R + 5] = 'X';
+						hexA = hexA.RotatedAround(new HexIndex(5, 0), new HexRotation(1));
+						hexB = hexB.RotatedAround(new HexIndex(5, 0), new HexRotation(1));
+					}
+				}
+				string[] boardstrings = new string[12];
+				bool boardAlreadyExists = false;
+				for (int i = 0; i < 12; i++)
+				{
+					boardstrings[i] = "";
+					for (int j = 0; j < 121; j++)
+					{
+						boardstrings[i] += boards[i, j];
+					}
+					if (bitboards.Contains(boardstrings[i]))
+					{
+						boardAlreadyExists = true;
+						continue;
+					}
+				}
+				if (!boardAlreadyExists) bitboards.Add(boardstrings[0]);
+			}
+		}
+
+		using (BinaryWriter binaryWriter = new BinaryWriter(new FileStream(Path.Combine("Content", "peebus.dat"), FileMode.Create, FileAccess.Write), Encoding.ASCII))
+		{
+			int boardCount = bitboards.Count;
+			Logger.Log("Found " + boardCount + " non-isomorphic boards - writing to peebus.dat");
+
+			binaryWriter.Write(boardCount);
+			foreach (var board in bitboards)
+			{
+				for (int i = 0; i < 16; i++)
+				{
+					int boardInt = 0;
+					for (int j = 0; j < 8; j++)
+					{
+						if ((i * 8 + j < 121) && board[i * 8 + j] == 'X')
+						{
+							boardInt += 1 << j;
+						}
+					}
+					binaryWriter.Write((byte) (boardInt & 0xFF));
+				}
+			}
+		}
 	}
 }

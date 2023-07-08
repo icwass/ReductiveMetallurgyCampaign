@@ -29,15 +29,12 @@ public static class SigmarGardenPatcher
 	private static IDetour hook_SolitaireScreen_method_1893;
 	private static IDetour hook_SolitaireScreen_method_1894;
 
-	public static AtomType nullAtom;
-
-	public static SolitaireState solitaireState_RMC;
 	private static int sigmarWins_RMC = 0;
+	public static AtomType nullAtom;
+	public static SolitaireState solitaireState_RMC;
+
 	private static bool isQuintessenceSigmarGarden(SolitaireScreen screen) => new DynamicData(screen).Get<bool>("field_3874");
-	private static bool currentCampaignIsRMC(SolitaireScreen screen)
-	{
-		return MainClass.currentCampaignIsRMC() && !isQuintessenceSigmarGarden(screen);
-	}
+	private static bool currentCampaignIsRMC(SolitaireScreen screen) => MainClass.currentCampaignIsRMC() && !isQuintessenceSigmarGarden(screen);
 	private static void setSigmarWins_RMC() => GameLogic.field_2434.field_2451.field_1929.method_858("RMC-SigmarWins", sigmarWins_RMC.method_453());
 	private static void getSigmarWins_RMC() { sigmarWins_RMC = GameLogic.field_2434.field_2451.field_1929.method_862<int>(new delegate_384<int>(int.TryParse), "RMC-SigmarWins").method_1090(0); }
 	public static AtomType getAtomType(int i)
@@ -66,12 +63,14 @@ public static class SigmarGardenPatcher
 	public static void Load()
 	{
 		getSigmarWins_RMC();
-		On.class_198.method_537 += Class198_Method_537;
-		On.CampaignItem.method_825 += CampaignItem_Method_825;
-		On.SolitaireGameState.method_1885 += SolitaireGameState_Method_1885;
+		On.CampaignItem.method_825 += DetermineIfCampaignItemIsCompleted;
+		On.SolitaireGameState.class_301.method_1888 += DetermineIfMatchIsValid;
+		On.SolitaireGameState.method_1885 += DetermineIfSolitaireGameWasWon;
 		On.SolitaireScreen.method_50 += SolitaireScreen_Method_50;
-		On.SolitaireGameState.class_301.method_1888 += Class301_Method_1888;
 		On.class_16.method_50 += SolitaireRulesScreen_Method_50;
+		On.class_198.method_537 += getRandomizedSolitaireBoard;
+
+
 
 		nullAtom = new AtomType()
 		{
@@ -133,83 +132,15 @@ public static class SigmarGardenPatcher
 		return orig(screen_self);
 	}
 
-
 	public static void Unload()
 	{
 		hook_SolitaireScreen_method_1889.Dispose();
 		hook_SolitaireScreen_method_1890.Dispose();
+		hook_SolitaireScreen_method_1893.Dispose();
 		hook_SolitaireScreen_method_1894.Dispose();
 	}
 
-
-
-	public static SolitaireGameState Class198_Method_537(On.class_198.orig_method_537 orig, bool quintessenceSigmar)
-	{
-		if (!MainClass.currentCampaignIsRMC() || quintessenceSigmar) return orig(quintessenceSigmar);
-
-		string path = "";
-		string filePath = "Content/solitaire-rmc.dat";
-
-		// find solitaire_rmc.dat
-		foreach (var dir in QuintessentialLoader.ModContentDirectories)
-		{
-			if (File.Exists(Path.Combine(dir, filePath)))
-			{
-				path = Path.Combine(dir, filePath);
-				break;
-			}
-		}
-
-		if (path == "") return orig(quintessenceSigmar);
-
-		using (BinaryReader binaryReader = new BinaryReader(new FileStream(path, FileMode.Open, FileAccess.Read)))
-		{
-			const int bytesPerBoard = 200;
-			// 1 for leading 0xBB byte
-			// 16 for settings
-			// 182 (=91*2) for marbles
-			// 1 for trailing 0xDD byte
-			int num = binaryReader.ReadInt32();
-
-			int boardID = class_269.field_2103.method_299(0, num);
-			if (sigmarWins_RMC == 0)
-			{
-				//pick a specific board
-				boardID = 0;
-			}
-
-
-
-			binaryReader.BaseStream.Seek(boardID * bytesPerBoard, SeekOrigin.Current);
-			byte header = binaryReader.ReadByte();
-			if (header != 0xBB) throw new Exception("[RMC:SigmarGardenPatcher] Invalid header byte for solitaire board: " + header);
-
-			//no settings, currently - skip
-			binaryReader.BaseStream.Seek(16, SeekOrigin.Current);
-
-			HexRotation rotation = new HexRotation(0);
-
-			SolitaireGameState solitaireGameState = new SolitaireGameState();
-			for (int index = 0; index < 91; ++index)
-			{
-				// read in the next marble
-				int atomInt = binaryReader.ReadByte() & 0x000F;
-				byte pos = binaryReader.ReadByte();
-				// if not a blank spot, add marble to board
-				if (atomInt == 0) continue;
-				int R = (pos & 0x000F) - 5;
-				int Q = (pos >> 4) & 0x000F;
-				HexIndex hex = new HexIndex(Q,R).RotatedAround(new HexIndex(5, 0), rotation);
-				solitaireGameState.field_3864.Add(hex, getAtomType(atomInt));
-			}
-
-			byte trailing = binaryReader.ReadByte();
-			if (trailing != 0xDD) throw new Exception("[RMC:SigmarGardenPatcher] Invalid trailing byte for solitaire board: " + trailing);
-
-			return solitaireGameState;
-		}
-	}
-	public static bool CampaignItem_Method_825(On.CampaignItem.orig_method_825 orig, CampaignItem item_self)
+	public static bool DetermineIfCampaignItemIsCompleted(On.CampaignItem.orig_method_825 orig, CampaignItem item_self)
 	{
 		bool ret = orig(item_self);
 		if (MainClass.currentCampaignIsRMC())
@@ -217,7 +148,14 @@ public static class SigmarGardenPatcher
 		return ret;
 	}
 
-	public static bool SolitaireGameState_Method_1885(On.SolitaireGameState.orig_method_1885 orig, SolitaireGameState state_self)
+	public static bool DetermineIfMatchIsValid(On.SolitaireGameState.class_301.orig_method_1888 orig, SolitaireGameState.class_301 class301_self, AtomType param_5430, AtomType param_5431)
+	{
+		bool atomTypeIsMetal = param_5430.field_2297.method_1085();
+		if (MainClass.currentCampaignIsRMC() && param_5430 == param_5431 && atomTypeIsMetal) return true;
+		return orig(class301_self, param_5430, param_5431);
+	}
+
+	public static bool DetermineIfSolitaireGameWasWon(On.SolitaireGameState.orig_method_1885 orig, SolitaireGameState state_self)
 	{
 		bool ret = orig(state_self);
 		AtomType quintessence = class_175.field_1690;
@@ -247,13 +185,6 @@ public static class SigmarGardenPatcher
 		orig(screen_self, timeDelta);
 	}
 
-	public static bool Class301_Method_1888(On.SolitaireGameState.class_301.orig_method_1888 orig, SolitaireGameState.class_301 class301_self, AtomType param_5430, AtomType param_5431)
-	{
-		bool atomTypeIsMetal = param_5430.field_2297.method_1085();
-		if (MainClass.currentCampaignIsRMC() && param_5430 == param_5431 && atomTypeIsMetal) return true;
-		return orig(class301_self, param_5430, param_5431);
-	}
-
 	public static void SolitaireRulesScreen_Method_50(On.class_16.orig_method_50 orig, class_16 screen_self, float timeDelta)
 	{
 		if (MainClass.currentCampaignIsRMC())
@@ -264,5 +195,373 @@ public static class SigmarGardenPatcher
 		}
 
 		orig(screen_self, timeDelta);
+	}
+
+	/*
+	public static SolitaireGameState GetNewSolitaireBoard(On.class_198.orig_method_537 orig, bool quintessenceSigmar)
+	{
+		if (!MainClass.currentCampaignIsRMC() || quintessenceSigmar) return orig(quintessenceSigmar);
+
+		string path = "";
+		string filePath = "Content/solitaire-rmc.dat";
+
+		// try to find solitaire_rmc.dat
+		foreach (var dir in QuintessentialLoader.ModContentDirectories)
+		{
+			if (File.Exists(Path.Combine(dir, filePath)))
+			{
+				path = Path.Combine(dir, filePath);
+				break;
+			}
+		}
+
+		if (path == "") return orig(quintessenceSigmar);
+
+		using (BinaryReader binaryReader = new BinaryReader(new FileStream(path, FileMode.Open, FileAccess.Read)))
+		{
+			const int bytesPerBoard = 200;
+			// 1 for leading 0xBB byte
+			// 16 for settings
+			// 182 (=91*2) for marbles
+			// 1 for trailing 0xDD byte
+			int num = binaryReader.ReadInt32();
+
+			int boardID = class_269.field_2103.method_299(0, num);
+			if (sigmarWins_RMC == 0)
+			{
+				//pick a specific board
+				boardID = 0;
+			}
+
+			binaryReader.BaseStream.Seek(boardID * bytesPerBoard, SeekOrigin.Current);
+			byte header = binaryReader.ReadByte();
+			if (header != 0xBB) throw new Exception("[RMC:SigmarGardenPatcher] Invalid header byte for solitaire board: " + header);
+
+			//no settings, currently - skip
+			binaryReader.BaseStream.Seek(16, SeekOrigin.Current);
+
+			HexRotation rotation = new HexRotation(0);
+
+			SolitaireGameState solitaireGameState = new SolitaireGameState();
+			for (int index = 0; index < 91; ++index)
+			{
+				// read in the next marble
+				int atomInt = binaryReader.ReadByte() & 0x000F;
+				byte pos = binaryReader.ReadByte();
+				// if not a blank spot, add marble to board
+				if (atomInt == 0) continue;
+				int R = (pos & 0x000F) - 5;
+				int Q = (pos >> 4) & 0x000F;
+				HexIndex hex = new HexIndex(Q, R).RotatedAround(new HexIndex(5, 0), rotation);
+				solitaireGameState.field_3864.Add(hex, getAtomType(atomInt));
+			}
+
+			byte trailing = binaryReader.ReadByte();
+			if (trailing != 0xDD) throw new Exception("[RMC:SigmarGardenPatcher] Invalid trailing byte for solitaire board: " + trailing);
+
+			return solitaireGameState;
+		}
+	}
+	*/
+	public static SolitaireGameState getSpecialSolitaireBoard()
+	{
+		SolitaireGameState solitaireGameState = new SolitaireGameState();
+
+		solitaireGameState.field_3864.Add(new HexIndex(0, 5), getAtomType(11));
+		solitaireGameState.field_3864.Add(new HexIndex(1, 5), getAtomType(11));
+		solitaireGameState.field_3864.Add(new HexIndex(2, 5), getAtomType(10));
+		solitaireGameState.field_3864.Add(new HexIndex(3, 5), getAtomType(10));
+		solitaireGameState.field_3864.Add(new HexIndex(4, 5), getAtomType(08));
+		solitaireGameState.field_3864.Add(new HexIndex(5, 5), getAtomType(08));
+
+		solitaireGameState.field_3864.Add(new HexIndex(0, 4), getAtomType(11));
+		solitaireGameState.field_3864.Add(new HexIndex(6, 4), getAtomType(08));
+
+		solitaireGameState.field_3864.Add(new HexIndex(0, 3), getAtomType(10));
+		solitaireGameState.field_3864.Add(new HexIndex(2, 3), getAtomType(07));
+		solitaireGameState.field_3864.Add(new HexIndex(5, 3), getAtomType(01));
+		solitaireGameState.field_3864.Add(new HexIndex(7, 3), getAtomType(12));
+
+		solitaireGameState.field_3864.Add(new HexIndex(0, 2), getAtomType(11));
+		solitaireGameState.field_3864.Add(new HexIndex(8, 2), getAtomType(10));
+
+		solitaireGameState.field_3864.Add(new HexIndex(0, 1), getAtomType(13));
+		solitaireGameState.field_3864.Add(new HexIndex(4, 1), getAtomType(06));
+		solitaireGameState.field_3864.Add(new HexIndex(5, 1), getAtomType(01));
+		solitaireGameState.field_3864.Add(new HexIndex(9, 1), getAtomType(12));
+
+		solitaireGameState.field_3864.Add(new HexIndex(0, 0), getAtomType(13));
+		solitaireGameState.field_3864.Add(new HexIndex(2, 0), getAtomType(05));
+		solitaireGameState.field_3864.Add(new HexIndex(4, 0), getAtomType(05));
+		solitaireGameState.field_3864.Add(new HexIndex(5, 0), getAtomType(07));
+		solitaireGameState.field_3864.Add(new HexIndex(6, 0), getAtomType(02));
+		solitaireGameState.field_3864.Add(new HexIndex(8, 0), getAtomType(02));
+		solitaireGameState.field_3864.Add(new HexIndex(10, 0), getAtomType(12));
+
+		solitaireGameState.field_3864.Add(new HexIndex(1, -1), getAtomType(13));
+		solitaireGameState.field_3864.Add(new HexIndex(5, -1), getAtomType(04));
+		solitaireGameState.field_3864.Add(new HexIndex(6, -1), getAtomType(03));
+		solitaireGameState.field_3864.Add(new HexIndex(10, -1), getAtomType(12));
+
+		solitaireGameState.field_3864.Add(new HexIndex(2, -2), getAtomType(10));
+		solitaireGameState.field_3864.Add(new HexIndex(10, -2), getAtomType(14));
+
+		solitaireGameState.field_3864.Add(new HexIndex(3, -3), getAtomType(13));
+		solitaireGameState.field_3864.Add(new HexIndex(5, -3), getAtomType(04));
+		solitaireGameState.field_3864.Add(new HexIndex(8, -3), getAtomType(03));
+		solitaireGameState.field_3864.Add(new HexIndex(10, -3), getAtomType(10));
+
+		solitaireGameState.field_3864.Add(new HexIndex(4, -4), getAtomType(09));
+		solitaireGameState.field_3864.Add(new HexIndex(10, -4), getAtomType(14));
+
+		solitaireGameState.field_3864.Add(new HexIndex(5, -5), getAtomType(09));
+		solitaireGameState.field_3864.Add(new HexIndex(6, -5), getAtomType(09));
+		solitaireGameState.field_3864.Add(new HexIndex(7, -5), getAtomType(10));
+		solitaireGameState.field_3864.Add(new HexIndex(8, -5), getAtomType(10));
+		solitaireGameState.field_3864.Add(new HexIndex(9, -5), getAtomType(14));
+		solitaireGameState.field_3864.Add(new HexIndex(10, -5), getAtomType(14));
+
+		return solitaireGameState;
+	}
+
+	public static SolitaireGameState getRandomizedSolitaireBoard(On.class_198.orig_method_537 orig, bool quintessenceSigmar)
+	{
+		int RandomInt(int max) => class_269.field_2103.method_299(0, max);
+
+		if (!MainClass.currentCampaignIsRMC() || quintessenceSigmar) return orig(quintessenceSigmar);
+		if (sigmarWins_RMC == 0 || RandomInt(20000) == 69) return getSpecialSolitaireBoard();
+
+		// try to find solitaire-bitboards.dat
+		string subpath = "/Content/solitaire-bitboards.dat";
+		string filepath;
+		if (!MainClass.findModMetaFilepath("ReductiveMetallurgyCampaign", out filepath) || !File.Exists(filepath + subpath))
+		{
+			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'solitaire-bitboards.dat' in the folder '" + filepath + "\\Content\\'");
+			throw new Exception("getRandomizedSolitaireBoard: Solitaire data is missing.");
+		}
+
+		// first, pick a bitboard and generate a board template
+		HexIndex center = new HexIndex(5, 0);
+		List<HexIndex> marbleHexes = new();
+		using (BinaryReader binaryReader = new BinaryReader(new FileStream(filepath + subpath, FileMode.Open, FileAccess.Read)))
+		{
+			const int bytesPerBitboard = 16;
+			int bitboardCount = binaryReader.ReadInt32();
+
+			int boardID = RandomInt(bitboardCount);
+			binaryReader.BaseStream.Seek(boardID * bytesPerBitboard, SeekOrigin.Current);
+
+			bool mirrorBoard = RandomInt(2) == 0;
+			HexRotation rotation = new HexRotation(RandomInt(6));
+
+			for (int i = 0; i < 16; i++)
+			{
+				int boardbyte = binaryReader.ReadByte();
+				for (int j = 0; j < 8; j++)
+				{
+					if (boardbyte % 2 == 1)
+					{
+						// add hex
+						int num = i * 8 + j;
+						int q = num / 11;
+						int r = (num % 11) - 5;
+						if (mirrorBoard)
+						{
+							q += r;
+							r = -r;
+						}
+						marbleHexes.Add(new HexIndex(q, r).RotatedAround(center, rotation));
+					}
+					boardbyte = boardbyte >> 1;
+				}
+			}
+		}
+
+		// "solve" the board template by generating a move history
+		// for convenience, we will assume only one Gold marble exists, and that it is always the center of the board
+		// additionally, we assume there are no Quintessence marbles, so every match is always a *pair* of marbles
+		bool HexIsChoosable(HexIndex hex)
+		{
+			// based on method_1881
+			int val2 = 0;
+			int val1 = 0;
+			for (int index = 0; index < 2; ++index)
+			{
+				foreach (HexIndex adjacentOffset in HexIndex.AdjacentOffsets)
+				{
+					if (marbleHexes.Contains(hex + adjacentOffset))
+					{
+						val2 = 0;
+					}
+					else
+					{
+						val2++;
+						val1 = Math.Max(val1, val2);
+					}
+				}
+			}
+			return val1 >= 3;
+		};
+
+		List<Tuple<HexIndex,HexIndex>> moveHistory = new();
+		while (marbleHexes.Count > 0)
+		{
+			// find all marbles that could be chosen for the next move
+			List <HexIndex> choosableMarbles = new();
+			foreach (var hex in marbleHexes.Where(x => HexIsChoosable(x) && (x != center)))
+			{
+				choosableMarbles.Add(hex);
+			}
+			// choose the next move
+			if (choosableMarbles.Count >= 2)
+			{
+				// choose a random pair of marbles to be the next move
+				HexIndex marbleA, marbleB;
+				marbleA = choosableMarbles[RandomInt(choosableMarbles.Count)];
+				choosableMarbles.Remove(marbleA); // don't accidentally choose A again when choosing B!
+				marbleB = choosableMarbles[RandomInt(choosableMarbles.Count)];
+				moveHistory.Add(new Tuple<HexIndex, HexIndex>(marbleA, marbleB));
+				marbleHexes.Remove(marbleA);
+				marbleHexes.Remove(marbleB);
+			}
+			else if (HexIsChoosable(center))
+			{
+				// only option is to choose Gold as our next move
+				moveHistory.Add(new Tuple<HexIndex, HexIndex>(center, center));
+				marbleHexes.Remove(center);
+			}
+			else
+			{
+				Logger.Log("[ReductiveMetallurgyCampaign] Encountered a board-template state where no move is possible:");
+				foreach (var hex in marbleHexes)
+				{
+					Logger.Log("    " + hex.Q + "," + hex.R);
+				}
+				throw new Exception("GetRandomizedSolitaireBoard: Impossible unsolvable state reached.");
+			}
+		}
+
+		// reverse the list, so moveHistory[0] is the LAST move made to solve the board
+		moveHistory.Reverse();
+		
+		// generate "marble bags" that store the moves to be made
+		List<Tuple<AtomType, AtomType>> saltlikeBag = new();
+		List<Tuple<AtomType, AtomType>> metalBag = new();
+
+		// put animismus matches in the saltlikeBag
+		for (int i = 0; i < 2; i++)
+		{
+			saltlikeBag.Add(new Tuple<AtomType, AtomType>(getAtomType(8), getAtomType(9)));
+		}
+		int[] cardinals = new int[5] { 4, 6, 6, 6, 6 }; // salt, air, water, fire, earth
+
+		// put salt matches in the saltlikeBag
+		while (cardinals[0] > 0)
+		{
+			cardinals[0] -= 2;
+			int match = RandomInt(5);
+			if (match == 0)
+			{
+				saltlikeBag.Add(new Tuple<AtomType, AtomType>(getAtomType(10), getAtomType(10)));
+			}
+			else
+			{	
+				cardinals[match] -= 2;
+				saltlikeBag.Add(new Tuple<AtomType, AtomType>(getAtomType(10), getAtomType(10 + match)));
+				saltlikeBag.Add(new Tuple<AtomType, AtomType>(getAtomType(10), getAtomType(10 + match)));
+			}
+		}
+
+		// put the remaining cardinal matches in the saltlikeBag
+		for (int i = 1; i < 5; i++)
+		{
+			while (cardinals[i] > 0)
+			{
+				cardinals[i] -= 2;
+				saltlikeBag.Add(new Tuple<AtomType, AtomType>(getAtomType(10 + i), getAtomType(10 + i)));
+			}
+		}
+
+		// decide how many of each metal we'll have on the board
+		// we are biased to adding more iron and copper
+		int metalsToAdd = 12;
+		int[] metals = new int[6] { 0, 0, 0, 0, 0, 0 };
+		int[] metalTable = new int[] {1,2,3,3,4,4,5};
+
+		while (metalsToAdd > 0)
+		{
+			metalsToAdd -= 2;
+			var pick = metalTable[RandomInt(metalTable.Length)];
+			metals[pick]++;
+		}
+
+		// add the non-Gold metals into the metalBag, from Silver to Lead
+		// we need to insert them in order, since we must solve them in order!
+		for (int i = 5; i > 0; i--)
+		{
+			// generate temporary bag of marbles containing a specific tier of metal
+			List<Tuple<AtomType, AtomType>> tempBag = new() { new Tuple<AtomType, AtomType>(getAtomType(i), getAtomType(7)) };
+			while (metals[i] > 0)
+			{
+				metals[i]--;
+				// add a projection match, or a purification match?
+				if (RandomInt(2) == 0)
+				{
+					tempBag.Add(new Tuple<AtomType, AtomType>(getAtomType(i), getAtomType(7)));
+				}
+				else
+				{
+					tempBag.Add(new Tuple<AtomType, AtomType>(getAtomType(i), getAtomType(i)));
+				}
+			}
+
+			// randomly pour the tempBag into the metalBag
+			while (tempBag.Count > 0)
+			{
+				var pick = tempBag[RandomInt(tempBag.Count)];
+				metalBag.Add(pick);
+				tempBag.Remove(pick);
+			}
+		}
+
+		// "unsolve" the board by using the move history in reverse to place marbles
+		SolitaireGameState solitaireGameState = new SolitaireGameState();
+
+		bool placedGold = false;
+		for (int m = 0; m < moveHistory.Count; m++)
+		{
+			var hexes = moveHistory[m];
+
+			if (hexes.Item1 == hexes.Item2)
+			{
+				// the Gold match!
+				solitaireGameState.field_3864.Add(hexes.Item1, getAtomType(6));
+				placedGold = true;
+				continue;
+			}
+			// otherwise, a regular match
+			int pick = RandomInt(saltlikeBag.Count + metalBag.Count);
+			if (!placedGold)
+			{
+				pick = RandomInt(saltlikeBag.Count);
+			}
+
+			Tuple<AtomType, AtomType> match;
+			if (pick < saltlikeBag.Count)
+			{
+				match = saltlikeBag[pick];
+				saltlikeBag.Remove(match);
+			}
+			else
+			{
+				match = metalBag[0];
+				metalBag.Remove(match);
+			}
+			solitaireGameState.field_3864.Add(hexes.Item1, match.Item1);
+			solitaireGameState.field_3864.Add(hexes.Item2, match.Item2);
+		}
+
+		// tada! randomized board
+		return solitaireGameState;
 	}
 }

@@ -69,9 +69,9 @@ public class MainClass : QuintessentialMod
 	};
 
 
-	private static bool findModMetaFilepath(string name, out string filepath)
+	public static bool findModMetaFilepath(string name, out string filepath)
 	{
-		filepath = "";
+		filepath = "<missing mod directory>";
 		foreach (ModMeta mod in QuintessentialLoader.Mods)
 		{
 			if (mod.Name == name)
@@ -533,7 +533,7 @@ public class MainClass : QuintessentialMod
 			class_172.field_1670.Add(character.ID, class230);
 		}
 	}
-	//benis
+	
 	public override void PostLoad()
 	{
 		SigmarGardenPatcher.Load();
