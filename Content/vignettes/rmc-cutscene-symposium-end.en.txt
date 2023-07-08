@@ -1,18 +1,18 @@
-Portraits: Clara, Saverio (Right)
+Portraits: Clara, Saverio (Left)
 
 Clara: So what did our reductive metallurgist think of the latest that alchemy has to offer?
-Saverio (Right): 'Reductive metallurgist'... it rather feels this title is set to make me just 'that metals fellow'.
+Saverio (Left): 'Reductive metallurgist'... it rather feels this title is set to make me just 'that metals fellow'.
 Clara: Well, you have done good work in the field. Try it on for a bit - though I'm sure someone like yourself will get bored of the feeling, regardless.
-Saverio (Right): Possibly. At any rate, I found Symposium to be the field in microcosm: some too focused on ambition and the appearance of prestige, others genuinely interested in furthering alchemy.
-Saverio (Right): Strangely, I feel motivated by both of them.
+Saverio (Left): Possibly. At any rate, I found Symposium to be the field in microcosm: some too focused on ambition and the appearance of prestige, others genuinely interested in furthering alchemy.
+Saverio (Left): Strangely, I feel motivated by both of them.
 Clara: Glad to see my support was well-placed!
 Clara: Though I suppose you have no interest in doing alchemical research at a Great House.
-Saverio (Right): Is House Soria not already gainfully employing alchemists?
+Saverio (Left): Is House Soria not already gainfully employing alchemists?
 Clara: We are, but they are quite dull characters. With enough attention, gaps could be identified.
-Saverio (Right): Interesting, but as much as I appreciate the offer, you are right that I prefer the independence.
-Saverio (Right): Just send us some orders - our workshop will be happy to have trusted partners.
+Saverio (Left): Interesting, but as much as I appreciate the offer, you are right that I prefer the independence.
+Saverio (Left): Just send us some orders - our workshop will be happy to have trusted partners.
 Clara: I will keep it in mind. What is next for Saverio Daas, then?
-Saverio (Right): Invariant metal. A very special alloy, if I can make sense of its composition.
+Saverio (Left): Invariant metal. A very special alloy, if I can make sense of its composition.
 Clara: With such a name, I am already intrigued. Perhaps it will bring you to another Symposium!
-Saverio (Right): Perhaps! Take care, Clara.
+Saverio (Left): Perhaps! Take care, Clara.
 Clara: And to you as well.

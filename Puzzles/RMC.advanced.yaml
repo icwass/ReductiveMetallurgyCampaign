@@ -83,7 +83,7 @@ Cutscenes:
 - ID: rmc-cutscene-presentation
   Location: Alchemical Symposium
   Background: backgrounds/symposium
-  Music: Story1
+  Music: Story2
 - ID: rmc-cutscene-symposium-end
   Location: Alchemical Symposium
   Background: backgrounds/symposium
@@ -93,15 +93,15 @@ Documents:
 - ID: rmc-document-debug
   Texture: documents/resume
   DrawItems:
-  - Position: 100, 820
+  - Position: 120, 820
 - ID: rmc-document-debug-wait
   Texture: documents/resume
   DrawItems:
-  - Position: 100, 820
+  - Position: 120, 820
 - ID: rmc-document-debug-locked
   Texture: documents/resume
   DrawItems:
-  - Position: 100, 820
+  - Position: 120, 820
 - ID: rmc-document-resume # needs to be the same as the puzzleID it needs to replace
   Texture: documents/resume # the base texture
   DrawItems:
