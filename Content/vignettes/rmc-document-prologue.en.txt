@@ -1,0 +1,13 @@
+﻿[DO NOT PARSE]
+
+REDUCTIVE METALLURGY
+
+#Hey there, welcome to our little mod!
+
+This project was first conceived back in May 2022 with the goal of being the first large mod for Opus Magnum. The team was initially just mr puzzel and I, but zorflax was asked to join at the start of the year. Before this, some basic ideas were being tossed around but progress stalled in July as other projects of mine took precedence. Once we got started up again in late Februaray 2023, progress has been steady, reaching the point where we are today.
+
+The mod currently consists of 3 chapters, but the final version will contain one more chapter. We aren't settled on this one yet so you'll have to wait on it! Currently planning to have it done before the end of the month. You'll notice some other missing and incomplete bits here and there, but the dialogue and puzzles are ready for consumption and testing.
+
+Please let us know what you think, and have fun going through it!
+
+-RP0

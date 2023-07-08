@@ -6,8 +6,8 @@ Chapters:
   Place: "House Van Tassen"
   Background: textures/puzzle_select/background_1
   Entries:
-  - ID: rmc-document-rejection-notes
-    Title: "Notes on Metal Rejection"
+  - ID: rmc-document-prologue
+    Title: "Welcome to Reductive Metallurgy!"
     Puzzle: empty
     Requires: ""
   - ID: rmc-cutscene-prologue
