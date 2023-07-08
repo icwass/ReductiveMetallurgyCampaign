@@ -301,8 +301,7 @@ public class MainClass : QuintessentialMod
 						HexIndex[] hexIndexArray = new HexIndex[]
 						{
 							new HexIndex(0, 0),
-							new HexIndex(4, 0),
-							new HexIndex(8, 0)
+							new HexIndex(4, 0)
 						};
 						foreach (var hexIndex2 in hexIndexArray)
 						{
@@ -315,13 +314,9 @@ public class MainClass : QuintessentialMod
 						class157List.Add(new class_157()
 						{
 							field_1597 = PolymerInput.partTypeBerloChain,
-							field_1598 = hexIndex1 + new HexIndex(12, -2),
+							field_1598 = hexIndex1 + new HexIndex(8, -2),
 							field_1602 = new HexIndex[]
 							{
-								hexIndex1 + new HexIndex(12, -2),
-								hexIndex1 + new HexIndex(11, -2),
-								hexIndex1 + new HexIndex(10, -2),
-								hexIndex1 + new HexIndex(9, -2),
 								hexIndex1 + new HexIndex(8, -2),
 								hexIndex1 + new HexIndex(7, -2),
 								hexIndex1 + new HexIndex(6, -2),
@@ -340,11 +335,7 @@ public class MainClass : QuintessentialMod
 								hexIndex1 + new HexIndex(3, 2),
 								hexIndex1 + new HexIndex(4, 2),
 								hexIndex1 + new HexIndex(5, 2),
-								hexIndex1 + new HexIndex(6, 2),
-								hexIndex1 + new HexIndex(7, 2),
-								hexIndex1 + new HexIndex(8, 2),
-								hexIndex1 + new HexIndex(9, 2),
-								hexIndex1 + new HexIndex(10, 2)
+								hexIndex1 + new HexIndex(6, 2)
 							}
 						});
 						puzzle.field_2772 = new class_157[class157List.Count];

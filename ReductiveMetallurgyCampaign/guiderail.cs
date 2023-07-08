@@ -60,9 +60,8 @@ public static class PolymerInput
 			field_1529 = class_134.method_253("Guiding Rail", string.Empty),
 			field_1530 = class_134.method_253("This rail helps guide the input polymer into the machine. Arms can be mounted on it, but atoms are not allowed to pass through it.", string.Empty),
 			field_1532 = (enum_2)2,
-			field_1538 = new class_222[2]
+			field_1538 = new class_222[]
 			{
-				new class_222(new HexIndex(-9, 2), new HexIndex(-8, 2), (enum_126) 1, (Maybe<AtomType>) struct_18.field_1431),
 				new class_222(new HexIndex(-5, 2), new HexIndex(-4, 2), (enum_126) 1, (Maybe<AtomType>) struct_18.field_1431)
 			},
 			field_1539 = true,
@@ -102,10 +101,8 @@ public static class PolymerInput
 				class_135.method_271(tex_hole, Color.White.WithAlpha(alpha), vec2.Rounded());
 			}
 			var holes = new Dictionary<HexIndex, float>() {
-				{new HexIndex(-10, 1), 1f },
-				{new HexIndex(-8,  1), 0.8f },
-				{new HexIndex(-6,  1), 0.7f },
-				{new HexIndex(-4,  1), 0.6f },
+				{new HexIndex(-6,  1), 1f },
+				{new HexIndex(-4,  1), 0.75f },
 				{new HexIndex(-2,  1), 0.5f }
 			};
 			foreach (var hole in holes)
