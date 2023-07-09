@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
@@ -41,6 +42,9 @@ public class Document
 	string ID;
 	Texture baseTexture;
 	Action<Language, string[]> drawFunction;
+
+	static NumberStyles style = NumberStyles.Any;
+	static NumberFormatInfo format = CultureInfo.InvariantCulture.NumberFormat;
 
 	//==================================================//
 	// constructors
@@ -176,7 +180,7 @@ public class Document
 			{
 				float x, y;
 				string pos = item.Position;
-				if (float.TryParse(pos.Split(',')[0], out x) && float.TryParse(pos.Split(',')[1], out y))
+				if (float.TryParse(pos.Split(',')[0], style, format, out x) && float.TryParse(pos.Split(',')[1], style, format, out y))
 				{
 					this.position = new Vector2(x, y);
 				}
@@ -189,11 +193,11 @@ public class Document
 				this.color = Color.White;
 				conditionalSet(item.Color, ref this.color, x => Color.FromHex(int.Parse(x)));
 				float temp = 0f;
-				conditionalSet(item.Rotation, ref this.rotation, x => temp, float.TryParse(item.Rotation, out temp));
+				conditionalSet(item.Rotation, ref this.rotation, x => temp, float.TryParse(item.Rotation, style, format, out temp));
 				temp = 1f;
-				conditionalSet(item.Scale, ref this.scale, x => temp, float.TryParse(item.Scale, out temp));
+				conditionalSet(item.Scale, ref this.scale, x => temp, float.TryParse(item.Scale, style, format, out temp));
 				temp = 1f;
-				conditionalSet(item.Alpha, ref this.alpha, x => temp, float.TryParse(item.Alpha, out temp));
+				conditionalSet(item.Alpha, ref this.alpha, x => temp, float.TryParse(item.Alpha, style, format, out temp));
 			}
 			else
 			{
@@ -205,8 +209,8 @@ public class Document
 				}
 				conditionalSet(item.Font, ref this.font, x => getFont(item.Font));
 				conditionalSet(item.Color, ref this.color, x => Color.FromHex(int.Parse(x)));
-				conditionalSet(item.LineSpacing, ref this.lineSpacing, x => float.Parse(x));
-				conditionalSet(item.ColumnWidth, ref this.columnWidth, x => float.Parse(x));
+				conditionalSet(item.LineSpacing, ref this.lineSpacing, x => float.Parse(x, style, format));
+				conditionalSet(item.ColumnWidth, ref this.columnWidth, x => float.Parse(x, style, format));
 				this.handwritten = item.Handwritten;
 			}
 		}
