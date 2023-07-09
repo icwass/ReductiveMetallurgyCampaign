@@ -504,15 +504,6 @@ public class MainClass : QuintessentialMod
 	{
 		if (specialTipsPaths.Contains(filePath))
 		{
-			Logger.Log("[Solution_Method_1958] Looking for an RMC tip: " + filePath);
-			if (!Puzzles.method_1284("rmc-sandbox").method_1085())
-			{
-				Logger.Log("    WTF! Couldn't find rmc-sandbox !");
-				foreach (var puzzle in Puzzles.method_1282())
-				{
-					Logger.Log("      " + puzzle.field_2766);
-				}
-			};
 			foreach (var dir in QuintessentialLoader.ModContentDirectories)
 			{
 				Logger.Log("    " + dir);
