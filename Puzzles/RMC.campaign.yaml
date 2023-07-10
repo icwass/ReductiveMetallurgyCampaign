@@ -47,6 +47,10 @@ Chapters:
     Title: Patina Processing
     Puzzle: rmc-patina-processing
     Requires: "rmc-copper-synthesis"
+  - ID: rmc-saverio-transformer
+    Title: "Saverio's Transformer"
+    Puzzle: rmc-saverio-transformer
+    Requires: "rmc-copper-synthesis"
   - ID: rmc-galena-separation
     Title: Galena Separation
     Puzzle: rmc-galena-separation
@@ -182,10 +186,6 @@ Chapters:
   - ID: rmc-reactive-litharge
     Title: "Reactive Litharge"
     Puzzle: rmc-reactive-litharge
-    Requires: ""
-  - ID: rmc-saverio-transformer
-    Title: "Saverio Transformer"
-    Puzzle: rmc-saverio-transformer
     Requires: ""
   - ID: rmc-welded-elements
     Title: "Welded Elements"
