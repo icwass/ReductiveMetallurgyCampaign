@@ -251,9 +251,11 @@ Puzzles:
   Music: Solving1
   Inputs:
   - Elemental Gold
+  - Elemental Silver
+  - Elemental Copper
   Outputs:
-  - Elemental Lead
-  - Elemental Lead
+  - Elemental Iron
+  - Elemental Tin
   - Elemental Lead
 ##########
 - ID: rmc-mysterious-crystal
@@ -284,7 +286,8 @@ Puzzles:
   Music: Solving5
   Inputs:
   - Elemental Air
-  - Elemental Iron
+  - Elemental Air
+  - Elemental Copper
   - Elemental Copper
   Outputs:
   - Silver Phosphate
@@ -295,8 +298,7 @@ Puzzles:
   - Tinstone
   Outputs:
   - Distilled Alcohol
-  - Elemental Lead
-  - Elemental Lead
+  - Elemental Tin
 ##########
 ##########
 ##########
@@ -339,10 +341,8 @@ Puzzles:
 - ID: rmc-invariant-metal
   Music: Solving5
   Inputs:
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
+  - Elemental Tin
+  - Elemental Tin
   Outputs:
   - Invariant Metal
 ##########
