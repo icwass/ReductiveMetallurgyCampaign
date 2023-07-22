@@ -1,0 +1,16 @@
+Pugano (Right): What are you working on now?
+Saverio (Left): After that reactive litharge order, I was taken by a fascinating idea.
+Saverio (Left): From higher metals, we can extract quicksilver. But from base metals, we can purify to higher metals.
+Saverio (Left): Surely this means we could transmute metal into quicksilver, en masse!
+Pugano (Right): But imagine the consequences! Ignoring the losses from purification, consider the long-term effects as metal reserves dwindle and quicksilver supplies saturate!
+Saverio (Left): And yet I am compelled. Are we not pioneers of the alchemical frontier?
+
+-----------
+
+Saverio (Left): Fantastic, it works!
+Saverio (Left): Hey, why did you shut it off?
+Pugano (Right): You got it working, that should satisfy you. For the sake of inventory, I'm not letting you transform all the metal away.
+Pugano (Right): When the lead runs out, will you dare use the iron and copper?
+Saverio (Left): _Egads_.
+Saverio (Left): You're right! This contraption could be dangerous in the wrong hands.
+Pugano (Right): It would be absolutely devastating.

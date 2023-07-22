@@ -348,3 +348,66 @@ Puzzles:
 ##########
 ##########
 ##########
+- ID: rmc-lesson-proliferation
+  Music: Solving6
+  Inputs:
+  - Elemental Gold
+  - Elemental Quicksilver
+  Outputs:
+  - Elemental Gold
+  - Elemental Iron
+  - Elemental Tin
+  - Elemental Lead
+##########
+##########
+##########
+- ID: rmc-golden-thread-recycling
+  Music: Solving6
+  Inputs:
+  - Golden Thread
+  Outputs:
+  - Very Dark Thread
+##########
+- ID: rmc-precision-machine-oil-cabinet
+  Music: Solving6
+  Inputs:
+  - Elemental Water
+  - Elemental Iron
+  Outputs:
+  - Precision Machine Oil
+##########
+- ID: rmc-reactive-litharge
+  Music: Solving5
+  Inputs:
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Lead
+  Outputs:
+  - Reactive Litharge
+##########
+- ID: rmc-ravari-repine
+  Music: Solving5
+  Outputs:
+  - Elemental Lead
+  - Elemental Lead
+  - Elemental Quicksilver
+##########
+- ID: rmc-saverio-transformer
+  Music: Solving1
+  Inputs:
+  - Elemental Lead
+  Outputs:
+  - Elemental Quicksilver
+##########
+- ID: rmc-pugano-transformer
+  Music: Solving4
+  Inputs:
+  - Fragrant Fragment
+  - Elemental Quicksilver
+  Outputs:
+  - Elemental Lead
+##########
