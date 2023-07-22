@@ -76,13 +76,13 @@ Chapters:
     Title: Sigmar's Garden
     Puzzle: empty
     Requires: "rmc-lesson-deposition"
-  - ID: rmc-mysterious-crystal
-    Title: "Mysterious Crystal"
-    Puzzle: rmc-mysterious-crystal
-    Requires: "rmc-lesson-deposition"
   - ID: rmc-solder-wire
     Title: Solder Wire
     Puzzle: rmc-solder-wire
+    Requires: "rmc-lesson-deposition"
+  - ID: rmc-mysterious-crystal
+    Title: "Mysterious Crystal"
+    Puzzle: rmc-mysterious-crystal
     Requires: "rmc-lesson-deposition"
   - ID: rmc-plumbous-wheel
     Title: Plumbous Wheel
@@ -141,14 +141,14 @@ Chapters:
     Title: Invariant Metal
     Puzzle: rmc-invariant-metal
     Requires: "rmc-sanitizing-dust"
-  - ID: rmc-document-debug-wait
-    Title: "More content coming soon!"
-    Puzzle: empty
-    Requires: "rmc-invariant-metal"
-  - ID: rmc-document-debug-locked
-    Title: "CH3 END DOC"
-    Puzzle: empty
-    Requires: "keep this locked forever"
+#  - ID: rmc-document-debug-wait
+#    Title: "More content coming soon!"
+#    Puzzle: empty
+#    Requires: "rmc-invariant-metal"
+#  - ID: rmc-document-debug-locked
+#    Title: "CH3 END DOC"
+#    Puzzle: empty
+#    Requires: "keep this locked forever"    
 - Title: Chapter IV
   Subtitle: Pushing the Boundaries
   Place: "The Greathall, House Van Tassen"
