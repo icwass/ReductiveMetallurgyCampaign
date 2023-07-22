@@ -2,7 +2,7 @@ Saverio (Left): According to my notes, a copper-iron ring has the lowest variati
 Saverio (Left): Unfortunately it is not perfect. If only there was a metal with properties between iron and copper, but no such metal exists.
 Saverio (Left): I will change the formulation to have iron at the center. Should change the proportions subtly to have greater strength.
 Saverio (Left): This will take quite a bit of quicksilver...
-Saverio (Right): Jay! Have you finished cleaning up that lead yet?
+Saverio (Right): Jay! Have you finished cleaning up that tin yet?
 Pugano (Left): Just about. Do you need the reagents prepared?
 Saverio (Right): Certainly. I have an idea.
 
