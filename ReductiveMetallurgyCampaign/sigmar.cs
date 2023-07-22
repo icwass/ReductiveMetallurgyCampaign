@@ -70,8 +70,6 @@ public static class SigmarGardenPatcher
 		On.class_16.method_50 += SolitaireRulesScreen_Method_50;
 		On.class_198.method_537 += getRandomizedSolitaireBoard;
 
-
-
 		nullAtom = new AtomType()
 		{
 			field_2283 = (byte)0,
@@ -86,7 +84,6 @@ public static class SigmarGardenPatcher
 				field_995 = class_238.field_1989.field_81.field_597
 			}
 		};
-
 
 		hook_SolitaireScreen_method_1889 = new Hook(MainClass.PrivateMethod<SolitaireScreen> ("method_1889"), OnSolitaireScreen_Method_1889);
 		hook_SolitaireScreen_method_1890 = new Hook(MainClass.PrivateMethod<SolitaireScreen>("method_1890"), OnSolitaireScreen_Method_1890);
@@ -194,7 +191,7 @@ public static class SigmarGardenPatcher
 		class412.field_3884 = (class_115.field_1433 / 2 - vector2_1 / 2 + new Vector2(-2f, -11f)).Rounded();
 
 
-		void Method_1901(AtomType atomType, Vector2 pos)
+		int Method_1901(AtomType atomType, Vector2 pos)
 		{
 			SolitaireScreen.class_413 class413 = new SolitaireScreen.class_413();
 			class413.field_3889 = atomType;
@@ -217,23 +214,37 @@ public static class SigmarGardenPatcher
 			Font crimson_10_5 = class_238.field_1990.field_2141;
 			pos += new Vector2(19f, 12f);
 			class_135.method_290(total, pos, crimson_10_5, color, (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, 0, new Color(), null, int.MaxValue, false, true);
+			return count;
 		}
+
+		int metalsLeft = 0;
 
 		Vector2 vector2_2 = class412.field_3884 + new Vector2(980f, sbyte.MaxValue);
 		vector2_2.X += 30f;
 		//draw quicksilver
+		Vector2 quicksilverPos = vector2_2;
 		vector2_2.X += 25f;
 		//draw pip
 		vector2_2.X += 29f;
-		Method_1901(class_175.field_1681, vector2_2); // lead
+		metalsLeft += Method_1901(class_175.field_1681, vector2_2); // lead
 		vector2_2.X += 40f;
-		Method_1901(class_175.field_1683, vector2_2); // tin
+		metalsLeft += Method_1901(class_175.field_1683, vector2_2); // tin
 		vector2_2.X += 40f;
-		Method_1901(class_175.field_1684, vector2_2); // iron
+		metalsLeft += Method_1901(class_175.field_1684, vector2_2); // iron
 		vector2_2.X += 40f;
-		Method_1901(class_175.field_1682, vector2_2); // copper
+		metalsLeft += Method_1901(class_175.field_1682, vector2_2); // copper
 		vector2_2.X += 40f;
-		Method_1901(class_175.field_1685, vector2_2); // silver
+		metalsLeft += Method_1901(class_175.field_1685, vector2_2); // silver
+
+		if (MainClass.DisplayMetalsRemaining)
+		{
+			// draw metalsLeft above quicksilver
+			Color color = metalsLeft == 0 ? class_181.field_1718.WithAlpha(0.2f) : class_181.field_1718;
+			string total = "(" + metalsLeft.ToString() + ")";
+			Font crimson_9_75 = class_238.field_1990.field_2140;
+			quicksilverPos += new Vector2(-19f, 15f);
+			class_135.method_290(total, quicksilverPos, crimson_9_75, color, (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, 0, new Color(), null, int.MaxValue, false, true);
+		}
 	}
 
 	public static void SolitaireRulesScreen_Method_50(On.class_16.orig_method_50 orig, class_16 screen_self, float timeDelta)

@@ -1,7 +1,7 @@
 ﻿using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 using Quintessential;
-//using Quintessential.Settings;
+using Quintessential.Settings;
 //using SDL2;
 using System;
 using System.IO;
@@ -56,6 +56,22 @@ public class MainClass : QuintessentialMod
 	static Texture return_button, return_button_hover;
 
 	public static MethodInfo PrivateMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
+
+	// settings
+	public static bool DisplayMetalsRemaining = true;
+	public override Type SettingsType => typeof(MySettings);
+	public class MySettings
+	{
+		[SettingsLabel("Display metals remaining in the new Sigmar's Garden.")]
+		public bool DisplayMetalsRemaining = true;
+	}
+	public override void ApplySettings()
+	{
+		base.ApplySettings();
+
+		var SET = (MySettings)Settings;
+		DisplayMetalsRemaining = SET.DisplayMetalsRemaining;
+	}
 
 	public static bool currentCampaignIsRMC() => campaign_self == Campaigns.field_2330;
 
@@ -476,6 +492,7 @@ public class MainClass : QuintessentialMod
 
 	public override void Load()
 	{
+		Settings = new MySettings();
 		Document.Load();
 		//BoardEditorScreen.Load();
 		CutscenePatcher.Load();
