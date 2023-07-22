@@ -178,9 +178,9 @@ public class MainClass : QuintessentialMod
 		{
 			field_1899 = "RMCT002",
 			field_1900 = class_134.method_253("Glyph of Deposition", string.Empty),
-			field_1901 = class_134.method_253("The *glyph of deposition* transmutes one atom of metal into two atoms of a lower form.\n\nNote that the resulting metals need not be of the next lower form, nor need they be the same metal.", string.Empty),
+			field_1901 = class_134.method_253("The *glyph of deposition* transmutes one atom of metal into two atoms of a lower form.\n\nNote that the resulting metals together have the same 'metallicity' as the original.", string.Empty),
 			field_1902 = "RMCdeposition",
-			field_1904 = new Vector2(0f, -40f)
+			field_1904 = new Vector2(0f, 0f)
 		};
 		Tip tipProliferation = new Tip()
 		{

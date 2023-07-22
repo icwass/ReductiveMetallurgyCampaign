@@ -47,6 +47,10 @@ Chapters:
     Title: Patina Processing
     Puzzle: rmc-patina-processing
     Requires: "rmc-copper-synthesis"
+  - ID: rmc-saverio-transformer
+    Title: "Saverio's Transformer"
+    Puzzle: rmc-saverio-transformer
+    Requires: "rmc-copper-synthesis"
   - ID: rmc-galena-separation
     Title: Galena Separation
     Puzzle: rmc-galena-separation
@@ -145,3 +149,49 @@ Chapters:
     Title: "CH3 END DOC"
     Puzzle: empty
     Requires: "keep this locked forever"
+- Title: Chapter IV
+  Subtitle: Pushing the Boundaries
+  Place: "The Greathall, House Van Tassen"
+  Background: textures/cinematic/backgrounds/greathall_a
+  Entries:
+  - ID: rmc-lesson-proliferation
+    Title: "Lesson: Proliferation"
+    Puzzle: rmc-lesson-proliferation
+    Requires: ""
+  - ID: rmc-sigmars-garden-1
+    Title: Sigmar's Garden
+    Puzzle: empty
+    Requires: ""
+- Title: ayy lmao
+  Subtitle: Unused
+  Place: "Area 51"
+  Background: backgrounds/ayy
+  Entries:
+  - ID: rmc-golden-thread-recycling
+    Title: "Golden Thread Recycling"
+    Puzzle: rmc-golden-thread-recycling
+    Requires: ""
+  - ID: rmc-precision-machine-oil-cabinet
+    Title: "Precision Machine Oil Cabinet"
+    Puzzle: rmc-precision-machine-oil-cabinet
+    Requires: ""
+  - ID: rmc-pugano-transformer
+    Title: "Pugano Transformer"
+    Puzzle: rmc-pugano-transformer
+    Requires: ""
+  - ID: rmc-ravari-repine
+    Title: "Ravari's Repine"
+    Puzzle: rmc-ravari-repine
+    Requires: ""
+  - ID: rmc-reactive-litharge
+    Title: "Reactive Litharge"
+    Puzzle: rmc-reactive-litharge
+    Requires: ""
+  - ID: rmc-welded-elements
+    Title: "Welded Elements"
+    Puzzle: rmc-welded-elements
+    Requires: ""
+  - ID: rmc-document-debug
+    Title: "CH5 END DOC"
+    Puzzle: empty
+    Requires: ""
