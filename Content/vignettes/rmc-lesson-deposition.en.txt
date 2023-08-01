@@ -7,9 +7,9 @@ Pugano (Left): It's not quite a "split" - the metal is subjected to high pressur
 
 -----------
 
-Pugano (Left): As you can see, this results in two products of half the metallicity of the input. Alchemical laws remain intact.
+Pugano (Left): As you can see, this results in two products with half the metallicity of the input. Alchemical laws remain intact.
 Saverio (Right): Well, proper splitting can be a challenge for another time then.
-Pugano (Left): What do you mean, "another time"? The law of equivalent exchange is sacrosanct, you cannot break it!
+Pugano (Left): What do you mean, "another time"? The law of equivalent exchange isn't some pliable toy, you cannot break it!
 Saverio (Right): Just because it hasn't been done, doesn't mean it can't be done!
 Saverio (Right): Besides, the glyph of purification seems to _destroy_ metal. Where's the equivalent exchange there? 
 Saverio (Right): Have some faith, Jay - my research into copper-iron alloys will soon bear fruit. For now, focus on improving the glyph's reliability - it will be important for future endeavors.
