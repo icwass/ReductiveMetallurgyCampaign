@@ -27,14 +27,14 @@ Chapters:
     Title: "The Interview"
     Puzzle: empty
     Requires: "rmc-document-resume"
-  - ID: rmc-lesson-rejection
-    Title: "Lesson: Rejection"
-    Puzzle: rmc-lesson-rejection
+  - ID: rmc-practical-test
+    Title: "Practical Test"
+    Puzzle: rmc-practical-test
     Requires: "rmc-cutscene-interview"
   - ID: rmc-copper-synthesis
     Title: Copper Synthesis
     Puzzle: rmc-copper-synthesis
-    Requires: "rmc-lesson-rejection"
+    Requires: "rmc-practical-test"
   - ID: rmc-sigmars-garden-1
     Title: Sigmar's Garden
     Puzzle: empty
@@ -64,30 +64,30 @@ Chapters:
   Place: "Westington Shopping District"
   Background: backgrounds/shopping_district
   Entries:
-  - ID: rmc-document-deposition-notes
-    Title: "Notes on Metal Deposition"
+  - ID: rmc-document-deposition
+    Title: "Jay's Notes"
     Puzzle: empty
     Requires: ""
-  - ID: rmc-lesson-deposition
-    Title: "Lesson: Deposition"
-    Puzzle: rmc-lesson-deposition
-    Requires: "rmc-document-deposition-notes"
+  - ID: rmc-metal-deposition
+    Title: "Metal Deposition"
+    Puzzle: rmc-metal-deposition
+    Requires: "rmc-document-deposition"
   - ID: rmc-sigmars-garden-1
     Title: Sigmar's Garden
     Puzzle: empty
-    Requires: "rmc-lesson-deposition"
+    Requires: "rmc-metal-deposition"
   - ID: rmc-solder-wire
     Title: Solder Wire
     Puzzle: rmc-solder-wire
-    Requires: "rmc-lesson-deposition"
+    Requires: "rmc-metal-deposition"
   - ID: rmc-mysterious-crystal
     Title: "Mysterious Crystal"
     Puzzle: rmc-mysterious-crystal
-    Requires: "rmc-lesson-deposition"
+    Requires: "rmc-metal-deposition"
   - ID: rmc-plumbous-wheel
     Title: Plumbous Wheel
     Puzzle: rmc-plumbous-wheel
-    Requires: "rmc-lesson-deposition"
+    Requires: "rmc-metal-deposition"
   - ID: rmc-cutscene-meeting
     Title: "Meeting with the Great House"
     Puzzle: empty
@@ -141,7 +141,73 @@ Chapters:
     Title: Invariant Metal
     Puzzle: rmc-invariant-metal
     Requires: "rmc-sanitizing-dust"
-  - ID: rmc-document-debug-wait
-    Title: "More content coming soon!"
+- Title: Chapter IV
+  Subtitle: Breaking Laws
+  Place: "Saverio's Atelier"
+  Background: backgrounds/saverio_atelier
+  Entries:
+  - ID: rmc-document-proliferation
+    Title: "Saverio's Scrawlings"
     Puzzle: empty
-    Requires: "rmc-invariant-metal"
+    Requires: ""
+  - ID: rmc-sigmars-garden-1
+    Title: Sigmar's Garden
+    Puzzle: empty
+    Requires: "rmc-document-proliferation"    
+  - ID: rmc-ravari-renewal
+    Title: Ravari's Renewal
+    Puzzle: rmc-ravari-renewal
+    Requires: "rmc-document-proliferation"
+  - ID: rmc-amalgam-wire
+    Title: "Amalgam Wire"
+    Puzzle: rmc-amalgam-wire
+    Requires: "rmc-document-proliferation"
+  - ID: rmc-wood-preservative
+    Title: "Wood Preservative"
+    Puzzle: rmc-wood-preservative
+    Requires: "rmc-document-proliferation"
+  - ID: rmc-experimental-catalyst
+    Title: "Experimental Catalyst"
+    Puzzle: rmc-experimental-catalyst
+    Requires: "rmc-document-proliferation"
+  - ID: rmc-cutscene-reveal
+    Title: "The Reveal"
+    Puzzle: empty
+    Requires: 4
+  - ID: rmc-metallurgist-opus
+    Title: "Metallurgist's Opus"
+    Puzzle: rmc-metallurgist-opus
+    Requires: "rmc-cutscene-reveal"
+  - ID: rmc-cutscene-hubris
+    Title: "Hubris"
+    Puzzle: empty
+    Requires: "rmc-metallurgist-opus"
+  - ID: rmc-document-epilogue
+    Title: "Epilogue"
+    Puzzle: empty
+    Requires: "rmc-cutscene-hubris"
+- Title: Bonus
+  Subtitle: Unused Puzzles
+  Place: "Area 51"
+  Background: backgrounds/ayy
+  Entries:
+  - ID: rmc-golden-thread-recycling
+    Title: "Golden Thread Recycling"
+    Puzzle: rmc-golden-thread-recycling
+    Requires: ""
+  - ID: rmc-precision-machine-oil-cabinet
+    Title: "Precision Machine Oil Cabinet"
+    Puzzle: rmc-precision-machine-oil-cabinet
+    Requires: ""
+  - ID: rmc-pugano-transformer
+    Title: "Pugano's Transformer"
+    Puzzle: rmc-pugano-transformer
+    Requires: ""
+  - ID: rmc-reactive-litharge
+    Title: "Reactive Litharge"
+    Puzzle: rmc-reactive-litharge
+    Requires: ""
+  - ID: rmc-welded-elements
+    Title: "Welded Elements"
+    Puzzle: rmc-welded-elements
+    Requires: ""

@@ -88,6 +88,14 @@ Cutscenes:
   Location: Alchemical Symposium
   Background: backgrounds/symposium
   Music: Story1
+- ID: rmc-cutscene-reveal
+  Location: Saverio's Office
+  Background: backgrounds/saverio_office
+  Music: Story1
+- ID: rmc-cutscene-hubris
+  Location: Saverio's Office
+  Background: backgrounds/saverio_office
+  Music: Story1
 ##################################################
 Documents:
 - ID: rmc-document-debug
@@ -182,7 +190,7 @@ Documents:
     LineSpacing: 1.0
     ColumnWidth: 850
     Handwritten: false
-- ID: rmc-document-deposition-notes
+- ID: rmc-document-deposition
   Texture: textures/documents/letter_2
   DrawItems:
   - Position: 325.0, 520.0 
@@ -202,10 +210,30 @@ Documents:
     LineSpacing: 1.0
     ColumnWidth: 400.0
     Handwritten: false
+- ID: rmc-document-proliferation
+  Texture: textures/documents/letter_2
+  DrawItems:
+  - Position: 325.0, 520.0 
+    Font: "cormorant 18"
+    Color: 2299924 
+    Align: center 
+    LineSpacing: 1.0
+    ColumnWidth: 400.0
+    Handwritten: false
+- ID: rmc-document-epilogue
+  Texture: textures/documents/letter_2
+  DrawItems:
+  - Position: 325.0, 520.0 
+    Font: "cormorant 18"
+    Color: 2299924 
+    Align: center 
+    LineSpacing: 1.0
+    ColumnWidth: 400.0
+    Handwritten: false    
 ##################################################
 Puzzles:
 ##########
-- ID: rmc-lesson-rejection
+- ID: rmc-practical-test
   Music: Solving1
   Inputs:
   - Elemental Water
@@ -237,6 +265,13 @@ Puzzles:
   - Elemental Gold
   - Limbal Essence
 ##########
+- ID: rmc-saverio-transformer
+  Music: Solving5
+  Inputs:
+  - Elemental Lead
+  Outputs:
+  - Elemental Quicksilver
+##########
 - ID: rmc-galena-separation
   Music: Solving1
   Inputs:
@@ -247,7 +282,7 @@ Puzzles:
 ##########
 ##########
 ##########
-- ID: rmc-lesson-deposition
+- ID: rmc-metal-deposition
   Music: Solving1
   Inputs:
   - Elemental Gold
@@ -348,16 +383,39 @@ Puzzles:
 ##########
 ##########
 ##########
-- ID: rmc-lesson-proliferation
+- ID: rmc-ravari-renewal
   Music: Solving6
   Inputs:
-  - Elemental Gold
   - Elemental Quicksilver
   Outputs:
+  - Ravari's Wheel
+- ID: rmc-amalgam-wire
+  Music: Solving2
+  Inputs:
   - Elemental Gold
-  - Elemental Iron
-  - Elemental Tin
-  - Elemental Lead
+  Outputs:
+  - Amalgam Wire
+- ID: rmc-wood-preservative
+  Music: Solving3
+  Inputs:
+  - Elemental Copper
+  - Elemental Water
+  Outputs:
+  - Wood Preservative
+- ID: rmc-experimental-catalyst
+  Music: Solving4
+  Inputs:
+  - Elemental Salt
+  - Elemental Quicksilver
+  Outputs:
+  - Ravari's Wheel
+- ID: rmc-metallurgist-opus
+  Music: Solving1
+  Inputs:
+  - Elemental Copper
+  - Metallurgist's Opus
+  Outputs:
+  - Ravari's Wheel
 ##########
 ##########
 ##########
@@ -367,6 +425,7 @@ Puzzles:
   - Golden Thread
   Outputs:
   - Very Dark Thread
+  - Elemental Salt
 ##########
 - ID: rmc-precision-machine-oil-cabinet
   Music: Solving6
@@ -375,6 +434,14 @@ Puzzles:
   - Elemental Iron
   Outputs:
   - Precision Machine Oil
+##########
+- ID: rmc-pugano-transformer
+  Music: Solving4
+  Inputs:
+  - Fragrant Fragment
+  - Elemental Quicksilver
+  Outputs:
+  - Elemental Lead
 ##########
 - ID: rmc-reactive-litharge
   Music: Solving5
@@ -389,25 +456,14 @@ Puzzles:
   Outputs:
   - Reactive Litharge
 ##########
-- ID: rmc-ravari-repine
-  Music: Solving5
-  Outputs:
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Quicksilver
-##########
-- ID: rmc-saverio-transformer
+- ID: rmc-welded-elements
   Music: Solving1
   Inputs:
-  - Elemental Lead
+  - Elemental Quintessence
+  - Elemental Copper
   Outputs:
-  - Elemental Quicksilver
-##########
-- ID: rmc-pugano-transformer
-  Music: Solving4
-  Inputs:
-  - Fragrant Fragment
-  - Elemental Quicksilver
-  Outputs:
-  - Elemental Lead
+  - Leaden Air
+  - Leaden Fire
+  - Leaden Water
+  - Leaden Earth
 ##########
