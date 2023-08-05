@@ -531,7 +531,6 @@ public class MainClass : QuintessentialMod
 		{
 			foreach (var dir in QuintessentialLoader.ModContentDirectories)
 			{
-				Logger.Log("    " + dir);
 				try
 				{
 					return orig(Path.Combine(dir, filePath));
