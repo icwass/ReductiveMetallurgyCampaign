@@ -55,6 +55,14 @@ public class MainClass : QuintessentialMod
 	private static Puzzle optionsUnlock;
 	static Texture return_button, return_button_hover;
 
+	const string rejectionTutorialID = "rmc-practical-test"; //"rmc-lesson-rejection";
+	const string depositionTutorialID = "rmc-metal-deposition"; //"rmc-lesson-deposition";
+	const string proliferationTutorialID = "rmc-ravari-renewal"; //"rmc-lesson-proliferation";
+	const string ravariTutorialID_1 = "rmc-ravari-requiescence";
+	const string ravariTutorialID_2 = "rmc-energetic-capacitor";
+	const string polymerInputTutorialID = "rmc-synthesis-via-chain";
+	const string oldPolymerInputTutorialID = "rmc-golden-thread-recycling";
+
 	public static MethodInfo PrivateMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
 
 	// settings
@@ -202,7 +210,7 @@ public class MainClass : QuintessentialMod
 		{
 			field_1899 = "RMCT003",
 			field_1900 = class_134.method_253("Glyph of Proliferation", string.Empty),
-			field_1901 = class_134.method_253("The *glyph of proliferation* does some amazing shit. Wowzers!", string.Empty),
+			field_1901 = class_134.method_253("By using *Ravari's wheel* with the *glyph of proliferation*, quicksilver can be exchanged for any of the six planetary metals.\n\nOur current understanding of metallurgic theory will be completely revolutionized, once it is determined how this exchange actually occurs.", string.Empty),
 			field_1902 = "RMCproliferation",
 			field_1904 = new Vector2(-42f, 0f)
 		};
@@ -225,13 +233,13 @@ public class MainClass : QuintessentialMod
 
 		Dictionary<string, Tip> tipDict = new()
 		{
-			{"rmc-lesson-rejection", tipRejection },
-			{"rmc-lesson-deposition", tipDeposition },
-			{"rmc-lesson-proliferation", tipProliferation },
-			{"rmc-ravari-requiescence", tipRavari1 },
-			{"rmc-energetic-capacitor", tipRavari2 },
-			{"rmc-golden-thread-recycling", tipPolymerInput },
-			{"rmc-synthesis-via-chain", tipPolymerInput },
+			{rejectionTutorialID, tipRejection },
+			{depositionTutorialID, tipDeposition },
+			{proliferationTutorialID, tipProliferation },
+			{ravariTutorialID_1, tipRavari1 },
+			{ravariTutorialID_2, tipRavari2 },
+			{oldPolymerInputTutorialID, tipPolymerInput },
+			{polymerInputTutorialID, tipPolymerInput },
 		};
 		
 		Logger.Log("[ReductiveMetallurgyCampaign] Modifying campaign levels.");
@@ -260,12 +268,12 @@ public class MainClass : QuintessentialMod
 
 					if (tipDict.ContainsKey(puzzleID)) puzzle.field_2769 = tipDict[puzzleID];
 
-					if (puzzleID == "rmc-lesson-rejection")
+					if (puzzleID == rejectionTutorialID)
 					{
 						optionsUnlock = puzzle;
 					}
 
-					if (puzzleID == "rmc-golden-thread-recycling")
+					if (puzzleID == oldPolymerInputTutorialID)
 					{
 						HexIndex hexIndex1 = new HexIndex(1, 0);
 						List<class_157> class157List = new List<class_157>();
@@ -310,7 +318,7 @@ public class MainClass : QuintessentialMod
 						for (int index = 0; index < class157List.Count; ++index)
 							puzzle.field_2772[index] = class157List[index];
 					}
-					else if (puzzleID == "rmc-synthesis-via-chain")
+					else if (puzzleID == polymerInputTutorialID)
 					{
 						HexIndex hexIndex1 = new HexIndex(1, 0);
 						List<class_157> class157List = new List<class_157>();
@@ -585,7 +593,6 @@ public class MainClass : QuintessentialMod
 		{
 			// then we're doing the options code while in the RMC campaign
 			// hijack the inputs so we draw it our way
-
 			bool flag = GameLogic.field_2434.field_2451.method_573(optionsUnlock);
 			index = flag ? 1 : 0;
 			tuple = new Tuple<int, LocString>[2]

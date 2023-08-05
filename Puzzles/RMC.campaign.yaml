@@ -58,7 +58,7 @@ Chapters:
   - ID: rmc-cutscene-task
     Title: "The Task"
     Puzzle: empty
-    Requires: 5
+    Requires: 6
 - Title: Chapter II
   Subtitle: Business Booms
   Place: "Westington Shopping District"
@@ -161,15 +161,15 @@ Chapters:
   - ID: rmc-amalgam-wire
     Title: "Amalgam Wire"
     Puzzle: rmc-amalgam-wire
-    Requires: "rmc-document-proliferation"
+    Requires: "rmc-ravari-renewal"
   - ID: rmc-wood-preservative
     Title: "Wood Preservative"
     Puzzle: rmc-wood-preservative
-    Requires: "rmc-document-proliferation"
+    Requires: "rmc-ravari-renewal"
   - ID: rmc-experimental-catalyst
     Title: "Experimental Catalyst"
     Puzzle: rmc-experimental-catalyst
-    Requires: "rmc-document-proliferation"
+    Requires: "rmc-ravari-renewal"
   - ID: rmc-cutscene-reveal
     Title: "The Reveal"
     Puzzle: empty
