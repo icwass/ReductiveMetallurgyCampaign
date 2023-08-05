@@ -212,7 +212,7 @@ public class MainClass : QuintessentialMod
 			field_1900 = class_134.method_253("Glyph of Proliferation", string.Empty),
 			field_1901 = class_134.method_253("By using *Ravari's wheel* with the *glyph of proliferation*, quicksilver can be exchanged for any of the six planetary metals.\n\nOur current understanding of metallurgic theory will be completely revolutionized, once it is determined how this exchange actually occurs.", string.Empty),
 			field_1902 = "RMCproliferation",
-			field_1904 = new Vector2(-42f, 0f)
+			field_1904 = new Vector2(0f, -40f)
 		};
 		Tip tipRavari1 = new Tip()
 		{
