@@ -77,7 +77,7 @@ Cutscenes:
   Background: backgrounds/saverio_office
   Music: Story1
 - ID: rmc-cutscene-meeting
-  Location: Saverio's Office
+  Location: House Soria, Great Hall
   Background: backgrounds/saverio_office
   Music: Story1
 - ID: rmc-cutscene-presentation

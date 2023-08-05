@@ -3,7 +3,7 @@ Pugano (Left): Uh-huh.
 Saverio (Right): Dearest, beloved assistant.
 Pugano (Left): Okay, what did you do?
 Saverio (Right): You know that new glyph I gave you, that you've just started working with and understand perfectly?
-Pugano (Left): You mean the one _I_ got working three days ago?
+Pugano (Left): You mean the one _I_ got working just recently?
 Saverio (Right): Ancient history, my friend. A customer has bulk ordered some solder wire, so I'll need you to make some, and quickly.
 Pugano (Left): What, bu-... how do you suppose we find the material for this much wire?
 Saverio (Right): They _did_ give us an advance, use that. It should provide plenty of material.

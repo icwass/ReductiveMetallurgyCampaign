@@ -1,16 +1,3 @@
-Portraits: Anataeus, Concordia
+Portraits: Saverio (Left), Pugano (Left)
 
-Concordia: So the machine oil is _not_ ready for the observatory, then?
-Anataeus: Unfortunately, this product is composed of iron, not tin...
-Concordia: Sounds like the great Head Alchemist made a mistake!
-Anataeus: I'm not even sure how, but yes. Breaking this back down into individual components will be straightforward, but the metallic reagents are irrecoverable, to an extent.
-Anataeus: If only I hadn't over-projected the lead. At least the iron can be reused at a later point.
-Concordia: Don't you alchemists laud the principle of equivalent exchange? Why not just 'pop' the quicksilver out?
-Anataeus: It is never as easy as it seems. It would be like separating tea from water - expensive and hardly worth it. 
-Anataeus: Alchemical machinists could in theory create such a glyph, but the conventional wisdom is to simply not make mistakes in one's design.
-Concordia: Seems like quite the harsh convention. Surely some alchemist out there has grown tired of such costly mistakes.
-Anataeus: Perhaps. There is always the unfortunate option of converting wasted metal to gold, however.
-Anataeus: I could imagine some freelancer alchemist believing it a necessary development, but I think I'll just avoid this for next time.
-Concordia: Freelancers? For the dangerous act of alchemy? I'm surprised it would be allowed.
-Anataeus: Yes, the Imperial University has far more graduates than there are Great Houses. Some work under others, but a rare few strike out on their own to brazenly change the world.
-Concordia: It does sound quite exciting. I wonder what life is like for one.
+Pugano (Left): Work in progress.
