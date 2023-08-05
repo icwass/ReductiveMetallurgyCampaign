@@ -230,6 +230,23 @@ Documents:
     LineSpacing: 1.0
     ColumnWidth: 400.0
     Handwritten: false    
+- ID: rmc-document-bonus-notes
+  Texture: textures/documents/letter_6
+  DrawItems:
+  - Position: 200, 650
+    Font: "crimson 21"
+    Color: 2299924
+    Align: left
+    LineSpacing: 1.0
+    ColumnWidth: 400.0
+    Handwritten: false
+  - Position: 200, 600
+    Font: "crimson 15"
+    Color: 2299924
+    Align: left
+    LineSpacing: 1.0
+    ColumnWidth: 850
+    Handwritten: false
 ##################################################
 Puzzles:
 ##########
