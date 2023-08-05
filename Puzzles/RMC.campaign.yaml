@@ -191,6 +191,10 @@ Chapters:
   Place: "Area 51"
   Background: backgrounds/ayy
   Entries:
+  - ID: rmc-document-bonus-notes
+    Title: "Notes"
+    Puzzle: empty
+    Requires: ""
   - ID: rmc-golden-thread-recycling
     Title: "Golden Thread Recycling"
     Puzzle: rmc-golden-thread-recycling
