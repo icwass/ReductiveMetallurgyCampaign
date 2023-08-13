@@ -58,6 +58,7 @@ Characters:
 - ID: "Henley (Symposium)"
   Name: "Henley Servin"
   SmallPortrait: portraits/henley_small_symposium
+  LargePortrait: textures/portraits/anataeus_large
   Color: 6383694
 ##################################################
 SigmarsGardens:

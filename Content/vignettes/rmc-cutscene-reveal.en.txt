@@ -1,3 +1,13 @@
-Portraits: Saverio (Left)
+Portraits: Saverio (Left), Henley (Symposium), Pugano (Right)
 
-Saverio (Left): Now, what exactly have I been up to?
+Henley (Symposium): Quite the comfortable workshop you have here.
+Henley (Symposium): The University tends to be so operatic yet sterile, hardily a human environment.
+Saverio (Left): Yes, well, I'm rather keen on keeping the alchemy close at hand.
+Saverio (Left): Let me introduce my technical assistant, the marvelously proficient Jay Pugano.
+Pugano (Right): Please to meet an Imperial scholar. I hope your arrival today isn't because of some wild fantasy you heard from my employer here.
+Henley (Symposium): A pleasure. You may call me Henley. Saverio's simply suggested that he could use some interesting metallurgy to create my catalyst at far lower cost.
+Henley (Symposium): I assume this involves your reductive metallurgy glyphs?
+Saverio (Left): Well, in this case it would be _additive_ metallurgy.
+Pugano (Right): Amazing, you've made this absurdity sound marketable.
+Pugano (Right): Saverio's attempting to make metal from nothing, a fool's errand.
+Saverio (Left): As you can see, the claim is quite contested. Come, I have a demonstration machine prepared to make your catalyst.

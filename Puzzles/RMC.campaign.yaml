@@ -166,14 +166,14 @@ Chapters:
     Title: "Wood Preservative"
     Puzzle: rmc-wood-preservative
     Requires: "rmc-ravari-renewal"
-  - ID: rmc-experimental-catalyst
-    Title: "Experimental Catalyst"
-    Puzzle: rmc-experimental-catalyst
-    Requires: "rmc-ravari-renewal"
   - ID: rmc-cutscene-reveal
     Title: "The Reveal"
     Puzzle: empty
-    Requires: 4
+    Requires: 3
+  - ID: rmc-experimental-catalyst
+    Title: "Experimental Catalyst"
+    Puzzle: rmc-experimental-catalyst
+    Requires: rmc-cutscene-reveal
   - ID: rmc-metallurgist-opus
     Title: "Metallurgist's Opus"
     Puzzle: rmc-metallurgist-opus

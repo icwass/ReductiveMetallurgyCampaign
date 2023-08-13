@@ -1,7 +1,12 @@
-Research Notes: Now use it for this infinite puzzle.
-Research Notes: Remember that the glyph is unique!
+Saverio (Left): Jay, for this next order could you prepare a vial of gold?
+Pugano (Right): Gold? This product is perfect for your precious copper and iron!
+Pugano (Right): Are you hiding something?
+Saverio (Left): Yes, I suppose that would be easier. I am experimenting, as you might expect.
+Saverio (Left): Rest assured, I won't be giving you anything easy to mock. It should take significantly more effort, I hope.
+Pugano (Right): Hah, a challenge I see. Very well, go on being an enigmatic genius.
 
 -----------
 
-Research Notes: Imagine if you could have as many glyphs of proliferation as you wanted.
-Research Notes: Seriously, imagine it. It's feedback we'd like to hear!
+Saverio (Right): Well, it doesn't seem like anything is broken. The alchemical engine continues to perform normally.
+Saverio (Right): The invariant metal, however, proves to be quite troublesome to maintain.
+Saverio (Right): It is difficult to detect any signs of wear or tear.
