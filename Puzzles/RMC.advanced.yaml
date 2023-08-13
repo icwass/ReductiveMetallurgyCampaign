@@ -90,8 +90,8 @@ Cutscenes:
   Background: backgrounds/symposium
   Music: Story1
 - ID: rmc-cutscene-reveal
-  Location: Saverio's Office
-  Background: backgrounds/saverio_office
+  Location: Saverio's Atelier
+  Background: backgrounds/saverio_atelier
   Music: Story1
 - ID: rmc-cutscene-hubris
   Location: Saverio's Office

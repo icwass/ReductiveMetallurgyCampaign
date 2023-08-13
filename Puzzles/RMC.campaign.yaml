@@ -143,8 +143,8 @@ Chapters:
     Requires: "rmc-sanitizing-dust"
 - Title: Chapter IV
   Subtitle: Breaking Laws
-  Place: "Saverio's Atelier"
-  Background: backgrounds/saverio_atelier
+  Place: "Saverio's Office"
+  Background: backgrounds/saverio_office
   Entries:
   - ID: rmc-document-proliferation
     Title: "Saverio's Scrawlings"

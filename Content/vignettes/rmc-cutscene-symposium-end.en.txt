@@ -8,8 +8,8 @@ Saverio (Left): Strangely, I feel motivated by both of them.
 Clara: Glad to see my support was well-placed!
 Clara: Though I suppose you have no interest in doing alchemical research at a Great House.
 Saverio (Left): Is House Soria not already gainfully employing alchemists?
-Clara: We are, but they are quite dull characters. With enough attention, gaps could be identified.
-Saverio (Left): Interesting, but as much as I appreciate the offer, you are right that I prefer the independence.
+Clara: Only the one, and he certainly tries his best, but his best is dull compared to your sparkling work.
+Saverio (Left): You flatter me. As much as I appreciate the offer, you are right that I prefer the independence.
 Saverio (Left): Just send us some orders - our workshop will be happy to have trusted partners.
 Clara: I will keep it in mind. What is next for Saverio Daas, then?
 Saverio (Left): Invariant metal. A very special alloy, if I can make sense of its composition.

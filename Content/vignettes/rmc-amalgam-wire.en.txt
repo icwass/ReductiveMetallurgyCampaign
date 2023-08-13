@@ -1,12 +1,14 @@
 Saverio (Left): Jay, for this next order could you prepare a vial of gold?
 Pugano (Right): Gold? This product is perfect for your precious copper and iron!
 Pugano (Right): Are you hiding something?
-Saverio (Left): Yes, I suppose that would be easier. I am experimenting, as you might expect.
-Saverio (Left): Rest assured, I won't be giving you anything easy to mock. It should take significantly more effort, I hope.
-Pugano (Right): Hah, a challenge I see. Very well, go on being an enigmatic genius.
+Saverio (Left): Ah, those reagents _would_ make it easier.
+Saverio (Left): Yes, I am experimenting, as you might expect. Until I'm done, I'd prefer if you contiued to stay out of my office.
+Pugano (Right): Is this that invariant-deposition malarky, still?
+Saverio (Left): _Yes_, but rest assured, it's not something you can mock easily. It will take significantly more effort. Hopefully.
+Pugano (Right): Hah, a challenge! Very well, go on being a reclusive genius.
 
 -----------
 
-Saverio (Right): Well, it doesn't seem like anything is broken. The alchemical engine continues to perform normally.
-Saverio (Right): The invariant metal, however, proves to be quite troublesome to maintain.
-Saverio (Right): It is difficult to detect any signs of wear or tear.
+Saverio (Right): Well, it doesn't seem like anything is broken - the alchemical engine continues to perform normally.
+Saverio (Right): The invariant metal is proving to be a quite troublesome to analyze.
+Saverio (Right): It is difficult to detect if there are any signs of wear or tear...

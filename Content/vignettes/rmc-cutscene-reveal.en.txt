@@ -1,13 +1,17 @@
-Portraits: Saverio (Left), Henley (Symposium), Pugano (Right)
+Portraits: Pugano (Right), Saverio (Right), Henley (Symposium)
 
-Henley (Symposium): Quite the comfortable workshop you have here.
-Henley (Symposium): The University tends to be so operatic yet sterile, hardily a human environment.
-Saverio (Left): Yes, well, I'm rather keen on keeping the alchemy close at hand.
+Henley (Symposium): Labs at the University tend more toward functional and sterile, perhaps excessively so.
+Henley (Symposium): Whereas this - this is quite the comfortable workshop you have here!
+Saverio (Right): Yes, well, I'm rather keen on keeping the alchemy close at hand.
+Action: Change, Saverio (Right), Saverio (Left)
 Saverio (Left): Let me introduce my technical assistant, the marvelously proficient Jay Pugano.
-Pugano (Right): Please to meet an Imperial scholar. I hope your arrival today isn't because of some wild fantasy you heard from my employer here.
-Henley (Symposium): A pleasure. You may call me Henley. Saverio's simply suggested that he could use some interesting metallurgy to create my catalyst at far lower cost.
-Henley (Symposium): I assume this involves your reductive metallurgy glyphs?
-Saverio (Left): Well, in this case it would be _additive_ metallurgy.
+Pugano (Right): Pleased to meet an Imperial scholar. I hope your arrival today isn't because of some wild fantasy you heard from my employer here.
+Henley (Symposium): The pleasure is mine - call me Henley! Saverio simply suggested that he could create my catalyst at a lower cost.
+Henley (Symposium): I assume this involves those reductive metallurgy glyphs of yours?
+Action: Change, Saverio (Left), Saverio (Right)
+Saverio (Right): Well, in this case it's a new glyph. It could be considered _additive_ metallurgy.
 Pugano (Right): Amazing, you've made this absurdity sound marketable.
-Pugano (Right): Saverio's attempting to make metal from nothing, a fool's errand.
-Saverio (Left): As you can see, the claim is quite contested. Come, I have a demonstration machine prepared to make your catalyst.
+Pugano (Right): Saverio claims to make metal from nothing. I claim he is deceiving himself.
+Henley (Symposium): This only makes me _more_ curious. Saverio, what more could you have in store?
+Saverio (Right): Come and see, for I will have a demonstration machine prepared to make your catalyst!
+

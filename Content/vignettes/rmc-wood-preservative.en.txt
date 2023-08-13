@@ -1,12 +1,15 @@
-Pugano (Left): Here's the materials for this wood preservative order.
-Pugano (Left): It's quite interesting really. It usies the copper to repel miasma, allowing the wood to be much more resistant to the elements.
-Pugano (Left): Let's see how your magic handles this one.
-Saverio (Right): Yes, this should be a good test indeed. Quite tricky to get everything to handle right.
+Pugano (Right): Here are your materials for the wood-preservative order.
+Saverio (Left): It's quite interesting really. It uses the copper to repel miasma, allowing the wood to be much more resistant to the elements.
+Pugano (Right): I find it more interesting that you continue to work behind closed doors.
+Pugano (Right): Anyway, let's see how your magic handles this one.
+Saverio (Left): Yes, this should be a good test indeed. Quite tricky to get everything to handle right.
+Pugano (Right): Keep that room ventilated! Wouldn't want the quicksilver fumes to get to your head.
 
 -----------
 
 Pugano (Left): All done with the acts of wizardry?
-Pugano (Left): Now that I think of it, you could be just using regular metallurgy for all I know.
-Pugano (Left): A horrible thing to do to your poor assistant, I might add.
-Saverio (Right): Now, now, don't get crestfallen, Jay. I have gotten a letter from the Imperial University. They want to create some special catalyst for their research.
-Saverio (Right): Then I will show you my tricks.
+Pugano (Left): Now that I think of it, you could be using regular metallurgy for all I know. What a deceit that would be.
+Pugano (Left): And a horrible thing to do to your poor assistant, I might add.
+Saverio (Right): Now, now, don't get crestfallen, Jay. As it happens, I finally heard back from the Imperial University.
+Saverio (Right): A scholar I met at the Symposium has a special catalyst he'd like me to create for their research.
+Saverio (Right): I will show you my tricks then.
