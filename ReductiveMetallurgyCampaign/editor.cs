@@ -253,7 +253,7 @@ public class BoardEditorScreen : IScreen
 		}
 
 		buttonPosition += buttonOffset;
-		if (class_140.method_313((string)class_134.method_253("Playtest", string.Empty), buttonPosition, buttonWidth, 53).method_824(MainClass.currentCampaignIsRMC(), true))
+		if (class_140.method_313((string)class_134.method_253("Playtest", string.Empty), buttonPosition, buttonWidth, 53).method_824(CampaignLoader.currentCampaignIsRMC(), true))
 		{
 			playButtonClick();
 			var solitaireGame = new SolitaireScreen(false);

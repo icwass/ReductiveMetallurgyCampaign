@@ -54,6 +54,7 @@ public class CutscenePatcher
 
 	public static void LoadCutscenes(List<CutsceneModelRMC> Cutscenes)
 	{
+		// texture bank is temporary
 		Dictionary<string, Texture> TextureBank = new Dictionary<string, Texture>();
 		foreach (var cutscene in Cutscenes)
 		{

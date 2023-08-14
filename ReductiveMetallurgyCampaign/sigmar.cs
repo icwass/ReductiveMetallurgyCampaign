@@ -34,7 +34,7 @@ public static class SigmarGardenPatcher
 	public static SolitaireState solitaireState_RMC;
 
 	private static bool isQuintessenceSigmarGarden(SolitaireScreen screen) => new DynamicData(screen).Get<bool>("field_3874");
-	private static bool currentCampaignIsRMC(SolitaireScreen screen) => MainClass.currentCampaignIsRMC() && !isQuintessenceSigmarGarden(screen);
+	private static bool currentCampaignIsRMC(SolitaireScreen screen) => CampaignLoader.currentCampaignIsRMC() && !isQuintessenceSigmarGarden(screen);
 	private static void setSigmarWins_RMC() => GameLogic.field_2434.field_2451.field_1929.method_858("RMC-SigmarWins", sigmarWins_RMC.method_453());
 	private static void getSigmarWins_RMC() { sigmarWins_RMC = GameLogic.field_2434.field_2451.field_1929.method_862<int>(new delegate_384<int>(int.TryParse), "RMC-SigmarWins").method_1090(0); }
 	public static AtomType getAtomType(int i)
@@ -140,7 +140,7 @@ public static class SigmarGardenPatcher
 	public static bool DetermineIfCampaignItemIsCompleted(On.CampaignItem.orig_method_825 orig, CampaignItem item_self)
 	{
 		bool ret = orig(item_self);
-		if (MainClass.currentCampaignIsRMC())
+		if (CampaignLoader.currentCampaignIsRMC())
 			ret = ret || (item_self.field_2324 == (enum_129)3 && sigmarWins_RMC > 0);
 		return ret;
 	}
@@ -148,7 +148,7 @@ public static class SigmarGardenPatcher
 	public static bool DetermineIfMatchIsValid(On.SolitaireGameState.class_301.orig_method_1888 orig, SolitaireGameState.class_301 class301_self, AtomType param_5430, AtomType param_5431)
 	{
 		bool atomTypeIsMetal = param_5430.field_2297.method_1085();
-		if (MainClass.currentCampaignIsRMC() && param_5430 == param_5431 && atomTypeIsMetal) return true;
+		if (CampaignLoader.currentCampaignIsRMC() && param_5430 == param_5431 && atomTypeIsMetal) return true;
 		return orig(class301_self, param_5430, param_5431);
 	}
 
@@ -156,7 +156,7 @@ public static class SigmarGardenPatcher
 	{
 		bool ret = orig(state_self);
 		AtomType quintessence = class_175.field_1690;
-		if (ret && MainClass.currentCampaignIsRMC() && !state_self.field_3864.ContainsValue(quintessence)) sigmarWins_RMC++;
+		if (ret && CampaignLoader.currentCampaignIsRMC() && !state_self.field_3864.ContainsValue(quintessence)) sigmarWins_RMC++;
 		setSigmarWins_RMC();
 		return ret;
 	}
@@ -249,7 +249,7 @@ public static class SigmarGardenPatcher
 
 	public static void SolitaireRulesScreen_Method_50(On.class_16.orig_method_50 orig, class_16 screen_self, float timeDelta)
 	{
-		if (MainClass.currentCampaignIsRMC())
+		if (CampaignLoader.currentCampaignIsRMC())
 		{
 			var screen_dyn = new DynamicData(screen_self);
 			string rule = "The metals match with themselves and with quicksilver, but only if there are no metals in the previous tier present.";
@@ -390,7 +390,7 @@ public static class SigmarGardenPatcher
 	{
 		int RandomInt(int max) => class_269.field_2103.method_299(0, max);
 
-		if (!MainClass.currentCampaignIsRMC() || quintessenceSigmar) return orig(quintessenceSigmar);
+		if (!CampaignLoader.currentCampaignIsRMC() || quintessenceSigmar) return orig(quintessenceSigmar);
 		//if (sigmarWins_RMC == 0 || RandomInt(20000) == 69) return getSpecialSolitaireBoard();
 
 		// try to find solitaire-bitboards.dat
