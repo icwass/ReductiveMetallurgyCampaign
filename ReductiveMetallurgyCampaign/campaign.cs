@@ -58,11 +58,25 @@ public static class CampaignLoader
 	const string polymerInputTutorialID = "rmc-synthesis-via-chain";
 	const string oldPolymerInputTutorialID = "rmc-golden-thread-recycling";
 
+	const string SaverioTransformerCabinetID = "rmc-saverio-transformer";
+	const string PuganoTransformerCabinetID = "rmc-pugano-transformer";
+	const string MachineOilCabinetID = "rmc-precision-machine-oil-cabinet";
+
 	private static Campaign campaign_self;
 	private static CampaignModelRMC campaign_model;
 
 	public static bool currentCampaignIsRMC() => campaign_self == Campaigns.field_2330;
 	public static CampaignModelRMC getModel() => campaign_model;
+
+	private static Texture vial_lead_full, vial_lead_draining;
+	private static Texture vial_qs_full, vial_qs_draining;
+	private static Texture vial_iron_full, vial_iron_draining;
+	private static Texture vial_water_full, vial_water_draining;
+
+	private static Texture vial_lead_empty, vial_lead_filling;
+	private static Texture vial_qs_empty, vial_qs_filling;
+	private static Texture vial_oil_empty, vial_oil_filling;
+
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// helpers
@@ -193,8 +207,32 @@ public static class CampaignLoader
 	{
 		{rejectionTutorialID, LoadRejectionTutorialPuzzle },
 		{polymerInputTutorialID, LoadPolymerInputPuzzle },
-		{oldPolymerInputTutorialID, LoadOldPolymerInputPuzzle }
+		{oldPolymerInputTutorialID, LoadOldPolymerInputPuzzle },
+		{SaverioTransformerCabinetID, LoadSaverioTransformerPuzzle },
+		{PuganoTransformerCabinetID, LoadPuganoTransformerPuzzle },
+		{MachineOilCabinetID, LoadMachineOilCabinetPuzzle },
 	};
+
+	static void LoadVialTextures()
+	{
+		string path = "textures/pipelines/vials/";
+		vial_lead_full		= class_238.field_1989.field_92.field_401.field_412.field_455;
+		vial_lead_draining	= class_238.field_1989.field_92.field_401.field_412.field_454;
+		vial_qs_full		= class_238.field_1989.field_92.field_401.field_413.field_465;
+		vial_qs_draining	= class_238.field_1989.field_92.field_401.field_413.field_464;
+		vial_iron_full		= class_238.field_1989.field_92.field_401.field_411.field_484;
+		vial_iron_draining	= class_238.field_1989.field_92.field_401.field_411.field_483;
+
+		vial_water_full		= class_235.method_615(path + "elemental_water/full");
+		vial_water_draining = class_235.method_615(path + "elemental_water/draining");
+
+		vial_lead_empty		= class_235.method_615(path + "elemental_lead/empty");
+		vial_lead_filling	= class_235.method_615(path + "elemental_lead/filling");
+		vial_qs_empty		= class_235.method_615(path + "elemental_quicksilver/empty");
+		vial_qs_filling		= class_235.method_615(path + "elemental_quicksilver/filling");
+		vial_oil_empty		= class_235.method_615(path + "precision_machine_oil/empty");
+		vial_oil_filling	= class_235.method_615(path + "precision_machine_oil/filling");
+	}
 
 	static void LoadRejectionTutorialPuzzle(Puzzle puzzle) => MainClass.setOptionsUnlock(puzzle);
 
@@ -294,6 +332,37 @@ public static class CampaignLoader
 	}
 	#endregion
 
+	static void LoadSaverioTransformerPuzzle(Puzzle puzzle)
+	{
+		if (puzzle.field_2779.method_1085())
+		{
+			var productionData = puzzle.field_2779.method_1087();
+			var vialsArray = productionData.field_2073;
+			vialsArray[0].field_1473[0] = Tuple.Create(vial_lead_full, vial_lead_draining);
+			vialsArray[1].field_1473[0] = Tuple.Create(vial_qs_empty, vial_qs_filling);
+		}
+	}
+	static void LoadPuganoTransformerPuzzle(Puzzle puzzle)
+	{
+		if (puzzle.field_2779.method_1085())
+		{
+			var productionData = puzzle.field_2779.method_1087();
+			var vialsArray = productionData.field_2073;
+			vialsArray[0].field_1473[0] = Tuple.Create(vial_qs_full, vial_qs_draining);
+			vialsArray[1].field_1473[0] = Tuple.Create(vial_lead_empty, vial_lead_filling);
+		}
+	}
+	static void LoadMachineOilCabinetPuzzle(Puzzle puzzle)
+	{
+		if (puzzle.field_2779.method_1085())
+		{
+			var productionData = puzzle.field_2779.method_1087();
+			var vialsArray = productionData.field_2073;
+			vialsArray[1].field_1473[0] = Tuple.Create(vial_iron_full, vial_iron_draining);
+			vialsArray[1].field_1473[1] = Tuple.Create(vial_water_full, vial_water_draining);
+			vialsArray[0].field_1473[0] = Tuple.Create(vial_oil_empty, vial_oil_filling);
+		}
+	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// main functions
@@ -332,6 +401,9 @@ public static class CampaignLoader
 
 		// initialize tip resources
 		initializeTips();
+
+		// initialize vial resources
+		LoadVialTextures();
 
 		// fetch campaign data
 		foreach (Campaign campaign in QuintessentialLoader.AllCampaigns)
