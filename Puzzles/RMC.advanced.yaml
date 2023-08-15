@@ -96,7 +96,7 @@ Cutscenes:
 - ID: rmc-cutscene-hubris
   Location: Saverio's Office
   Background: backgrounds/saverio_office
-  Music: Story1
+  Music: Story2
 ##################################################
 Documents:
 - ID: rmc-document-debug
