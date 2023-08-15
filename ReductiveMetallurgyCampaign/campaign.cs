@@ -482,13 +482,13 @@ public static class CampaignLoader
 					if (cutsceneIDList.Keys.Contains(puzzleID))
 					{
 						// change item into a cutscene
-						campaignItem.field_2324 = typeDocument;
+						campaignItem.field_2324 = typeCutscene;
 						campaignItem.field_2328 = songList[cutsceneIDList[puzzleID]];
 					}
 					else if (documentIDList.Contains(puzzleID))
 					{
 						// change item into a document
-						campaignItem.field_2324 = typeCutscene;
+						campaignItem.field_2324 = typeDocument;
 					}
 					else if (sigmarsGardensIDList.Contains(puzzleID))
 					{
