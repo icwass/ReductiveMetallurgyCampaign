@@ -1,7 +1,7 @@
 ﻿using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 using Quintessential;
-using Quintessential.Settings;
+//using Quintessential.Settings;
 //using SDL2;
 using System;
 using System.IO;
@@ -11,11 +11,6 @@ using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
 
-//using PartType = class_139;
-//using Permissions = enum_149;
-//using BondType = enum_126;
-//using BondSite = class_222;
-//using AtomTypes = class_175;
 using PartTypes = class_191;
 using Texture = class_256;
 using Song = class_186;
@@ -64,6 +59,14 @@ public static class CampaignLoader
 
 	private static Campaign campaign_self;
 	private static CampaignModelRMC campaign_model;
+
+	//const enum_129 typePuzzle = (enum_129)0;
+	public const enum_129 typeCutscene = (enum_129)1;
+	public const enum_129 typeDocument = (enum_129)2;
+	public const enum_129 typeSolitaire = (enum_129)3;
+
+
+
 
 	public static bool currentCampaignIsRMC() => campaign_self == Campaigns.field_2330;
 	public static CampaignModelRMC getModel() => campaign_model;
@@ -479,18 +482,19 @@ public static class CampaignLoader
 					if (cutsceneIDList.Keys.Contains(puzzleID))
 					{
 						// change item into a cutscene
-						campaignItem.field_2324 = (enum_129)1;
+						campaignItem.field_2324 = typeDocument;
 						campaignItem.field_2328 = songList[cutsceneIDList[puzzleID]];
 					}
 					else if (documentIDList.Contains(puzzleID))
 					{
 						// change item into a document
-						campaignItem.field_2324 = (enum_129)2;
+						campaignItem.field_2324 = typeCutscene;
 					}
 					else if (sigmarsGardensIDList.Contains(puzzleID))
 					{
 						// change item into a Sigmars Garden
-						campaignItem.field_2324 = (enum_129)3;
+						campaignItem.field_2324 = typeSolitaire;
+						MainClass.customSolitaires.Add(campaignItem.field_2326); // SOLITAIRE_ICON_TEMP
 					}
 					else // keep it as a puzzle
 					{

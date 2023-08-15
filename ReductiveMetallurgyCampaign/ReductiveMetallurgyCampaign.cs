@@ -11,6 +11,9 @@ using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
 
+// SOLITAIRE_ICON_TEMP - these lines will be removed once custom campaign icons are actually implemented in quintessential
+// QUINTESSENTIAL 0.4.0 UPGRADE - these lines can be simplified, but then won't be compatible with quintessential 0.3.0
+
 //using PartType = class_139;
 //using Permissions = enum_149;
 //using BondType = enum_126;
@@ -26,6 +29,9 @@ public class MainClass : QuintessentialMod
 	private static IDetour hook_Sim_method_1835;
 	private static Puzzle optionsUnlock = null;
 	static Texture return_button, return_button_hover;
+
+	static Texture iconSolitaire, iconSolitaireSmall;
+	public static List<class_259> customSolitaires = new(); // SOLITAIRE_ICON_DEBUG
 
 	public static void setOptionsUnlock(Puzzle puzzle)
 	{
@@ -78,6 +84,10 @@ public class MainClass : QuintessentialMod
 		string path = "textures/story/";
 		return_button = class_235.method_615(path + "return_button_rmc");
 		return_button_hover = class_235.method_615(path + "return_button_hover_rmc");
+
+		path = "textures/puzzle_select/"; // SOLITAIRE_ICON_TEMP
+		iconSolitaire = class_235.method_615(path + "icon_rmc_solitaire"); // SOLITAIRE_ICON_TEMP
+		iconSolitaireSmall = class_235.method_615(path + "icon_rmc_solitaire_small"); // SOLITAIRE_ICON_TEMP
 
 		//------------------------- HOOKING -------------------------//
 		hook_Sim_method_1835 = new Hook(PrivateMethod<Sim>("method_1835"), OnSimMethod1835);
@@ -153,6 +163,17 @@ public class MainClass : QuintessentialMod
 		SigmarGardenPatcher.Load();
 		On.OptionsScreen.method_50 += OptionsScreen_Method_50;
 		On.StoryPanel.method_2172 += StoryPanel_Method_2172;
+		On.CampaignItem.method_826 += ChooseCustomIconLarge; // SOLITAIRE_ICON_TEMP
+		On.CampaignItem.method_827 += ChooseCustomIconSmall; // SOLITAIRE_ICON_TEMP
+	}
+
+	public static Texture ChooseCustomIconLarge(On.CampaignItem.orig_method_826 orig, CampaignItem item_self) // SOLITAIRE_ICON_TEMP
+	{
+		return item_self.field_2324 == CampaignLoader.typeSolitaire && customSolitaires.Contains(item_self.field_2326) ? iconSolitaire : orig(item_self);
+	}
+	public static Texture ChooseCustomIconSmall(On.CampaignItem.orig_method_827 orig, CampaignItem item_self) // SOLITAIRE_ICON_TEMP
+	{
+		return item_self.field_2324 == CampaignLoader.typeSolitaire && customSolitaires.Contains(item_self.field_2326) ? iconSolitaireSmall : orig(item_self);
 	}
 
 	public static void OptionsScreen_Method_50(On.OptionsScreen.orig_method_50 orig, OptionsScreen screen_self, float timeDelta)

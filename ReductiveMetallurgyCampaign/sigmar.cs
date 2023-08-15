@@ -141,7 +141,7 @@ public static class SigmarGardenPatcher
 	{
 		bool ret = orig(item_self);
 		if (CampaignLoader.currentCampaignIsRMC())
-			ret = ret || (item_self.field_2324 == (enum_129)3 && sigmarWins_RMC > 0);
+			ret = ret || (item_self.field_2324 == CampaignLoader.typeSolitaire && sigmarWins_RMC > 0);
 		return ret;
 	}
 

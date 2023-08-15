@@ -35,10 +35,13 @@ Chapters:
     Title: Copper Synthesis
     Puzzle: rmc-copper-synthesis
     Requires: "rmc-practical-test"
-  - ID: rmc-sigmars-garden-1
+  - Type: solitaire
+    Requires: "rmc-copper-synthesis"
+    Icon: textures/puzzle_select/icon_rmc_solitaire
+    IconSmall: textures/puzzle_select/icon_rmc_solitaire_small
+    ID: rmc-sigmars-garden-1
     Title: Sigmar's Garden
     Puzzle: empty
-    Requires: "rmc-copper-synthesis"
   - ID: rmc-ring-oscillator
     Title: Ring Oscillator
     Puzzle: rmc-ring-oscillator
@@ -72,10 +75,13 @@ Chapters:
     Title: "Metal Deposition"
     Puzzle: rmc-metal-deposition
     Requires: "rmc-document-deposition"
-  - ID: rmc-sigmars-garden-1
+  - Type: solitaire
+    Requires: "rmc-metal-deposition"
+    Icon: textures/puzzle_select/icon_rmc_solitaire
+    IconSmall: textures/puzzle_select/icon_rmc_solitaire_small
+    ID: rmc-sigmars-garden-1
     Title: Sigmar's Garden
     Puzzle: empty
-    Requires: "rmc-metal-deposition"
   - ID: rmc-solder-wire
     Title: Solder Wire
     Puzzle: rmc-solder-wire
@@ -129,10 +135,13 @@ Chapters:
     Title: "Symposium's End"
     Puzzle: empty
     Requires: 3
-  - ID: rmc-sigmars-garden-1
+  - Type: solitaire
+    Requires: "rmc-cutscene-symposium-end"
+    Icon: textures/puzzle_select/icon_rmc_solitaire
+    IconSmall: textures/puzzle_select/icon_rmc_solitaire_small
+    ID: rmc-sigmars-garden-1
     Title: Sigmar's Garden
     Puzzle: empty
-    Requires: "rmc-cutscene-symposium-end"
   - ID: rmc-sanitizing-dust
     Title: Sanitizing Dust
     Puzzle: rmc-sanitizing-dust
@@ -150,10 +159,13 @@ Chapters:
     Title: "Saverio's Scrawlings"
     Puzzle: empty
     Requires: ""
-  - ID: rmc-sigmars-garden-1
+  - Type: solitaire
+    Requires: "rmc-document-proliferation"
+    Icon: textures/puzzle_select/icon_rmc_solitaire
+    IconSmall: textures/puzzle_select/icon_rmc_solitaire_small
+    ID: rmc-sigmars-garden-1
     Title: Sigmar's Garden
     Puzzle: empty
-    Requires: "rmc-document-proliferation"    
   - ID: rmc-ravari-renewal
     Title: Ravari's Renewal
     Puzzle: rmc-ravari-renewal
