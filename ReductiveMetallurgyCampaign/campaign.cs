@@ -1,6 +1,7 @@
 ﻿using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 using Quintessential;
+using Quintessential.Serialization;
 //using Quintessential.Settings;
 //using SDL2;
 using System;
@@ -52,10 +53,6 @@ public static class CampaignLoader
 	const string ravariTutorialID_2 = "rmc-energetic-capacitor";
 	const string polymerInputTutorialID = "rmc-synthesis-via-chain";
 	const string oldPolymerInputTutorialID = "rmc-golden-thread-recycling";
-
-	const string SaverioTransformerCabinetID = "rmc-saverio-transformer";
-	const string PuganoTransformerCabinetID = "rmc-pugano-transformer";
-	const string MachineOilCabinetID = "rmc-precision-machine-oil-cabinet";
 
 	private static Campaign campaign_self;
 	private static CampaignModelRMC campaign_model;
@@ -192,14 +189,17 @@ public static class CampaignLoader
 		}
 
 		// manually load the puzzle file needed for tips
-		string subpath = "/Puzzles/rmc-sandbox.puzzle";
+		string subpath = "/Puzzles/rmc-sandbox.puzzle.yaml";
+
 		string filepath;
 		if (!MainClass.findModMetaFilepath("ReductiveMetallurgyCampaign", out filepath) || !File.Exists(filepath + subpath))
 		{
-			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'rmc-sandbox.puzzle' in the folder '" + filepath + "\\Puzzles\\'");
+			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'rmc-sandbox.puzzle.yaml' in the folder '" + filepath + "\\Puzzles\\'");
 			throw new Exception("LoadPuzzleContent: Tip data is missing.");
 		}
-		var tipsPuzzle = Puzzle.method_1249(filepath + subpath);
+		//var tipsPuzzle = Puzzle.method_1249(filepath + subpath);
+		var tipsPuzzle = PuzzleModel.FromModel(YamlHelper.Deserializer.Deserialize<PuzzleModel>(File.ReadAllText(filepath + subpath)));
+
 		Array.Resize(ref Puzzles.field_2816, Puzzles.field_2816.Length + 1);
 		Puzzles.field_2816[Puzzles.field_2816.Length - 1] = tipsPuzzle;
 	}
@@ -211,9 +211,11 @@ public static class CampaignLoader
 		{rejectionTutorialID, LoadRejectionTutorialPuzzle },
 		{polymerInputTutorialID, LoadPolymerInputPuzzle },
 		{oldPolymerInputTutorialID, LoadOldPolymerInputPuzzle },
-		{SaverioTransformerCabinetID, LoadSaverioTransformerPuzzle },
-		{PuganoTransformerCabinetID, LoadPuganoTransformerPuzzle },
-		{MachineOilCabinetID, LoadMachineOilCabinetPuzzle },
+		{"rmc-amalgam-wire", LoadPolymerOutputs }, // can remove this once Quintessential fixes the bug
+		{"rmc-solder-wire", LoadPolymerOutputs }, // can remove this once Quintessential fixes the bug
+		{"rmc-saverio-transformer", LoadSaverioTransformerPuzzle }, // can remove this once Quintessential addes proper production support
+		{"rmc-pugano-transformer", LoadPuganoTransformerPuzzle }, // can remove this once Quintessential addes proper production support
+		{"rmc-precision-machine-oil-cabinet", LoadMachineOilCabinetPuzzle }, // can remove this once Quintessential addes proper production support
 	};
 
 	static void LoadVialTextures()
@@ -239,7 +241,18 @@ public static class CampaignLoader
 
 	static void LoadRejectionTutorialPuzzle(Puzzle puzzle) => MainClass.setOptionsUnlock(puzzle);
 
-	#region polymer input puzzle loaders
+	#region polymer input/output puzzle loaders
+
+	static void LoadPolymerOutputs(Puzzle puzzle)
+	{
+		//MoleculeEditorScreen.method_1133(molecule, class_181.field_1716);
+		for (int i = 0; i < puzzle.field_2771.Length; i++)
+		{
+			var output = puzzle.field_2771[i];
+			output.field_2813 = MoleculeEditorScreen.method_1133(output.field_2813, class_181.field_1716);
+		}
+	}
+
 	static void LoadPolymerInputPuzzle(Puzzle puzzle)
 	{
 		HexIndex hexIndex1 = new HexIndex(1, 0);
@@ -290,6 +303,8 @@ public static class CampaignLoader
 	}
 	static void LoadOldPolymerInputPuzzle(Puzzle puzzle)
 	{
+		LoadPolymerOutputs(puzzle);
+
 		HexIndex hexIndex1 = new HexIndex(1, 0);
 		List<class_157> class157List = new List<class_157>();
 		HexIndex[] hexIndexArray = new HexIndex[3]
@@ -335,14 +350,20 @@ public static class CampaignLoader
 	}
 	#endregion
 
+
+
 	static void LoadSaverioTransformerPuzzle(Puzzle puzzle)
 	{
 		if (puzzle.field_2779.method_1085())
 		{
 			var productionData = puzzle.field_2779.method_1087();
-			var vialsArray = productionData.field_2073;
-			vialsArray[0].field_1473[0] = Tuple.Create(vial_lead_full, vial_lead_draining);
-			vialsArray[1].field_1473[0] = Tuple.Create(vial_qs_empty, vial_qs_filling);
+			var vialsArray = new class_128[2];
+			vialsArray[0] = new class_128(2, 3, true, new Tuple<Texture, Texture>[1] { Tuple.Create(vial_lead_full, vial_lead_draining) });
+			vialsArray[1] = new class_128(5, -3, false, new Tuple<Texture, Texture>[1] { Tuple.Create(vial_qs_empty, vial_qs_filling) });
+			productionData.field_2073 = vialsArray;
+			// fix and update the cabinet bounding box
+			productionData.field_2076 = false;
+			puzzle.method_1247();
 		}
 	}
 	static void LoadPuganoTransformerPuzzle(Puzzle puzzle)
@@ -350,9 +371,13 @@ public static class CampaignLoader
 		if (puzzle.field_2779.method_1085())
 		{
 			var productionData = puzzle.field_2779.method_1087();
-			var vialsArray = productionData.field_2073;
-			vialsArray[0].field_1473[0] = Tuple.Create(vial_qs_full, vial_qs_draining);
-			vialsArray[1].field_1473[0] = Tuple.Create(vial_lead_empty, vial_lead_filling);
+			var vialsArray = new class_128[2];
+			vialsArray[0] = new class_128(-8, 3, true, new Tuple<Texture, Texture>[1] { Tuple.Create(vial_qs_full, vial_qs_draining) });
+			vialsArray[1] = new class_128(-5, -3, false, new Tuple<Texture, Texture>[1] { Tuple.Create(vial_lead_empty, vial_lead_filling) });
+			productionData.field_2073 = vialsArray;
+			// fix and update the cabinet bounding box
+			productionData.field_2075 = false;
+			puzzle.method_1247();
 		}
 	}
 	static void LoadMachineOilCabinetPuzzle(Puzzle puzzle)
@@ -360,10 +385,12 @@ public static class CampaignLoader
 		if (puzzle.field_2779.method_1085())
 		{
 			var productionData = puzzle.field_2779.method_1087();
-			var vialsArray = productionData.field_2073;
-			vialsArray[1].field_1473[0] = Tuple.Create(vial_iron_full, vial_iron_draining);
-			vialsArray[1].field_1473[1] = Tuple.Create(vial_water_full, vial_water_draining);
-			vialsArray[0].field_1473[0] = Tuple.Create(vial_oil_empty, vial_oil_filling);
+			var vialsArray = new class_128[2];
+			vialsArray[0] = new class_128(-10, 3, true, new Tuple<Texture, Texture>[2] { Tuple.Create(vial_iron_full, vial_iron_draining), Tuple.Create(vial_water_full, vial_water_draining) });
+			vialsArray[1] = new class_128(-6, -3, false, new Tuple<Texture, Texture>[1] { Tuple.Create(vial_oil_empty, vial_oil_filling) });
+			productionData.field_2073 = vialsArray;
+			// update the cabinet bounding box
+			puzzle.method_1247();
 		}
 	}
 
