@@ -20,6 +20,7 @@ using Tip = class_215;
 public class PuzzleModelRMC
 {
 	public string ID, Music;
+	public CabinetModelRMC Cabinet;
 }
 public class CharacterModelRMC
 {
@@ -33,7 +34,6 @@ public class SigmarsGardenRMC
 	public string ID;
 }
 
-
 public class CampaignModelRMC
 {
 	public List<PuzzleModelRMC> Puzzles;
@@ -41,6 +41,22 @@ public class CampaignModelRMC
 	public List<DocumentModelRMC> Documents;
 	public List<CutsceneModelRMC> Cutscenes;
 	public List<SigmarsGardenRMC> SigmarsGardens;
+}
+public class CabinetModelRMC
+{
+	public bool ExpandLeft, ExpandRight;
+	public List<VialHolderModelRMC> VialHolders;
+}
+
+public class VialHolderModelRMC
+{
+	public string Position;
+	public bool TopSide;
+	public List<VialModelRMC> Vials;
+}
+public class VialModelRMC
+{
+	public string TextureSim, TextureGif;
 }
 
 public static class CampaignLoader
@@ -66,16 +82,6 @@ public static class CampaignLoader
 
 	public static bool currentCampaignIsRMC() => campaign_self == Campaigns.field_2330;
 	public static CampaignModelRMC getModel() => campaign_model;
-
-	private static Texture vial_lead_full, vial_lead_draining;
-	private static Texture vial_qs_full, vial_qs_draining;
-	private static Texture vial_iron_full, vial_iron_draining;
-	private static Texture vial_water_full, vial_water_draining;
-
-	private static Texture vial_lead_empty, vial_lead_filling;
-	private static Texture vial_qs_empty, vial_qs_filling;
-	private static Texture vial_oil_empty, vial_oil_filling;
-
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// helpers
@@ -189,14 +195,12 @@ public static class CampaignLoader
 
 		// manually load the puzzle file needed for tips
 		string subpath = "/Puzzles/rmc-sandbox.puzzle.yaml";
-
 		string filepath;
 		if (!MainClass.findModMetaFilepath("ReductiveMetallurgyCampaign", out filepath) || !File.Exists(filepath + subpath))
 		{
 			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'rmc-sandbox.puzzle.yaml' in the folder '" + filepath + "\\Puzzles\\'");
 			throw new Exception("LoadPuzzleContent: Tip data is missing.");
 		}
-		//var tipsPuzzle = Puzzle.method_1249(filepath + subpath);
 		var tipsPuzzle = PuzzleModel.FromModel(YamlHelper.Deserializer.Deserialize<PuzzleModel>(File.ReadAllText(filepath + subpath)));
 
 		Array.Resize(ref Puzzles.field_2816, Puzzles.field_2816.Length + 1);
@@ -210,41 +214,14 @@ public static class CampaignLoader
 		{rejectionTutorialID, LoadRejectionTutorialPuzzle },
 		{polymerInputTutorialID, LoadPolymerInputPuzzle },
 		{oldPolymerInputTutorialID, LoadOldPolymerInputPuzzle },
-		{"rmc-amalgam-wire", LoadPolymerOutputs }, // can remove this once Quintessential fixes the bug
-		{"rmc-solder-wire", LoadPolymerOutputs }, // can remove this once Quintessential fixes the bug
-		{"rmc-saverio-transformer", LoadSaverioTransformerPuzzle }, // can remove this once Quintessential addes proper production support
-		{"rmc-pugano-transformer", LoadPuganoTransformerPuzzle }, // can remove this once Quintessential addes proper production support
-		{"rmc-precision-machine-oil-cabinet", LoadMachineOilCabinetPuzzle }, // can remove this once Quintessential addes proper production support
 	};
-
-	static void LoadVialTextures()
-	{
-		string path = "textures/pipelines/vials/";
-		vial_lead_full		= class_238.field_1989.field_92.field_401.field_412.field_455;
-		vial_lead_draining	= class_238.field_1989.field_92.field_401.field_412.field_454;
-		vial_qs_full		= class_238.field_1989.field_92.field_401.field_413.field_465;
-		vial_qs_draining	= class_238.field_1989.field_92.field_401.field_413.field_464;
-		vial_iron_full		= class_238.field_1989.field_92.field_401.field_411.field_484;
-		vial_iron_draining	= class_238.field_1989.field_92.field_401.field_411.field_483;
-
-		vial_water_full		= class_235.method_615(path + "elemental_water/full");
-		vial_water_draining = class_235.method_615(path + "elemental_water/draining");
-
-		vial_lead_empty		= class_235.method_615(path + "elemental_lead/empty");
-		vial_lead_filling	= class_235.method_615(path + "elemental_lead/filling");
-		vial_qs_empty		= class_235.method_615(path + "elemental_quicksilver/empty");
-		vial_qs_filling		= class_235.method_615(path + "elemental_quicksilver/filling");
-		vial_oil_empty		= class_235.method_615(path + "precision_machine_oil/empty");
-		vial_oil_filling	= class_235.method_615(path + "precision_machine_oil/filling");
-	}
 
 	static void LoadRejectionTutorialPuzzle(Puzzle puzzle) => MainClass.setOptionsUnlock(puzzle);
 
 	#region polymer input/output puzzle loaders
 
-	static void LoadPolymerOutputs(Puzzle puzzle)
+	static void LoadPolymerOutputs(Puzzle puzzle) // REMOVE THIS ONCE QUINTESSENTIAL FIXES THE BUG
 	{
-		//MoleculeEditorScreen.method_1133(molecule, class_181.field_1716);
 		for (int i = 0; i < puzzle.field_2771.Length; i++)
 		{
 			var output = puzzle.field_2771[i];
@@ -302,8 +279,6 @@ public static class CampaignLoader
 	}
 	static void LoadOldPolymerInputPuzzle(Puzzle puzzle)
 	{
-		LoadPolymerOutputs(puzzle);
-
 		HexIndex hexIndex1 = new HexIndex(1, 0);
 		List<class_157> class157List = new List<class_157>();
 		HexIndex[] hexIndexArray = new HexIndex[3]
@@ -349,49 +324,101 @@ public static class CampaignLoader
 	}
 	#endregion
 
+	#region vial textures
+	static Dictionary<string, Texture> vialTextureBank;
+	static Texture fetchVialTexture(string filePath)
+	{
+		Texture ret = class_238.field_1989.field_92.field_401.field_418.field_501; // generic
+		if (string.IsNullOrEmpty(filePath)) return ret;
+		if (vialTextureBank.ContainsKey(filePath)) return vialTextureBank[filePath];
+		try
+		{
+			ret = class_235.method_615(filePath);
+		}
+		catch
+		{
+			Logger.Log("[ReductiveMetallurgyCampaign] fetchVialTexture: Couldn't load '" + filePath + ".png', will use the generic vial texture instead.");
+		}
+		vialTextureBank.Add(filePath, ret);
+		return ret;
+	}
 
-
-	static void LoadSaverioTransformerPuzzle(Puzzle puzzle)
+	static void initializeVialTextureBank()
 	{
-		if (puzzle.field_2779.method_1085())
+		vialTextureBank = new()
 		{
-			var productionData = puzzle.field_2779.method_1087();
-			var vialsArray = new class_128[2];
-			vialsArray[0] = new class_128(2, 3, true, new Tuple<Texture, Texture>[1] { Tuple.Create(vial_lead_full, vial_lead_draining) });
-			vialsArray[1] = new class_128(5, -3, false, new Tuple<Texture, Texture>[1] { Tuple.Create(vial_qs_empty, vial_qs_filling) });
-			productionData.field_2073 = vialsArray;
-			// fix and update the cabinet bounding box
-			productionData.field_2076 = false;
-			puzzle.method_1247();
-		}
+			{"textures/pipelines/vials/abrasive_powder/empty",                  class_238.field_1989.field_92.field_401.field_408.field_444},
+			{"textures/pipelines/vials/abrasive_powder/filling",                class_238.field_1989.field_92.field_401.field_408.field_445},
+			{"textures/pipelines/vials/aether_detector/draining",               class_238.field_1989.field_92.field_401.field_409.field_456},
+			{"textures/pipelines/vials/aether_detector/empty",                  class_238.field_1989.field_92.field_401.field_409.field_457},
+			{"textures/pipelines/vials/aether_detector/filling",                class_238.field_1989.field_92.field_401.field_409.field_458},
+			{"textures/pipelines/vials/aether_detector/full",                   class_238.field_1989.field_92.field_401.field_409.field_459},
+			{"textures/pipelines/vials/conductive_enamel/empty",                class_238.field_1989.field_92.field_401.field_410.field_462},
+			{"textures/pipelines/vials/conductive_enamel/filling",              class_238.field_1989.field_92.field_401.field_410.field_463},
+			{"textures/pipelines/vials/elemental_iron/draining",                class_238.field_1989.field_92.field_401.field_411.field_483},
+			{"textures/pipelines/vials/elemental_iron/full",                    class_238.field_1989.field_92.field_401.field_411.field_484},
+			{"textures/pipelines/vials/elemental_lead/draining",                class_238.field_1989.field_92.field_401.field_412.field_454},
+			{"textures/pipelines/vials/elemental_lead/full",                    class_238.field_1989.field_92.field_401.field_412.field_455},
+			{"textures/pipelines/vials/elemental_quicksilver/draining",         class_238.field_1989.field_92.field_401.field_413.field_464},
+			{"textures/pipelines/vials/elemental_quicksilver/full",             class_238.field_1989.field_92.field_401.field_413.field_465},
+			{"textures/pipelines/vials/elemental_salt/draining",                class_238.field_1989.field_92.field_401.field_414.field_502},
+			{"textures/pipelines/vials/elemental_salt/full",                    class_238.field_1989.field_92.field_401.field_414.field_503},
+			{"textures/pipelines/vials/elemental_tin/draining",                 class_238.field_1989.field_92.field_401.field_415.field_446},
+			{"textures/pipelines/vials/elemental_tin/full",                     class_238.field_1989.field_92.field_401.field_415.field_447},
+			{"textures/pipelines/vials/eyedrops/mors_empty",                    class_238.field_1989.field_92.field_401.field_416.field_485},
+			{"textures/pipelines/vials/eyedrops/mors_filling",                  class_238.field_1989.field_92.field_401.field_416.field_486},
+			{"textures/pipelines/vials/eyedrops/vitae_empty",                   class_238.field_1989.field_92.field_401.field_416.field_487},
+			{"textures/pipelines/vials/eyedrops/vitae_filling",                 class_238.field_1989.field_92.field_401.field_416.field_488},
+			{"textures/pipelines/vials/fragrant_powder/brook_empty",            class_238.field_1989.field_92.field_401.field_417.field_495},
+			{"textures/pipelines/vials/fragrant_powder/brook_filling",          class_238.field_1989.field_92.field_401.field_417.field_496},
+			{"textures/pipelines/vials/fragrant_powder/forest_empty",           class_238.field_1989.field_92.field_401.field_417.field_497},
+			{"textures/pipelines/vials/fragrant_powder/forest_filling",         class_238.field_1989.field_92.field_401.field_417.field_498},
+			{"textures/pipelines/vials/fragrant_powder/meadow_empty",           class_238.field_1989.field_92.field_401.field_417.field_499},
+			{"textures/pipelines/vials/fragrant_powder/meadow_filling",         class_238.field_1989.field_92.field_401.field_417.field_500},
+			{"textures/pipelines/vials/generic/empty",                          class_238.field_1989.field_92.field_401.field_418.field_501},
+			{"textures/pipelines/vials/hexstabilized_salt/empty",               class_238.field_1989.field_92.field_401.field_419.field_491},
+			{"textures/pipelines/vials/hexstabilized_salt/filling",             class_238.field_1989.field_92.field_401.field_419.field_492},
+			{"textures/pipelines/vials/hydrated_hexstabilized_salt/draining",   class_238.field_1989.field_92.field_401.field_420.field_468},
+			{"textures/pipelines/vials/hydrated_hexstabilized_salt/full",       class_238.field_1989.field_92.field_401.field_420.field_469},
+			{"textures/pipelines/vials/lamplight_gas/empty",                    class_238.field_1989.field_92.field_401.field_421.field_474},
+			{"textures/pipelines/vials/lamplight_gas_precursor/full",           class_238.field_1989.field_92.field_401.field_422.field_477},
+			{"textures/pipelines/vials/lustre/empty",                           class_238.field_1989.field_92.field_401.field_423.field_460},
+			{"textures/pipelines/vials/lustre/filling",                         class_238.field_1989.field_92.field_401.field_423.field_461},
+			{"textures/pipelines/vials/metallic_cinnabar/draining",             class_238.field_1989.field_92.field_401.field_424.field_507},
+			{"textures/pipelines/vials/metallic_cinnabar/full",                 class_238.field_1989.field_92.field_401.field_424.field_508},
+			{"textures/pipelines/vials/rat_poison/empty",                       class_238.field_1989.field_92.field_401.field_425.field_448},
+			{"textures/pipelines/vials/rat_poison/filling",                     class_238.field_1989.field_92.field_401.field_425.field_449},
+			{"textures/pipelines/vials/reactive_earth/draining",                class_238.field_1989.field_92.field_401.field_426.field_504},
+			{"textures/pipelines/vials/reactive_earth/full",                    class_238.field_1989.field_92.field_401.field_426.field_505},
+			{"textures/pipelines/vials/refined_hematite/draining",              class_238.field_1989.field_92.field_401.field_427.field_452},
+			{"textures/pipelines/vials/refined_hematite/full",                  class_238.field_1989.field_92.field_401.field_427.field_453},
+			{"textures/pipelines/vials/rocket_fuel/empty",                      class_238.field_1989.field_92.field_401.field_428.field_478},
+			{"textures/pipelines/vials/rocket_fuel/filling",                    class_238.field_1989.field_92.field_401.field_428.field_479},
+			{"textures/pipelines/vials/silver_paint/empty",                     class_238.field_1989.field_92.field_401.field_429.field_442},
+			{"textures/pipelines/vials/silver_paint/filling",                   class_238.field_1989.field_92.field_401.field_429.field_443},
+			{"textures/pipelines/vials/solvent/empty",                          class_238.field_1989.field_92.field_401.field_430.field_466},
+			{"textures/pipelines/vials/solvent/filling",                        class_238.field_1989.field_92.field_401.field_430.field_467},
+			{"textures/pipelines/vials/special_amaro/draining",                 class_238.field_1989.field_92.field_401.field_431.field_470},
+			{"textures/pipelines/vials/special_amaro/empty",                    class_238.field_1989.field_92.field_401.field_431.field_471},
+			{"textures/pipelines/vials/special_amaro/filling",                  class_238.field_1989.field_92.field_401.field_431.field_472},
+			{"textures/pipelines/vials/special_amaro/full",                     class_238.field_1989.field_92.field_401.field_431.field_473},
+			{"textures/pipelines/vials/stabilized_air/full",                    class_238.field_1989.field_92.field_401.field_432.field_506},
+			{"textures/pipelines/vials/stabilized_earth/draining",              class_238.field_1989.field_92.field_401.field_433.field_489},
+			{"textures/pipelines/vials/stabilized_earth/full",                  class_238.field_1989.field_92.field_401.field_433.field_490},
+			{"textures/pipelines/vials/stabilized_fire/draining",               class_238.field_1989.field_92.field_401.field_434.field_481},
+			{"textures/pipelines/vials/stabilized_fire/full",                   class_238.field_1989.field_92.field_401.field_434.field_482},
+			{"textures/pipelines/vials/stabilized_water/draining",              class_238.field_1989.field_92.field_401.field_435.field_440},
+			{"textures/pipelines/vials/stabilized_water/full",                  class_238.field_1989.field_92.field_401.field_435.field_441},
+			{"textures/pipelines/vials/tinstone/draining",                      class_238.field_1989.field_92.field_401.field_436.field_475},
+			{"textures/pipelines/vials/tinstone/full",                          class_238.field_1989.field_92.field_401.field_436.field_476},
+			{"textures/pipelines/vials/vapor_of_levity/empty",                  class_238.field_1989.field_92.field_401.field_437.field_480},
+			{"textures/pipelines/vials/viscous_sludge/empty",                   class_238.field_1989.field_92.field_401.field_438.field_450},
+			{"textures/pipelines/vials/viscous_sludge/filling",                 class_238.field_1989.field_92.field_401.field_438.field_451},
+			{"textures/pipelines/vials/welding_thermite/empty",                 class_238.field_1989.field_92.field_401.field_439.field_493},
+			{"textures/pipelines/vials/welding_thermite/filling",               class_238.field_1989.field_92.field_401.field_439.field_494},
+		};
 	}
-	static void LoadPuganoTransformerPuzzle(Puzzle puzzle)
-	{
-		if (puzzle.field_2779.method_1085())
-		{
-			var productionData = puzzle.field_2779.method_1087();
-			var vialsArray = new class_128[2];
-			vialsArray[0] = new class_128(-8, 3, true, new Tuple<Texture, Texture>[1] { Tuple.Create(vial_qs_full, vial_qs_draining) });
-			vialsArray[1] = new class_128(-5, -3, false, new Tuple<Texture, Texture>[1] { Tuple.Create(vial_lead_empty, vial_lead_filling) });
-			productionData.field_2073 = vialsArray;
-			// fix and update the cabinet bounding box
-			productionData.field_2075 = false;
-			puzzle.method_1247();
-		}
-	}
-	static void LoadMachineOilCabinetPuzzle(Puzzle puzzle)
-	{
-		if (puzzle.field_2779.method_1085())
-		{
-			var productionData = puzzle.field_2779.method_1087();
-			var vialsArray = new class_128[2];
-			vialsArray[0] = new class_128(-10, 3, true, new Tuple<Texture, Texture>[2] { Tuple.Create(vial_iron_full, vial_iron_draining), Tuple.Create(vial_water_full, vial_water_draining) });
-			vialsArray[1] = new class_128(-6, -3, false, new Tuple<Texture, Texture>[1] { Tuple.Create(vial_oil_empty, vial_oil_filling) });
-			productionData.field_2073 = vialsArray;
-			// update the cabinet bounding box
-			puzzle.method_1247();
-		}
-	}
+	#endregion
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// main functions
@@ -428,11 +455,9 @@ public static class CampaignLoader
 			{"Title", class_238.field_1991.field_1832},
 		};
 
-		// initialize tip resources
+		// initialize tip and vial resources
 		initializeTips();
-
-		// initialize vial resources
-		LoadVialTextures();
+		initializeVialTextureBank();
 
 		// fetch campaign data
 		foreach (Campaign campaign in QuintessentialLoader.AllCampaigns)
@@ -526,6 +551,7 @@ public static class CampaignLoader
 					{
 						if (puzzleDictionary.ContainsKey(puzzleID))
 						{
+							LoadPolymerOutputs(puzzle);
 							PuzzleModelRMC puzzleModel = puzzleDictionary[puzzleID];
 
 							if (!string.IsNullOrEmpty(puzzleModel.Music) && songList.Keys.Contains(puzzleModel.Music))
@@ -533,18 +559,41 @@ public static class CampaignLoader
 								campaignItem.field_2328 = songList[puzzleModel.Music];
 								campaignItem.field_2329 = fanfareList[puzzleModel.Music];
 							}
+
+							if (puzzleModel.Cabinet != null)
+							{
+								if (!puzzle.field_2779.method_1085())
+								{
+									Logger.Log("[ReductiveMetallurgyCampaign] Puzzle '" + puzzleID + "' is not a production puzzle - ignoring the cabinet data.");
+								}
+								else
+								{
+									var cabinet = puzzleModel.Cabinet;
+									var productionData = puzzle.field_2779.method_1087();
+									productionData.field_2075 = !cabinet.ExpandLeft;
+									productionData.field_2076 = !cabinet.ExpandRight;
+									productionData.field_2073 = new class_128[cabinet.VialHolders.Count];
+									for (int i = 0; i < cabinet.VialHolders.Count; i++)
+									{
+										var holder = cabinet.VialHolders[i];
+										var vials = new Tuple<Texture, Texture>[holder.Vials.Count];
+										for (int j = 0; j < holder.Vials.Count; j++)
+										{
+											var vial = holder.Vials[j];
+											vials[j] = Tuple.Create(fetchVialTexture(vial.TextureSim), fetchVialTexture(vial.TextureGif));
+										}
+										productionData.field_2073[i] = new class_128(int.Parse(holder.Position.Split(',')[0]), int.Parse(holder.Position.Split(',')[1]), holder.TopSide, vials);
+									}
+									// fix and update the cabinet bounding box
+									puzzle.method_1247();
+								}
+							}
 						}
 					}
 				}
 			}
 		}
-
-
 	}
-
-
-
-
 
 	public static Maybe<Solution> Solution_Method_1958(On.Solution.orig_method_1958 orig, string filePath)
 	{

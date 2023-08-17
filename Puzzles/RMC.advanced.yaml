@@ -261,6 +261,18 @@ Puzzles:
   Music: Solving2
 - ID: rmc-saverio-transformer
   Music: Solving5
+  Cabinet:
+    ExpandRight: true
+    VialHolders:
+      - Position: 2, 3
+        TopSide: true
+        Vials:
+          - TextureSim: "textures/pipelines/vials/elemental_lead/full"
+            TextureGif: "textures/pipelines/vials/elemental_lead/draining"
+      - Position: 5, -3
+        Vials:
+          - TextureSim: "textures/pipelines/vials/elemental_quicksilver/empty"
+            TextureGif: "textures/pipelines/vials/elemental_quicksilver/filling"
 - ID: rmc-galena-separation
   Music: Solving1
 ##########
@@ -303,8 +315,33 @@ Puzzles:
   Music: Solving6
 - ID: rmc-precision-machine-oil-cabinet
   Music: Solving6
+  Cabinet:
+    VialHolders:
+      - Position: -10, 3
+        TopSide: true
+        Vials:
+          - TextureSim: "textures/pipelines/vials/elemental_iron/full"
+            TextureGif: "textures/pipelines/vials/elemental_iron/draining"
+          - TextureSim: "textures/pipelines/vials/elemental_water/full"
+            TextureGif: "textures/pipelines/vials/elemental_water/draining"
+      - Position: -6, -3
+        Vials:
+          - TextureSim: "textures/pipelines/vials/precision_machine_oil/empty"
+            TextureGif: "textures/pipelines/vials/precision_machine_oil/filling"
 - ID: rmc-pugano-transformer
   Music: Solving4
+  Cabinet:
+    ExpandLeft: true
+    VialHolders:
+      - Position: -8, 3
+        TopSide: true
+        Vials:
+          - TextureSim: "textures/pipelines/vials/elemental_quicksilver/full"
+            TextureGif: "textures/pipelines/vials/elemental_quicksilver/draining"
+      - Position: -5, -3
+        Vials:
+          - TextureSim: "textures/pipelines/vials/elemental_lead/empty"
+            TextureGif: "textures/pipelines/vials/elemental_lead/filling"
 - ID: rmc-reactive-litharge
   Music: Solving5
 - ID: rmc-welded-elements
