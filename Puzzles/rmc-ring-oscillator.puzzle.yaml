@@ -1,0 +1,129 @@
+Name: RING OSCILLATOR
+ID: rmc-ring-oscillator
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: copper
+      Position:
+        Pos: 2,0
+    - AtomType: copper
+      Position:
+        Pos: 1,-1
+    - AtomType: gold
+      Position:
+        Pos: 1,1
+    - AtomType: gold
+      Position:
+        Pos: 0,0
+    - AtomType: gold
+      Position:
+        Pos: 2,-1
+    - AtomType: copper
+      Position:
+        Pos: 0,1
+    Bonds:
+    - A:
+        Pos: 2,-1
+      B:
+        Pos: 2,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-1
+      B:
+        Pos: 2,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,1
+      B:
+        Pos: 1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,1
+      B:
+        Pos: 2,0
+      BondTypes:
+      - standard
+    Name: Rose-Gold Ring
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: silver
+      Position:
+        Pos: 0,0
+    - AtomType: silver
+      Position:
+        Pos: 0,1
+    - AtomType: silver
+      Position:
+        Pos: 1,1
+    - AtomType: silver
+      Position:
+        Pos: 2,0
+    - AtomType: silver
+      Position:
+        Pos: 2,-1
+    - AtomType: silver
+      Position:
+        Pos: 1,-1
+    Bonds:
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,1
+      B:
+        Pos: 1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,1
+      B:
+        Pos: 2,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 2,-1
+      B:
+        Pos: 2,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-1
+      B:
+        Pos: 2,-1
+      BondTypes:
+      - standard
+    Name: Silver Ring
+  Amount: -1
+PermissionFlags: Projection, Purification, CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:rejection
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 

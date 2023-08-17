@@ -1,0 +1,236 @@
+Name: METALLURGIST'S OPUS
+ID: rmc-metallurgist-opus
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: copper
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Copper
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: quicksilver
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Quicksilver
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: silver
+      Position:
+        Pos: 0,0
+    - AtomType: tin
+      Position:
+        Pos: 0,2
+    - AtomType: tin
+      Position:
+        Pos: -2,0
+    - AtomType: tin
+      Position:
+        Pos: 2,-2
+    - AtomType: quicksilver
+      Position:
+        Pos: -1,0
+    - AtomType: quicksilver
+      Position:
+        Pos: 1,-1
+    - AtomType: quicksilver
+      Position:
+        Pos: 0,1
+    - AtomType: silver
+      Position:
+        Pos: -1,-1
+    - AtomType: silver
+      Position:
+        Pos: 2,-1
+    - AtomType: silver
+      Position:
+        Pos: -1,2
+    - AtomType: copper
+      Position:
+        Pos: -2,1
+    - AtomType: copper
+      Position:
+        Pos: 1,-2
+    - AtomType: copper
+      Position:
+        Pos: 1,1
+    - AtomType: tin
+      Position:
+        Pos: 1,0
+    - AtomType: tin
+      Position:
+        Pos: -1,1
+    - AtomType: tin
+      Position:
+        Pos: 0,-1
+    - AtomType: quicksilver
+      Position:
+        Pos: -2,2
+    - AtomType: quicksilver
+      Position:
+        Pos: 0,-2
+    - AtomType: quicksilver
+      Position:
+        Pos: 2,0
+    Bonds:
+    - A:
+        Pos: 0,1
+      B:
+        Pos: 0,2
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -2,0
+      B:
+        Pos: -1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-1
+      B:
+        Pos: 2,-2
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,2
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,2
+      B:
+        Pos: 0,2
+      BondTypes:
+      - standard
+    - A:
+        Pos: -2,2
+      B:
+        Pos: -1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -2,1
+      B:
+        Pos: -2,2
+      BondTypes:
+      - standard
+    - A:
+        Pos: -2,1
+      B:
+        Pos: -1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -2,0
+      B:
+        Pos: -1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,-1
+      B:
+        Pos: -1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-2
+      B:
+        Pos: 0,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 1,-2
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-2
+      B:
+        Pos: 1,-2
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 2,-2
+      B:
+        Pos: 2,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-1
+      B:
+        Pos: 2,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,0
+      B:
+        Pos: 2,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,1
+      B:
+        Pos: 2,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,0
+      B:
+        Pos: 1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    Name: Magniferous Amalgam
+  Amount: -1
+PermissionFlags: CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:proliferation
+- ReductiveMetallurgy:ravari
+- ReductiveMetallurgy:deposition
+- ReductiveMetallurgy:rejection
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 

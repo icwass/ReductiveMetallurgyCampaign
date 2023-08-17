@@ -1,0 +1,59 @@
+Name: METAL DEPOSITION
+ID: rmc-metal-deposition
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: gold
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Gold
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: silver
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Silver
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: copper
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Copper
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: iron
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Iron
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: tin
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Tin
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: lead
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Lead
+  Amount: -1
+PermissionFlags: CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:deposition
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 

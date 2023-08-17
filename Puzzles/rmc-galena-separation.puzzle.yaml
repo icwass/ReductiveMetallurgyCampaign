@@ -1,0 +1,107 @@
+Name: GALENA SEPARATION
+ID: rmc-galena-separation
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: silver
+      Position:
+        Pos: 0,0
+    - AtomType: lead
+      Position:
+        Pos: 0,-1
+    - AtomType: lead
+      Position:
+        Pos: -1,1
+    - AtomType: lead
+      Position:
+        Pos: 1,0
+    - AtomType: salt
+      Position:
+        Pos: -1,0
+    - AtomType: salt
+      Position:
+        Pos: 0,1
+    - AtomType: salt
+      Position:
+        Pos: 1,-1
+    Bonds:
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: -1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,1
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,1
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-1
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    Name: Galena
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: iron
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Iron
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: salt
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Salt
+  Amount: -1
+PermissionFlags: Projection, Purification, Disposal, CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:rejection
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 

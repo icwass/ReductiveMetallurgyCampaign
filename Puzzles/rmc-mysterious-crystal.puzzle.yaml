@@ -1,0 +1,159 @@
+Name: MYSTERIOUS CRYSTAL
+ID: rmc-mysterious-crystal
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: iron
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Iron
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: iron
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Iron
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: earth
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Earth
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: quintessence
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Mysterious Core
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: tin
+      Position:
+        Pos: -1,-1
+    - AtomType: tin
+      Position:
+        Pos: 1,0
+    - AtomType: tin
+      Position:
+        Pos: 0,-1
+    - AtomType: earth
+      Position:
+        Pos: -1,0
+    - AtomType: earth
+      Position:
+        Pos: 0,1
+    - AtomType: quintessence
+      Position:
+        Pos: 0,0
+    - AtomType: earth
+      Position:
+        Pos: 1,-1
+    - AtomType: tin
+      Position:
+        Pos: -1,1
+    - AtomType: tin
+      Position:
+        Pos: -2,1
+    - AtomType: tin
+      Position:
+        Pos: -1,2
+    - AtomType: tin
+      Position:
+        Pos: 1,1
+    - AtomType: tin
+      Position:
+        Pos: 2,-1
+    - AtomType: tin
+      Position:
+        Pos: 1,-2
+    Bonds:
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -2,1
+      B:
+        Pos: -1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,2
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,1
+      B:
+        Pos: 1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-2
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,-1
+      B:
+        Pos: -1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-1
+      B:
+        Pos: 2,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    Name: Mysterious Crystal
+  Amount: -1
+PermissionFlags: Purification, CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:deposition
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 

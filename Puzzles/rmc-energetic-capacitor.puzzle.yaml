@@ -1,0 +1,256 @@
+Name: ENERGETIC CAPACITOR
+ID: rmc-energetic-capacitor
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: fire
+      Position:
+        Pos: 0,2
+    - AtomType: fire
+      Position:
+        Pos: 0,0
+    - AtomType: iron
+      Position:
+        Pos: 1,0
+    - AtomType: fire
+      Position:
+        Pos: 1,1
+    - AtomType: iron
+      Position:
+        Pos: -1,1
+    - AtomType: iron
+      Position:
+        Pos: 0,1
+    - AtomType: fire
+      Position:
+        Pos: -1,2
+    - AtomType: salt
+      Position:
+        Pos: -1,0
+    - AtomType: salt
+      Position:
+        Pos: 1,-1
+    - AtomType: salt
+      Position:
+        Pos: -2,2
+    - AtomType: salt
+      Position:
+        Pos: 2,0
+    Bonds:
+    - A:
+        Pos: -1,1
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,1
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: -1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-1
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,2
+      B:
+        Pos: 0,2
+      BondTypes:
+      - triplex_0
+      - triplex_1
+      - triplex_2
+    - A:
+        Pos: 0,2
+      B:
+        Pos: 1,1
+      BondTypes:
+      - triplex_0
+      - triplex_1
+      - triplex_2
+    - A:
+        Pos: -2,2
+      B:
+        Pos: -1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -2,2
+      B:
+        Pos: -1,2
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,1
+      B:
+        Pos: 2,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,0
+      B:
+        Pos: 2,0
+      BondTypes:
+      - standard
+    Name: Energetic Capacitor, Depleted
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: copper
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Copper
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: copper
+      Position:
+        Pos: -1,0
+    - AtomType: copper
+      Position:
+        Pos: 1,-1
+    - AtomType: fire
+      Position:
+        Pos: -1,1
+    - AtomType: fire
+      Position:
+        Pos: 0,-1
+    - AtomType: fire
+      Position:
+        Pos: 1,0
+    - AtomType: salt
+      Position:
+        Pos: -1,-1
+    - AtomType: copper
+      Position:
+        Pos: 0,0
+    - AtomType: fire
+      Position:
+        Pos: 0,1
+    - AtomType: salt
+      Position:
+        Pos: 1,-2
+    - AtomType: salt
+      Position:
+        Pos: -2,1
+    - AtomType: salt
+      Position:
+        Pos: 2,-1
+    Bonds:
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-2
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 1,-2
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,-1
+      B:
+        Pos: 0,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,-1
+      B:
+        Pos: -1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -2,1
+      B:
+        Pos: -1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -2,1
+      B:
+        Pos: -1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-1
+      B:
+        Pos: 2,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,0
+      B:
+        Pos: 2,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,1
+      B:
+        Pos: 0,1
+      BondTypes:
+      - triplex_0
+      - triplex_1
+      - triplex_2
+    - A:
+        Pos: 0,1
+      B:
+        Pos: 1,0
+      BondTypes:
+      - triplex_0
+      - triplex_1
+      - triplex_2
+    Name: Energetic Capacitor, Filled
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: lead
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Lead
+  Amount: -1
+PermissionFlags: Projection, CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:rejection
+- ReductiveMetallurgy:ravari
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 

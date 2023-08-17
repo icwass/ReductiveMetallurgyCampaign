@@ -1,0 +1,50 @@
+Name: Pugano's Transformer
+ID: rmc-pugano-transformer
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: earth
+      Position:
+        Pos: 0,0
+    - AtomType: tin
+      Position:
+        Pos: 1,0
+    Bonds:
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    Name: Fragrant Fragment
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: quicksilver
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Quicksilver
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: lead
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Lead
+  Amount: -1
+PermissionFlags: Projection, Purification, CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:deposition
+- ReductiveMetallurgy:ravari
+PartQuotas: {}
+Highlights: []
+ProductionInfo:
+  Chambers:
+  - ChamberType: Large
+    Position:
+      Pos: 0,0
+  Isolation: false

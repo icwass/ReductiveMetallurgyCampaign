@@ -1,0 +1,100 @@
+Name: WOOD PRESERVATIVE
+ID: rmc-wood-preservative
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: copper
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Copper
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: water
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Water
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: copper
+      Position:
+        Pos: -2,1
+    - AtomType: copper
+      Position:
+        Pos: -1,0
+    - AtomType: copper
+      Position:
+        Pos: -1,-1
+    - AtomType: copper
+      Position:
+        Pos: 1,-1
+    - AtomType: tin
+      Position:
+        Pos: 0,0
+    - AtomType: salt
+      Position:
+        Pos: -1,2
+    - AtomType: salt
+      Position:
+        Pos: 1,1
+    - AtomType: water
+      Position:
+        Pos: 0,1
+    Bonds:
+    - A:
+        Pos: -1,2
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,1
+      B:
+        Pos: 1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,-1
+      B:
+        Pos: -1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -2,1
+      B:
+        Pos: -1,0
+      BondTypes:
+      - standard
+    Name: Wood Preservative
+  Amount: -1
+PermissionFlags: Projection, CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:rejection
+- ReductiveMetallurgy:ravari
+- ReductiveMetallurgy:proliferation
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 

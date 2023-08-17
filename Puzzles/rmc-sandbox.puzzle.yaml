@@ -1,0 +1,126 @@
+Name: RMC SANDBOX
+ID: rmc-sandbox
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: lead
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: tin
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: iron
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: copper
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: silver
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: gold
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: quicksilver
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: lead
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: tin
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: iron
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: copper
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: silver
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: gold
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: quicksilver
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+PermissionFlags: AllMechanisms, Bonder, Unbonder, SpeedBonder, Projection, Purification, Disposal, BasicSymbols, ResetSymbol, RepeatSymbol, PivotSymbols
+CustomPermissions:
+- ReductiveMetallurgy:rejection
+- ReductiveMetallurgy:deposition
+- ReductiveMetallurgy:ravari
+- ReductiveMetallurgy:proliferation
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 

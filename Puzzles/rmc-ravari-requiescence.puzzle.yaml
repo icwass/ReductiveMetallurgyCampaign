@@ -1,0 +1,144 @@
+Name: RAVARI'S  REQUIESCENCE
+ID: rmc-ravari-requiescence
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: quicksilver
+      Position:
+        Pos: 0,0
+    - AtomType: lead
+      Position:
+        Pos: -1,1
+    - AtomType: gold
+      Position:
+        Pos: 0,1
+    - AtomType: copper
+      Position:
+        Pos: 1,-1
+    - AtomType: silver
+      Position:
+        Pos: 1,0
+    - AtomType: iron
+      Position:
+        Pos: 0,-1
+    - AtomType: tin
+      Position:
+        Pos: -1,0
+    Bonds:
+    - A:
+        Pos: -1,1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    Name: Ravari's Wheel, Incorrect
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: quicksilver
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Quicksilver
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: gold
+      Position:
+        Pos: -1,1
+    - AtomType: lead
+      Position:
+        Pos: 0,1
+    - AtomType: quicksilver
+      Position:
+        Pos: 0,0
+    - AtomType: iron
+      Position:
+        Pos: 1,-1
+    - AtomType: copper
+      Position:
+        Pos: 0,-1
+    - AtomType: silver
+      Position:
+        Pos: -1,0
+    - AtomType: tin
+      Position:
+        Pos: 1,0
+    Bonds:
+    - A:
+        Pos: -1,1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    Name: Ravari's Wheel
+  Amount: -1
+PermissionFlags: AllMechanisms, Projection, BasicSymbols, ResetSymbol, RepeatSymbol, PivotSymbols
+CustomPermissions:
+- ReductiveMetallurgy:ravari
+- ReductiveMetallurgy:rejection
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 

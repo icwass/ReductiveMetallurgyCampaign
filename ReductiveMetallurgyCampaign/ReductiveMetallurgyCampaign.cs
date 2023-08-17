@@ -12,7 +12,6 @@ using System.Reflection;
 namespace ReductiveMetallurgyCampaign;
 
 // SOLITAIRE_ICON_TEMP - these lines will be removed once custom campaign icons are actually implemented in quintessential
-// QUINTESSENTIAL 0.4.0 UPGRADE - these lines can be simplified, but then won't be compatible with quintessential 0.3.0
 
 //using PartType = class_139;
 //using Permissions = enum_149;

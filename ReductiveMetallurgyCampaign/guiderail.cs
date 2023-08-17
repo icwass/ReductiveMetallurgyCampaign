@@ -266,10 +266,10 @@ public static class PolymerInput
 	public static void My_Method_1835(Sim sim_self)
 	{
 		var sim_dyn = new DynamicData(sim_self);
-		var solutionEditorBase = sim_dyn.Get<SolutionEditorBase>("field_3818"); // QUINTESSENTIAL 0.4.0 UPGRADE: field_3818 is public now
+		var solutionEditorBase = sim_self.field_3818;
 		var solution = solutionEditorBase.method_502();
 		var field3919 = solution.field_3919;
-		var struct122List1 = sim_dyn.Get<List<Sim.struct_122>>("field_3826"); // QUINTESSENTIAL 0.4.0 UPGRADE: field_3826 is public now
+		var struct122List1 = sim_self.field_3826;
 
 		List<Vector2> vector2List = new List<Vector2>();
 		float num1 = 20f;

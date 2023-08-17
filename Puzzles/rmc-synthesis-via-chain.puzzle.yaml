@@ -1,0 +1,89 @@
+Name: SYNTHESIS VIA CHAIN
+ID: rmc-synthesis-via-chain
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: salt
+      Position:
+        Pos: 0,0
+    - AtomType: salt
+      Position:
+        Pos: 3,0
+    - AtomType: salt
+      Position:
+        Pos: 2,0
+    - AtomType: salt
+      Position:
+        Pos: 1,0
+    - AtomType: fire
+      Position:
+        Pos: 0,1
+    - AtomType: water
+      Position:
+        Pos: 1,-1
+    - AtomType: air
+      Position:
+        Pos: 2,1
+    - AtomType: earth
+      Position:
+        Pos: 3,-1
+    Bonds:
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,0
+      B:
+        Pos: 2,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 2,0
+      B:
+        Pos: 3,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-1
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 2,0
+      B:
+        Pos: 2,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 3,-1
+      B:
+        Pos: 3,0
+      BondTypes:
+      - standard
+    Name: Van Berlo's Chain
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: quintessence
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Quintessence
+  Amount: -1
+PermissionFlags: Duplication, Disposal, Quintessence, CoreTools, BaronWheel
+CustomPermissions: []
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 
