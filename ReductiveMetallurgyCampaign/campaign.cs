@@ -20,7 +20,6 @@ using Tip = class_215;
 public class PuzzleModelRMC
 {
 	public string ID, Music;
-	public List<string> Inputs, Outputs;
 }
 public class CharacterModelRMC
 {
@@ -528,19 +527,6 @@ public static class CampaignLoader
 						if (puzzleDictionary.ContainsKey(puzzleID))
 						{
 							PuzzleModelRMC puzzleModel = puzzleDictionary[puzzleID];
-							void processIO(bool doInputs)
-							{
-								List<string> stringList = doInputs ? puzzleModel.Inputs : puzzleModel.Outputs;
-								if (stringList == null) return;
-
-								PuzzleInputOutput[] puzzleInputOutputArray = doInputs ? puzzle.field_2770 : puzzle.field_2771;
-								int num = Math.Min(puzzleInputOutputArray.Length, stringList.Count);
-								for (int index = 0; index < num; ++index)
-									puzzleInputOutputArray[index].field_2813.field_2639 = (Maybe<LocString>)class_134.method_253(stringList[index], string.Empty);
-							}
-
-							processIO(true);
-							processIO(false);
 
 							if (!string.IsNullOrEmpty(puzzleModel.Music) && songList.Keys.Contains(puzzleModel.Music))
 							{

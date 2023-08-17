@@ -253,236 +253,60 @@ Puzzles:
 ##########
 - ID: rmc-practical-test
   Music: Solving1
-  Inputs:
-  - Elemental Water
-  - Elemental Copper
-  Outputs:
-  - Reactive Water
-  - Quickiron
-##########
 - ID: rmc-copper-synthesis
   Music: Solving4
-  Inputs:
-  - Elemental Tin
-  - Elemental Gold
-  Outputs:
-  - Elemental Copper
-##########
 - ID: rmc-ring-oscillator
   Music: Solving3
-  Inputs:
-  - Rose-Gold Ring
-  Outputs:
-  - Silver Ring
-##########
 - ID: rmc-patina-processing
   Music: Solving2
-  Inputs:
-  - Copper Patina
-  Outputs:
-  - Elemental Gold
-  - Limbal Essence
-##########
 - ID: rmc-saverio-transformer
   Music: Solving5
-  Inputs:
-  - Elemental Lead
-  Outputs:
-  - Elemental Quicksilver
-##########
 - ID: rmc-galena-separation
   Music: Solving1
-  Inputs:
-  - Galena
-  Outputs:
-  - Elemental Iron
-  - Elemental Salt
-##########
-##########
 ##########
 - ID: rmc-metal-deposition
   Music: Solving1
-  Inputs:
-  - Elemental Gold
-  - Elemental Silver
-  - Elemental Copper
-  Outputs:
-  - Elemental Iron
-  - Elemental Tin
-  - Elemental Lead
-##########
 - ID: rmc-mysterious-crystal
   Music: Solving6
-  Inputs:
-  - Elemental Iron
-  - Elemental Iron
-  - Elemental Earth
-  - Mysterious Core
-  Outputs:
-  - Mysterious Crystal
-##########
 - ID: rmc-solder-wire
   Music: Solving4
-  Inputs:
-  - Elemental Gold
-  Outputs:
-  - Solder Wire
-##########
 - ID: rmc-plumbous-wheel
   Music: Solving3
-  Inputs:
-  - Elemental Iron
-  Outputs:
-  - Plumbous Wheel
-##########
 - ID: rmc-silver-phosphate
   Music: Solving5
-  Inputs:
-  - Elemental Air
-  - Elemental Air
-  - Elemental Copper
-  - Elemental Copper
-  Outputs:
-  - Silver Phosphate
-##########
 - ID: rmc-you-drive-me-to-drink
   Music: Solving2
-  Inputs:
-  - Tinstone
-  Outputs:
-  - Distilled Alcohol
-  - Elemental Tin
-##########
-##########
 ##########
 - ID: rmc-ravari-requiescence
   Music: Solving5
-  Inputs:
-  - Ravari's Wheel, Incorrect
-  - Quicksilver
-  Outputs:
-  - Ravari's Wheel
-##########
 - ID: rmc-energetic-capacitor
   Music: Solving3
-  Inputs:
-  - Energetic Capacitor, Depleted
-  - Elemental Copper
-  Outputs:
-  - Energetic Capacitor, Filled
-  - Elemental Lead
-##########
 - ID: rmc-synthesis-via-chain
   Music: Solving4
-  Inputs:
-  - Van Berlo's Chain
-  Outputs:
-  - Elemental Quintessence
-##########
 - ID: rmc-sanitizing-dust
   Music: Solving3
-  Inputs:
-  - Elemental Gold
-  - Elemental Earth
-  - Elemental Earth
-  - Elemental Earth
-  Outputs:
-  - Sanitizing Dust, Part A
-  - Sanitizing Dust, Part B
-  - Sanitizing Dust, Part C
-##########
 - ID: rmc-invariant-metal
   Music: Solving5
-  Inputs:
-  - Elemental Tin
-  - Elemental Tin
-  Outputs:
-  - Invariant Metal
-##########
-##########
 ##########
 - ID: rmc-ravari-renewal
   Music: Solving6
-  Inputs:
-  - Elemental Quicksilver
-  Outputs:
-  - Ravari's Wheel
 - ID: rmc-amalgam-wire
   Music: Solving2
-  Inputs:
-  - Elemental Gold
-  - Elemental Earth
-  Outputs:
-  - Amalgam Wire
 - ID: rmc-wood-preservative
   Music: Solving3
-  Inputs:
-  - Elemental Copper
-  - Elemental Water
-  Outputs:
-  - Wood Preservative
 - ID: rmc-experimental-catalyst
   Music: Solving4
-  Inputs:
-  - Elemental Salt
-  - Elemental Quicksilver
-  Outputs:
-  - Experimental Catalyst
 - ID: rmc-metallurgist-opus
   Music: Solving1
-  Inputs:
-  - Elemental Copper
-  - Elemental Quicksilver
-  Outputs:
-  - Magniferous Amalgam
-##########
-##########
 ##########
 - ID: rmc-golden-thread-recycling
   Music: Solving6
-  Inputs:
-  - Golden Thread
-  Outputs:
-  - Very Dark Thread
-  - Elemental Salt
-##########
 - ID: rmc-precision-machine-oil-cabinet
   Music: Solving6
-  Inputs:
-  - Elemental Water
-  - Elemental Iron
-  Outputs:
-  - Precision Machine Oil
-##########
 - ID: rmc-pugano-transformer
   Music: Solving4
-  Inputs:
-  - Fragrant Fragment
-  - Elemental Quicksilver
-  Outputs:
-  - Elemental Lead
-##########
 - ID: rmc-reactive-litharge
   Music: Solving5
-  Inputs:
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-  - Elemental Lead
-  Outputs:
-  - Reactive Litharge
-##########
 - ID: rmc-welded-elements
   Music: Solving1
-  Inputs:
-  - Elemental Quintessence
-  - Elemental Copper
-  Outputs:
-  - Leaden Air
-  - Leaden Fire
-  - Leaden Water
-  - Leaden Earth
 ##########
