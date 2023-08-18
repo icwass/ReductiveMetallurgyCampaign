@@ -46,6 +46,8 @@ public class CutscenePatcher
 	static Dictionary<string, string> Locations = new Dictionary<string, string>();
 	static Dictionary<string, Texture> Backgrounds = new Dictionary<string, Texture>();
 
+	public static Texture creditsBackground => Backgrounds["rmc-cutscene-hubris"];
+
 
 	public static void Load()
 	{

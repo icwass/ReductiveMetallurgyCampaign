@@ -131,8 +131,24 @@ public class Document
 		if (Input.IsLeftClickPressed() || Input.IsSdlKeyPressed(SDL.enum_160.SDLK_ESCAPE))
 		{
 			GameLogic.field_2434.field_2451.method_574(class264);
-			GameLogic.field_2434.method_949();
-			class_238.field_1991.field_1875.method_28(1f); // sound effect: ui_paper_back
+
+			if (documentID == "rmc-document-epilogue")
+			{
+				GameLogic.field_2434.method_945(new RMCCreditsScreen(), (Maybe<class_124>)Transitions.field_4109, (Maybe<class_124>)Transitions.field_4108);
+
+				//manually push and pop screens
+				//var GAME = GameLogic.field_2434;
+				//var epilogue = GAME.method_938(); // PEEK
+				//GAME.method_950(1); // POP 1 screens
+				//GAME.method_946(new RMCCreditsScreen()); // PUSH
+				//GAME.method_946(epilogue); // PUSH
+				//GameLogic.field_2434.method_949();
+			}
+			else
+			{
+				class_238.field_1991.field_1875.method_28(1f); // sound effect: ui_paper_back
+				GameLogic.field_2434.method_949();
+			}
 		}
 	}
 
