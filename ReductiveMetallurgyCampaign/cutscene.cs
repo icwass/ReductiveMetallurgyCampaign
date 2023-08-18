@@ -78,7 +78,7 @@ public class CutscenePatcher
 	static private void method_684(class_264 field2038)
 	{
 		GameLogic.field_2434.field_2451.method_574(field2038);
-		if (field2038.field_2090 == "outro-5")
+		if (field2038.field_2090 == "outro-5" || field2038.field_2090 == "rmc-cutscene-hubris")
 			GameLogic.field_2434.method_947((Maybe<class_124>)Transitions.field_4109, (Maybe<class_124>)Transitions.field_4108);
 		else
 			GameLogic.field_2434.method_947((Maybe<class_124>)Transitions.field_4107, (Maybe<class_124>)Transitions.field_4106);
