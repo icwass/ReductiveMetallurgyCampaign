@@ -60,7 +60,7 @@ public static class SigmarGardenPatcher
 			class_175.field_1690, // 16 - quintessence
 		}[i];
 	}
-	public static void Load()
+	public static void PostLoad()
 	{
 		getSigmarWins_RMC();
 		On.CampaignItem.method_825 += DetermineIfCampaignItemIsCompleted;

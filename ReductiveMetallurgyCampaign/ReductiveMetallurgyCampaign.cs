@@ -46,6 +46,10 @@ public class MainClass : QuintessentialMod
 	{
 		[SettingsLabel("Display metals remaining in the new Sigmar's Garden.")]
 		public bool DisplayMetalsRemaining = true;
+		[SettingsLabel("[DEBUG] Show the finale, even if already seen.")]
+		public bool AlwaysShowFinale = false;
+		[SettingsLabel("[DEBUG] Have the finale go to the solutions menu, for fast testing.")]
+		public bool GoToSolutionsMenu = false;
 	}
 	public override void ApplySettings()
 	{
@@ -53,6 +57,8 @@ public class MainClass : QuintessentialMod
 
 		var SET = (MySettings)Settings;
 		DisplayMetalsRemaining = SET.DisplayMetalsRemaining;
+		Amalgamate.alwaysShowFinale = SET.AlwaysShowFinale;
+		Amalgamate.goToSolutionsMenu = SET.GoToSolutionsMenu;
 	}
 
 	public static bool findModMetaFilepath(string name, out string filepath)
@@ -102,6 +108,7 @@ public class MainClass : QuintessentialMod
 	public override void Unload() {
 		hook_Sim_method_1835.Dispose();
 		SigmarGardenPatcher.Unload();
+		Amalgamate.Unload();
 	}
 
 
@@ -159,7 +166,9 @@ public class MainClass : QuintessentialMod
 
 	public override void PostLoad()
 	{
-		SigmarGardenPatcher.Load();
+		SigmarGardenPatcher.PostLoad();
+		//oldAmalgamate.PostLoad();
+		Amalgamate.PostLoad();
 		On.OptionsScreen.method_50 += OptionsScreen_Method_50;
 		On.StoryPanel.method_2172 += StoryPanel_Method_2172;
 		On.CampaignItem.method_826 += ChooseCustomIconLarge; // SOLITAIRE_ICON_TEMP
@@ -224,5 +233,118 @@ public class MainClass : QuintessentialMod
 		}
 
 		orig(panel_self, timeDelta, pos, index, tuple);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//---------------------------------------------------//
+	//debug helpers
+
+	private static string atomtypeToChar(AtomType type)
+	{
+		string[] table = new string[17] { "…", "🜔", "🜁", "🜃", "🜂", "🜄", "☿", "☉", "☽", "♀", "♂", "♃", "♄", "🜍", "🜞", "…", "✶" };
+		if (type.field_2283 < 17 && type.field_2283 >= 0) return table[type.field_2283];
+		Logger.Log("printMolecule: Unknown atom type '" + type.field_2284 + "' (byteID: " + type.field_2283 + ")");
+		return "?";
+	}
+	private static char bondToChar(enum_126 type, Pair<int, int> location)
+	{
+		int index = (location.Right % 2 == 0) ? 0 : ((location.Right - location.Left) % 4 == 0) ? 1 : 2;
+		string table = "—\\/~}{";
+		if (type == (enum_126)0)
+		{
+			return ' ';
+		}
+		else if (type == (enum_126)1)
+		{
+			return table[index];
+		}
+		else if (((int)type & 14) == (int)type)
+		{
+			return table[index + 3];
+		}
+		Logger.Log("printMolecule: Unknown bond type '" + type + "'");
+		return '#';
+	}
+	private static Pair<int, int> hexToPair(HexIndex hex) => new Pair<int, int>(4 * hex.Q + 2 * hex.R, -2 * hex.R);
+	private static Pair<int, int> bondToPair(class_277 bond)
+	{
+		//assumes bonds are between adjacent atoms only
+		var pair1 = hexToPair(bond.field_2187);
+		var pair2 = hexToPair(bond.field_2188);
+		return new Pair<int, int>((pair1.Left + pair2.Left) / 2, (pair1.Right + pair2.Right) / 2);
+	}
+	public static void printMolecule(Molecule molecule)
+	{
+		var moleculeDyn = new DynamicData(molecule);
+		var atomDict = moleculeDyn.Get<Dictionary<HexIndex, Atom>>("field_2642");
+		if (atomDict.Count == 0)
+		{
+			Logger.Log("<empty molecule>");
+			return;
+		}
+		var bondList = moleculeDyn.Get<List<class_277>>("field_2643");
+		int minX = int.MaxValue;
+		int minY = int.MaxValue;
+		int maxX = int.MinValue;
+		int maxY = int.MinValue;
+		Dictionary<Pair<int, int>, string> charDict = new();
+		foreach (var pair in atomDict)
+		{
+			Pair<int, int> location = hexToPair(pair.Key);
+			charDict.Add(location, atomtypeToChar(pair.Value.field_2275));
+			minX = Math.Min(minX, location.Left);
+			maxX = Math.Max(maxX, location.Left + 4);
+			minY = Math.Min(minY, location.Right - 1);
+			maxY = Math.Max(maxY, location.Right + 2);
+		}
+		foreach (var bond in bondList)
+		{
+			Pair<int, int> location = bondToPair(bond);
+			charDict.Add(location, "" + bondToChar(bond.field_2186, location));
+		}
+		string[,] vram = new string[maxX - minX, maxY - minY];
+		for (int i = 0; i < maxX - minX; i++)
+		{
+			for (int j = 0; j < maxY - minY; j++)
+			{
+				vram[i, j] = (i % 4 == 3) ? "	" : " ";
+			}
+		}
+		foreach (var pair in charDict)
+		{
+			vram[pair.Key.Left - minX, pair.Key.Right - minY] = pair.Value;
+		}
+		for (int j = 0; j < maxY - minY; j++)
+		{
+			string str = "";
+			for (int i = 0; i < maxX - minX; i++)
+			{
+				str = str + vram[i, j];
+			}
+			if (j == 0)
+			{
+				Logger.Log("/	" + str + "\\");
+			}
+			else if (j == maxY - minY - 1)
+			{
+				Logger.Log("\\	" + str + "/");
+			}
+			else
+			{
+				Logger.Log("|	" + str + "|");
+			}
+		}
 	}
 }
