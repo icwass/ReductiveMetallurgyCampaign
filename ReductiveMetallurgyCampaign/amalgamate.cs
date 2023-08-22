@@ -27,7 +27,7 @@ public static class Amalgamate
 	const string levelID = "rmc-metallurgist-opus";
 	const string soundName = "rmc_sim_crash";
 	const string Amalgamate_ErrorTimerField = "ReductiveMetallurgyCampaign_Amalgamate_ErrorTimerField";
-	const string Amalgamate_MoleculeErrorGraphicsField = "ReductiveMetallurgyCampaign_Amalgamate_MoleculeErrorGraphicsField";
+	const string Amalgamate_ErrorGraphicsField = "ReductiveMetallurgyCampaign_Amalgamate_ErrorGraphicsField";
 	const float fadecrashLength = 6f;
 	const float fadebackLength = 3f;
 	static Sound sim_crash;
@@ -37,7 +37,7 @@ public static class Amalgamate
 
 	static bool erroringOut = false;
 	public static bool alwaysShowFinale = false; // DEBUG
-	public static bool goToSolutionsMenu = false; // DEBUG
+	public static bool TestingMode = false; // DEBUG
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// helpers
 	static bool isFinalePuzzle(SolutionEditorScreen ses_self) => ses_self.method_502().method_1934().field_2766 == levelID;
@@ -59,7 +59,7 @@ public static class Amalgamate
 		}
 	}
 	static float fetchErroringTimer(SolutionEditorBase seb_self) => fetchErrorData<float>(seb_self, Amalgamate_ErrorTimerField);
-	static MoleculeErrorGraphics fetchMoleculeErrorGraphics(SolutionEditorBase seb_self) => fetchErrorData<MoleculeErrorGraphics>(seb_self, Amalgamate_MoleculeErrorGraphicsField);
+	static ErrorGraphics fetchErrorGraphics(SolutionEditorBase seb_self) => fetchErrorData<ErrorGraphics>(seb_self, Amalgamate_ErrorGraphicsField);
 
 	static void setErrorData<T>(SolutionEditorBase seb_self, string field, T data)
 	{
@@ -67,7 +67,7 @@ public static class Amalgamate
 		erroringOut = true;
 	}
 	static void setErroringTimer(SolutionEditorBase seb_self, float f) => setErrorData(seb_self, Amalgamate_ErrorTimerField, f);
-	static void setMoleculeErrorGraphics(SolutionEditorBase seb_self, MoleculeErrorGraphics meg) => setErrorData(seb_self, Amalgamate_MoleculeErrorGraphicsField, meg);
+	static void setErrorGraphics(SolutionEditorBase seb_self, ErrorGraphics meg) => setErrorData(seb_self, Amalgamate_ErrorGraphicsField, meg);
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// public functions
@@ -98,10 +98,10 @@ public static class Amalgamate
 	{
 		orig(seb_self, offset);
 
-		var MoleculeErrorGraphics = fetchMoleculeErrorGraphics(seb_self);
-		if (MoleculeErrorGraphics == null) return;
+		var ErrorGraphics = fetchErrorGraphics(seb_self);
+		if (!erroringOut || ErrorGraphics == null) return;
 		var timer = fetchErroringTimer(seb_self);
-		MoleculeErrorGraphics.drawMolecules(1.3f - timer);
+		ErrorGraphics.drawMolecules(timer - 1f);
 	}
 
 	private static void drawAmalgamatedBoard(On.class_135.orig_method_263 orig, Texture texture, Color color, Vector2 position, Vector2 offset)
@@ -213,11 +213,11 @@ public static class Amalgamate
 		setErroringTimer(ses_self, 0f);
 
 		//manually push and pop screens so the next transition will go directly to the cutscene
-		if (!goToSolutionsMenu)
+		if (!TestingMode) // DEBUG CONDITIONAL
 		{
 			var GAME = GameLogic.field_2434;
 			var editorScreen = GAME.method_938(); // PEEK
-			GAME.method_950(2); // POP 2 screens // DEBUG
+			GAME.method_950(2); // POP 2 screens
 			GAME.method_946(vignette); // PUSH
 			GAME.method_946(editorScreen); // PUSH
 		}
@@ -231,13 +231,13 @@ public static class Amalgamate
 		};
 		var field4108_slower = new class_124()
 		{
-			field_1458 = goToSolutionsMenu ? 0.25f : fadebackLength,
+			field_1458 = fadebackLength,
 			field_1459 = Transitions.field_4108.field_1459,
 			field_1460 = Transitions.field_4108.field_1460
 		};
 
 		// start transitioning from the editor to the vignette
-		GameLogic.field_2434.method_947((Maybe<class_124>)field4109_slower, (Maybe<class_124>)field4108_slower);
+		if (!TestingMode) GameLogic.field_2434.method_947((Maybe<class_124>)field4109_slower, (Maybe<class_124>)field4108_slower); //DEBUG
 		sim_crash.method_28(1f);
 		GameLogic.field_2434.field_2443.method_673(song_cruelty);
 	}
@@ -283,7 +283,7 @@ public static class Amalgamate
 			masterSet.UnionWith(hexes);
 		}
 		
-		// find molecules that we could use for MoleculeErrorGraphics
+		// find molecules that we could use for ErrorGraphics
 		var viableMolecules = new List<Molecule>();
 		var inputReverseMolecules = new List<Molecule>();
 		var lessViableMolecules = new Dictionary<Molecule, List<HexIndex>>();
@@ -314,7 +314,7 @@ public static class Amalgamate
 			}
 		}
 
-		MoleculeErrorGraphics moleculeErrorGraphics;
+		ErrorGraphics errorGraphics;
 
 		if (viableMolecules.Count > 0)
 		{
@@ -323,7 +323,7 @@ public static class Amalgamate
 			{
 				moleculeList.Remove(molecule);
 			}
-			moleculeErrorGraphics = new MoleculeErrorGraphics(ses_self, "Molecules may not leave transmutation surfaces.", viableMolecules);
+			errorGraphics = new ErrorGraphics(ses_self, "Molecules may not leave transmutation surfaces.", viableMolecules);
 		}
 		else if (inputReverseMolecules.Count > 0)
 		{
@@ -332,7 +332,7 @@ public static class Amalgamate
 			{
 				moleculeList.Remove(molecule);
 			}
-			moleculeErrorGraphics = new MoleculeErrorGraphics(ses_self, "Reagents may not backfeed into input vials.", inputReverseMolecules);
+			errorGraphics = new ErrorGraphics(ses_self, "Reagents may not backfeed into input vials.", inputReverseMolecules);
 		}
 		else if (lessViableMolecules.Count > 0)
 		{
@@ -356,7 +356,7 @@ public static class Amalgamate
 				}
 				partialMolecules.Add(newMolecule);
 			}
-			moleculeErrorGraphics = new MoleculeErrorGraphics(ses_self, "Atoms may not leave transmutation surfaces.", partialMolecules);
+			errorGraphics = new ErrorGraphics(ses_self, "Atoms may not leave transmutation surfaces.", partialMolecules);
 		}
 		else if (thereIsAtLeastOneOutput(ses_self))
 		{
@@ -374,7 +374,7 @@ public static class Amalgamate
 				outputMolecules.Add(molecule);
 			}
 
-			moleculeErrorGraphics = new MoleculeErrorGraphics(ses_self, "Products may not backfeed into the transmutation engine.", outputMolecules, true);
+			errorGraphics = new ErrorGraphics(ses_self, "Products may not backfeed into the transmutation engine.", outputMolecules, true);
 		}
 		else
 		{
@@ -382,12 +382,14 @@ public static class Amalgamate
 			throw new Exception("calculateFinaleData: Expected at lease one output part, found none.");
 		}
 
-		setMoleculeErrorGraphics(ses_self, moleculeErrorGraphics);
+		setErrorGraphics(ses_self, errorGraphics);
 	}
 
-	class MoleculeErrorGraphics
+	class ErrorGraphics
 	{
 		SolutionEditorScreen ses;
+		Vector2 ses_origin;
+		Vector2 ses_target;
 		string errorMessage;
 		List<Molecule> molecules;
 		bool drawBackwards;
@@ -395,26 +397,48 @@ public static class Amalgamate
 		Vector2 offset(HexIndex hex) => class_187.field_1742.method_491(hex, ses.field_4009);
 		Vector2 offset(Molecule molecule) => offset(anchor(molecule));
 
-		public MoleculeErrorGraphics(SolutionEditorScreen ses, string errorMessage, List<Molecule> molecules, bool drawBackwards = false)
+		float clampTimer(float t) => Math.Max(0f, Math.Min(t, 1f));
+
+		public ErrorGraphics(SolutionEditorScreen ses, string errorMessage, List<Molecule> molecules, bool drawBackwards = false)
 		{
 			this.ses = ses;
+			this.ses_origin = ses.field_4009;
+			this.ses_target = ses.field_4009;
 			this.errorMessage = errorMessage;
 			this.molecules = molecules;
 			this.drawBackwards = drawBackwards;
+
+			Vector2 moleculePosition = offset(molecules.First());
+			this.ses_target = ses.field_4009 - moleculePosition + class_115.field_1433 * 0.5f;
 		}
 
-		public void drawMolecules(float timer)
+		public void moveCamera(float t)
 		{
-			var num = Math.Min(1f, Math.Max(0f, timer));
+			var timer = clampTimer(t);
+			if (timer > 0f && timer < 1f)
+			{
+				float lerp = 1f - (float)Math.Pow(1 - timer, 2);
+				ses.field_4009 = (1 - lerp) * ses_origin + lerp * ses_target;
+			}
+			else if (!ses_origin.Equals(ses_target) && timer > 1f)
+			{
+				ses.field_4009 = ses_target;
+				ses_origin = ses_target;
+			}
+		}
+
+		public void drawMolecules(float t)
+		{
+			var timer = clampTimer(t);
+			var depth = 1 - timer;
 			if (drawBackwards)
 			{
-				num = 1f - num;
-				if (num < 0.2f) return;
+				depth = timer;
+				if (timer < 0.2f) return;
 			}
-
 			foreach (var molecule in molecules)
 			{
-				Editor.method_925(molecule, offset(molecule), anchor(molecule), 0f, 1f, num, 1f, false, null);
+				Editor.method_925(molecule, offset(molecule), anchor(molecule), 0f, 1f, depth, 1f, false, null);
 			}
 		}
 
@@ -478,10 +502,17 @@ public static class Amalgamate
 		float errorTimer = fetchErroringTimer(ses_self);
 		float errorPercent = Math.Max(0f, (errorTimer - 0.5f) / fadecrashLength);
 
+		//DEBUG
+		if (TestingMode && ses_self.method_503() == enum_128.Stopped)
+		{
+			setErroringTimer(ses_self, -1);
+			erroringOut = false;
+		}
 		if (erroringOut)
 		{
 			setErroringTimer(ses_self, errorTimer + timeDelta);
 		}
+
 		//////////////////////////
 		orig(ses_self, timeDelta);
 		//////////////////////////
@@ -496,8 +527,9 @@ public static class Amalgamate
 		// timeStamp 02
 		if (errorTimer < 1f) return;
 
-		var moleculeErrorGraphics = fetchMoleculeErrorGraphics(ses_self);
-		moleculeErrorGraphics.drawError(errorPercent);
+		var errorGraphics = fetchErrorGraphics(ses_self);
+		errorGraphics.moveCamera(errorTimer - 1.3f);
+		errorGraphics.drawError(errorPercent);
 
 
 		// timeStamp 03

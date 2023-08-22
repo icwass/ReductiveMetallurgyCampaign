@@ -49,7 +49,7 @@ public class MainClass : QuintessentialMod
 		[SettingsLabel("[DEBUG] Show the finale, even if already seen.")]
 		public bool AlwaysShowFinale = false;
 		[SettingsLabel("[DEBUG] Have the finale go to the solutions menu, for fast testing.")]
-		public bool GoToSolutionsMenu = false;
+		public bool TestingMode = false;
 	}
 	public override void ApplySettings()
 	{
@@ -58,7 +58,7 @@ public class MainClass : QuintessentialMod
 		var SET = (MySettings)Settings;
 		DisplayMetalsRemaining = SET.DisplayMetalsRemaining;
 		Amalgamate.alwaysShowFinale = SET.AlwaysShowFinale;
-		Amalgamate.goToSolutionsMenu = SET.GoToSolutionsMenu;
+		Amalgamate.TestingMode = SET.TestingMode;
 	}
 
 	public static bool findModMetaFilepath(string name, out string filepath)
