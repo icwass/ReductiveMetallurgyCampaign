@@ -44,7 +44,7 @@ public class MainClass : QuintessentialMod
 	public override Type SettingsType => typeof(MySettings);
 	public class MySettings
 	{
-		[SettingsLabel("Display metals remaining in the new Sigmar's Garden.")]
+		[SettingsLabel("Display 'metals remaining' in the new Sigmar's Garden.")]
 		public bool DisplayMetalsRemaining = true;
 		[SettingsLabel("[DEBUG] Show the finale, even if already seen.")]
 		public bool AlwaysShowFinale = false;

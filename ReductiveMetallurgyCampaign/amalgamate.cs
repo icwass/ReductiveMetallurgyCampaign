@@ -323,16 +323,7 @@ public static class Amalgamate
 			{
 				moleculeList.Remove(molecule);
 			}
-			errorGraphics = new ErrorGraphics(ses_self, "Molecules may not leave transmutation surfaces.", viableMolecules);
-		}
-		else if (inputReverseMolecules.Count > 0)
-		{
-			// make atoms go back through the inputs
-			foreach (var molecule in inputReverseMolecules)
-			{
-				moleculeList.Remove(molecule);
-			}
-			errorGraphics = new ErrorGraphics(ses_self, "Reagents may not backfeed into input vials.", inputReverseMolecules);
+			errorGraphics = new ErrorGraphics(ses_self, "Molecules may not sublimate through transmutation surfaces.", viableMolecules);
 		}
 		else if (lessViableMolecules.Count > 0)
 		{
@@ -356,7 +347,16 @@ public static class Amalgamate
 				}
 				partialMolecules.Add(newMolecule);
 			}
-			errorGraphics = new ErrorGraphics(ses_self, "Atoms may not leave transmutation surfaces.", partialMolecules);
+			errorGraphics = new ErrorGraphics(ses_self, "Atoms may not sublimate through transmutation surfaces.", partialMolecules);
+		}
+		else if (inputReverseMolecules.Count > 0)
+		{
+			// make atoms go back through the inputs
+			foreach (var molecule in inputReverseMolecules)
+			{
+				moleculeList.Remove(molecule);
+			}
+			errorGraphics = new ErrorGraphics(ses_self, "Reagents may not backfeed into input vials.", inputReverseMolecules);
 		}
 		else if (thereIsAtLeastOneOutput(ses_self))
 		{
@@ -390,26 +390,101 @@ public static class Amalgamate
 		SolutionEditorScreen ses;
 		Vector2 ses_origin;
 		Vector2 ses_target;
-		string errorMessage;
+		bool drawMoleculeErrorBackwards;
+		string errorMessageMolecule;
+		string errorMessageInstruction;
+		string errorMessageArmsPart1;
+		string errorMessageArmsPart2;
 		List<Molecule> molecules;
-		bool drawBackwards;
+		List<HexIndex> armHexes = new();
+		Dictionary<Part, CompiledProgram> programDict = null;
 		HexIndex anchor(Molecule molecule) => molecule.method_1100().First().Key;
 		Vector2 offset(HexIndex hex) => class_187.field_1742.method_491(hex, ses.field_4009);
 		Vector2 offset(Molecule molecule) => offset(anchor(molecule));
+		Vector2 resolution => class_115.field_1433;
 
 		float clampTimer(float t) => Math.Max(0f, Math.Min(t, 1f));
 
+		static class InstructionJumbler
+		{
+			static Random randomizer = new Random();
+			static InstructionType[] instructionPool;
+
+			public static void initializePool()
+			{
+				instructionPool = new InstructionType[]
+				{
+					class_169.field_1653, // blank
+					class_169.field_1654, // blank2
+					class_169.field_1655, // move +
+					class_169.field_1656, // move -
+					class_169.field_1657, // rotate cw
+					class_169.field_1658, // rotate ccw
+					class_169.field_1659, // extend
+					class_169.field_1660, // retract
+					class_169.field_1661, // pivot cw
+					class_169.field_1662, // pivot ccw
+					class_169.field_1663, // grab
+					class_169.field_1664, // drop
+				};
+			}
+			public static InstructionType randomInstruction() => instructionPool[randomizer.Next(instructionPool.Length)];
+		}
+
 		public ErrorGraphics(SolutionEditorScreen ses, string errorMessage, List<Molecule> molecules, bool drawBackwards = false)
 		{
+			InstructionJumbler.initializePool();
 			this.ses = ses;
 			this.ses_origin = ses.field_4009;
 			this.ses_target = ses.field_4009;
-			this.errorMessage = errorMessage;
+
+			// we are given the molecule error information
+			this.errorMessageMolecule = errorMessage;
 			this.molecules = molecules;
-			this.drawBackwards = drawBackwards;
+			this.drawMoleculeErrorBackwards = drawBackwards;
 
 			Vector2 moleculePosition = offset(molecules.First());
-			this.ses_target = ses.field_4009 - moleculePosition + class_115.field_1433 * 0.5f;
+			this.ses_target = ses.field_4009 - moleculePosition + resolution * 0.5f;
+
+			// easter egg error messages
+			this.errorMessageInstruction = "Error 0x7880: TEngine.InstructionOutOfRangeException";
+			this.errorMessageArmsPart1 = "Error 0x0243: TEngine.NullEssenceException";
+			this.errorMessageArmsPart2 = "Error 0x3704: TEngine.VialOverflowException";
+
+			//determine the instruction error information
+			var maybeSim = new DynamicData(ses).Get<Maybe<Sim>>("field_4022");
+			if (!maybeSim.method_1085())
+			{
+				// why would there be no sim? but just in case...
+				// if no sim, then no instructions or arms - keep the easter egg messages, we're setting up
+				return;
+			}
+
+			var sim = maybeSim.method_1087();
+			var solution = ses.method_502();
+			var partList = solution.field_3919;
+			var partSimStates = sim.field_3821;
+			var compiledProgramGrid = sim.method_1820();
+			var period = 0;
+			if (partList.Count > 0) period = compiledProgramGrid.method_851(partList[0]).field_2367.Length;
+			if (period > 0)
+			{
+				this.programDict = new DynamicData(compiledProgramGrid).Get<Dictionary<Part, CompiledProgram>>("field_2368");
+				this.errorMessageInstruction = "Instruction trays must not become corrupted.";
+			}
+
+			//determine the arm error information
+
+			foreach (var arm in partList.Where(x => x.method_1159().field_1534.Length > 0))
+			{
+				this.armHexes.Add(partSimStates[arm].field_2734);
+			}
+
+			if (this.armHexes.Count > 0)
+			{
+				this.errorMessageArmsPart1 = "Arms may not rotate in two different directions at once.";
+				this.errorMessageArmsPart2 = "Arms cannot operate asynchronously.";
+			}
 		}
 
 		public void moveCamera(float t)
@@ -431,7 +506,7 @@ public static class Amalgamate
 		{
 			var timer = clampTimer(t);
 			var depth = 1 - timer;
-			if (drawBackwards)
+			if (drawMoleculeErrorBackwards)
 			{
 				depth = timer;
 				if (timer < 0.2f) return;
@@ -442,31 +517,65 @@ public static class Amalgamate
 			}
 		}
 
-		public void drawError(float errorPercent)
+		public void drawMoleculeError(float errorPercent)
 		{
 			List<Vector2> errorSquares = new();
 			foreach (var molecule in molecules)
 			{
-				//
-				
-				
-				
-				
-				errorSquares.Add(offset(molecule));
-
-
-
-
+				foreach (var hex in molecule.method_1100().Keys)
+				{
+					errorSquares.Add(offset(hex));
+				}
 			}
 
-			drawErrorBox(ses, errorMessage, new Vector2(600, 400), errorSquares.ToArray(), errorPercent);
+			drawErrorBox(ses, errorMessageMolecule, 0.5f, 0.5f, errorSquares.ToArray(), errorPercent);
+		}
+
+		public void drawInstructionError(float errorPercent)
+		{
+			drawErrorBox(ses, errorMessageInstruction, 0.73f, 0.08f, new Vector2[] { new Vector2(resolution.X * 0.7f, resolution.Y * 0.2f) }, errorPercent);
+
+			if (programDict == null || programDict.Count == 0) return;
+
+			var upper = programDict.First().Value.field_2367.Length;
+
+			foreach (var program in programDict.Values)
+			{
+				for (int i = 0; i < upper; i++)
+				{
+					program.field_2367[i].field_2364 = InstructionJumbler.randomInstruction();
+				}
+			}
+		}
+		public void drawArmsError_part1(float errorPercent)
+		{
+			List<Vector2> errorSquares = new();
+			foreach (var hex in armHexes)
+			{
+				errorSquares.Add(offset(hex));
+			}
+			drawErrorBox(ses, errorMessageArmsPart1, 0.7f, 0.9f, errorSquares.ToArray(), errorPercent);
+		}
+		public void drawArmsError_part2(float errorPercent)
+		{
+			drawErrorBox(ses, errorMessageArmsPart2, 0f, 0.68f, new Vector2[] { }, errorPercent);
 		}
 	}
 
+	private static void drawErrorBox(SolutionEditorScreen ses, string message, float relativeX, float relativeY, Vector2[] errorSquareLocations, float errorPercent)
+	{
+		var messageBoxTexture = class_238.field_1989.field_101.field_795;
+		Bounds2 boxBounds = Bounds2.WithSize(ses.method_2122().BottomLeft + new Vector2(25f, -1f), new Vector2(messageBoxTexture.method_688(), 160f));
+		if (class_115.field_1433.X < 1680.0) boxBounds = boxBounds.Translated(new Vector2(0.0f, 35f));
+
+		Vector2 drawSize = class_115.field_1433 - boxBounds.BottomLeft - boxBounds.Size;
+		Vector2 position = new Vector2(relativeX * drawSize.X, relativeY * drawSize.Y);
+		drawErrorBox(ses, message, position, errorSquareLocations, errorPercent);
+	}
 
 	private static void drawErrorBox(SolutionEditorScreen ses, string message, Vector2 position, Vector2[] errorSquareLocations, float errorPercent)
 	{
-		int maxErrorOffset = 5;
+		int maxErrorOffset = 3;
 		float errorOffsetX = randomizer.Next(-maxErrorOffset, maxErrorOffset+1) * errorPercent;
 		float errorOffsetY = randomizer.Next(-maxErrorOffset, maxErrorOffset + 1) * errorPercent;
 		var errorOffset = new Vector2(errorOffsetX, errorOffsetY);
@@ -489,11 +598,8 @@ public static class Amalgamate
 		class_135.method_292(message, bounds2_2.Center + new Vector2(-2f, 16f), class_238.field_1990.field_2143, class_181.field_1719, (enum_0)1, 1f, 0.6f, 300f, float.MaxValue, 0, new Color(), null, int.MaxValue);
 
 		var method2094 = MainClass.PrivateMethod<SolutionEditorScreen>("method_2094");
-		var replayButton = (ButtonDrawingLogic)method2094.Invoke(null, new object[] { class_134.method_253("Replay", string.Empty).method_1060(), bounds2_2.Min + new Vector2(22f, 20f), 158f });
-		var okayButton = (ButtonDrawingLogic)method2094.Invoke(null, new object[] { class_134.method_253("Okay", string.Empty).method_1060(), bounds2_2.Min + new Vector2(191f, 20f), 158f });
-
-		replayButton.method_824(false, true);
-		okayButton.method_824(false, true);
+		((ButtonDrawingLogic)method2094.Invoke(null, new object[] { class_134.method_253("Replay", string.Empty).method_1060(), bounds2_2.Min + new Vector2(22f, 20f), 158f })).method_824(false, true);
+		((ButtonDrawingLogic)method2094.Invoke(null, new object[] { class_134.method_253("Okay", string.Empty).method_1060(), bounds2_2.Min + new Vector2(191f, 20f), 158f })).method_824(false, true);
 	}
 
 
@@ -502,12 +608,17 @@ public static class Amalgamate
 		float errorTimer = fetchErroringTimer(ses_self);
 		float errorPercent = Math.Max(0f, (errorTimer - 0.5f) / fadecrashLength);
 
+		//errorPercent = 0f; // DEBUG
+
 		//DEBUG
 		if (TestingMode && ses_self.method_503() == enum_128.Stopped)
 		{
 			setErroringTimer(ses_self, -1);
 			erroringOut = false;
 		}
+
+
+
 		if (erroringOut)
 		{
 			setErroringTimer(ses_self, errorTimer + timeDelta);
@@ -518,9 +629,6 @@ public static class Amalgamate
 		//////////////////////////
 		if (!erroringOut) return;
 
-
-		var timeStamps_01_06 = new List<float>() { 0f, 1f, 1.755f, 2.043f, 2.512f, 2.89f };
-
 		// timeStamp 01
 		drawErrorBox(ses_self, "Unknown operating condition encountered.", new Vector2(0, 0), new Vector2[] { }, errorPercent);
 
@@ -529,15 +637,23 @@ public static class Amalgamate
 
 		var errorGraphics = fetchErrorGraphics(ses_self);
 		errorGraphics.moveCamera(errorTimer - 1.3f);
-		errorGraphics.drawError(errorPercent);
-
+		errorGraphics.drawMoleculeError(errorPercent);
 
 		// timeStamp 03
-		// timeStamp 04
-		// timeStamp 05
-		// timeStamp 06
+		if (errorTimer < 1.755f) return;
+		errorGraphics.drawArmsError_part1(errorPercent);
 
-		drawErrorBox(ses_self, "Unknown operating condition encountered.", new Vector2(0, 0), new Vector2[] { }, errorPercent);
+		// timeStamp 04
+		if (errorTimer < 2.043f) return;
+		errorGraphics.drawInstructionError(errorPercent);
+
+		// timeStamp 05
+		if (errorTimer < 2.512f) return;
+		errorGraphics.drawArmsError_part2(errorPercent);
+
+		// timeStamp 06
+		if (errorTimer < 2.89f) return;
+		drawErrorBox(ses_self, "Internal chambers must not rupture.", 0.98f, 0.64f, new Vector2[] { }, errorPercent);
 
 		// timeStamps 07 - 10
 		var timeStamps_07_10 = new List<float>() {3.314f, 3.813f, 4.167f, 4.479f};
