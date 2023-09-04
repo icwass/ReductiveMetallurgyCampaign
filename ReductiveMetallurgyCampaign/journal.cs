@@ -97,7 +97,6 @@ public sealed class JournalLoader
 				continue;
 			}
 
-			Array.Resize(ref JournalVolumes.field_2572, JournalVolumes.field_2572.Length + 1);
 			var newJournalVolume = new JournalVolume()
 			{
 				field_2569 = volume.Title,
@@ -105,20 +104,14 @@ public sealed class JournalLoader
 				field_2571 = new Puzzle[5]
 			};
 
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 5; i++)
 			{
 				journal_items.Add(itemForJournal[i]);
 				newJournalVolume.field_2571[i] = itemForJournal[i].field_2325.method_1087();
 			}
 
-
+			Array.Resize(ref JournalVolumes.field_2572, JournalVolumes.field_2572.Length + 1);
 			JournalVolumes.field_2572[JournalVolumes.field_2572.Length - 1] = newJournalVolume;
-
-			journal_items.Add(itemForJournal[0]);
-			journal_items.Add(itemForJournal[1]);
-			journal_items.Add(itemForJournal[2]);
-			journal_items.Add(itemForJournal[3]);
-			journal_items.Add(itemForJournal[4]);
 
 			//chaptersToRemove.Add(volumeIndex);
 			Logger.Log("[ReductiveMetallurgyCampaign] Converted chapter '" + volumeIndex + "' into a journal page.'");
@@ -141,14 +134,14 @@ public sealed class JournalLoader
 
 	public static void Load()
 	{
-		//hook_JournalScreen_method_1040 = new Hook(MainClass.PrivateMethod<JournalScreen>("method_1040"), OnJournalScreen_Method_1040);
+		hook_JournalScreen_method_1040 = new Hook(MainClass.PrivateMethod<JournalScreen>("method_1040"), OnJournalScreen_Method_1040);
 	}
 	private delegate void orig_JournalScreen_method_1040(JournalScreen screen_self, Puzzle puzzle, Vector2 basePosition, bool isLargePuzzle);
 
 
 	public static void Unload()
 	{
-		//hook_JournalScreen_method_1040.Dispose();
+		hook_JournalScreen_method_1040.Dispose();
 	}
 
 	private static void OnJournalScreen_Method_1040(orig_JournalScreen_method_1040 orig, JournalScreen screen_self, Puzzle puzzle, Vector2 basePosition, bool isLargePuzzle)
@@ -158,7 +151,7 @@ public sealed class JournalLoader
 			orig(screen_self, puzzle, basePosition, isLargePuzzle);
 			return;
 		}
-		//var item = journal_items.Where(x => x.field_2325.method_1087() == puzzle).First();
+		var item = journal_items.Where(x => x.field_2325.method_1087() == puzzle).First();
 		bool puzzleSolved = GameLogic.field_2434.field_2451.method_573(puzzle);
 		Font crimson_15 = class_238.field_1990.field_2144;
 		bool authorExists = puzzle.field_2768.method_1085();
@@ -214,14 +207,9 @@ public sealed class JournalLoader
 		}
 		if (mouseHover && Input.IsLeftClickPressed())
 		{
-			//Song song = item.field_2328;
-			//Sound fanfare = item.field_2329;
-			//Maybe<class_264> maybeStoryPanel = item.field_2327;
-
-			Song song = class_238.field_1992.field_970;
-			Sound fanfare = class_238.field_1991.field_1830;
-			Maybe<class_264> maybeStoryPanel = struct_18.field_1431;
-
+			Song song = item.field_2328;
+			Sound fanfare = item.field_2329;
+			Maybe<class_264> maybeStoryPanel = item.field_2327;
 
 			GameLogic.field_2434.method_946(new PuzzleInfoScreen(puzzle, song, fanfare, maybeStoryPanel));
 			class_238.field_1991.field_1821.method_28(1f);

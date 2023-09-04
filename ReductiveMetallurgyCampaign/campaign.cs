@@ -596,7 +596,7 @@ public static class CampaignLoader
 			}
 		}
 
-		//JournalLoader.modifyJournals(campaign_self);
+		JournalLoader.modifyJournals(campaign_self);
 	}
 
 	public static Maybe<Solution> Solution_Method_1958(On.Solution.orig_method_1958 orig, string filePath)
