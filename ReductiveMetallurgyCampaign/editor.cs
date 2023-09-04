@@ -757,4 +757,73 @@ public class editableBoard
 			}
 		}
 	}
+
+
+
+	/*
+	public static SolitaireGameState GetNewSolitaireBoard(On.class_198.orig_method_537 orig, bool quintessenceSigmar)
+	{
+		if (!MainClass.currentCampaignIsRMC() || quintessenceSigmar) return orig(quintessenceSigmar);
+
+		string path = "";
+		string filePath = "Content/solitaire-rmc.dat";
+
+		// try to find solitaire_rmc.dat
+		foreach (var dir in QuintessentialLoader.ModContentDirectories)
+		{
+			if (File.Exists(Path.Combine(dir, filePath)))
+			{
+				path = Path.Combine(dir, filePath);
+				break;
+			}
+		}
+
+		if (path == "") return orig(quintessenceSigmar);
+
+		using (BinaryReader binaryReader = new BinaryReader(new FileStream(path, FileMode.Open, FileAccess.Read)))
+		{
+			const int bytesPerBoard = 200;
+			// 1 for leading 0xBB byte
+			// 16 for settings
+			// 182 (=91*2) for marbles
+			// 1 for trailing 0xDD byte
+			int num = binaryReader.ReadInt32();
+
+			int boardID = class_269.field_2103.method_299(0, num);
+			if (sigmarWins_RMC == 0)
+			{
+				//pick a specific board
+				boardID = 0;
+			}
+
+			binaryReader.BaseStream.Seek(boardID * bytesPerBoard, SeekOrigin.Current);
+			byte header = binaryReader.ReadByte();
+			if (header != 0xBB) throw new Exception("[RMC:SigmarGardenPatcher] Invalid header byte for solitaire board: " + header);
+
+			//no settings, currently - skip
+			binaryReader.BaseStream.Seek(16, SeekOrigin.Current);
+
+			HexRotation rotation = new HexRotation(0);
+
+			SolitaireGameState solitaireGameState = new SolitaireGameState();
+			for (int index = 0; index < 91; ++index)
+			{
+				// read in the next marble
+				int atomInt = binaryReader.ReadByte() & 0x000F;
+				byte pos = binaryReader.ReadByte();
+				// if not a blank spot, add marble to board
+				if (atomInt == 0) continue;
+				int R = (pos & 0x000F) - 5;
+				int Q = (pos >> 4) & 0x000F;
+				HexIndex hex = new HexIndex(Q, R).RotatedAround(new HexIndex(5, 0), rotation);
+				solitaireGameState.field_3864.Add(hex, getAtomType(atomInt));
+			}
+
+			byte trailing = binaryReader.ReadByte();
+			if (trailing != 0xDD) throw new Exception("[RMC:SigmarGardenPatcher] Invalid trailing byte for solitaire board: " + trailing);
+
+			return solitaireGameState;
+		}
+	}
+	*/
 }

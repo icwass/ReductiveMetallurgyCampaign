@@ -189,7 +189,7 @@ Chapters:
   - ID: rmc-metallurgist-opus
     Title: "Metallurgist's Opus"
     Puzzle: rmc-metallurgist-opus
-    Requires: "rmc-cutscene-reveal"
+    Requires: "rmc-experimental-catalyst"
   - ID: rmc-cutscene-hubris
     Title: "Hubris"
     Puzzle: empty
