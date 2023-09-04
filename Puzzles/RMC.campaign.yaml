@@ -108,8 +108,8 @@ Chapters:
     Requires: "rmc-silver-phosphate"
 - Title: Chapter III
   Subtitle: The Alchemical Symposium
-  Place: "The Conference Halls, House Montfort"
-  Background: textures/cinematic/backgrounds/greathall_b
+  Place: "Imperial University"
+  Background: textures/puzzle_select/background_0
   Entries:
   - ID: rmc-document-symposium-agenda
     Title: "Symposium Agenda"

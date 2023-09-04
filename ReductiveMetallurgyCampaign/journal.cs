@@ -113,7 +113,7 @@ public sealed class JournalLoader
 			Array.Resize(ref JournalVolumes.field_2572, JournalVolumes.field_2572.Length + 1);
 			JournalVolumes.field_2572[JournalVolumes.field_2572.Length - 1] = newJournalVolume;
 
-			//chaptersToRemove.Add(volumeIndex);
+			chaptersToRemove.Add(volumeIndex);
 			Logger.Log("[ReductiveMetallurgyCampaign] Converted chapter '" + volumeIndex + "' into a journal page.'");
 		}
 
