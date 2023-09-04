@@ -218,7 +218,7 @@ public static class CampaignLoader
 		{oldPolymerInputTutorialID, LoadOldPolymerInputPuzzle },
 	};
 
-	static void LoadRejectionTutorialPuzzle(Puzzle puzzle) => MainClass.setOptionsUnlock(puzzle);
+	static void LoadRejectionTutorialPuzzle(Puzzle puzzle) => StoryPanelPatcher.setOptionsUnlock(puzzle);
 
 	#region polymer input/output puzzle loaders
 

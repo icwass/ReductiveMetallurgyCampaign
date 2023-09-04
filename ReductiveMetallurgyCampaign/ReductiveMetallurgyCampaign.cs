@@ -26,16 +26,10 @@ using Tip = class_215;
 public class MainClass : QuintessentialMod
 {
 	private static IDetour hook_Sim_method_1835;
-	private static Puzzle optionsUnlock = null;
-	static Texture return_button, return_button_hover;
 
 	static Texture iconSolitaire, iconSolitaireSmall;
 	public static List<class_259> customSolitaires = new(); // SOLITAIRE_ICON_DEBUG
 
-	public static void setOptionsUnlock(Puzzle puzzle)
-	{
-		if (optionsUnlock == null) optionsUnlock = puzzle;
-	}
 
 	public static MethodInfo PrivateMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
 
@@ -84,13 +78,10 @@ public class MainClass : QuintessentialMod
 	public override void LoadPuzzleContent()
 	{
 		PolymerInput.LoadContent();
+		StoryPanelPatcher.LoadContent();
 		CampaignLoader.modifyCampaign();
 
-		string path = "textures/story/";
-		return_button = class_235.method_615(path + "return_button_rmc");
-		return_button_hover = class_235.method_615(path + "return_button_hover_rmc");
-
-		path = "textures/puzzle_select/"; // SOLITAIRE_ICON_TEMP
+		string path = "textures/puzzle_select/"; // SOLITAIRE_ICON_TEMP
 		iconSolitaire = class_235.method_615(path + "icon_rmc_solitaire"); // SOLITAIRE_ICON_TEMP
 		iconSolitaireSmall = class_235.method_615(path + "icon_rmc_solitaire_small"); // SOLITAIRE_ICON_TEMP
 
@@ -122,57 +113,18 @@ public class MainClass : QuintessentialMod
 		//BoardEditorScreen.Load();
 		CutscenePatcher.Load();
 		JournalLoader.Load();
-		On.class_172.method_480 += new On.class_172.hook_method_480(AddCharactersToDictionary);
+		StoryPanelPatcher.Load();
 		On.Solution.method_1958 += CampaignLoader.Solution_Method_1958;
-		On.class_135.method_272 += Class135_Method_272;
 	}
 
-	public static void Class135_Method_272(On.class_135.orig_method_272 orig, Texture texture, Vector2 position)
-	{
-		if (CampaignLoader.currentCampaignIsRMC())
-		{
-			if (texture == class_238.field_1989.field_100.field_134)
-			{
-				texture = return_button;
-			} else if (texture == class_238.field_1989.field_100.field_135)
-			{
-				texture = return_button_hover;
-			}
-		}
-		orig(texture, position);
-		return;
-	}
 
-	public static void AddCharactersToDictionary(On.class_172.orig_method_480 orig)
-	{
-		orig();
-		Logger.Log("[ReductiveMetallurgyCampaign] Adding vignette actors.");
-		// hardcode the characters that are already present
-		class_172.field_1670["Verrin Ravari"] = new class_230(class_134.method_253("Verrin Ravari", string.Empty), class_238.field_1989.field_93.field_693, class_235.method_615("portraits/verrin_small"), Color.FromHex(6691857), false);
-		class_172.field_1670["Verrin Ravari (Shabby)"] = new class_230(class_134.method_253("Verrin Ravari", string.Empty), class_238.field_1989.field_93.field_694, class_235.method_615("portraits/verrin_shabby_small"), Color.FromHex(6691857), false);
-		class_172.field_1670["Taros Colvan"] = new class_230(class_134.method_253("Taros Colvan", string.Empty), class_238.field_1989.field_93.field_692, class_235.method_615("portraits/taros_small"), Color.FromHex(7873302), false);
-		class_172.field_1670["Armand Van Tassen"] = new class_230(class_134.method_253("Armand Van Tassen", string.Empty), class_238.field_1989.field_93.field_676, class_235.method_615("portraits/armand_small"), Color.FromHex(6434368), false);
-		// add the new characters
-		foreach (CharacterModelRMC character in CampaignLoader.getModel().Characters)
-		{
-			Texture class256_1 = null;
-			Texture class256_2 = null;
-			if (!string.IsNullOrEmpty(character.SmallPortrait))
-				class256_1 = class_235.method_615(character.SmallPortrait);
-			if (!string.IsNullOrEmpty(character.LargePortrait))
-				class256_2 = class_235.method_615(character.LargePortrait);
-			class_230 class230 = new class_230(class_134.method_253(character.Name, string.Empty), class256_2, class256_1, Color.FromHex(character.Color), character.IsOnLeft);
-			class_172.field_1670.Add(character.ID, class230);
-		}
-	}
 
 
 	public override void PostLoad()
 	{
 		SigmarGardenPatcher.PostLoad();
 		Amalgamate.PostLoad();
-		On.OptionsScreen.method_50 += OptionsScreen_Method_50;
-		On.StoryPanel.method_2172 += StoryPanel_Method_2172;
+		StoryPanelPatcher.PostLoad();
 		On.CampaignItem.method_826 += ChooseCustomIconLarge; // SOLITAIRE_ICON_TEMP
 		On.CampaignItem.method_827 += ChooseCustomIconSmall; // SOLITAIRE_ICON_TEMP
 	}
@@ -184,57 +136,6 @@ public class MainClass : QuintessentialMod
 	public static Texture ChooseCustomIconSmall(On.CampaignItem.orig_method_827 orig, CampaignItem item_self) // SOLITAIRE_ICON_TEMP
 	{
 		return item_self.field_2324 == CampaignLoader.typeSolitaire && customSolitaires.Contains(item_self.field_2326) ? iconSolitaireSmall : orig(item_self);
-	}
-
-	public static void OptionsScreen_Method_50(On.OptionsScreen.orig_method_50 orig, OptionsScreen screen_self, float timeDelta)
-	{
-		if (CampaignLoader.currentCampaignIsRMC())
-		{
-			var screen_dyn = new DynamicData(screen_self);
-			var currentStoryPanel = screen_dyn.Get<StoryPanel>("field_2680");
-			var stringArray = new DynamicData(currentStoryPanel).Get<string[]>("field_4093");
-			if (!stringArray.Any(x => x.Contains("Saverio") || x.Contains("Pugano")))
-			{
-				var class264 = new class_264("options-rmc");
-				class264.field_2090 = "rmc-options";
-				screen_dyn.Set("field_2680", new StoryPanel((Maybe<class_264>)class264, false));
-			}
-		}
-		orig(screen_self, timeDelta);
-	}
-
-	public static void StoryPanel_Method_2172(On.StoryPanel.orig_method_2172 orig, StoryPanel panel_self, float timeDelta, Vector2 pos, int index, Tuple<int, LocString>[] tuple)
-	{
-		if (CampaignLoader.currentCampaignIsRMC() && tuple.Length == 2 && tuple[0].Item2 == class_134.method_253("Complete the prologue", string.Empty))
-		{
-			// then we're doing the options code while in the RMC campaign
-			// hijack the inputs so we draw it our way
-			bool flag = GameLogic.field_2434.field_2451.method_573(optionsUnlock);
-			index = flag ? 1 : 0;
-			tuple = new Tuple<int, LocString>[2]
-			{
-				Tuple.Create(1, class_134.method_253("Complete the practical interview", string.Empty)),
-				Tuple.Create(int.MaxValue, LocString.field_2597)
-			};
-		}
-		else if (CampaignLoader.currentCampaignIsRMC() && tuple.Length == 7 && tuple[0].Item2 == class_134.method_253("Win 1 game", string.Empty))
-		{
-			// then we're doing the solitaire code while in the RMC campaign
-			// hijack the inputs so we draw it our way
-			tuple = new Tuple<int, LocString>[]
-			{
-				Tuple.Create(1, class_134.method_253("Win 1 game", string.Empty)),
-				Tuple.Create(10, class_134.method_253("Win 10 games", string.Empty)),
-				Tuple.Create(25, class_134.method_253("Win 25 games", string.Empty)),
-				Tuple.Create(50, class_134.method_253("Win 50 games", string.Empty)),
-				Tuple.Create(75, class_134.method_253("Win 75 games", string.Empty)),
-				Tuple.Create(99, class_134.method_253("Win 99 games", string.Empty)),
-				Tuple.Create(100, class_134.method_253("Win 100 games", string.Empty)),
-				Tuple.Create(int.MaxValue, LocString.field_2597)
-			};
-		}
-
-		orig(panel_self, timeDelta, pos, index, tuple);
 	}
 
 

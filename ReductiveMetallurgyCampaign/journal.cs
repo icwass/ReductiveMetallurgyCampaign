@@ -39,6 +39,7 @@ public sealed class JournalLoader
 
 	private static List<CampaignItem> journal_items = new();
 
+	public static IEnumerable<CampaignItem> journalItems() => journal_items;
 
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////

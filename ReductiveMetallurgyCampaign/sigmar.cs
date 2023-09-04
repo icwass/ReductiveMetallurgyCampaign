@@ -29,6 +29,8 @@ public static class SigmarGardenPatcher
 	private static IDetour hook_SolitaireScreen_method_1893;
 	private static IDetour hook_SolitaireScreen_method_1894;
 
+	public const string solitaireID = "rmc-solitaire";
+
 	private static int sigmarWins_RMC = 0;
 	public static AtomType nullAtom;
 	public static SolitaireState solitaireState_RMC;
@@ -172,7 +174,7 @@ public static class SigmarGardenPatcher
 			if (!stringArray.Any(x => x.Contains("Saverio") || x.Contains("Pugano")))
 			{
 				var class264 = new class_264("solitaire-rmc");
-				class264.field_2090 = "rmc-solitaire";
+				class264.field_2090 = solitaireID;
 				screen_dyn.Set("field_3872", new StoryPanel((Maybe<class_264>)class264, true));
 			}
 		}
