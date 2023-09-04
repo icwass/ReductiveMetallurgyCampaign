@@ -316,6 +316,7 @@ Puzzles:
 - ID: rmc-precision-machine-oil-cabinet
   Music: Solving6
   Cabinet:
+    ExpandRight: true
     VialHolders:
       - Position: -10, 3
         TopSide: true

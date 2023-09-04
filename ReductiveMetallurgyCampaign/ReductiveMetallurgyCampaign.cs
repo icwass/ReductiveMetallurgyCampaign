@@ -109,6 +109,7 @@ public class MainClass : QuintessentialMod
 		hook_Sim_method_1835.Dispose();
 		SigmarGardenPatcher.Unload();
 		Amalgamate.Unload();
+		JournalLoader.Unload();
 	}
 
 
@@ -116,9 +117,11 @@ public class MainClass : QuintessentialMod
 	{
 		Settings = new MySettings();
 		CampaignLoader.loadCampaignModel();
+		JournalLoader.loadJournalModel();
 		Document.Load();
 		//BoardEditorScreen.Load();
 		CutscenePatcher.Load();
+		JournalLoader.Load();
 		On.class_172.method_480 += new On.class_172.hook_method_480(AddCharactersToDictionary);
 		On.Solution.method_1958 += CampaignLoader.Solution_Method_1958;
 		On.class_135.method_272 += Class135_Method_272;
@@ -167,7 +170,6 @@ public class MainClass : QuintessentialMod
 	public override void PostLoad()
 	{
 		SigmarGardenPatcher.PostLoad();
-		//oldAmalgamate.PostLoad();
 		Amalgamate.PostLoad();
 		On.OptionsScreen.method_50 += OptionsScreen_Method_50;
 		On.StoryPanel.method_2172 += StoryPanel_Method_2172;

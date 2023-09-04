@@ -72,7 +72,7 @@ public static class CampaignLoader
 	private static Campaign campaign_self;
 	private static CampaignModelRMC campaign_model;
 
-	//const enum_129 typePuzzle = (enum_129)0;
+	public const enum_129 typePuzzle = (enum_129)0;
 	public const enum_129 typeCutscene = (enum_129)1;
 	public const enum_129 typeDocument = (enum_129)2;
 	public const enum_129 typeSolitaire = (enum_129)3;
@@ -205,6 +205,8 @@ public static class CampaignLoader
 
 		Array.Resize(ref Puzzles.field_2816, Puzzles.field_2816.Length + 1);
 		Puzzles.field_2816[Puzzles.field_2816.Length - 1] = tipsPuzzle;
+
+		// manually load the journal puzzles
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -593,6 +595,8 @@ public static class CampaignLoader
 				}
 			}
 		}
+
+		//JournalLoader.modifyJournals(campaign_self);
 	}
 
 	public static Maybe<Solution> Solution_Method_1958(On.Solution.orig_method_1958 orig, string filePath)
