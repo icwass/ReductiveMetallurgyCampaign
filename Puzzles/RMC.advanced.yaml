@@ -212,15 +212,10 @@ Documents:
     ColumnWidth: 400.0
     Handwritten: false
 - ID: rmc-document-proliferation
-  Texture: textures/documents/letter_2
+  Texture: documents/scratch_paper
   DrawItems:
-  - Position: 325.0, 520.0 
-    Font: "cormorant 18"
-    Color: 2299924 
-    Align: center 
-    LineSpacing: 1.0
-    ColumnWidth: 400.0
-    Handwritten: false
+  - Position: 92, 60
+    Texture: documents/scrawl
 - ID: rmc-document-epilogue
   Texture: textures/documents/letter_2
   DrawItems:
