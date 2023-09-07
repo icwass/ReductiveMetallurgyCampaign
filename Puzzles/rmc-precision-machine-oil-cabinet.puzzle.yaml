@@ -58,5 +58,5 @@ ProductionInfo:
       Pos: 0,0
   - ChamberType: Medium
     Position:
-      Pos: -10,-1
+      Pos: -11,0
   Isolation: false

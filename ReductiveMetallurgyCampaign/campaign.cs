@@ -1,4 +1,6 @@
-﻿using MonoMod.RuntimeDetour;
+﻿using Mono.Cecil.Cil;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 using Quintessential;
 using Quintessential.Serialization;
@@ -8,6 +10,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
@@ -47,8 +50,13 @@ public class CabinetModelRMC
 	public bool ExpandLeft, ExpandRight;
 	public List<ConduitModelRMC> Conduits;
 	public List<VialHolderModelRMC> VialHolders;
+	public List<OverlayModelRMC> Overlays;
 }
-
+public class ConduitModelRMC
+{
+	public string Position1, Position2;
+	public List<string> Hexes;
+}
 public class VialHolderModelRMC
 {
 	public string Position;
@@ -59,10 +67,9 @@ public class VialModelRMC
 {
 	public string TextureSim, TextureGif;
 }
-public class ConduitModelRMC
+public class OverlayModelRMC
 {
-	public string Position1, Position2;
-	public List<string> Hexes;
+	public string Texture, Position;
 }
 
 public static class CampaignLoader
@@ -83,6 +90,8 @@ public static class CampaignLoader
 	public const enum_129 typeDocument = (enum_129)2;
 	public const enum_129 typeSolitaire = (enum_129)3;
 
+	static NumberStyles style = NumberStyles.Any;
+	static NumberFormatInfo format = CultureInfo.InvariantCulture.NumberFormat;
 
 
 
@@ -113,8 +122,9 @@ public static class CampaignLoader
 			}
 		}
 	}
-	public static void loadCampaignModel()
+	public static void Load()
 	{
+		// load campaign model
 		string filepath;
 		if (!MainClass.findModMetaFilepath("ReductiveMetallurgyCampaign", out filepath) || !File.Exists(filepath + "/Puzzles/RMC.advanced.yaml"))
 		{
@@ -125,6 +135,14 @@ public static class CampaignLoader
 		{
 			campaign_model = YamlHelper.Deserializer.Deserialize<CampaignModelRMC>(streamReader);
 		}
+
+		// hooking
+		On.Solution.method_1958 += Solution_Method_1958;
+	}
+
+	public static void PostLoad()
+	{
+		IL.SolutionEditorBase.method_1984 += drawCustomProductionOverlays;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -217,7 +235,7 @@ public static class CampaignLoader
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// puzzle-loader functions
-	static Dictionary<string, Action<Puzzle>> LevelLoaders = new Dictionary<string, Action<Puzzle>>()
+	static Dictionary<string, Action<Puzzle>> LevelLoaders = new ()
 	{
 		{rejectionTutorialID, LoadRejectionTutorialPuzzle },
 		{polymerInputTutorialID, LoadPolymerInputPuzzle },
@@ -332,28 +350,54 @@ public static class CampaignLoader
 	}
 	#endregion
 
-	#region vial textures
-	static Dictionary<string, Texture> vialTextureBank;
-	static Texture fetchVialTexture(string filePath)
+	#region production textures
+	static Dictionary<string, Texture> productionTextureBank = new();
+	static Texture fetchProductionTexture(string filePath)
 	{
-		Texture ret = class_238.field_1989.field_92.field_401.field_418.field_501; // generic
+		Texture ret = class_238.field_1989.field_92.field_401.field_418.field_501; // generic vial
 		if (string.IsNullOrEmpty(filePath)) return ret;
-		if (vialTextureBank.ContainsKey(filePath)) return vialTextureBank[filePath];
+		if (productionTextureBank.ContainsKey(filePath)) return productionTextureBank[filePath];
 		try
 		{
 			ret = class_235.method_615(filePath);
 		}
 		catch
 		{
-			Logger.Log("[ReductiveMetallurgyCampaign] fetchVialTexture: Couldn't load '" + filePath + ".png', will use the generic vial texture instead.");
+			Logger.Log("[ReductiveMetallurgyCampaign] fetchProductionTexture: Couldn't load '" + filePath + ".png', will use the generic vial texture instead.");
 		}
-		vialTextureBank.Add(filePath, ret);
+		productionTextureBank.Add(filePath, ret);
 		return ret;
 	}
 
-	static void initializeVialTextureBank()
+	static Dictionary<string, List<Tuple<string, Vector2>>> productionOverlays = new();
+
+	private static void drawCustomProductionOverlays(ILContext il)
 	{
-		vialTextureBank = new()
+		ILCursor cursor = new ILCursor(il);
+		// skip ahead to roughly where the vanilla-overlay-drawing code occurs
+		cursor.Goto(1277);
+
+		// jump ahead to just before the vanilla-overlay-drawing
+		if (!cursor.TryGotoNext(MoveType.After, instr => instr.Match(OpCodes.Blt))) return;
+
+		// load the class423 object and the SolutionEditorBase self onto the stack so we can use it
+		cursor.Emit(OpCodes.Ldarg_0);
+		cursor.Emit(OpCodes.Ldloc_0);
+		// then run the new code
+		cursor.EmitDelegate<Action<SolutionEditorBase, SolutionEditorBase.class_423>>((seb_self, class423) =>
+		{
+			var puzzleID = seb_self.method_502().method_1934().field_2766;
+			if (!productionOverlays.ContainsKey(puzzleID)) return;
+			foreach (var overlay in productionOverlays[puzzleID])
+			{
+				class_135.method_272(fetchProductionTexture(overlay.Item1), class423.field_3959 + overlay.Item2);
+			}
+		});
+	}
+
+	static void initializeProductionTextureBank()
+	{
+		productionTextureBank = new()
 		{
 			{"textures/pipelines/vials/abrasive_powder/empty",                  class_238.field_1989.field_92.field_401.field_408.field_444},
 			{"textures/pipelines/vials/abrasive_powder/filling",                class_238.field_1989.field_92.field_401.field_408.field_445},
@@ -424,6 +468,15 @@ public static class CampaignLoader
 			{"textures/pipelines/vials/viscous_sludge/filling",                 class_238.field_1989.field_92.field_401.field_438.field_451},
 			{"textures/pipelines/vials/welding_thermite/empty",                 class_238.field_1989.field_92.field_401.field_439.field_493},
 			{"textures/pipelines/vials/welding_thermite/filling",               class_238.field_1989.field_92.field_401.field_439.field_494},
+
+			{"textures/pipelines/aether_overlay_bottom",	class_238.field_1989.field_92.field_390},
+			{"textures/pipelines/aether_overlay_middle",	class_238.field_1989.field_92.field_391},
+			{"textures/pipelines/aether_overlay_top",		class_238.field_1989.field_92.field_392},
+			{"textures/pipelines/amaro_overlay_bottom",		class_238.field_1989.field_92.field_393},
+			{"textures/pipelines/amaro_overlay_top",		class_238.field_1989.field_92.field_394},
+			{"textures/pipelines/edge_overlay_left",		class_238.field_1989.field_92.field_395},
+			{"textures/pipelines/edge_overlay_right",		class_238.field_1989.field_92.field_396},
+			{"textures/pipelines/solvent_overlay",			class_238.field_1989.field_92.field_397},
 		};
 	}
 	#endregion
@@ -465,7 +518,7 @@ public static class CampaignLoader
 
 		// initialize tip and vial resources
 		initializeTips();
-		initializeVialTextureBank();
+		initializeProductionTextureBank();
 
 		// fetch campaign data
 		foreach (Campaign campaign in QuintessentialLoader.AllCampaigns)
@@ -602,6 +655,25 @@ public static class CampaignLoader
 										}
 									}
 
+									if (cabinet.Overlays != null)
+									{
+										List<Tuple<string, Vector2>> list = new();
+										for (int i = 0; i < cabinet.Overlays.Count; i++)
+										{
+											var overlay = cabinet.Overlays[i];
+											if (!string.IsNullOrEmpty(overlay.Texture))
+											{
+												var position = new Vector2(
+													float.Parse(overlay.Position.Split(',')[0], style, format),
+													float.Parse(overlay.Position.Split(',')[1], style, format)
+												);
+												list.Add(Tuple.Create(overlay.Texture, position));
+											}
+										}
+										productionOverlays.Add(puzzleID, list);
+										Logger.Log("Added overlays for " + puzzleID);
+									}
+
 									productionData.field_2073 = new class_128[cabinet.VialHolders.Count];
 									for (int i = 0; i < cabinet.VialHolders.Count; i++)
 									{
@@ -610,7 +682,7 @@ public static class CampaignLoader
 										for (int j = 0; j < holder.Vials.Count; j++)
 										{
 											var vial = holder.Vials[j];
-											vials[j] = Tuple.Create(fetchVialTexture(vial.TextureSim), fetchVialTexture(vial.TextureGif));
+											vials[j] = Tuple.Create(fetchProductionTexture(vial.TextureSim), fetchProductionTexture(vial.TextureGif));
 										}
 										productionData.field_2073[i] = new class_128(int.Parse(holder.Position.Split(',')[0]), int.Parse(holder.Position.Split(',')[1]), holder.TopSide, vials);
 									}

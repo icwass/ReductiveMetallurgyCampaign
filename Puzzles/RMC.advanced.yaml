@@ -263,6 +263,9 @@ Puzzles:
       Position2: 2, 0
       Hexes:
       - 0, 0
+    Overlays:
+    - Texture: "textures/pipelines/aether_overlay_middle"
+      Position: 321.0, -31.0
     VialHolders:
       - Position: 2, 3
         TopSide: true
@@ -323,6 +326,9 @@ Puzzles:
       Hexes:
       - 0, 0
       - 1, 0
+    Overlays:
+    - Texture: "textures/pipelines/solvent_overlay"
+      Position: -529.0, -277.0
     VialHolders:
       - Position: -10, 3
         TopSide: true
@@ -331,7 +337,7 @@ Puzzles:
             TextureGif: "textures/pipelines/vials/elemental_iron/draining"
           - TextureSim: "textures/pipelines/vials/elemental_water/full"
             TextureGif: "textures/pipelines/vials/elemental_water/draining"
-      - Position: -6, -3
+      - Position: -7, -3
         Vials:
           - TextureSim: "textures/pipelines/vials/precision_machine_oil/empty"
             TextureGif: "textures/pipelines/vials/precision_machine_oil/filling"
@@ -344,6 +350,9 @@ Puzzles:
       Position2: 2, 0
       Hexes:
       - 0, 0
+    Overlays:
+    - Texture: "textures/pipelines/aether_overlay_middle"
+      Position: -499.0, -31.0
     VialHolders:
       - Position: -8, 3
         TopSide: true

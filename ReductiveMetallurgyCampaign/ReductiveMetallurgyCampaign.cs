@@ -107,14 +107,13 @@ public class MainClass : QuintessentialMod
 	public override void Load()
 	{
 		Settings = new MySettings();
-		CampaignLoader.loadCampaignModel();
+		CampaignLoader.Load();
 		JournalLoader.loadJournalModel();
 		Document.Load();
 		//BoardEditorScreen.Load();
 		CutscenePatcher.Load();
 		JournalLoader.Load();
 		StoryPanelPatcher.Load();
-		On.Solution.method_1958 += CampaignLoader.Solution_Method_1958;
 	}
 
 
@@ -124,6 +123,7 @@ public class MainClass : QuintessentialMod
 	{
 		SigmarGardenPatcher.PostLoad();
 		Amalgamate.PostLoad();
+		CampaignLoader.PostLoad();
 		StoryPanelPatcher.PostLoad();
 		On.CampaignItem.method_826 += ChooseCustomIconLarge; // SOLITAIRE_ICON_TEMP
 		On.CampaignItem.method_827 += ChooseCustomIconSmall; // SOLITAIRE_ICON_TEMP
