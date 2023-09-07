@@ -45,6 +45,7 @@ public class CampaignModelRMC
 public class CabinetModelRMC
 {
 	public bool ExpandLeft, ExpandRight;
+	public List<ConduitModelRMC> Conduits;
 	public List<VialHolderModelRMC> VialHolders;
 }
 
@@ -57,6 +58,11 @@ public class VialHolderModelRMC
 public class VialModelRMC
 {
 	public string TextureSim, TextureGif;
+}
+public class ConduitModelRMC
+{
+	public string Position1, Position2;
+	public List<string> Hexes;
 }
 
 public static class CampaignLoader
@@ -574,6 +580,28 @@ public static class CampaignLoader
 									var productionData = puzzle.field_2779.method_1087();
 									productionData.field_2075 = !cabinet.ExpandLeft;
 									productionData.field_2076 = !cabinet.ExpandRight;
+
+									if (cabinet.Conduits != null)
+									{
+										productionData.field_2072 = new class_117[cabinet.Conduits.Count];
+
+										for (int i = 0; i < cabinet.Conduits.Count; i++)
+										{
+											var conduit = cabinet.Conduits[i];
+											int Q1 = int.Parse(conduit.Position1.Split(',')[0]);
+											int R1 = int.Parse(conduit.Position1.Split(',')[1]);
+											int Q2 = int.Parse(conduit.Position2.Split(',')[0]);
+											int R2 = int.Parse(conduit.Position2.Split(',')[1]);
+											var hexList = new HexIndex[conduit.Hexes.Count];
+											for (int j = 0; j < conduit.Hexes.Count; j++)
+											{
+												var hex = conduit.Hexes[j];
+												hexList[j] = new HexIndex(int.Parse(hex.Split(',')[0]), int.Parse(hex.Split(',')[1]));
+											}
+											productionData.field_2072[i] = new class_117(Q1, R1, Q2, R2, hexList);
+										}
+									}
+
 									productionData.field_2073 = new class_128[cabinet.VialHolders.Count];
 									for (int i = 0; i < cabinet.VialHolders.Count; i++)
 									{
