@@ -205,13 +205,23 @@ Documents:
 - ID: rmc-document-symposium-agenda
   Texture: textures/documents/letter_5
   DrawItems:
-  - Position: 325.0, 520.0 
+  - Position: 314.0, 655.0 ## "The Alchemical Symposium"
     Font: "cormorant 18"
-    Color: 2299924 
-    Align: center 
+    Align: center
+  - Position: 314.0, 628.0 ## "Tuesday Session"
+    Font: "cormorant 15"
+    Align: center
+  - Position: 139, 610
+    Texture: documents/horizontal_bar
+  - Position: 195.0, 580.0 ## times
+    Font: "cormorant 12.75"
+    Align: right 
     LineSpacing: 1.0
-    ColumnWidth: 400.0
-    Handwritten: false
+  - Position: 215.0, 580.0 ## events
+    Font: "cormorant 12.75"
+  - Position: 314.0, 705.0 ##[Work in Progress]##
+    Font: "cormorant 18"
+    Align: center
 - ID: rmc-document-proliferation
   Texture: documents/scratch_paper
   DrawItems:
