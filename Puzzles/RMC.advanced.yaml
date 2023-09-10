@@ -192,15 +192,7 @@ Documents:
     ColumnWidth: 850
     Handwritten: false
 - ID: rmc-document-deposition
-  Texture: textures/documents/letter_2
-  DrawItems:
-  - Position: 325.0, 520.0 
-    Font: "cormorant 18"
-    Color: 2299924 
-    Align: center 
-    LineSpacing: 1.0
-    ColumnWidth: 400.0
-    Handwritten: false
+  Texture: documents/jay_notes
 - ID: rmc-document-symposium-agenda
   Texture: textures/documents/letter_5
   DrawItems:
