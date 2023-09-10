@@ -45,6 +45,7 @@ public class CampaignModelRMC
 	public List<CutsceneModelRMC> Cutscenes;
 	public List<SigmarsGardenRMC> SigmarsGardens;
 	public List<int> SigmarStoryUnlocks;
+	public CreditsModelRMC Credits;
 }
 public class CabinetModelRMC
 {
@@ -72,6 +73,11 @@ public class OverlayModelRMC
 {
 	public string Texture, Position;
 }
+public class CreditsModelRMC
+{
+	public string PositionOffset;
+	public List<List<string>> Texts;
+}
 
 public static class CampaignLoader
 {
@@ -98,6 +104,11 @@ public static class CampaignLoader
 
 	public static bool currentCampaignIsRMC() => campaign_self == Campaigns.field_2330;
 	public static CampaignModelRMC getModel() => campaign_model;
+	public static Vector2 getCreditsPosition()
+	{
+		string pos = campaign_model.Credits.PositionOffset;
+		return new Vector2(float.Parse(pos.Split(',')[0], style, format), float.Parse(pos.Split(',')[1], style, format));
+	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// helpers

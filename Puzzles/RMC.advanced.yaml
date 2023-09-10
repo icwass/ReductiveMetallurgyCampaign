@@ -1,4 +1,33 @@
 ##################################################
+Credits:
+  PositionOffset: 746.0, -710.0 ## "0.0, 0.0" is the center of the screen, "746.0, -710.0" is the vanilla position
+  Texts:
+  - - "*Reductive Metallurgy*"
+##########
+  - - "RP0"
+    - "Writing, level design"
+##########
+  - - "mr\\_puzzel"
+    - "Programming, writing"
+##########
+  - - "zorflax"
+    - "Playtesting, level design"
+##########
+  - - "Special Thanks"
+    - "Zachtronics, for this wondrous game"
+    - "Luna, for the Quintessential mod loader"
+##########
+  - - "And thanks to you, for playing!"
+##########
+# [CREDIT EXAMPLES FROM VANILLA]
+#Zach Barth         Game design, programming
+#Keith Holman       Programming, game design
+#Kyle Steed"        Art, graphic design
+#Jonathan Stroh     Art, graphic design
+#Steffani Charano   Concept art
+#Matthew S. Burns   Writing, music
+##########
+##################################################
 SigmarStoryUnlocks:
 - 1
 - 5

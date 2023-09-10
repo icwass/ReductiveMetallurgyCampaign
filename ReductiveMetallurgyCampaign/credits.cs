@@ -24,8 +24,6 @@ using Font = class_1;
 
 public sealed class RMCCreditsScreen : IScreen
 {
-	private static readonly float field_2392 = 0.5f;
-	private static readonly float field_2393 = 0.5f;
 	private float timer;
 
 	static class_124 transitionInstant = new class_124()
@@ -51,7 +49,9 @@ public sealed class RMCCreditsScreen : IScreen
 
 	static Bounds2 drawCreditText(string str, Vector2 pos, bool bigFont, float alpha)
 	{
-		Font font = bigFont ? class_238.field_1990.field_2146 : class_238.field_1990.field_2145;
+		Font crimson_21 = class_238.field_1990.field_2146;
+		Font crimson_16_5 = class_238.field_1990.field_2145;
+		Font font = bigFont ? crimson_21 : crimson_16_5;
 		return class_135.method_290(str, pos, font, class_181.field_1718.WithAlpha(alpha), (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, 0, new Color(), null, int.MaxValue, false, true);
 	}
 
@@ -63,9 +63,7 @@ public sealed class RMCCreditsScreen : IScreen
 		GameLogic.field_2434.field_2443.method_673(creditsSong);
 	}
 
-	public void method_48()
-	{
-	}
+	public void method_48()	{}
 
 	public bool method_1037() => true;
 
@@ -77,151 +75,71 @@ public sealed class RMCCreditsScreen : IScreen
 		Vector2 vector2_1 = field541.field_2056.ToVector2() * num;
 		class_135.method_279(Color.Black, Vector2.Zero, class_115.field_1433);
 		class_135.method_263(field541, Color.White, class_115.field_1433 / 2 - vector2_1 / 2, vector2_1);
-		Vector2 vector2_2 = class_115.field_1433 / 2 + new Vector2(-946f, -710f) * num;
+		Vector2 vector2_2 = class_115.field_1433 / 2 + CampaignLoader.getCreditsPosition() * num;
 		class_310 class310 = new class_310();
-		method_887(class310, 2f);
-		method_882(class310, vector2_2);
-		method_883(class310, vector2_2, "RP0", "Writing, level design");
-		method_883(class310, vector2_2, "mr\\_puzzel", "Programming, writing");
-		method_883(class310, vector2_2, "zorflax", "Playtesting, level design");
-		//method_883(class310, vector2_2, "Zach Barth", "Game design, programming");
-		//method_883(class310, vector2_2, "Keith Holman", "Programming, game design");
-		//method_883(class310, vector2_2, "Kyle Steed", "Art, graphic design");
-		//method_883(class310, vector2_2, "Jonathan Stroh", "Art, graphic design");
-		//method_883(class310, vector2_2, "Steffani Charano", "Concept art");
-		//method_883(class310, vector2_2, "Matthew S. Burns", "Writing, music");
-		method_884(class310, vector2_2);
-		method_885(class310, vector2_2);
-		method_887(class310, 1f);
-		class310.field_2398.ForEach(class_301.field_2407 ?? (class_301.field_2407 = new Action<Action>(class_301.field_2343.method_893)));
+		class310.incrementTimer(2f);
+
+		var credits = CampaignLoader.getModel().Credits.Texts;
+		foreach (var entry in credits)
+		{
+			addCreditFrame(class310, vector2_2, entry);
+		}
+		class310.actions.ForEach(x => x());
 
 		if (transitioningBackToMenu) return;
 
-		if ((getCreditsSeen_RMC() && Input.IsSdlKeyPressed(SDL.enum_160.SDLK_ESCAPE)) || timer >= class310.field_2397)
+		if ((getCreditsSeen_RMC() && Input.IsSdlKeyPressed(SDL.enum_160.SDLK_ESCAPE)) || timer >= class310.time)
 		{
 			exitCredits();
 		}
 	}
 
-
 	public sealed class class_310
 	{
-		public float field_2397;
-		public List<Action> field_2398 = new List<Action>();
+		public float time;
+		public List<Action> actions = new List<Action>();
+		public void incrementTimer(float amount) => this.time += amount;
 	}
-	private void method_882(class_310 param_4525, Vector2 param_4526) => method_886(param_4525, 5f, new Action<float>(new class_309()
+	private void addCreditFrame(class_310 class310, Vector2 position, List<string> credit)
 	{
-		field_2396 = param_4526
-	}.method_888));
+		float fadeTime = 0.5f;
+		float gapTime = 0.5f;
+		float drawfullTime = 5f;
 
-	private void method_883(
-	  class_310 param_4527,
-	  Vector2 param_4528,
-	  string param_4529,
-	  string param_4530)
-	{
-		method_886(param_4527, 3.5f, new Action<float>(new class_315()
+		float num = fadeTime + drawfullTime + fadeTime + gapTime;
+		float time = class310.time;
+		if (timer >= time && timer < time + num)
 		{
-			field_2404 = param_4529,
-			field_2405 = param_4528,
-			field_2406 = param_4530
-		}.method_892));
-	}
-
-	private void method_884(class_310 param_4531, Vector2 param_4532) => method_886(param_4531, 3.5f, new Action<float>(new class_314()
-	{
-		field_2403 = param_4532
-	}.method_891));
-
-	private void method_885(class_310 param_4533, Vector2 param_4534) => method_886(param_4533, 5f, new Action<float>(new class_313()
-	{
-		field_2402 = param_4534
-	}.method_890));
-
-	private void method_886(
-	  class_310 param_4535,
-	  float param_4536,
-	  Action<float> param_4537)
-	{
-		class_312 class312 = new class_312();
-		class312.field_2401 = param_4537;
-		float num = field_2392 + param_4536 + field_2392 + field_2393;
-		if (timer >= param_4535.field_2397 && timer < param_4535.field_2397 + num)
-		{
-			class_311 class311 = new class_311();
-			class311.field_2400 = class312;
-			class311.field_2399 = 1f;
-			if (timer < param_4535.field_2397 + field_2392)
-				class311.field_2399 = class_162.method_416(timer, param_4535.field_2397, param_4535.field_2397 + field_2392, 0f, 1f);
-			else if (timer > param_4535.field_2397 + field_2392 + param_4536)
-				class311.field_2399 = class_162.method_416(timer, param_4535.field_2397 + field_2392 + param_4536, param_4535.field_2397 + field_2392 + param_4536 + field_2392, 1f, 0f);
-			param_4535.field_2398.Add(new Action(class311.method_889));
+			float drawTime = 1f;
+			if (timer < time + fadeTime)
+				drawTime = class_162.method_416(timer, time, time + fadeTime, 0f, 1f);
+			else if (timer > time + fadeTime + drawfullTime)
+				drawTime = class_162.method_416(timer, time + fadeTime + drawfullTime, time + fadeTime + drawfullTime + fadeTime, 1f, 0f);
+			class310.actions.Add(() => new creditFrame(position, credit).draw(drawTime * 0.9f));
 		}
-		param_4535.field_2397 += num;
+		class310.incrementTimer(num);
 	}
-
-	private void method_887(class_310 param_4538, float param_4539) => param_4538.field_2397 += param_4539;
-
-	public sealed class class_309
+	public sealed class creditFrame
 	{
-		public Vector2 field_2396;
-		internal void method_888(float alpha) => drawCreditText("*Reductive Metallurgy*", field_2396, true, alpha);
-	}
+		public Vector2 origin;
+		public List<string> texts;
+		Vector2 nextLineOffset = new Vector2(0f, -32f);
+		Vector2 initialOffset = new Vector2(0f, 13f);
 
-	public sealed class class_311
-	{
-		public float field_2399;
-		public class_312 field_2400;
-
-		internal void method_889() => field_2400.field_2401(field_2399 * 0.9f);
-	}
-
-	public sealed class class_312
-	{
-		public Action<float> field_2401;
-	}
-
-	public sealed class class_313
-	{
-		public Vector2 field_2402;
-
-		internal void method_890(float alpha) => drawCreditText("And thanks to you, for playing!", field_2402, true, alpha);
-	}
-
-	public sealed class class_314
-	{
-		public Vector2 field_2403;
-
-		internal void method_891(float alpha)
+		public creditFrame(Vector2 origin, List<string> texts)
 		{
-			drawCreditText("Special Thanks", field_2403 + new Vector2(0f, 27f), true, alpha);
-			drawCreditText("Zachtronics, for this wondrous game", field_2403 + new Vector2(0f, -5f), false, alpha);
-			drawCreditText("Luna, for the Quintessential mod loader", field_2403 + new Vector2(0f, -37f), false, alpha);
+			this.origin = origin;
+			this.texts = texts;
 		}
-	}
 
-	public sealed class class_315
-	{
-		public string field_2404;
-		public Vector2 field_2405;
-		public string field_2406;
-
-		internal void method_892(float alpha)
+		internal void draw(float alpha)
 		{
-			drawCreditText(field_2404, field_2405 + new Vector2(0f, 12f), true, alpha);
-			drawCreditText(field_2406, field_2405 + new Vector2(0f, -20f), false, alpha);
+			Vector2 pos = origin + initialOffset * (texts.Count - 1);
+			for(int i = 0; i < texts.Count; i++)
+			{
+				drawCreditText(texts[i], pos, i == 0, alpha);
+				pos += nextLineOffset;
+			}
 		}
-	}
-
-	[Serializable]
-	public sealed class class_301
-	{
-		public static readonly class_301 field_2343 = new class_301();
-		public static Action<Action> field_2407;
-
-		internal void method_893(Action param_4543) => param_4543();
 	}
 }
-
-
-
