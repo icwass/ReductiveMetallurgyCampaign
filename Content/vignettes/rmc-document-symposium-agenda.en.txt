@@ -6,57 +6,53 @@
 
 #*8:00 AM*
 
-
 *8:30 AM*
+_   _
 _   _
 
 
 *10:00 AM*
 
-
 *10:30 AM*
+_   _
 _   _
 
 
 *12:00 PM*
 
-
 *1:30 PM*
+_   _
 _   _
 
 
 *3:00 PM*
 
-
 *4:30 PM*
 
 
-#Check-in and Registration
-
+#+ Check-in and Registration +
 
 Constraints in the Production of Polymers
 _Adam, V._
+_(Schwinde A.E.)_
 
 
 + Refreshments +
 
-
 On the Reduction of Metals
 _Daas, S._
+_(House Soria)_
 
 
 + Luncheon +
 
-
 On Self-Igniting Compounds
 _Le'Feur, T._
+_(House Colvan)_
 
 
 + Refreshments +
 
-
 Early Research Results on Quintessence
 _Tolomeo, N._ and _Servin, H._
 _(Imperial University)_
-
-#[Work in Progress]

@@ -248,9 +248,6 @@ Documents:
     LineSpacing: 1.0
   - Position: 215.0, 580.0 ## events
     Font: "cormorant 12.75"
-  - Position: 314.0, 705.0 ##[Work in Progress]##
-    Font: "cormorant 18"
-    Align: center
 - ID: rmc-document-proliferation
   Texture: documents/scratch_paper
   DrawItems:
@@ -407,4 +404,9 @@ Puzzles:
   Music: Solving5
 - ID: rmc-welded-elements
   Music: Solving1
+##########
+- ID: rmc-miasmatic-filtrate
+  Music: Solving6
+- ID: rmc-vestan-regulus
+  Music: Solving5
 ##########
