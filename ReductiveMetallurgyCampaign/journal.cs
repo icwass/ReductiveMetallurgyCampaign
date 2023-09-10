@@ -115,7 +115,7 @@ public sealed class JournalLoader
 			JournalVolumes.field_2572[JournalVolumes.field_2572.Length - 1] = newJournalVolume;
 
 			chaptersToRemove.Add(volumeIndex);
-			Logger.Log("[ReductiveMetallurgyCampaign] Converted chapter '" + volumeIndex + "' into a journal page.'");
+			Logger.Log("[ReductiveMetallurgyCampaign] Converted chapter " + volumeIndex + " into a journal page.");
 		}
 
 		CampaignChapter[] newCampaignChapters = new CampaignChapter[campaignChapters.Length - chaptersToRemove.Count];

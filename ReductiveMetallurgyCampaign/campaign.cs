@@ -44,6 +44,7 @@ public class CampaignModelRMC
 	public List<DocumentModelRMC> Documents;
 	public List<CutsceneModelRMC> Cutscenes;
 	public List<SigmarsGardenRMC> SigmarsGardens;
+	public List<int> SigmarStoryUnlocks;
 }
 public class CabinetModelRMC
 {
@@ -534,6 +535,8 @@ public static class CampaignLoader
 		List<string> documentIDList = new List<string>();
 		Dictionary<string, string> cutsceneIDList = new Dictionary<string, string>();
 		List<string> sigmarsGardensIDList = new List<string>();
+		StoryPanelPatcher.CreateSigmarStoryUnlocks(campaign_model.SigmarStoryUnlocks);
+
 		foreach (PuzzleModelRMC puzzle in campaign_model.Puzzles)
 		{
 			puzzleDictionary.Add(puzzle.ID, puzzle);

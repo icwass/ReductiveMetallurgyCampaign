@@ -227,3 +227,16 @@ Chapters:
     Title: "Golden Thread Recycling"
     Puzzle: rmc-golden-thread-recycling
     Requires: ""
+- Title: Bonus
+  Subtitle: Unsorted Puzzles
+  Place: "Area 51"
+  Background: backgrounds/saverio_atelier
+  Entries:
+  - ID: rmc-miasmatic-filtrate
+    Title: "Miasmatic Filtrate"
+    Puzzle: rmc-miasmatic-filtrate
+    Requires: ""
+  - ID: rmc-vestan-regulus
+    Title: "Vestan Regulus"
+    Puzzle: rmc-vestan-regulus
+    Requires: ""

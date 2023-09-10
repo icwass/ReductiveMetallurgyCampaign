@@ -1,0 +1,9 @@
+[DO NOT PARSE]
+
+No. 744
+
+#Vestan Regulus
+
+#An interesting consequence of adopting reductive metallurgy is how it can affect even those processes where reducing a metal is not required. Take into consideration a production cabinet which transmutes lead into copper using only purification— such a machine can just as easily transmute tin into silver, or iron into gold, and the throughput of the process at hand would be the same. However, allowing the use of rejection and deposition breaks this symmetry and turns throughput-analysis on its head, though in some senses the analysis is more straightforward.
+
+This can be demonstrated well with Vestan Regulus, a nobler variant of a curious compound. With the correct utilization of reductive metallurgy, it is possible to create the compound with approximately 12% less material when compared to the analogous version of the traditional synthesis method.

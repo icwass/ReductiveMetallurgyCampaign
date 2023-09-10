@@ -16,39 +16,33 @@ Saverio (Left): True. But I do like the extra sheen the iron and copper proxies 
 Pugano (Right): "Iron and copper, copper and iron", do you ever stop thinking about them?
 Saverio (Left): Not really, no.
  
+----- After winning 5 games.
+ 
+Pugano (Right): Must be having fun with that extra-metals variant you came up with.
+Pugano (Right): You haven't put those metal proxies back in the kit.
+Saverio (Left): The what? Oh, you mean the marbles.
+Saverio (Left): No, it turned out quite well, I think. I was worried it wouldn't be as fun.
+Pugano (Right): I would have assumed you'd get stuck more often.
+Saverio (Left): It's certainly nerve-wracking to take something that works so well, then modifying it to make something new.
+Pugano (Right): "Nerve-wracking"? My word, Mr. Daas, it's _a game_. You're making it out to be some kind of large-scale project.
+Pugano (Right): It's not as if our lives, or even our reputations, are on the line.
+Saverio (Left): Even if no one else saw it, I'd still want to put in the effort and have it succeed.
+Pugano (Right): At any rate, you're having fun. Don't get too absorbed, though.
+ 
 ----- After winning 10 games.
  
-Pugano (Right): I can't believe you're still playing that game. Don't we have work to do?
-Saverio (Left): Don't forget who's paying who.
-Saverio (Left): Besides, we're not in a big rush at the moment. It's not as if we have some nefarious plot to execute.
-Pugano (Right): ...please keep it that way.
+Pugano (Right): *Ahem*.
+Saverio (Left): Oh, sorry Jay, were you saying something?
+Pugano (Right): Yes! I was asking about this silver paint order.
+Pugano (Right): You failed to specify what reagent to use as the metal source.
+Saverio (Left, Reversed): Let me check what we have in inventory.
+Saverio (Left, Reversed): Goodness, we were this low on iron? Ah, but more copper than usual - use that.
+Pugano (Right): Reject to replenish the iron, project to supply the silver. Clever!
+Saverio (Left): Good man. Now, where was I...
  
 ----- After winning 25 games.
  
-Saverio (Left): Good gravy, have I played this many games already?
-Saverio (Left, Reversed): At least the playtester seems to be enjoying this variant of Sigmar's Garden.
-Saverio (Left): But I'm running out of things to say! The devs haven't actually written this much dialogue yet.
-Pugano (Right): Stop making fourth-wall breaks, I beg of you.
-Saverio (Left): Maybe they could suggest something...
- 
------ After winning 50 games.
- 
-Saverio (Left): Amazing, 50 games.
-Verrin Ravari: What lazy writing.
-Verrin Ravari (Frustrated): And why am _I_ here anyway?
- 
------ After winning 75 games.
- 
-Saverio (Left): Sheesh, 75 games.
-Verrin Ravari (Frustrated): And _repetitive_ writing, too!
-Verrin Ravari (Frustrated): I hope the playtester is in it for the solitaire - the dialogue leaves much to be desired.
- 
------ After winning 99 games.
- 
-Saverio (Left): Holy shit, 99 games.
-Verrin Ravari (Livid): WRITE SOME ACTUAL DIALOGUE.
-
------ After winning 100 games.
- 
-Saverio (Left): 100 games!
-Saverio (Left): And my code for adding extra things totally worked.
+Pugano (Right): I can't believe you're still playing that game. Don't you have work to do?
+Saverio (Left): Don't forget who's paying who.
+Saverio (Left): Besides, we don't have a big rush of orders at the moment. It's not as if we have some nefarious plot to execute.
+Pugano (Right): ...please keep it that way.

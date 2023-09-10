@@ -1,4 +1,12 @@
+##################################################
+SigmarStoryUnlocks:
+- 1
+- 5
+- 10
+- 25
+##################################################
 Characters:
+##########
 - ID: "Saverio (Left)"
   Name: "Saverio Daas"
   SmallPortrait: portraits/saverio_small
@@ -99,6 +107,7 @@ Cutscenes:
   Music: Story2
 ##################################################
 Documents:
+##########
 - ID: rmc-document-debug
   Texture: documents/resume
   DrawItems:

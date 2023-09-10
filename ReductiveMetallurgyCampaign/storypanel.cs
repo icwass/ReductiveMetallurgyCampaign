@@ -155,6 +155,22 @@ public static class StoryPanelPatcher
 		}
 		orig(screen_self, timeDelta);
 	}
+
+	static Tuple<int, LocString>[] SigmarStoryUnlocks;
+
+	public static void CreateSigmarStoryUnlocks(List<int> unlocks)
+	{
+		SigmarStoryUnlocks = new Tuple<int, LocString>[unlocks.Count + 1];
+
+		for (int i = 0; i < unlocks.Count; i++)
+		{
+			int k = unlocks[i];
+			string msg = "Win " + k + (k == 1 ? " game" : " games");
+			SigmarStoryUnlocks[i] = Tuple.Create(k, class_134.method_253(msg, string.Empty));
+		}
+		SigmarStoryUnlocks[unlocks.Count] = Tuple.Create(int.MaxValue, LocString.field_2597);
+	}
+
 	public static void customStorypanelUnlocks(On.StoryPanel.orig_method_2172 orig, StoryPanel panel_self, float timeDelta, Vector2 pos, int index, Tuple<int, LocString>[] tuple)
 	{
 		if (CampaignLoader.currentCampaignIsRMC() && tuple.Length == 2 && tuple[0].Item2 == class_134.method_253("Complete the prologue", string.Empty))
@@ -173,17 +189,7 @@ public static class StoryPanelPatcher
 		{
 			// then we're doing the solitaire code while in the RMC campaign
 			// hijack the inputs so we draw it our way
-			tuple = new Tuple<int, LocString>[]
-			{
-				Tuple.Create(1, class_134.method_253("Win 1 game", string.Empty)),
-				Tuple.Create(10, class_134.method_253("Win 10 games", string.Empty)),
-				Tuple.Create(25, class_134.method_253("Win 25 games", string.Empty)),
-				Tuple.Create(50, class_134.method_253("Win 50 games", string.Empty)),
-				Tuple.Create(75, class_134.method_253("Win 75 games", string.Empty)),
-				Tuple.Create(99, class_134.method_253("Win 99 games", string.Empty)),
-				Tuple.Create(100, class_134.method_253("Win 100 games", string.Empty)),
-				Tuple.Create(int.MaxValue, LocString.field_2597)
-			};
+			tuple = SigmarStoryUnlocks;
 		}
 
 		orig(panel_self, timeDelta, pos, index, tuple);
