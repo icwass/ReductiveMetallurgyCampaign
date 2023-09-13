@@ -67,22 +67,27 @@ public sealed class RMCCreditsScreen : IScreen
 
 	public bool method_1037() => true;
 
+	bool display = true;
+
 	public void method_50(float timeDelta)
 	{
 		timer += timeDelta;
-		Texture field541 = CutscenePatcher.creditsBackground;
-		float num = class_115.field_1433.Y / field541.field_2056.Y;
-		Vector2 vector2_1 = field541.field_2056.ToVector2() * num;
+
+		Texture background = CutscenePatcher.creditsBackground;
+		float scalar = class_115.field_1433.Y / background.field_2056.Y;
+		Vector2 normedSize = background.field_2056.ToVector2() * scalar;
 		class_135.method_279(Color.Black, Vector2.Zero, class_115.field_1433);
-		class_135.method_263(field541, Color.White, class_115.field_1433 / 2 - vector2_1 / 2, vector2_1);
-		Vector2 vector2_2 = class_115.field_1433 / 2 + CampaignLoader.getCreditsPosition() * num;
+		class_135.method_263(background, Color.White, class_115.field_1433 / 2 - normedSize / 2, normedSize);
+
+		scalar = class_115.field_1433.Y / 2160f;
+		Vector2 textPosition = class_115.field_1433 / 2 + CampaignLoader.getCreditsPosition() * scalar;
+
 		class_310 class310 = new class_310();
 		class310.incrementTimer(2f);
-
 		var credits = CampaignLoader.getModel().Credits.Texts;
 		foreach (var entry in credits)
 		{
-			addCreditFrame(class310, vector2_2, entry);
+			addCreditFrame(class310, textPosition, entry);
 		}
 		class310.actions.ForEach(x => x());
 

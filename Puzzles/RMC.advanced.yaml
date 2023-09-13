@@ -1,6 +1,6 @@
 ##################################################
 Credits:
-  PositionOffset: 746.0, -710.0 ## "0.0, 0.0" is the center of the screen, "746.0, -710.0" is the vanilla position
+  PositionOffset: 746.0, -710.0 ## "0.0, 0.0" is the center of the screen, "-946.0, -710.0" is the vanilla position
   Texts:
   - - "*Reductive Metallurgy*"
 ##########
