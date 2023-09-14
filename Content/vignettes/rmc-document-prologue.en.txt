@@ -4,9 +4,9 @@ REDUCTIVE METALLURGY
 
 #Hey there, welcome to our little mod!
 
-This project was first conceived back in May 2022 with the goal of being the first large mod for Opus Magnum. The team was initially just mr\_puzzel and I, but zorflax was asked to join at the start of the year. Before this, some basic ideas were being tossed around but progress stalled in July as other projects of mine took precedence. Once we got started up again in late Februaray 2023, progress has been steady, reaching the point where we are today.
+This project was first conceived back in May 2022 with the goal of being the first large mod for Opus Magnum. The team was initially just mr\_puzzel and I, but zorflax was asked to join at the start of 2023. Before this, some basic ideas were being tossed around but progress stalled in July as other projects of mine took precedence. Once we got started up again in late February 2023, progress has been steady, until we released in September 2023!
 
-The mod currently consists of 3 chapters, but the final version will contain one more chapter. We aren't settled on this one yet so you'll have to wait on it! Currently planning to have it done before the end of the month. You'll notice some other missing and incomplete bits here and there, but the dialogue and puzzles are ready for consumption and testing.
+It's been far too long of a journey, but we're very proud of what we've accomplished. This mod expects a reasonable amount of proficiency in Opus Magnum, but as always in this game, you can usually force your way through anything. Metal demotion is hardly the most innovative thing to implement in a mod (and indeed has been contemplated by the community several times during development), but we hope our specific implementation proves enduring. 
 
 Please let us know what you think, and have fun going through it!
 

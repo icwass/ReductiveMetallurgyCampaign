@@ -256,13 +256,18 @@ Documents:
 - ID: rmc-document-epilogue
   Texture: textures/documents/letter_2
   DrawItems:
-  - Position: 325.0, 520.0 
-    Font: "cormorant 18"
+  - Position: 450, 750
+    Font: "crimson 21"
     Color: 2299924 
-    Align: center 
-    LineSpacing: 1.0
-    ColumnWidth: 400.0
-    Handwritten: false    
+    Align: center
+    LineSpacing: 1
+    ColumnWidth: 400
+  - Position: 250, 650
+    Font: "crimson 12"
+    Color: 2299924 
+    Align: left
+    LineSpacing: 1
+    ColumnWidth: 400
 - ID: rmc-document-bonus-notes
   Texture: textures/documents/letter_6
   DrawItems:

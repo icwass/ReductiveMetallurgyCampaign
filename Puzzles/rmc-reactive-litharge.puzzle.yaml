@@ -142,7 +142,6 @@ Outputs:
 PermissionFlags: Projection, Purification, CoreTools
 CustomPermissions:
 - ReductiveMetallurgy:rejection
-- ReductiveMetallurgy:deposition
 PartQuotas: {}
 Highlights: []
 ProductionInfo: 
