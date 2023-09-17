@@ -409,6 +409,7 @@ Puzzles:
   Music: Solving5
 - ID: rmc-welded-elements
   Music: Solving1
+  NoStoryPanel: true
 ##########
 - ID: rmc-miasmatic-filtrate
   Music: Solving6

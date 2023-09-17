@@ -24,6 +24,7 @@ public class PuzzleModelRMC
 {
 	public string ID, Music;
 	public CabinetModelRMC Cabinet;
+	public bool NoStoryPanel = false;
 }
 public class CharacterModelRMC
 {
@@ -88,6 +89,7 @@ public static class CampaignLoader
 	const string ravariTutorialID_2 = "rmc-energetic-capacitor";
 	const string polymerInputTutorialID = "rmc-synthesis-via-chain";
 	const string oldPolymerInputTutorialID = "rmc-golden-thread-recycling";
+	const string weldedElementsID = "rmc-welded-elements";
 
 	private static Campaign campaign_self;
 	private static CampaignModelRMC campaign_model;
@@ -628,6 +630,11 @@ public static class CampaignLoader
 						{
 							LoadPolymerOutputs(puzzle);
 							PuzzleModelRMC puzzleModel = puzzleDictionary[puzzleID];
+
+							if (puzzleModel.NoStoryPanel)
+							{
+								campaignItem.field_2327 = (Maybe<class_264>) struct_18.field_1431;
+							}
 
 							if (!string.IsNullOrEmpty(puzzleModel.Music) && songList.Keys.Contains(puzzleModel.Music))
 							{
