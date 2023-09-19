@@ -67,17 +67,22 @@ public static class PolymerInput
 			field_1551 = Permissions.None
 		};
 
-		Texture tex_bend, tex_end, tex_sharp, tex_single, tex_straight, tex_hole;
 		string str = "textures/parts/guide_rail/";
-		tex_bend = class_235.method_615(str + "bend_hex");
-		tex_end = class_235.method_615(str + "end_hex");
-		tex_sharp = class_235.method_615(str + "sharp_hex");
-		tex_single = class_235.method_615(str + "single_hex");
-		tex_straight = class_235.method_615(str + "straight_hex");
-		tex_hole = class_235.method_615(str + "hole");
+		Texture tex_bend = class_235.method_615(str + "bend_hex");
+		Texture tex_end = class_235.method_615(str + "end_hex");
+		Texture tex_sharp = class_235.method_615(str + "sharp_hex");
+		Texture tex_single = class_235.method_615(str + "single_hex");
+		Texture tex_straight = class_235.method_615(str + "straight_hex");
+		Texture tex_hole = class_235.method_615(str + "hole");
+		Texture tex_bond = class_235.method_615(str + "bond");
 
 		QApi.AddPartType(partTypeGoldenThread, (part, pos, editor, renderer) =>
 		{
+			foreach (var class222 in part.method_1159().field_1538)
+			{
+				float num = class_187.field_1742.method_492(class222.field_1921 - class222.field_1920).Angle();
+				renderer.method_526(tex_bond, class222.field_1920, new Vector2(0.0f, 0.0f), new Vector2(-23f, 20f), num);
+			}
 			void drawVoidHex(HexIndex hex, float alpha)
 			{
 				Vector2 vec2 = class_187.field_1742.method_491(hex, renderer.field_1797) - tex_hole.field_2056.ToVector2() / 2;
@@ -92,7 +97,11 @@ public static class PolymerInput
 
 		QApi.AddPartType(partTypeBerloChain, (part, pos, editor, renderer) =>
 		{
-			drawRailHexes(renderer, part, pos);
+			foreach (var class222 in part.method_1159().field_1538)
+			{
+				float num = class_187.field_1742.method_492(class222.field_1921 - class222.field_1920).Angle();
+				renderer.method_526(tex_bond, class222.field_1920, new Vector2(0.0f, 0.0f), new Vector2(-23f, 20f), num);
+			}
 			void drawVoidHex(HexIndex hex, float alpha)
 			{
 				Vector2 vec2 = class_187.field_1742.method_491(hex, renderer.field_1797) - tex_hole.field_2056.ToVector2() / 2;
@@ -108,6 +117,7 @@ public static class PolymerInput
 				drawVoidHex(hole.Key, hole.Value);
 				drawVoidHex(hole.Key + new HexIndex(-1, 2), hole.Value);
 			}
+			drawRailHexes(renderer, part, pos);
 		});
 
 		void drawRailHexes(class_195 renderer, Part part, Vector2 pos)
