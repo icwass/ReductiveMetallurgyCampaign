@@ -258,23 +258,6 @@ Documents:
     Align: left
     LineSpacing: 1
     ColumnWidth: 400
-- ID: rmc-document-bonus-notes
-  Texture: textures/documents/letter_6
-  DrawItems:
-  - Position: 200, 650
-    Font: "crimson 21"
-    Color: 2299924
-    Align: left
-    LineSpacing: 1.0
-    ColumnWidth: 400.0
-    Handwritten: false
-  - Position: 200, 600
-    Font: "crimson 15"
-    Color: 2299924
-    Align: left
-    LineSpacing: 1.0
-    ColumnWidth: 850
-    Handwritten: false
 ##################################################
 Puzzles:
 ##########
@@ -400,9 +383,4 @@ Puzzles:
 - ID: rmc-welded-elements
   Music: Solving1
   NoStoryPanel: true
-##########
-- ID: rmc-miasmatic-filtrate
-  Music: Solving6
-- ID: rmc-vestan-regulus
-  Music: Solving5
 ##########
