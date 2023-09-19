@@ -1,7 +1,7 @@
 ﻿using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using MonoMod.RuntimeDetour;
-using MonoMod.Utils;
+//using MonoMod.RuntimeDetour;
+//using MonoMod.Utils;
 using Quintessential;
 using Quintessential.Serialization;
 //using Quintessential.Settings;
@@ -11,7 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Reflection;
+//using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
 
@@ -19,66 +19,6 @@ using PartTypes = class_191;
 using Texture = class_256;
 using Song = class_186;
 using Tip = class_215;
-
-public class PuzzleModelRMC
-{
-	public string ID, Music;
-	public CabinetModelRMC Cabinet;
-	public bool NoStoryPanel = false;
-}
-public class CharacterModelRMC
-{
-	public string ID, Name, SmallPortrait, LargePortrait;
-	public int Color;
-	public bool IsOnLeft;
-}
-
-public class SigmarsGardenRMC
-{
-	public string ID;
-}
-
-public class CampaignModelRMC
-{
-	public List<PuzzleModelRMC> Puzzles;
-	public List<CharacterModelRMC> Characters;
-	public List<DocumentModelRMC> Documents;
-	public List<CutsceneModelRMC> Cutscenes;
-	public List<SigmarsGardenRMC> SigmarsGardens;
-	public List<int> SigmarStoryUnlocks;
-	public CreditsModelRMC Credits;
-}
-public class CabinetModelRMC
-{
-	public bool ExpandLeft, ExpandRight;
-	public List<ConduitModelRMC> Conduits;
-	public List<VialHolderModelRMC> VialHolders;
-	public List<OverlayModelRMC> Overlays;
-}
-public class ConduitModelRMC
-{
-	public string Position1, Position2;
-	public List<string> Hexes;
-}
-public class VialHolderModelRMC
-{
-	public string Position;
-	public bool TopSide;
-	public List<VialModelRMC> Vials;
-}
-public class VialModelRMC
-{
-	public string TextureSim, TextureGif;
-}
-public class OverlayModelRMC
-{
-	public string Texture, Position;
-}
-public class CreditsModelRMC
-{
-	public string PositionOffset;
-	public List<List<string>> Texts;
-}
 
 public static class CampaignLoader
 {
@@ -101,8 +41,6 @@ public static class CampaignLoader
 
 	static NumberStyles style = NumberStyles.Any;
 	static NumberFormatInfo format = CultureInfo.InvariantCulture.NumberFormat;
-
-
 
 	public static bool currentCampaignIsRMC() => campaign_self == Campaigns.field_2330;
 	public static CampaignModelRMC getModel() => campaign_model;
@@ -243,8 +181,6 @@ public static class CampaignLoader
 
 		Array.Resize(ref Puzzles.field_2816, Puzzles.field_2816.Length + 1);
 		Puzzles.field_2816[Puzzles.field_2816.Length - 1] = tipsPuzzle;
-
-		// manually load the journal puzzles
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -569,7 +505,7 @@ public static class CampaignLoader
 		}
 		foreach (var garden in campaign_model.SigmarsGardens)
 		{
-			sigmarsGardensIDList.Add(garden.ID);
+			sigmarsGardensIDList.Add(garden);
 		}
 		////////////////////////////////////////
 		// modify the campaign using the data //

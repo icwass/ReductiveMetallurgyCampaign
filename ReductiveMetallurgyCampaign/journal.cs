@@ -1,13 +1,13 @@
 ﻿using MonoMod.RuntimeDetour;
-using MonoMod.Utils;
+//using MonoMod.Utils;
 using Quintessential;
 //using Quintessential.Settings;
-using SDL2;
+//using SDL2;
 using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using System.Reflection;
+//using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
 
@@ -21,15 +21,6 @@ using Texture = class_256;
 using Song = class_186;
 //using Tip = class_215;
 using Font = class_1;
-public class JournalModelRMC
-{
-	public List<JournalVolumeModelRMC> Volumes;
-}
-public class JournalVolumeModelRMC
-{
-	public int FromChapter;
-	public string Title, Description;
-}
 
 public sealed class JournalLoader
 {
@@ -40,7 +31,6 @@ public sealed class JournalLoader
 	private static List<CampaignItem> journal_items = new();
 
 	public static IEnumerable<CampaignItem> journalItems() => journal_items;
-
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// journal stuff

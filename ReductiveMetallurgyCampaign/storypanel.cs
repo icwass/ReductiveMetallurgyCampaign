@@ -1,15 +1,15 @@
 ﻿using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using MonoMod.RuntimeDetour;
+//using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 using Quintessential;
 //using Quintessential.Settings;
-using SDL2;
+//using SDL2;
 using System;
-using System.IO;
+//using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using System.Reflection;
+//using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
 
@@ -24,8 +24,6 @@ using Texture = class_256;
 //using Tip = class_215;
 //using Font = class_1;
 
-
-
 public static class StoryPanelPatcher
 {
 	static Texture return_button, return_button_hover;
@@ -38,8 +36,6 @@ public static class StoryPanelPatcher
 	{
 		if (optionsUnlock == null) optionsUnlock = puzzle;
 	}
-
-
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// public functions
@@ -63,7 +59,6 @@ public static class StoryPanelPatcher
 		On.StoryPanel.method_2172 += customStorypanelUnlocks;
 	}
 
-
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// hooking
 	private static void AddCharactersToDictionary(On.class_172.orig_method_480 orig)
@@ -71,23 +66,24 @@ public static class StoryPanelPatcher
 		orig();
 		Logger.Log("[ReductiveMetallurgyCampaign] Adding vignette actors.");
 		// hardcode the characters that are already present
-		class_172.field_1670["Verrin Ravari"] = new class_230(class_134.method_253("Verrin Ravari", string.Empty), class_238.field_1989.field_93.field_693, class_235.method_615("portraits/verrin_small"), Color.FromHex(6691857), false);
-		class_172.field_1670["Verrin Ravari (Shabby)"] = new class_230(class_134.method_253("Verrin Ravari", string.Empty), class_238.field_1989.field_93.field_694, class_235.method_615("portraits/verrin_shabby_small"), Color.FromHex(6691857), false);
-		class_172.field_1670["Taros Colvan"] = new class_230(class_134.method_253("Taros Colvan", string.Empty), class_238.field_1989.field_93.field_692, class_235.method_615("portraits/taros_small"), Color.FromHex(7873302), false);
-		class_172.field_1670["Armand Van Tassen"] = new class_230(class_134.method_253("Armand Van Tassen", string.Empty), class_238.field_1989.field_93.field_676, class_235.method_615("portraits/armand_small"), Color.FromHex(6434368), false);
+		Texture ravariLarge = class_238.field_1989.field_93.field_693;
+		Texture ravariSmall = class_235.method_615("portraits/verrin_small");
+		class_172.field_1670["Verrin Ravari"] = new class_230(class_134.method_253("Verrin Ravari", string.Empty), ravariLarge, ravariSmall, Color.FromHex(6691857), false);
+
 		// add the new characters
 		foreach (CharacterModelRMC character in CampaignLoader.getModel().Characters)
 		{
-			Texture class256_1 = null;
-			Texture class256_2 = null;
+			Texture actorSmall = null;
+			Texture actorLarge = null;
 			if (!string.IsNullOrEmpty(character.SmallPortrait))
-				class256_1 = class_235.method_615(character.SmallPortrait);
+				actorSmall = class_235.method_615(character.SmallPortrait);
 			if (!string.IsNullOrEmpty(character.LargePortrait))
-				class256_2 = class_235.method_615(character.LargePortrait);
-			class_230 class230 = new class_230(class_134.method_253(character.Name, string.Empty), class256_2, class256_1, Color.FromHex(character.Color), character.IsOnLeft);
-			class_172.field_1670.Add(character.ID, class230);
+				actorLarge = class_235.method_615(character.LargePortrait);
+			class_230 actorDefinition = new class_230(class_134.method_253(character.Name, string.Empty), actorLarge, actorSmall, Color.FromHex(character.Color), character.IsOnLeft);
+			class_172.field_1670.Add(character.ID, actorDefinition);
 		}
 	}
+
 	private static void skipDrawingTheReturnButton(ILContext il)
 	{
 		ILCursor cursor = new ILCursor(il);
@@ -107,21 +103,11 @@ public static class StoryPanelPatcher
 			string storyPanelID = new DynamicData(panel_self).Get<Maybe<class_264>>("field_4090").method_1087().field_2090;
 			if (storyPanelID == SigmarGardenPatcher.solitaireID) return false;
 			if (storyPanelID == optionsID) return false;
-			if (JournalLoader.journalItems().Select(x => x.field_2322).Contains(storyPanelID))
-			{
-				return false;
-			}
+			if (JournalLoader.journalItems().Select(x => x.field_2322).Contains(storyPanelID)) return false;
 
 			return isOptionsScreen;
 		});
 	}
-
-
-
-
-
-
-
 
 	private static void hotswapReturnButtonTexture(On.class_135.orig_method_272 orig, Texture texture, Vector2 position)
 	{
@@ -139,6 +125,7 @@ public static class StoryPanelPatcher
 		orig(texture, position);
 		return;
 	}
+
 	public static void hotswapOptionsStorypanel(On.OptionsScreen.orig_method_50 orig, OptionsScreen screen_self, float timeDelta)
 	{
 		if (CampaignLoader.currentCampaignIsRMC())
@@ -194,11 +181,4 @@ public static class StoryPanelPatcher
 
 		orig(panel_self, timeDelta, pos, index, tuple);
 	}
-
-
-
-
-
-
-
 }

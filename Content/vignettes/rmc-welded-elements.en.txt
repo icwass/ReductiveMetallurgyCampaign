@@ -1,5 +1,10 @@
-Research Notes: No dialogue was written for this puzzle!
+[DO NOT PARSE]
 
------------
+No. 1
 
-Research Notes: Did you know post-texts are required?
+#Header
+
+#Text goes here.
+Or Here.
+
+Or Here.

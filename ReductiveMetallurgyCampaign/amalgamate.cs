@@ -3,8 +3,8 @@ using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 using Quintessential;
-using Quintessential.Settings;
-using SDL2;
+//using Quintessential.Settings;
+//using SDL2;
 using System;
 using System.IO;
 using System.Linq;
@@ -36,8 +36,6 @@ public static class Amalgamate
 	static Random randomizer = new Random();
 
 	static bool erroringOut = false;
-	public static bool alwaysShowFinale = false; // DEBUG
-	public static bool TestingMode = false; // DEBUG
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// helpers
 	static bool isFinalePuzzle(SolutionEditorScreen ses_self) => ses_self.method_502().method_1934().field_2766 == levelID;
@@ -75,7 +73,6 @@ public static class Amalgamate
 	{
 		LoadCustomSound();
 		texture_boardOverlay = class_235.method_615("amalgamate/board");
-		//InstructionJumbler.initializePool();
 
 		On.class_135.method_263 += drawAmalgamatedBoard;
 		IL.SolutionEditorScreen.method_50 += winscreenRedirect;
@@ -160,7 +157,7 @@ public static class Amalgamate
 			if (ses_self.method_503() == enum_128.Paused && !ses_self.field_4016 && sim.method_1825())
 			{
 				bool reverifyingSolutions = GameLogic.field_2434.field_2467.Count != 0;
-				bool canTriggerAmalgamateCrash = isFinalePuzzle(ses_self) && thereIsAtLeastOneOutput(ses_self) && (!getFinaleSeen_RMC() || alwaysShowFinale);
+				bool canTriggerAmalgamateCrash = isFinalePuzzle(ses_self) && thereIsAtLeastOneOutput(ses_self) && !getFinaleSeen_RMC();
 
 
 				if (!reverifyingSolutions)
@@ -191,10 +188,6 @@ public static class Amalgamate
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
-	// instruction jumbling
-
-
-	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// main functions
 	private static void triggerAmalgamateCrash(SolutionEditorScreen ses_self)
 	{
@@ -213,14 +206,11 @@ public static class Amalgamate
 		setErroringTimer(ses_self, 0f);
 
 		//manually push and pop screens so the next transition will go directly to the cutscene
-		if (!TestingMode) // DEBUG CONDITIONAL
-		{
-			var GAME = GameLogic.field_2434;
-			var editorScreen = GAME.method_938(); // PEEK
-			GAME.method_950(2); // POP 2 screens
-			GAME.method_946(vignette); // PUSH
-			GAME.method_946(editorScreen); // PUSH
-		}
+		var GAME = GameLogic.field_2434;
+		var editorScreen = GAME.method_938(); // PEEK
+		GAME.method_950(2); // POP 2 screens
+		GAME.method_946(vignette); // PUSH
+		GAME.method_946(editorScreen); // PUSH
 
 		// create slow-transitions
 		var field4109_slower = new class_124()
@@ -237,7 +227,7 @@ public static class Amalgamate
 		};
 
 		// start transitioning from the editor to the vignette
-		if (!TestingMode) GameLogic.field_2434.method_947((Maybe<class_124>)field4109_slower, (Maybe<class_124>)field4108_slower); //DEBUG
+		GameLogic.field_2434.method_947((Maybe<class_124>)field4109_slower, (Maybe<class_124>)field4108_slower);
 		sim_crash.method_28(1f);
 		GameLogic.field_2434.field_2443.method_673(song_cruelty);
 	}
@@ -456,7 +446,7 @@ public static class Amalgamate
 			if (!maybeSim.method_1085())
 			{
 				// why would there be no sim? but just in case...
-				// if no sim, then no instructions or arms - keep the easter egg messages, we're setting up
+				// if no sim, then no instructions or arms - keep the easter egg messages
 				return;
 			}
 
@@ -607,17 +597,6 @@ public static class Amalgamate
 	{
 		float errorTimer = fetchErroringTimer(ses_self);
 		float errorPercent = Math.Max(0f, (errorTimer - 0.5f) / fadecrashLength);
-
-		//errorPercent = 0f; // DEBUG
-
-		//DEBUG
-		if (TestingMode && ses_self.method_503() == enum_128.Stopped)
-		{
-			setErroringTimer(ses_self, -1);
-			erroringOut = false;
-		}
-
-
 
 		if (erroringOut)
 		{

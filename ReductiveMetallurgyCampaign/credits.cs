@@ -1,13 +1,13 @@
-﻿using MonoMod.RuntimeDetour;
-using MonoMod.Utils;
+﻿//using MonoMod.RuntimeDetour;
+//using MonoMod.Utils;
 using Quintessential;
 //using Quintessential.Settings;
 using SDL2;
 using System;
-using System.IO;
-using System.Linq;
+//using System.IO;
+//using System.Linq;
 using System.Collections.Generic;
-using System.Reflection;
+//using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
 
@@ -46,7 +46,6 @@ public sealed class RMCCreditsScreen : IScreen
 		transitioningBackToMenu = true;
 	}
 
-
 	static Bounds2 drawCreditText(string str, Vector2 pos, bool bigFont, float alpha)
 	{
 		Font crimson_21 = class_238.field_1990.field_2146;
@@ -66,8 +65,6 @@ public sealed class RMCCreditsScreen : IScreen
 	public void method_48()	{}
 
 	public bool method_1037() => true;
-
-	bool display = true;
 
 	public void method_50(float timeDelta)
 	{

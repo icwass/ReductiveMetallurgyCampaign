@@ -20,20 +20,15 @@ Credits:
 ##########
   - - "And thanks to you, for playing!"
 ##########
-# [CREDIT EXAMPLES FROM VANILLA]
-#Zach Barth         Game design, programming
-#Keith Holman       Programming, game design
-#Kyle Steed         Art, graphic design
-#Jonathan Stroh     Art, graphic design
-#Steffani Charano   Concept art
-#Matthew S. Burns   Writing, music
-##########
 ##################################################
 SigmarStoryUnlocks:
 - 1
 - 5
 - 10
 - 25
+##################################################
+SigmarsGardens:
+- "rmc-sigmars-garden-1"
 ##################################################
 Characters:
 ##########
@@ -98,9 +93,6 @@ Characters:
   SmallPortrait: portraits/henley_small_symposium
   LargePortrait: portraits/henley_large_symposium
   Color: 6383694
-##################################################
-SigmarsGardens:
-- ID: rmc-sigmars-garden-1
 ##################################################
 Cutscenes:
 - ID: rmc-cutscene-prologue
@@ -250,10 +242,7 @@ Documents:
   - Position: 215.0, 580.0 ## events
     Font: "cormorant 12.75"
 - ID: rmc-document-proliferation
-  Texture: documents/scratch_paper
-  DrawItems:
-  - Position: 92, 60
-    Texture: documents/scrawl
+  Texture: documents/saverio_scrawl
 - ID: rmc-document-epilogue
   Texture: textures/documents/letter_2
   DrawItems:

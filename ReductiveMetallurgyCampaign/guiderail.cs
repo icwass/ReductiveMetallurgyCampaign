@@ -1,13 +1,13 @@
-﻿using MonoMod.RuntimeDetour;
+﻿//using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 using Quintessential;
 //using Quintessential.Settings;
 //using SDL2;
 using System;
-using System.IO;
+//using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using System.Reflection;
+//using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
 
@@ -23,9 +23,7 @@ using Texture = class_256;
 
 public static class PolymerInput
 {
-	//
 	public static PartType partTypeGoldenThread, partTypeBerloChain;
-
 
 	private static Vector2 hexGraphicalOffset(HexIndex hex) => class_187.field_1742.method_492(hex);
 
@@ -115,7 +113,7 @@ public static class PolymerInput
 		void drawRailHexes(class_195 renderer, Part part, Vector2 pos)
 		{
 			var trackList = part.method_1189();
-			// note: these arrays have a specific order so that code appearing later is simplified
+			// note: these arrays have a specific order so that later code is simplified
 			class_126[] lighting_trackMetal = new class_126[5]
 			{
 				class_238.field_1989.field_90.field_262, //	textures/parts/track_straight.lighting/...
@@ -257,9 +255,6 @@ public static class PolymerInput
 				}
 			}
 		}
-
-
-
 	}
 
 

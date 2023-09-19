@@ -1,13 +1,13 @@
-﻿using MonoMod.RuntimeDetour;
+﻿//using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
-using Quintessential;
+//using Quintessential;
 //using Quintessential.Settings;
 using SDL2;
 using System;
-using System.IO;
+//using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using System.Reflection;
+//using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
 
@@ -21,11 +21,6 @@ using Texture = class_256;
 //using Song = class_186;
 //using Tip = class_215;
 //using Font = class_1;
-
-public class CutsceneModelRMC
-{
-	public string ID, Location, Background, Music;
-}
 
 public class CutscenePatcher
 {
@@ -113,7 +108,7 @@ public class CutscenePatcher
 		float getField2043() => class252_dyn.Get<float>("field_2043");
 		void setField2043(float f) => class252_dyn.Set("field_2043", f);
 
-		//reimplements the method
+		// reimplements the method
 		Vignette vignette = class264.method_712();
 		VignetteEvent vignetteEvent1 = vignette.field_4125[0][getField2040()];
 		
@@ -279,9 +274,6 @@ public class CutscenePatcher
 			}
 		}
 
-
-
-
 		if (getField2040() == vignette.field_4125[0].Count - 1)
 		{
 			method_684(class264);
@@ -300,7 +292,5 @@ public class CutscenePatcher
 			}
 		}
 		class_238.field_1991.field_1824.method_28(1f);
-
-
 	}
 }

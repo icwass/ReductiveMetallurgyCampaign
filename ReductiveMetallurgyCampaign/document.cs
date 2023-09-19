@@ -1,14 +1,14 @@
-﻿using MonoMod.RuntimeDetour;
+﻿//using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 using Quintessential;
 //using Quintessential.Settings;
 using SDL2;
 using System;
-using System.IO;
-using System.Linq;
+//using System.IO;
+//using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Reflection;
+//using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
 
@@ -23,24 +23,10 @@ using Texture = class_256;
 //using Tip = class_215;
 using Font = class_1;
 
-public class DocumentModelRMC
-{
-	public string ID, Texture;
-
-	public List<DrawItemModelRMC> DrawItems;
-}
-
-public class DrawItemModelRMC
-{
-	public string Position, Texture, Rotation, Scale, Alpha, Font, Color, Align, LineSpacing, ColumnWidth;
-
-	public bool Handwritten;
-}
-
 public class Document
 {
 	string ID;
-	Texture baseTexture;
+	Texture baseTexture = null;
 	Action<Language, string[]> drawFunction;
 
 	static NumberStyles style = NumberStyles.Any;
@@ -85,7 +71,6 @@ public class Document
 	//==================================================//
 	//global stuff
 	private static Dictionary<string, Document> documentDatabase = new Dictionary<string, Document>();
-
 
 	public static void LoadDocuments(List<DocumentModelRMC> Documents)
 	{
@@ -135,18 +120,10 @@ public class Document
 			if (documentID == "rmc-document-epilogue")
 			{
 				GameLogic.field_2434.method_945(new RMCCreditsScreen(), (Maybe<class_124>)Transitions.field_4109, (Maybe<class_124>)Transitions.field_4108);
-
-				//manually push and pop screens
-				//var GAME = GameLogic.field_2434;
-				//var epilogue = GAME.method_938(); // PEEK
-				//GAME.method_950(1); // POP 1 screens
-				//GAME.method_946(new RMCCreditsScreen()); // PUSH
-				//GAME.method_946(epilogue); // PUSH
-				//GameLogic.field_2434.method_949();
 			}
 			else
 			{
-				class_238.field_1991.field_1875.method_28(1f); // sound effect: ui_paper_back
+				class_238.field_1991.field_1875.method_28(1f); // ui_paper_back
 				GameLogic.field_2434.method_949();
 			}
 		}
@@ -185,8 +162,6 @@ public class Document
 			this.rotation = rotation;
 			this.scale = scale;
 		}
-
-		//item.Position, item.Texture, item.Rotation, item.Scale, item.Alpha, item.Font, item.Color, item.Align, item.LineSpacing, item.ColumnWidth, item.Handwritten
 
 		public DrawItem(DrawItemModelRMC item)
 		{
