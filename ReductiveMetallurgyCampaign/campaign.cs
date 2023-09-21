@@ -10,7 +10,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using System.Globalization;
+//using System.Globalization;
 //using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
@@ -40,16 +40,8 @@ public static class CampaignLoader
 	public const enum_129 typeDocument = (enum_129)2;
 	public const enum_129 typeSolitaire = (enum_129)3;
 
-	static NumberStyles style = NumberStyles.Any;
-	static NumberFormatInfo format = CultureInfo.InvariantCulture.NumberFormat;
-
 	public static bool currentCampaignIsRMC() => campaign_self == Campaigns.field_2330;
 	public static CampaignModelRMC getModel() => campaign_model;
-	public static Vector2 getCreditsPosition()
-	{
-		string pos = campaign_model.Credits.PositionOffset;
-		return new Vector2(float.Parse(pos.Split(',')[0], style, format), float.Parse(pos.Split(',')[1], style, format));
-	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// helpers

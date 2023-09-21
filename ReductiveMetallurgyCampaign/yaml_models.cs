@@ -24,7 +24,7 @@ namespace ReductiveMetallurgyCampaign;
 using Texture = class_256;
 //using Song = class_186;
 using Tip = class_215;
-//using Font = class_1;
+using Font = class_1;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 // advanced.yaml
@@ -34,19 +34,31 @@ public static class ModelHelpersRMC
 	static NumberStyles style = NumberStyles.Any;
 	static NumberFormatInfo format = CultureInfo.InvariantCulture.NumberFormat;
 
-	public static Vector2 Vector2FromString(string pos, float defaultX = 0f, float defaultY = 0f)
+	public static float FloatFromString(string str, float defaulF = 0f)
 	{
-		if (!string.IsNullOrEmpty(pos))
+		if (!string.IsNullOrEmpty(str))
 		{
-			float x = float.Parse(pos.Split(',')[0], style, format);
-			float y = float.Parse(pos.Split(',')[1], style, format);
-			return new Vector2(x, y);
+			return float.Parse(str, style, format);
 		}
 		else
 		{
-			return new Vector2(defaultX,defaultY);
+			return defaulF;
 		}
 	}
+
+	public static Vector2 Vector2FromString(string pos, float defaultX = 0f, float defaultY = 0f)
+	{
+		float x = FloatFromString(pos?.Split(',')[0], defaultX);
+		float y = FloatFromString(pos?.Split(',')[1], defaultY);
+		return new Vector2(x, y);
+	}
+
+	public static Color HexColor(int hex)
+	{
+		return Color.FromHex(hex);
+	}
+
+	public static Color ColorWhite => Color.White;
 }
 
 public class CampaignModelRMC
@@ -69,6 +81,27 @@ public class CharacterModelRMC
 	public string ID, Name, SmallPortrait, LargePortrait;
 	public int Color;
 	public bool IsOnLeft;
+
+	Texture actorSmall, actorLarge;
+
+	public class_230 FromModel()
+	{
+		if (!string.IsNullOrEmpty(this.SmallPortrait))
+		{
+			this.actorSmall ??= class_235.method_615(this.SmallPortrait); // if null, load the texture
+		}
+		if (!string.IsNullOrEmpty(this.LargePortrait))
+		{
+			this.actorLarge ??= class_235.method_615(this.LargePortrait); // if null, load the texture
+		}
+
+		if (!string.IsNullOrEmpty(this.SmallPortrait))
+			actorSmall = class_235.method_615(this.SmallPortrait);
+		if (!string.IsNullOrEmpty(this.LargePortrait))
+			actorLarge = class_235.method_615(this.LargePortrait);
+
+		return new class_230(class_134.method_253(this.Name, string.Empty), actorLarge, actorSmall, ModelHelpersRMC.HexColor(this.Color), this.IsOnLeft);
+	}
 }
 public class CutsceneModelRMC
 {
@@ -83,6 +116,40 @@ public class DrawItemModelRMC
 {
 	public string Position, Texture, Rotation, Scale, Alpha, Font, Color, Align, LineSpacing, ColumnWidth;
 	public bool Handwritten;
+
+	public Document.DrawItem FromModel()
+	{
+		bool isImageItem = !string.IsNullOrEmpty(this.Texture);
+
+		// image AND text properties
+		Color color = isImageItem ? ModelHelpersRMC.ColorWhite : DocumentScreen.field_2410;
+		if (!string.IsNullOrEmpty(this.Color)) color = ModelHelpersRMC.HexColor(int.Parse(this.Color));
+		Vector2 position = ModelHelpersRMC.Vector2FromString(this.Position);
+
+		if (isImageItem)
+		{
+			return new Document.DrawItem(
+				position,
+				class_235.method_615(this.Texture),
+				color,
+				ModelHelpersRMC.FloatFromString(this.Scale, 1f),
+				ModelHelpersRMC.FloatFromString(this.Rotation),
+				ModelHelpersRMC.FloatFromString(this.Alpha, 1f)
+			);
+		}
+		else // isTextItem
+		{
+			return new Document.DrawItem(
+				position,
+				Document.DrawItem.getFont(this.Font),
+				color,
+				Document.DrawItem.getAlignment(this.Align),
+				ModelHelpersRMC.FloatFromString(this.LineSpacing, 1f),
+				ModelHelpersRMC.FloatFromString(this.ColumnWidth, float.MaxValue),
+				this.Handwritten
+			);
+		}
+	}
 }
 //////////////////////////////////////////////////
 public class PuzzleModelRMC

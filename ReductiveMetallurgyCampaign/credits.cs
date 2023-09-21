@@ -80,12 +80,13 @@ public sealed class RMCCreditsScreen : IScreen
 		class_135.method_279(Color.Black, Vector2.Zero, class_115.field_1433);
 		class_135.method_263(background, Color.White, class_115.field_1433 / 2 - normedSize / 2, normedSize);
 
+		var creditsModel = CampaignLoader.getModel().Credits;
 		scalar = class_115.field_1433.Y / 2160f;
-		Vector2 textPosition = class_115.field_1433 / 2 + CampaignLoader.getCreditsPosition() * scalar;
+		Vector2 textPosition = class_115.field_1433 / 2 + ModelHelpersRMC.Vector2FromString(creditsModel.PositionOffset) * scalar;
 
 		class_310 class310 = new class_310();
 		class310.incrementTimer(2f);
-		var credits = CampaignLoader.getModel().Credits.Texts;
+		var credits = creditsModel.Texts;
 		foreach (var entry in credits)
 		{
 			addCreditFrame(class310, textPosition, entry);

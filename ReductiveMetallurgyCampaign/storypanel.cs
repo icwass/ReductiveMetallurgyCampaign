@@ -75,14 +75,7 @@ public static class StoryPanelPatcher
 		// add the new characters
 		foreach (CharacterModelRMC character in CampaignLoader.getModel().Characters)
 		{
-			Texture actorSmall = null;
-			Texture actorLarge = null;
-			if (!string.IsNullOrEmpty(character.SmallPortrait))
-				actorSmall = class_235.method_615(character.SmallPortrait);
-			if (!string.IsNullOrEmpty(character.LargePortrait))
-				actorLarge = class_235.method_615(character.LargePortrait);
-			class_230 actorDefinition = new class_230(class_134.method_253(character.Name, string.Empty), actorLarge, actorSmall, Color.FromHex(character.Color), character.IsOnLeft);
-			class_172.field_1670.Add(character.ID, actorDefinition);
+			class_172.field_1670.Add(character.ID, character.FromModel());
 		}
 	}
 

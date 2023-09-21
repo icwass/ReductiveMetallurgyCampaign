@@ -10,7 +10,7 @@ using System;
 //using System.IO;
 //using System.Linq;
 using System.Collections.Generic;
-using System.Globalization;
+//using System.Globalization;
 //using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
@@ -31,9 +31,6 @@ public class Document
 	string ID;
 	Texture baseTexture = null;
 	Action<Language, string[]> drawFunction;
-
-	static NumberStyles style = NumberStyles.Any;
-	static NumberFormatInfo format = CultureInfo.InvariantCulture.NumberFormat;
 
 	//==================================================//
 	// constructors
@@ -88,7 +85,7 @@ public class Document
 			int maxIndex = d.DrawItems == null ? 0 : d.DrawItems.Count;
 			for (int i = 0; i < maxIndex; i++)
 			{
-				drawItems.Add(new DrawItem(d.DrawItems[i]));
+				drawItems.Add(d.DrawItems[i].FromModel());
 			}
 			new Document(d.ID, base_texture, drawItems);
 		}
@@ -137,18 +134,26 @@ public class Document
 	// DrawItem helper class
 	public sealed class DrawItem
 	{
+		static Color textColor => DocumentScreen.field_2410;
 		Vector2 position = new Vector2(0f, 0f);
+		Color color = textColor;
+
 		Texture texture = null;
 		float rotation = 0f;
 		float scale = 1f;
 		float alpha = 1f;
-		Font font = class_238.field_1990.field_2150;
-		Color color = DocumentScreen.field_2410;
+
+		Font font = getFont(null);
 		enum_0 alignment = (enum_0)0;
 		float lineSpacing = 1f;
 		float columnWidth = float.MaxValue;
 		bool handwritten = false;
-		public DrawItem(Vector2 position, Font font, Color color, enum_0 alignment, float lineSpacing, float columnWidth, bool handwritten)
+
+		/////////////////////////////////////////////////////////////////////////////////////////////////
+		// constructors
+		public DrawItem() { }
+
+		public DrawItem(Vector2 position, Font font, Color color, enum_0 alignment = 0, float lineSpacing = 1f, float columnWidth = float.MaxValue, bool handwritten = false)
 		{
 			this.position = position;
 			this.font = font;
@@ -158,59 +163,40 @@ public class Document
 			this.columnWidth = columnWidth;
 			this.handwritten = handwritten;
 		}
-		public DrawItem(Vector2 position, Texture texture, float rotation, float scale)
+		public DrawItem(Vector2 position, Font font, enum_0 alignment = 0, float lineSpacing = 1f, float columnWidth = float.MaxValue, bool handwritten = false)
+		: this(position, font, textColor, alignment, lineSpacing, columnWidth, handwritten)
+		{ }
+
+		public DrawItem(Vector2 position, Texture texture, Color color, float scale = 1f, float rotation = 0f, float alpha = 1f)
 		{
 			this.position = position;
 			this.texture = texture;
+			this.color = color;
 			this.rotation = rotation;
 			this.scale = scale;
+			this.alpha = alpha;
 		}
+		public DrawItem(Vector2 position, Texture texture, float scale = 1f, float rotation = 0f, float alpha = 1f)
+		: this(position, texture, Color.White, scale, rotation, alpha)
+		{ }
 
-		public DrawItem(DrawItemModelRMC item)
+		/////////////////////////////////////////////////////////////////////////////////////////////////
+		// public helpers
+		public static enum_0 getAlignment(string align)
 		{
-			void conditionalSet<T>(string input, ref T field, Func<string, T> func, bool check = true) { if (!string.IsNullOrEmpty(input) && check) field = func(input); };
-
-			if (!string.IsNullOrEmpty(item.Position))
+			align ??= "left";
+			switch (align.ToLower())
 			{
-				float x, y;
-				string pos = item.Position;
-				if (float.TryParse(pos.Split(',')[0], style, format, out x) && float.TryParse(pos.Split(',')[1], style, format, out y))
-				{
-					this.position = new Vector2(x, y);
-				}
-			}
-
-			if (!string.IsNullOrEmpty(item.Texture))
-			{
-				//make graphic item
-				conditionalSet(item.Texture, ref this.texture, x => class_235.method_615(item.Texture));
-				this.color = Color.White;
-				conditionalSet(item.Color, ref this.color, x => Color.FromHex(int.Parse(x)));
-				float temp = 0f;
-				conditionalSet(item.Rotation, ref this.rotation, x => temp, float.TryParse(item.Rotation, style, format, out temp));
-				temp = 1f;
-				conditionalSet(item.Scale, ref this.scale, x => temp, float.TryParse(item.Scale, style, format, out temp));
-				temp = 1f;
-				conditionalSet(item.Alpha, ref this.alpha, x => temp, float.TryParse(item.Alpha, style, format, out temp));
-			}
-			else
-			{
-				//make a text item
-				if (!string.IsNullOrEmpty(item.Align))
-				{
-					if (item.Align.ToLower() == "center") this.alignment = (enum_0)1;
-					if (item.Align.ToLower() == "right") this.alignment = (enum_0)2;
-				}
-				conditionalSet(item.Font, ref this.font, x => getFont(item.Font));
-				conditionalSet(item.Color, ref this.color, x => Color.FromHex(int.Parse(x)));
-				conditionalSet(item.LineSpacing, ref this.lineSpacing, x => float.Parse(x, style, format));
-				conditionalSet(item.ColumnWidth, ref this.columnWidth, x => float.Parse(x, style, format));
-				this.handwritten = item.Handwritten;
+				default:		return (enum_0) 0;
+				case "center":	return (enum_0) 1;
+				case "right":	return (enum_0) 2;
 			}
 		}
 
 		public static Font getFont(string font)
 		{
+			string defaultFont = "cormorant 15";
+			font ??= defaultFont;
 			Dictionary<string, Font> FontBank = new()
 			{
 				{"crimson 21", class_238.field_1990.field_2146},
@@ -231,7 +217,7 @@ public class Document
 				{"reenie 17.25", class_238.field_1990.field_2153},
 				{"naver 17.25", class_238.field_1990.field_2154},
 			};
-			return FontBank.ContainsKey(font) ? FontBank[font] : class_238.field_1990.field_2150;
+			return FontBank.ContainsKey(font) ? FontBank[font] : FontBank[defaultFont];
 		}
 
 		public static Font getHandwrittenFont() => getFont(class_134.field_1504 == Language.Korean ? "naver 17.25" : "reenie 17.25");
