@@ -263,6 +263,12 @@ Puzzles:
 ##########
 - ID: rmc-practical-test
   Music: Solving1
+  Tip:
+    ID: RMCT001
+    Title: "Glyph of Rejection"
+    Description: "The *glyph of rejection* can demote an atom of metal to its next lower form, producing an atom of quicksilver.\n\nBy doing this repeatedly, even gold — the finest metal — can be transmuted into base lead."
+    Solution: RMCrejection
+    SolutionOffset: -42, 0
 - ID: rmc-copper-synthesis
   Music: Solving4
 - ID: rmc-ring-oscillator
@@ -296,6 +302,12 @@ Puzzles:
 ##########
 - ID: rmc-metal-deposition
   Music: Solving1
+  Tip:
+    ID: RMCT002
+    Title: "Glyph of Deposition"
+    Description: "The *glyph of deposition* transmutes one atom of metal into two atoms of a lower form.\n\nNote that the resulting metals together have the same 'metallicity' as the original."
+    Solution: RMCdeposition
+    SolutionOffset: 0, 0
 - ID: rmc-mysterious-crystal
   Music: Solving6
 - ID: rmc-solder-wire
@@ -309,10 +321,27 @@ Puzzles:
 ##########
 - ID: rmc-ravari-requiescence
   Music: Solving5
+  Tip:
+    ID: RMCT004
+    Title: "Ravari's Wheel"
+    Description: "By using *Ravari's wheel* with the glyphs of projection and rejection, quicksilver can be stored or discharged.\n\nBecause it has metals with differing amounts of available quicksilver, Ravari's wheel could be called \"the metallurgist’s buffer.\""
+    Solution: RMCravari
+    SolutionOffset: 126, 0
 - ID: rmc-energetic-capacitor
   Music: Solving3
+  Tip:
+    ID: RMCT005
+    Title: "Direct Quicksilver Transfer"
+    Description: "It is possible to use *Ravari's wheel* without manually handling the quicksilver.\n\nBy placing the wheel above the _quicksilver_ port of the glyphs of projection or rejection, one can directly transfer the quicksilver in and out of the wheel."
+    Solution: RMCravari2
+    SolutionOffset: -126, 0
 - ID: rmc-synthesis-via-chain
   Music: Solving4
+  Tip:
+    ID: RMCT000
+    Title: "Repeating Reagents"
+    Description: "Some reagents repeat infinitely, and must be fed into the transmutation engine with the help of a guiding rail.\n\nArms can be mounted on the rail, but atoms are not allowed to pass through it."
+    Texture: tips/polymer_inputs
 - ID: rmc-sanitizing-dust
   Music: Solving3
 - ID: rmc-invariant-metal
@@ -320,6 +349,12 @@ Puzzles:
 ##########
 - ID: rmc-ravari-renewal
   Music: Solving6
+  Tip:
+    ID: RMCT003
+    Title: "Glyph of Proliferation"
+    Description: "By using *Ravari's wheel* with the *glyph of proliferation*, quicksilver can be exchanged for any of the six planetary metals.\n\nOur current understanding of metallurgic theory will be completely revolutionized, once it is determined how this exchange actually occurs."
+    Solution: RMCproliferation
+    SolutionOffset: 0, -40
 - ID: rmc-amalgam-wire
   Music: Solving2
 - ID: rmc-wood-preservative
@@ -329,8 +364,40 @@ Puzzles:
 - ID: rmc-metallurgist-opus
   Music: Solving1
 ##########
+- ID: rmc-welded-elements
+  Music: Solving1
+  NoStoryPanel: true
 - ID: rmc-golden-thread-recycling
   Music: Solving6
+  Tip:
+    ID: RMCT000
+    Title: "Repeating Reagents"
+    Description: "Some reagents repeat infinitely, and must be fed into the transmutation engine with the help of a guiding rail.\n\nArms can be mounted on the rail, but atoms are not allowed to pass through it."
+    Texture: tips/polymer_inputs_alt
+- ID: rmc-reactive-litharge
+  Music: Solving5
+- ID: rmc-pugano-transformer
+  Music: Solving4
+  Cabinet:
+    ExpandLeft: true
+    Conduits:
+    - Position1: -2, 0
+      Position2: 2, 0
+      Hexes:
+      - 0, 0
+    Overlays:
+    - Texture: "textures/pipelines/aether_overlay_middle"
+      Position: -499.0, -31.0
+    VialHolders:
+      - Position: -8, 3
+        TopSide: true
+        Vials:
+          - TextureSim: "textures/pipelines/vials/elemental_quicksilver/full"
+            TextureGif: "textures/pipelines/vials/elemental_quicksilver/draining"
+      - Position: -5, -3
+        Vials:
+          - TextureSim: "textures/pipelines/vials/elemental_lead/empty"
+            TextureGif: "textures/pipelines/vials/elemental_lead/filling"
 - ID: rmc-precision-machine-oil-cabinet
   Music: Solving6
   Cabinet:
@@ -356,31 +423,4 @@ Puzzles:
         Vials:
           - TextureSim: "textures/pipelines/vials/precision_machine_oil/empty"
             TextureGif: "textures/pipelines/vials/precision_machine_oil/filling"
-- ID: rmc-pugano-transformer
-  Music: Solving4
-  Cabinet:
-    ExpandLeft: true
-    Conduits:
-    - Position1: -2, 0
-      Position2: 2, 0
-      Hexes:
-      - 0, 0
-    Overlays:
-    - Texture: "textures/pipelines/aether_overlay_middle"
-      Position: -499.0, -31.0
-    VialHolders:
-      - Position: -8, 3
-        TopSide: true
-        Vials:
-          - TextureSim: "textures/pipelines/vials/elemental_quicksilver/full"
-            TextureGif: "textures/pipelines/vials/elemental_quicksilver/draining"
-      - Position: -5, -3
-        Vials:
-          - TextureSim: "textures/pipelines/vials/elemental_lead/empty"
-            TextureGif: "textures/pipelines/vials/elemental_lead/filling"
-- ID: rmc-reactive-litharge
-  Music: Solving5
-- ID: rmc-welded-elements
-  Music: Solving1
-  NoStoryPanel: true
 ##########

@@ -1,29 +1,36 @@
-﻿//using MonoMod.RuntimeDetour;
+﻿//using Mono.Cecil.Cil;
+//using MonoMod.Cil;
+//using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 using Quintessential;
+//using Quintessential.Serialization;
 //using Quintessential.Settings;
 //using SDL2;
 using System;
 //using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+//using System.Globalization;
 //using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
 
 using PartType = class_139;
 using Permissions = enum_149;
-//using BondType = enum_126;
-//using BondSite = class_222;
+using BondType = enum_126;
+using BondSite = class_222;
 //using AtomTypes = class_175;
 //using PartTypes = class_191;
 using Texture = class_256;
 //using Song = class_186;
 //using Tip = class_215;
+//using Font = class_1;
 
 public static class PolymerInput
 {
 	public static PartType partTypeGoldenThread, partTypeBerloChain;
+
+	const BondType standardBond = (BondType) 1;
 
 	private static Vector2 hexGraphicalOffset(HexIndex hex) => class_187.field_1742.method_492(hex);
 
@@ -40,12 +47,12 @@ public static class PolymerInput
 			field_1529 = class_134.method_253("Guiding Rail", string.Empty),
 			field_1530 = class_134.method_253("This rail helps guide the input polymer into the machine. Arms can be mounted on it, but atoms are not allowed to pass through it.", string.Empty),
 			field_1532 = (enum_2) 2,
-			field_1538 = new class_222[4]
+			field_1538 = new BondSite[4]
 			{
-				new class_222(new HexIndex(-4, 2), new HexIndex(-4, 3), (enum_126) 1, (Maybe<AtomType>) struct_18.field_1431),
-				new class_222(new HexIndex(-4, 2), new HexIndex(-3, 1), (enum_126) 1, (Maybe<AtomType>) struct_18.field_1431),
-				new class_222(new HexIndex(-2, 2), new HexIndex(-2, 3), (enum_126) 1, (Maybe<AtomType>) struct_18.field_1431),
-				new class_222(new HexIndex(-2, 2), new HexIndex(-1, 1), (enum_126) 1, (Maybe<AtomType>) struct_18.field_1431)
+				new BondSite(new HexIndex(-4, 2), new HexIndex(-4, 3), standardBond, (Maybe<AtomType>) struct_18.field_1431),
+				new BondSite(new HexIndex(-4, 2), new HexIndex(-3, 1), standardBond, (Maybe<AtomType>) struct_18.field_1431),
+				new BondSite(new HexIndex(-2, 2), new HexIndex(-2, 3), standardBond, (Maybe<AtomType>) struct_18.field_1431),
+				new BondSite(new HexIndex(-2, 2), new HexIndex(-1, 1), standardBond, (Maybe<AtomType>) struct_18.field_1431)
 			},
 			field_1539 = true,
 			field_1542 = true,
@@ -58,9 +65,9 @@ public static class PolymerInput
 			field_1529 = class_134.method_253("Guiding Rail", string.Empty),
 			field_1530 = class_134.method_253("This rail helps guide the input polymer into the machine. Arms can be mounted on it, but atoms are not allowed to pass through it.", string.Empty),
 			field_1532 = (enum_2)2,
-			field_1538 = new class_222[]
+			field_1538 = new BondSite[]
 			{
-				new class_222(new HexIndex(-5, 2), new HexIndex(-4, 2), (enum_126) 1, (Maybe<AtomType>) struct_18.field_1431)
+				new BondSite(new HexIndex(-5, 2), new HexIndex(-4, 2), standardBond, (Maybe<AtomType>) struct_18.field_1431)
 			},
 			field_1539 = true,
 			field_1542 = true,

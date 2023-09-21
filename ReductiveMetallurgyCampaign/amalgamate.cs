@@ -3,12 +3,14 @@ using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 using Quintessential;
+//using Quintessential.Serialization;
 //using Quintessential.Settings;
 //using SDL2;
 using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+//using System.Globalization;
 using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
@@ -20,6 +22,9 @@ namespace ReductiveMetallurgyCampaign;
 //using AtomTypes = class_175;
 //using PartTypes = class_191;
 using Texture = class_256;
+//using Song = class_186;
+//using Tip = class_215;
+//using Font = class_1;
 
 public static class Amalgamate
 {

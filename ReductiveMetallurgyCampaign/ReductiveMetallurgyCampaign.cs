@@ -1,17 +1,19 @@
-﻿using MonoMod.RuntimeDetour;
+﻿//using Mono.Cecil.Cil;
+//using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
 //using MonoMod.Utils;
 using Quintessential;
+//using Quintessential.Serialization;
 using Quintessential.Settings;
 //using SDL2;
 using System;
 //using System.IO;
 //using System.Linq;
 using System.Collections.Generic;
+//using System.Globalization;
 using System.Reflection;
 
 namespace ReductiveMetallurgyCampaign;
-
-// SOLITAIRE_ICON_TEMP - these lines will be removed once custom campaign icons are actually implemented in quintessential
 
 //using PartType = class_139;
 //using Permissions = enum_149;
@@ -22,6 +24,9 @@ namespace ReductiveMetallurgyCampaign;
 using Texture = class_256;
 //using Song = class_186;
 //using Tip = class_215;
+//using Font = class_1;
+
+// SOLITAIRE_ICON_TEMP - these lines will be removed once custom campaign icons are actually implemented in quintessential
 
 public class MainClass : QuintessentialMod
 {
@@ -65,6 +70,7 @@ public class MainClass : QuintessentialMod
 	{
 		PolymerInput.LoadContent();
 		StoryPanelPatcher.LoadContent();
+		ProductionManager.initializeProductionTextureBank();
 		CampaignLoader.modifyCampaign();
 
 		string path = "textures/puzzle_select/"; // SOLITAIRE_ICON_TEMP
@@ -104,7 +110,7 @@ public class MainClass : QuintessentialMod
 	{
 		SigmarGardenPatcher.PostLoad();
 		Amalgamate.PostLoad();
-		CampaignLoader.PostLoad();
+		ProductionManager.PostLoad();
 		StoryPanelPatcher.PostLoad();
 		On.CampaignItem.method_826 += ChooseCustomIconLarge; // SOLITAIRE_ICON_TEMP
 		On.CampaignItem.method_827 += ChooseCustomIconSmall; // SOLITAIRE_ICON_TEMP
