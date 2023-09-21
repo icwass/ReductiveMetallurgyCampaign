@@ -328,9 +328,52 @@ public class CabinetModelRMC
 public class JournalModelRMC
 {
 	public List<JournalVolumeModelRMC> Volumes;
+	public List<JournalPreviewModelRMC> Previews;
+
+	public Dictionary<string, Dictionary<int, Vector2>> GetPreviewPositions()
+	{
+		Dictionary<string, Dictionary<int, Vector2>> dict = new();
+
+		foreach (var preview in Previews)
+		{
+			var tuple = preview.FromModel();
+			dict.Add(tuple.Item1, tuple.Item2);
+		}
+
+		return dict;
+	}
 }
 public class JournalVolumeModelRMC
 {
 	public int FromChapter;
 	public string Title, Description;
+}
+
+public class JournalPreviewModelRMC
+{
+	public string ID;
+	public List<JournalPreviewItemModelRMC> Items;
+
+	public Tuple<string, Dictionary<int, Vector2>> FromModel()
+	{
+		Dictionary<int, Vector2> items = new();
+		foreach (var item in Items)
+		{
+			var tuple = item.FromModel();
+			items.Add(tuple.Item1, tuple.Item2);
+		}
+		
+		return Tuple.Create(ID, items);
+	}
+}
+
+public class JournalPreviewItemModelRMC
+{
+	public int Index;
+	public string Position;
+
+	public Tuple<int, Vector2> FromModel()
+	{
+		return Tuple.Create(Index, ModelHelpersRMC.Vector2FromString(Position));
+	}
 }

@@ -36,6 +36,8 @@ public sealed class JournalLoader
 
 	public static IEnumerable<CampaignItem> journalItems() => journal_items;
 
+	static Dictionary<string, Dictionary<int, Vector2>> customPreviewPositions = new();
+
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// journal stuff
 	public static void loadJournalModel()
@@ -50,6 +52,8 @@ public sealed class JournalLoader
 		{
 			journal_model = YamlHelper.Deserializer.Deserialize<JournalModelRMC>(streamReader);
 		}
+
+		customPreviewPositions = journal_model.GetPreviewPositions();
 	}
 
 	public static void modifyJournals(Campaign campaign_self)
@@ -170,29 +174,13 @@ public sealed class JournalLoader
 		Texture textureFromMolecule(Molecule molecule, Vector2 offset) => Editor.method_928(molecule, false, mouseHover, offset, isLargePuzzle, (Maybe<float>)struct_18.field_1431).method_1351().field_937;
 		Texture textureFromIndex(int i, Vector2 offset) => textureFromMolecule(puzzle.field_2771[i].field_2813, offset);
 
-		if (puzzleID == "rmc-welded-elements") // uses same layout as Proof of Completeness
+		if (customPreviewPositions.ContainsKey(puzzleID))
 		{
-			for (int index = 0; index < 4; ++index)
-				class_135.method_272(textureFromIndex(index, new Vector2(500f, 500f)), bounds2.Min + new Vector2(46f, 197f) + new Vector2(215 * (index % 2), -140 * (index / 2)));
+			foreach (var kvp in customPreviewPositions[puzzleID])
+			{
+				class_135.method_272(textureFromIndex(kvp.Key, moleculeOffset), bounds2.Min + kvp.Value);
+			}
 		}
-		/*
-		else if (puzzleID == Puzzles.field_2911.field_2766) // Van Berlo's Pivots
-		{
-			moleculeOffset = new Vector2(500f, 500f);
-			for (int index = 0; index < 4; ++index)
-				class_135.method_272(textureFromIndex(index, moleculeOffset), bounds2.Min + new Vector2(72f, 187f) + new Vector2(195 * (index % 2), -160 * (index / 2)));
-		}
-		else if (puzzleID == Puzzles.field_2914.field_2766) // Alchemical Slag
-		{
-			for (int index = 0; index < 2; ++index)
-				class_135.method_272(textureFromIndex(index, moleculeOffset), bounds2.Min + new Vector2(44f, 61f) + new Vector2(129 * index, 0.0f));
-		}
-		else if (puzzleID == Puzzles.field_2918.field_2766) // Electrum Separation
-		{
-			for (int index = 0; index < 2; ++index)
-				class_135.method_272(textureFromIndex(index, moleculeOffset), bounds2.Min + new Vector2(34f, 119f) + new Vector2(0.0f, -89 * index));
-		}
-		*/
 		else
 		{
 			var molecules = puzzle.field_2771.Select(x => x.field_2813).OrderByDescending(x => x.method_1100().Count);
