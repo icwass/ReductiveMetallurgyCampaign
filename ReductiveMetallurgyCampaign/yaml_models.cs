@@ -24,7 +24,7 @@ namespace ReductiveMetallurgyCampaign;
 using Texture = class_256;
 //using Song = class_186;
 using Tip = class_215;
-using Font = class_1;
+//using Font = class_1;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 // advanced.yaml
@@ -70,6 +70,14 @@ public class CampaignModelRMC
 	public List<CutsceneModelRMC> Cutscenes;
 	public List<DocumentModelRMC> Documents;
 	public List<PuzzleModelRMC> Puzzles;
+
+	public void LoadDocuments()
+	{
+		foreach (var document in this.Documents)
+		{
+			document.AddDocumentFromModel();
+		}
+	}
 }
 public class CreditsModelRMC
 {
@@ -111,6 +119,25 @@ public class DocumentModelRMC
 {
 	public string ID, Texture;
 	public List<DrawItemModelRMC> DrawItems;
+
+	public void AddDocumentFromModel()
+	{
+		Texture base_texture = class_238.field_1989.field_85.field_570; // letter-5
+		if (!string.IsNullOrEmpty(this.Texture))
+		{
+			base_texture = class_235.method_615(this.Texture);
+		}
+		List<Document.DrawItem> drawItems = new();
+
+		if (this.DrawItems != null)
+		{
+			foreach (var drawItem in this.DrawItems)
+			{
+				drawItems.Add(drawItem.FromModel());
+			}
+		}
+		new Document(this.ID, base_texture, drawItems);
+	}
 }
 public class DrawItemModelRMC
 {

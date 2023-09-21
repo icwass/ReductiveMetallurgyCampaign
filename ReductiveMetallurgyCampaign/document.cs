@@ -72,25 +72,6 @@ public class Document
 	//global stuff
 	private static Dictionary<string, Document> documentDatabase = new Dictionary<string, Document>();
 
-	public static void LoadDocuments(List<DocumentModelRMC> Documents)
-	{
-		foreach (var d in Documents)
-		{
-			Texture base_texture = class_238.field_1989.field_85.field_570; // letter-5
-			if (!string.IsNullOrEmpty(d.Texture))
-			{
-				base_texture = class_235.method_615(d.Texture);
-			}
-			List<DrawItem> drawItems = new();
-			int maxIndex = d.DrawItems == null ? 0 : d.DrawItems.Count;
-			for (int i = 0; i < maxIndex; i++)
-			{
-				drawItems.Add(d.DrawItems[i].FromModel());
-			}
-			new Document(d.ID, base_texture, drawItems);
-		}
-	}
-
 	public static void Load()
 	{
 		On.DocumentScreen.method_50 += DocumentScreen_Method_50;

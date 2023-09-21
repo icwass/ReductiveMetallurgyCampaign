@@ -279,7 +279,7 @@ public static class CampaignLoader
 			puzzleDictionary.Add(puzzle.ID, puzzle);
 		}
 		var DocumentModels = campaign_model.Documents;
-		Document.LoadDocuments(DocumentModels);
+		campaign_model.LoadDocuments();
 		foreach (var document in DocumentModels)
 		{
 			documentIDList.Add(document.ID);
