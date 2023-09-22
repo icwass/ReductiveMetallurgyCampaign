@@ -10,5 +10,5 @@ Pugano (Right): Hah, a challenge! Very well, go on being a reclusive genius.
 -----------
 
 Saverio (Right): Well, it doesn't seem like anything is broken - the alchemical engine continues to perform normally.
-Saverio (Right): The invariant metal is proving to be a quite troublesome to analyze.
+Saverio (Right): The invariant metal is proving to be quite troublesome to analyze.
 Saverio (Right): It is difficult to detect if there are any signs of wear or tear...

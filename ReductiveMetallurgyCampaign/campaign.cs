@@ -28,9 +28,9 @@ using Song = class_186;
 
 public static class CampaignLoader
 {
-	const string rejectionTutorialID = "rmc-practical-test";
-	const string polymerInputTutorialID = "rmc-synthesis-via-chain";
-	const string oldPolymerInputTutorialID = "rmc-golden-thread-recycling";
+	const string rejectionTutorialID = "rmc-ch1-practical-test";
+	const string polymerInputTutorialID = "rmc-ch3-synthesis-via-chain";
+	const string oldPolymerInputTutorialID = "rmc-j01-golden-thread-recycling";
 
 	private static Campaign campaign_self;
 	private static CampaignModelRMC campaign_model;

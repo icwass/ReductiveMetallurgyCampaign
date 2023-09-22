@@ -27,37 +27,37 @@ Chapters:
     Title: "The Interview"
     Puzzle: empty
     Requires: "rmc-document-resume"
-  - ID: rmc-practical-test
+  - ID: rmc-ch1-practical-test
     Title: "Practical Test"
-    Puzzle: rmc-practical-test
+    Puzzle: rmc-ch1-practical-test
     Requires: "rmc-cutscene-interview"
-  - ID: rmc-copper-synthesis
+  - ID: rmc-ch1-copper-synthesis
     Title: Copper Synthesis
-    Puzzle: rmc-copper-synthesis
-    Requires: "rmc-practical-test"
+    Puzzle: rmc-ch1-copper-synthesis
+    Requires: "rmc-ch1-practical-test"
   - Type: solitaire
-    Requires: "rmc-copper-synthesis"
+    Requires: "rmc-ch1-copper-synthesis"
     Icon: textures/puzzle_select/icon_rmc_solitaire
     IconSmall: textures/puzzle_select/icon_rmc_solitaire_small
-    ID: rmc-sigmars-garden-1
+    ID: rmc-sigmars-garden
     Title: Sigmar's Garden
     Puzzle: empty
-  - ID: rmc-ring-oscillator
+  - ID: rmc-ch1-ring-oscillator
     Title: Ring Oscillator
-    Puzzle: rmc-ring-oscillator
-    Requires: "rmc-copper-synthesis"
-  - ID: rmc-patina-processing
+    Puzzle: rmc-ch1-ring-oscillator
+    Requires: "rmc-ch1-copper-synthesis"
+  - ID: rmc-ch1-patina-processing
     Title: Patina Processing
-    Puzzle: rmc-patina-processing
-    Requires: "rmc-copper-synthesis"
-  - ID: rmc-saverio-transformer
+    Puzzle: rmc-ch1-patina-processing
+    Requires: "rmc-ch1-copper-synthesis"
+  - ID: rmc-ch1-saverio-transformer
     Title: "Saverio's Transformer"
-    Puzzle: rmc-saverio-transformer
-    Requires: "rmc-copper-synthesis"
-  - ID: rmc-galena-separation
+    Puzzle: rmc-ch1-saverio-transformer
+    Requires: "rmc-ch1-copper-synthesis"
+  - ID: rmc-ch1-galena-separation
     Title: Galena Separation
-    Puzzle: rmc-galena-separation
-    Requires: "rmc-copper-synthesis"
+    Puzzle: rmc-ch1-galena-separation
+    Requires: "rmc-ch1-copper-synthesis"
   - ID: rmc-cutscene-task
     Title: "The Task"
     Puzzle: empty
@@ -71,41 +71,41 @@ Chapters:
     Title: "Jay's Notes"
     Puzzle: empty
     Requires: ""
-  - ID: rmc-metal-deposition
+  - ID: rmc-ch2-metal-deposition
     Title: "Metal Deposition"
-    Puzzle: rmc-metal-deposition
+    Puzzle: rmc-ch2-metal-deposition
     Requires: "rmc-document-deposition"
   - Type: solitaire
-    Requires: "rmc-metal-deposition"
+    Requires: "rmc-ch2-metal-deposition"
     Icon: textures/puzzle_select/icon_rmc_solitaire
     IconSmall: textures/puzzle_select/icon_rmc_solitaire_small
-    ID: rmc-sigmars-garden-1
+    ID: rmc-sigmars-garden
     Title: Sigmar's Garden
     Puzzle: empty
-  - ID: rmc-solder-wire
+  - ID: rmc-ch2-solder-wire
     Title: Solder Wire
-    Puzzle: rmc-solder-wire
-    Requires: "rmc-metal-deposition"
-  - ID: rmc-mysterious-crystal
+    Puzzle: rmc-ch2-solder-wire
+    Requires: "rmc-ch2-metal-deposition"
+  - ID: rmc-ch2-mysterious-crystal
     Title: "Mysterious Crystal"
-    Puzzle: rmc-mysterious-crystal
-    Requires: "rmc-metal-deposition"
-  - ID: rmc-plumbous-wheel
+    Puzzle: rmc-ch2-mysterious-crystal
+    Requires: "rmc-ch2-metal-deposition"
+  - ID: rmc-ch2-plumbous-wheel
     Title: Plumbous Wheel
-    Puzzle: rmc-plumbous-wheel
-    Requires: "rmc-metal-deposition"
+    Puzzle: rmc-ch2-plumbous-wheel
+    Requires: "rmc-ch2-metal-deposition"
   - ID: rmc-cutscene-meeting
     Title: "Meeting with the Great House"
     Puzzle: empty
     Requires: 4
-  - ID: rmc-silver-phosphate
+  - ID: rmc-ch2-silver-phosphate
     Title: Silver Phosphate
-    Puzzle: rmc-silver-phosphate
+    Puzzle: rmc-ch2-silver-phosphate
     Requires: "rmc-cutscene-meeting"
-  - ID: rmc-you-drive-me-to-drink
+  - ID: rmc-ch2-you-drive-me-to-drink
     Title: You Drive Me To Drink
-    Puzzle: rmc-you-drive-me-to-drink
-    Requires: "rmc-silver-phosphate"
+    Puzzle: rmc-ch2-you-drive-me-to-drink
+    Requires: "rmc-ch2-silver-phosphate"
 - Title: Chapter III
   Subtitle: The Alchemical Symposium
   Place: "Imperial University"
@@ -119,17 +119,17 @@ Chapters:
     Title: "Saverio's Debut"
     Puzzle: empty
     Requires: "rmc-document-symposium-agenda"
-  - ID: rmc-ravari-requiescence
+  - ID: rmc-ch3-ravari-requiescence
     Title: Ravari's Requiescence
-    Puzzle: rmc-ravari-requiescence
+    Puzzle: rmc-ch3-ravari-requiescence
     Requires: "rmc-cutscene-presentation"
-  - ID: rmc-energetic-capacitor
+  - ID: rmc-ch3-energetic-capacitor
     Title: Energetic Capacitor
-    Puzzle: rmc-energetic-capacitor
+    Puzzle: rmc-ch3-energetic-capacitor
     Requires: "rmc-cutscene-presentation"  
-  - ID: rmc-synthesis-via-chain
+  - ID: rmc-ch3-synthesis-via-chain
     Title: Synthesis Via Chain
-    Puzzle: rmc-synthesis-via-chain
+    Puzzle: rmc-ch3-synthesis-via-chain
     Requires: "rmc-cutscene-presentation"
   - ID: rmc-cutscene-symposium-end
     Title: "Symposium's End"
@@ -139,17 +139,17 @@ Chapters:
     Requires: "rmc-cutscene-symposium-end"
     Icon: textures/puzzle_select/icon_rmc_solitaire
     IconSmall: textures/puzzle_select/icon_rmc_solitaire_small
-    ID: rmc-sigmars-garden-1
+    ID: rmc-sigmars-garden
     Title: Sigmar's Garden
     Puzzle: empty
-  - ID: rmc-sanitizing-dust
+  - ID: rmc-ch3-sanitizing-dust
     Title: Sanitizing Dust
-    Puzzle: rmc-sanitizing-dust
+    Puzzle: rmc-ch3-sanitizing-dust
     Requires: "rmc-cutscene-symposium-end"
-  - ID: rmc-invariant-metal
+  - ID: rmc-ch3-invariant-metal
     Title: Invariant Metal
-    Puzzle: rmc-invariant-metal
-    Requires: "rmc-sanitizing-dust"
+    Puzzle: rmc-ch3-invariant-metal
+    Requires: "rmc-ch3-sanitizing-dust"
 - Title: Chapter IV
   Subtitle: Breaking Laws
   Place: "Saverio's Office"
@@ -163,37 +163,37 @@ Chapters:
     Requires: "rmc-document-proliferation"
     Icon: textures/puzzle_select/icon_rmc_solitaire
     IconSmall: textures/puzzle_select/icon_rmc_solitaire_small
-    ID: rmc-sigmars-garden-1
+    ID: rmc-sigmars-garden
     Title: Sigmar's Garden
     Puzzle: empty
-  - ID: rmc-ravari-renewal
+  - ID: rmc-ch4-ravari-renewal
     Title: Ravari's Renewal
-    Puzzle: rmc-ravari-renewal
+    Puzzle: rmc-ch4-ravari-renewal
     Requires: "rmc-document-proliferation"
-  - ID: rmc-amalgam-wire
+  - ID: rmc-ch4-amalgam-wire
     Title: "Amalgam Wire"
-    Puzzle: rmc-amalgam-wire
-    Requires: "rmc-ravari-renewal"
-  - ID: rmc-wood-preservative
+    Puzzle: rmc-ch4-amalgam-wire
+    Requires: "rmc-ch4-ravari-renewal"
+  - ID: rmc-ch4-wood-preservative
     Title: "Wood Preservative"
-    Puzzle: rmc-wood-preservative
-    Requires: "rmc-ravari-renewal"
+    Puzzle: rmc-ch4-wood-preservative
+    Requires: "rmc-ch4-ravari-renewal"
   - ID: rmc-cutscene-reveal
     Title: "The Reveal"
     Puzzle: empty
     Requires: 3
-  - ID: rmc-experimental-catalyst
+  - ID: rmc-ch4-experimental-catalyst
     Title: "Experimental Catalyst"
-    Puzzle: rmc-experimental-catalyst
+    Puzzle: rmc-ch4-experimental-catalyst
     Requires: rmc-cutscene-reveal
-  - ID: rmc-metallurgist-opus
+  - ID: rmc-ch4-metallurgist-opus
     Title: "Metallurgist's Opus"
-    Puzzle: rmc-metallurgist-opus
-    Requires: "rmc-experimental-catalyst"
+    Puzzle: rmc-ch4-metallurgist-opus
+    Requires: "rmc-ch4-experimental-catalyst"
   - ID: rmc-cutscene-hubris
     Title: "Hubris"
     Puzzle: empty
-    Requires: "rmc-metallurgist-opus"
+    Requires: "rmc-ch4-metallurgist-opus"
   - ID: rmc-document-epilogue
     Title: "Epilogue"
     Puzzle: empty
@@ -203,23 +203,23 @@ Chapters:
   Place: "Area 51"
   Background: backgrounds/saverio_atelier
   Entries:
-  - ID: rmc-welded-elements
+  - ID: rmc-j01-welded-elements
     Title: "Welded Elements"
-    Puzzle: rmc-welded-elements
+    Puzzle: rmc-j01-welded-elements
     Requires: ""
-  - ID: rmc-reactive-litharge
+  - ID: rmc-j01-reactive-litharge
     Title: "Reactive Litharge"
-    Puzzle: rmc-reactive-litharge
+    Puzzle: rmc-j01-reactive-litharge
     Requires: ""
-  - ID: rmc-pugano-transformer
+  - ID: rmc-j01-pugano-transformer
     Title: "Pugano's Transformer"
-    Puzzle: rmc-pugano-transformer
+    Puzzle: rmc-j01-pugano-transformer
     Requires: ""
-  - ID: rmc-precision-machine-oil-cabinet
+  - ID: rmc-j01-precision-machine-oil-cabinet
     Title: "Precision Machine Oil Cabinet"
-    Puzzle: rmc-precision-machine-oil-cabinet
+    Puzzle: rmc-j01-precision-machine-oil-cabinet
     Requires: ""
-  - ID: rmc-golden-thread-recycling
+  - ID: rmc-j01-golden-thread-recycling
     Title: "Golden Thread Recycling"
-    Puzzle: rmc-golden-thread-recycling
+    Puzzle: rmc-j01-golden-thread-recycling
     Requires: ""

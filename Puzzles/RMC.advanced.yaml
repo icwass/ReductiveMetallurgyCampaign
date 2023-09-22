@@ -28,7 +28,7 @@ SigmarStoryUnlocks:
 - 25
 ##################################################
 SigmarsGardens:
-- "rmc-sigmars-garden-1"
+- "rmc-sigmars-garden"
 ##################################################
 Characters:
 ##########
@@ -261,7 +261,7 @@ Documents:
 ##################################################
 Puzzles:
 ##########
-- ID: rmc-practical-test
+- ID: rmc-ch1-practical-test
   Music: Solving1
   Tip:
     ID: RMCT001
@@ -269,13 +269,13 @@ Puzzles:
     Description: "The *glyph of rejection* can demote an atom of metal to its next lower form, producing an atom of quicksilver.\n\nBy doing this repeatedly, even gold — the finest metal — can be transmuted into base lead."
     Solution: RMCrejection
     SolutionOffset: -42, 0
-- ID: rmc-copper-synthesis
+- ID: rmc-ch1-copper-synthesis
   Music: Solving4
-- ID: rmc-ring-oscillator
+- ID: rmc-ch1-ring-oscillator
   Music: Solving3
-- ID: rmc-patina-processing
+- ID: rmc-ch1-patina-processing
   Music: Solving2
-- ID: rmc-saverio-transformer
+- ID: rmc-ch1-saverio-transformer
   Music: Solving5
   Cabinet:
     ExpandRight: true
@@ -297,10 +297,10 @@ Puzzles:
         Vials:
           - TextureSim: "textures/pipelines/vials/elemental_quicksilver/empty"
             TextureGif: "textures/pipelines/vials/elemental_quicksilver/filling"
-- ID: rmc-galena-separation
+- ID: rmc-ch1-galena-separation
   Music: Solving1
 ##########
-- ID: rmc-metal-deposition
+- ID: rmc-ch2-metal-deposition
   Music: Solving1
   Tip:
     ID: RMCT002
@@ -308,18 +308,18 @@ Puzzles:
     Description: "The *glyph of deposition* transmutes one atom of metal into two atoms of a lower form.\n\nNote that the resulting metals together have the same 'metallicity' as the original."
     Solution: RMCdeposition
     SolutionOffset: 0, 0
-- ID: rmc-mysterious-crystal
+- ID: rmc-ch2-mysterious-crystal
   Music: Solving6
-- ID: rmc-solder-wire
+- ID: rmc-ch2-solder-wire
   Music: Solving4
-- ID: rmc-plumbous-wheel
+- ID: rmc-ch2-plumbous-wheel
   Music: Solving3
-- ID: rmc-silver-phosphate
+- ID: rmc-ch2-silver-phosphate
   Music: Solving5
-- ID: rmc-you-drive-me-to-drink
+- ID: rmc-ch2-you-drive-me-to-drink
   Music: Solving2
 ##########
-- ID: rmc-ravari-requiescence
+- ID: rmc-ch3-ravari-requiescence
   Music: Solving5
   Tip:
     ID: RMCT004
@@ -327,7 +327,7 @@ Puzzles:
     Description: "By using *Ravari's wheel* with the glyphs of projection and rejection, quicksilver can be stored or discharged.\n\nBecause it has metals with differing amounts of available quicksilver, Ravari's wheel could be called \"the metallurgist’s buffer.\""
     Solution: RMCravari
     SolutionOffset: 126, 0
-- ID: rmc-energetic-capacitor
+- ID: rmc-ch3-energetic-capacitor
   Music: Solving3
   Tip:
     ID: RMCT005
@@ -335,19 +335,19 @@ Puzzles:
     Description: "It is possible to use *Ravari's wheel* without manually handling the quicksilver.\n\nBy placing the wheel above the _quicksilver_ port of the glyphs of projection or rejection, one can directly transfer the quicksilver in and out of the wheel."
     Solution: RMCravari2
     SolutionOffset: -126, 0
-- ID: rmc-synthesis-via-chain
+- ID: rmc-ch3-synthesis-via-chain
   Music: Solving4
   Tip:
     ID: RMCT000
     Title: "Repeating Reagents"
     Description: "Some reagents repeat infinitely, and must be fed into the transmutation engine with the help of a guiding rail.\n\nArms can be mounted on the rail, but atoms are not allowed to pass through it."
     Texture: tips/polymer_inputs
-- ID: rmc-sanitizing-dust
+- ID: rmc-ch3-sanitizing-dust
   Music: Solving3
-- ID: rmc-invariant-metal
+- ID: rmc-ch3-invariant-metal
   Music: Solving5
 ##########
-- ID: rmc-ravari-renewal
+- ID: rmc-ch4-ravari-renewal
   Music: Solving6
   Tip:
     ID: RMCT003
@@ -355,28 +355,21 @@ Puzzles:
     Description: "By using *Ravari's wheel* with the *glyph of proliferation*, quicksilver can be exchanged for any of the six planetary metals.\n\nOur current understanding of metallurgic theory will be completely revolutionized, once it is determined how this exchange actually occurs."
     Solution: RMCproliferation
     SolutionOffset: 0, -40
-- ID: rmc-amalgam-wire
+- ID: rmc-ch4-amalgam-wire
   Music: Solving2
-- ID: rmc-wood-preservative
+- ID: rmc-ch4-wood-preservative
   Music: Solving3
-- ID: rmc-experimental-catalyst
+- ID: rmc-ch4-experimental-catalyst
   Music: Solving4
-- ID: rmc-metallurgist-opus
+- ID: rmc-ch4-metallurgist-opus
   Music: Solving1
 ##########
-- ID: rmc-welded-elements
+- ID: rmc-j01-welded-elements
   Music: Solving1
   NoStoryPanel: true
-- ID: rmc-golden-thread-recycling
-  Music: Solving6
-  Tip:
-    ID: RMCT000
-    Title: "Repeating Reagents"
-    Description: "Some reagents repeat infinitely, and must be fed into the transmutation engine with the help of a guiding rail.\n\nArms can be mounted on the rail, but atoms are not allowed to pass through it."
-    Texture: tips/polymer_inputs_alt
-- ID: rmc-reactive-litharge
+- ID: rmc-j01-reactive-litharge
   Music: Solving5
-- ID: rmc-pugano-transformer
+- ID: rmc-j01-pugano-transformer
   Music: Solving4
   Cabinet:
     ExpandLeft: true
@@ -398,7 +391,7 @@ Puzzles:
         Vials:
           - TextureSim: "textures/pipelines/vials/elemental_lead/empty"
             TextureGif: "textures/pipelines/vials/elemental_lead/filling"
-- ID: rmc-precision-machine-oil-cabinet
+- ID: rmc-j01-precision-machine-oil-cabinet
   Music: Solving6
   Cabinet:
     ExpandRight: true
@@ -423,4 +416,11 @@ Puzzles:
         Vials:
           - TextureSim: "textures/pipelines/vials/precision_machine_oil/empty"
             TextureGif: "textures/pipelines/vials/precision_machine_oil/filling"
+- ID: rmc-j01-golden-thread-recycling
+  Music: Solving6
+  Tip:
+    ID: RMCT000
+    Title: "Repeating Reagents"
+    Description: "Some reagents repeat infinitely, and must be fed into the transmutation engine with the help of a guiding rail.\n\nArms can be mounted on the rail, but atoms are not allowed to pass through it."
+    Texture: tips/polymer_inputs_alt
 ##########
