@@ -40,6 +40,8 @@ public static class ProductionManager
 
 	public static void DrawProductionOverlays(string puzzleID, Vector2 class423_field_3959)
 	{
+		if (!productionOverlays.ContainsKey(puzzleID)) return;
+		
 		foreach (var overlay in productionOverlays[puzzleID])
 		{
 			class_135.method_272(fetchTexture(overlay.Item1), class423_field_3959 + overlay.Item2);
@@ -76,6 +78,7 @@ public static class ProductionManager
 				list.Add(Tuple.Create(overlay.Texture, position));
 			}
 		}
+		productionOverlays.Add(puzzleID, list);
 		Logger.Log("Added overlays for " + puzzleID);
 	}
 
