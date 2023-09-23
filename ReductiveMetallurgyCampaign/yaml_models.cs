@@ -7,7 +7,7 @@ using Quintessential;
 //using Quintessential.Settings;
 //using SDL2;
 using System;
-//using System.IO;
+using System.IO;
 //using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
@@ -208,7 +208,7 @@ public class TipModelRMC
 
 		if (!string.IsNullOrEmpty(this.Solution))
 		{
-			TipPaths.Add("Content\\tips\\" + this.Solution + ".solution");
+			TipPaths.Add("Content/tips/" + this.Solution + ".solution");
 		}
 
 		return new Tip()

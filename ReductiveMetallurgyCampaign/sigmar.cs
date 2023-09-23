@@ -276,7 +276,7 @@ public static class SigmarGardenPatcher
 		string filepath;
 		if (!MainClass.findModMetaFilepath("ReductiveMetallurgyCampaign", out filepath) || !File.Exists(filepath + subpath))
 		{
-			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'solitaire-bitboards.dat' in the folder '" + filepath + "\\Content\\'");
+			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'solitaire-bitboards.dat' in the folder '" + filepath + "/Content/'");
 			throw new Exception("getRandomizedSolitaireBoard: Solitaire data is missing.");
 		}
 

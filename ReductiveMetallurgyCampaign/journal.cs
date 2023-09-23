@@ -45,7 +45,7 @@ public sealed class JournalLoader
 		string filepath;
 		if (!MainClass.findModMetaFilepath("ReductiveMetallurgyCampaign", out filepath) || !File.Exists(filepath + "/Puzzles/RMC.journal_RMC.yaml"))
 		{
-			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'RMC.journal_RMC.yaml' in the folder '" + filepath + "\\Puzzles\\'");
+			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'RMC.journal_RMC.yaml' in the folder '" + filepath + "/Puzzles/'");
 			throw new Exception("modifyCampaignRMC: Journal data is missing.");
 		}
 		using (StreamReader streamReader = new StreamReader(filepath + "/Puzzles/RMC.journal_RMC.yaml"))

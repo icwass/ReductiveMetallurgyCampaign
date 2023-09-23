@@ -49,17 +49,6 @@ Characters:
   LargePortrait: portraits/saverio_large
   Color: 9916761
   IsOnLeft: true
-- ID: "Saverio (Backdrop)"
-  Name: "Saverio Daas"
-  SmallPortrait: portraits/saverio_small_backdrop
-  LargePortrait: portraits/saverio_large
-  Color: 9916761
-  IsOnLeft: true
-- ID: "Research Notes"
-  Name: "Saverio's Research Notes"
-  SmallPortrait: portraits/research_notes_small
-  Color: 9916761
-  IsOnLeft: true
 - ID: "Pugano (Left)"
   Name: "Jay Pugano"
   SmallPortrait: portraits/pugano_small
@@ -78,10 +67,6 @@ Characters:
 - ID: "Verrin Ravari (Frustrated)"
   Name: "Verrin Ravari"
   SmallPortrait: portraits/verrin_frustrated_small
-  Color: 6691857
-- ID: "Verrin Ravari (Livid)"
-  Name: "Verrin Ravari"
-  SmallPortrait: portraits/verrin_livid_small
   Color: 6691857
 - ID: "Symposium Attendees"
   Name: "Symposium Attendees"
