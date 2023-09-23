@@ -192,10 +192,6 @@ public class TipModelRMC
 	public string ID, Title, Description, Solution, Texture, SolutionOffset;
 	Texture loadedTexture;
 
-	static HashSet<string> TipPaths = new();
-
-	public static bool IsCustomTipPath(string path) => TipPaths.Contains(path);
-
 	public Tip FromModel()
 	{
 		Maybe<Texture> image = (Maybe<Texture>)struct_18.field_1431;
@@ -204,11 +200,6 @@ public class TipModelRMC
 		{
 			this.loadedTexture ??= class_235.method_615(this.Texture); // if null, load the texture
 			image = this.loadedTexture;
-		}
-
-		if (!string.IsNullOrEmpty(this.Solution))
-		{
-			TipPaths.Add("Content/tips/" + this.Solution + ".solution");
 		}
 
 		return new Tip()

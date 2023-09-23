@@ -384,16 +384,13 @@ public static class CampaignLoader
 
 	public static Maybe<Solution> Solution_Method_1958(On.Solution.orig_method_1958 orig, string filePath)
 	{
-		if (TipModelRMC.IsCustomTipPath(filePath))
+		foreach (var dir in QuintessentialLoader.ModContentDirectories)
 		{
-			foreach (var dir in QuintessentialLoader.ModContentDirectories)
+			try
 			{
-				try
-				{
-					return orig(Path.Combine(dir, filePath));
-				}
-				catch (Exception) { }
+				return orig(Path.Combine(dir, filePath));
 			}
+			catch (Exception) { }
 		}
 
 		return orig(filePath);
