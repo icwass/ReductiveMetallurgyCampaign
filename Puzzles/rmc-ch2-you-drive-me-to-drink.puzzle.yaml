@@ -80,7 +80,7 @@ Inputs:
         Pos: 1,0
       BondTypes:
       - standard
-    Name: Tinstone
+    Name: "Tinstone?"
   Amount: -1
 Outputs:
 - Molecule:
