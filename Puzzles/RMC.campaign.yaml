@@ -211,9 +211,9 @@ Chapters:
     Title: "Reactive Litharge"
     Puzzle: rmc-j01-reactive-litharge
     Requires: ""
-  - ID: rmc-j01-pugano-transformer
+  - ID: rmc-j01-pugano-transformer-b
     Title: "Pugano's Transformer"
-    Puzzle: rmc-j01-pugano-transformer
+    Puzzle: rmc-j01-pugano-transformer-b
     Requires: ""
   - ID: rmc-j01-precision-machine-oil-cabinet
     Title: "Precision Machine Oil Cabinet"

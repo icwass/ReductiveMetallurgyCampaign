@@ -354,8 +354,9 @@ Puzzles:
   NoStoryPanel: true
 - ID: rmc-j01-reactive-litharge
   Music: Solving5
-- ID: rmc-j01-pugano-transformer
+- ID: rmc-j01-pugano-transformer-b
   Music: Solving4
+  OutputMultiplier: 4
   Cabinet:
     ExpandLeft: true
     Conduits:
