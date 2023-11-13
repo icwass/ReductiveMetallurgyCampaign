@@ -1,0 +1,75 @@
+Name: Ex Nihilo
+ID: rmc-j02-ex-nihilo
+Author: 'Jacobi, H.'
+Inputs: []
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: quicksilver
+      Position:
+        Pos: 0,0
+    - AtomType: gold
+      Position:
+        Pos: 0,1
+    - AtomType: silver
+      Position:
+        Pos: -1,1
+    - AtomType: copper
+      Position:
+        Pos: -1,0
+    - AtomType: iron
+      Position:
+        Pos: 0,-1
+    - AtomType: tin
+      Position:
+        Pos: 1,-1
+    - AtomType: lead
+      Position:
+        Pos: 1,0
+    Bonds:
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    Name: ''
+  Amount: -1
+PermissionFlags: CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:rejection
+- ReductiveMetallurgy:proliferation
+- ReductiveMetallurgy:ravari
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 

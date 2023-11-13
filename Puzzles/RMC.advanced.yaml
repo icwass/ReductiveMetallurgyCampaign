@@ -409,4 +409,19 @@ Puzzles:
     Title: "Repeating Reagents"
     Description: "Some reagents repeat infinitely, and must be fed into the transmutation engine with the help of a guiding rail.\n\nArms can be mounted on the rail, but atoms are not allowed to pass through it."
     Texture: tips/polymer_inputs_alt
+- ID: rmc-j02-ex-nihilo
+  Music: Solving4
+  NoStoryPanel: true
+- ID: rmc-j02-leadstorm
+  Music: Solving4
+  NoStoryPanel: true
+- ID: rmc-j02-golden-bauble
+  Music: Solving4
+  NoStoryPanel: true
+- ID: rmc-j02-luminiscent-compound
+  Music: Solving4
+  NoStoryPanel: true
+- ID: rmc-j02-solder-paste
+  Music: Solving4
+  NoStoryPanel: true    
 ##########

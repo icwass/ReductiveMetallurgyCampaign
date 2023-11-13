@@ -1,0 +1,210 @@
+Name: Solder Paste
+ID: rmc-j02-solder-paste
+Author: 'Hawke, S.'
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: salt
+      Position:
+        Pos: -1,0
+    - AtomType: gold
+      Position:
+        Pos: 0,0
+    Bonds:
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    Name: ''
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: salt
+      Position:
+        Pos: -1,0
+    - AtomType: fire
+      Position:
+        Pos: 0,0
+    Bonds:
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    Name: ''
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: lead
+      Position:
+        Pos: -1,0
+    - AtomType: lead
+      Position:
+        Pos: -1,1
+    - AtomType: lead
+      Position:
+        Pos: 1,2
+    - AtomType: lead
+      Position:
+        Pos: 2,1
+    - AtomType: lead
+      Position:
+        Pos: 2,-2
+    - AtomType: lead
+      Position:
+        Pos: 3,-2
+    - AtomType: tin
+      Position:
+        Pos: 0,0
+    - AtomType: tin
+      Position:
+        Pos: 1,1
+    - AtomType: fire
+      Position:
+        Pos: -1,2
+    - AtomType: tin
+      Position:
+        Pos: 2,-1
+    - AtomType: fire
+      Position:
+        Pos: 0,2
+    - AtomType: fire
+      Position:
+        Pos: 3,0
+    - AtomType: fire
+      Position:
+        Pos: 3,-1
+    - AtomType: fire
+      Position:
+        Pos: 1,-2
+    - AtomType: fire
+      Position:
+        Pos: 0,-1
+    Bonds:
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 1,-2
+      BondTypes:
+      - triplex_0
+      - triplex_1
+      - triplex_2
+    - A:
+        Pos: -1,2
+      B:
+        Pos: 0,2
+      BondTypes:
+      - triplex_0
+      - triplex_1
+      - triplex_2
+    - A:
+        Pos: 3,-1
+      B:
+        Pos: 3,0
+      BondTypes:
+      - triplex_0
+      - triplex_1
+      - triplex_2
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: -1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,1
+      B:
+        Pos: -1,2
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,2
+      B:
+        Pos: 1,2
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,2
+      B:
+        Pos: 2,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 2,1
+      B:
+        Pos: 3,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 3,-2
+      B:
+        Pos: 3,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 2,-2
+      B:
+        Pos: 3,-2
+      BondTypes:
+      - standard
+    - A:
+        Pos: 2,-2
+      B:
+        Pos: 2,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 2,-1
+      B:
+        Pos: 3,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,1
+      B:
+        Pos: 2,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,2
+      B:
+        Pos: 1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-2
+      B:
+        Pos: 2,-2
+      BondTypes:
+      - standard
+    Name: ''
+  Amount: -1
+PermissionFlags: PrismaBonder, Duplication, Projection, Purification, CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:deposition
+- ReductiveMetallurgy:rejection
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 

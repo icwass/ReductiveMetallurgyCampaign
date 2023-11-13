@@ -198,9 +198,9 @@ Chapters:
     Title: "Epilogue"
     Puzzle: empty
     Requires: "rmc-cutscene-hubris"
-- Title: Bonus
-  Subtitle: Unused Puzzles
-  Place: "Area 51"
+- Title: Journal
+  Subtitle: Journal
+  Place: "Journal"
   Background: backgrounds/saverio_atelier
   Entries:
   - ID: rmc-j01-welded-elements
@@ -222,4 +222,29 @@ Chapters:
   - ID: rmc-j01-golden-thread-recycling
     Title: "Golden Thread Recycling"
     Puzzle: rmc-j01-golden-thread-recycling
+    Requires: ""
+- Title: Journal2
+  Subtitle: Electric Boogaloo
+  Place: "Journal"
+  Background: backgrounds/saverio_atelier
+  Entries:
+  - ID: rmc-j02-golden-bauble
+    Title: "Golden Bauble"
+    Puzzle: rmc-j02-golden-bauble
+    Requires: ""
+  - ID: rmc-j02-leadstorm
+    Title: "Leadstorm"
+    Puzzle: rmc-j02-leadstorm
+    Requires: ""
+  - ID: rmc-j02-luminiscent-compound
+    Title: "Luminiscent Compound"
+    Puzzle: rmc-j02-luminiscent-compound
+    Requires: ""
+  - ID: rmc-j02-ex-nihilo
+    Title: "Ex Nihilo"
+    Puzzle: rmc-j02-ex-nihilo
+    Requires: ""
+  - ID: rmc-j02-solder-paste
+    Title: "Solder Paste"
+    Puzzle: rmc-j02-solder-paste
     Requires: ""

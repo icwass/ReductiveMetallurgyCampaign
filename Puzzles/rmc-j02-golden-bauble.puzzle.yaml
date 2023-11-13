@@ -1,0 +1,81 @@
+Name: Golden Bauble
+ID: rmc-j02-golden-bauble
+Author: 'Eco, G.'
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: iron
+      Position:
+        Pos: -1,0
+    - AtomType: iron
+      Position:
+        Pos: 0,1
+    - AtomType: iron
+      Position:
+        Pos: 0,0
+    - AtomType: iron
+      Position:
+        Pos: 1,-1
+    Bonds:
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    Name: ''
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: gold
+      Position:
+        Pos: 0,0
+    - AtomType: tin
+      Position:
+        Pos: -1,0
+    - AtomType: tin
+      Position:
+        Pos: 0,1
+    - AtomType: tin
+      Position:
+        Pos: 1,-1
+    Bonds:
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    Name: ''
+  Amount: -1
+PermissionFlags: Projection, CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:rejection
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 

@@ -1,0 +1,70 @@
+Name: Leadstorm
+ID: rmc-j02-leadstorm
+Author: 'Greathor, N.'
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: gold
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  Amount: -1
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: lead
+      Position:
+        Pos: 0,0
+    - AtomType: lead
+      Position:
+        Pos: 1,0
+    Bonds:
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    Name: Lead Cluster
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: lead
+      Position:
+        Pos: 0,0
+    - AtomType: lead
+      Position:
+        Pos: 1,0
+    Bonds:
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    Name: Lead Cluster
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: lead
+      Position:
+        Pos: 0,0
+    - AtomType: lead
+      Position:
+        Pos: 1,0
+    Bonds:
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    Name: Lead Cluster
+  Amount: -1
+PermissionFlags: CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:deposition
+PartQuotas: {}
+Highlights: []
+ProductionInfo: 
