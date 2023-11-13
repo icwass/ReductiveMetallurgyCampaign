@@ -3,8 +3,8 @@ Volumes:
   Title: "Volume XCX, Issue I: Developmental Prototypes from Reductive Metallurgy"
   Description: "In the course of any sort of development, it is inevitable some work will be deemed unsuited for prime consumption, and instead remain permanently shelved. It is not in the spirit of Reductive Metallurgy to leave such materials in disuse, however, so they are provided here as reference. For prototypes where communication documents were available, the drafts have been provided, though they may not reflect reality."
 - FromChapter: 6
-  Title: "Volume XCX, Issue II: Developmental Prototypes from Reductive Metallurgy"
-  Description: "In the course of any sort of development, it is inevitable some work will be deemed unsuited for prime consumption, and instead remain permanently shelved. It is not in the spirit of Reductive Metallurgy to leave such materials in disuse, however, so they are provided here as reference. For prototypes where communication documents were available, the drafts have been provided, though they may not reflect reality."
+  Title: "Volume XCX, Issue II: Conceptual Exploration and Interoperation"
+  Description: "No nascent alchemical process could ever be truly established without industrious alchemists finding every which way to creatively subvert the expected behavior of the process, stretching the new materials to their limits. Presented here are conceptual designs which explore the ambiguous corners of reductive metallurgy, in addition to combining its capabilities with other alchemical processes, teasing out every nuance to its glyph and mechanical design."
 Previews:
 - ID: "rmc-j01-welded-elements"
   Items:
@@ -16,3 +16,12 @@ Previews:
     Position: 46, 57
   - Index: 3
     Position: 261, 57
+- ID: "rmc-j02-leadstorm"
+  Items:
+  - Index: 0
+    Position: 92, 145
+  - Index: 1
+    Position: 92, 75
+  - Index: 2
+    Position: 92, 5   
+    
