@@ -8,22 +8,22 @@ Outputs:
     - AtomType: quicksilver
       Position:
         Pos: 0,0
-    - AtomType: gold
+    - AtomType: lead
       Position:
         Pos: 0,1
-    - AtomType: silver
+    - AtomType: gold
       Position:
         Pos: -1,1
-    - AtomType: copper
+    - AtomType: silver
       Position:
         Pos: -1,0
-    - AtomType: iron
+    - AtomType: copper
       Position:
         Pos: 0,-1
-    - AtomType: tin
+    - AtomType: iron
       Position:
         Pos: 1,-1
-    - AtomType: lead
+    - AtomType: tin
       Position:
         Pos: 1,0
     Bonds:
@@ -63,7 +63,7 @@ Outputs:
         Pos: 1,-1
       BondTypes:
       - standard
-    Name: ''
+    Name: Ravari's Wheel
   Amount: -1
 PermissionFlags: CoreTools
 CustomPermissions:

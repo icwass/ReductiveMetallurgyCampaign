@@ -35,7 +35,7 @@ Inputs:
         Pos: 0,0
       BondTypes:
       - standard
-    Name: ''
+    Name: Iron Spike
   Amount: -1
 Outputs:
 - Molecule:
@@ -71,7 +71,7 @@ Outputs:
         Pos: 0,1
       BondTypes:
       - standard
-    Name: ''
+    Name: Golden Bauble
   Amount: -1
 PermissionFlags: Projection, CoreTools
 CustomPermissions:

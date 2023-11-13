@@ -8,7 +8,7 @@ Inputs:
       Position:
         Pos: 0,0
     Bonds: []
-    Name: ''
+    Name: Elemental Gold
   Amount: -1
 Outputs:
 - Molecule:

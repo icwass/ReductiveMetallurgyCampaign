@@ -17,7 +17,7 @@ Inputs:
         Pos: 0,0
       BondTypes:
       - standard
-    Name: ''
+    Name: Stabilized Gold
   Amount: -1
 - Molecule:
     Atoms:
@@ -34,7 +34,7 @@ Inputs:
         Pos: 0,0
       BondTypes:
       - standard
-    Name: ''
+    Name: Stabilized Fire
   Amount: -1
 Outputs:
 - Molecule:
@@ -199,7 +199,7 @@ Outputs:
         Pos: 2,-2
       BondTypes:
       - standard
-    Name: ''
+    Name: Solder Paste
   Amount: -1
 PermissionFlags: PrismaBonder, Duplication, Projection, Purification, CoreTools
 CustomPermissions:
