@@ -71,7 +71,6 @@ public class MainClass : QuintessentialMod
 		PolymerInput.LoadContent();
 		StoryPanelPatcher.LoadContent();
 		ProductionManager.initializeProductionTextureBank();
-		CampaignLoader.modifyCampaign();
 
 		string path = "textures/puzzle_select/"; // SOLITAIRE_ICON_TEMP
 		iconSolitaire = class_235.method_615(path + "icon_rmc_solitaire"); // SOLITAIRE_ICON_TEMP
@@ -108,6 +107,7 @@ public class MainClass : QuintessentialMod
 
 	public override void PostLoad()
 	{
+		CampaignLoader.modifyCampaign();
 		SigmarGardenPatcher.PostLoad();
 		Amalgamate.PostLoad();
 		ProductionManager.PostLoad();
