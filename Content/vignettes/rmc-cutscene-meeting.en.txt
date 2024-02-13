@@ -5,7 +5,7 @@ Clara: Well, let him in. Let's see how the princess will rebuke the dragon this 
 Action: Enter, Saverio (Left)
 Clara: Welcome to House Soria, I hope the day has brought you good fortune. Your name was?
 Saverio (Left): My name is Saverio Daas, madam. My entreaty today is for House Soria to act as my patron for this year's Alchemical Symposium.
-Saverio (Left): I have in my possession a new alchemical glyph, one that is able to reject quicksilver from higher metals, allowing for a positive corncopia of possibilities.
+Saverio (Left): I have in my possession a new alchemical glyph, one that is able to reject quicksilver from higher metals, allowing for a positive cornucopia of possibilities.
 Clara: My, so you are suggesting you can turn gold into lead? Quite something for an alchemist unaffilated with a Great House. 
 Clara: I must ask though, is it not the alchemist's prerogative to do quite the opposite? To turn lead into gold?
 Saverio (Left): My lady, I do not wish to so openly disagree with you, but anyone with experience in the world would know that gold has little practical use. It is inert, heavy, and not amenable to forming useful metal alloys.

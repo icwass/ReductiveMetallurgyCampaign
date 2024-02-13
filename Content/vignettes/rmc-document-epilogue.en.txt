@@ -4,7 +4,7 @@ The Advent of Reductive Metallurgy
 
 #*INTRODUCTION.*
 
-When House Soria first announced its new alchemical processes involving the recovery of quicksilver from higher metals, many observing alchemists were quite confused. Why had the opulent House known for its brilliant glass and superior observation lenses deign to recover quicksilver from any process?
+When House Soria first announced its new alchemical processes involving the recovery of quicksilver from higher metals, many observing alchemists were quite confused. Why would the opulent House known for its brilliant glass and superior observation lenses deign to recover quicksilver from any process?
 
 The answer, it seems, was to encourage the sale of gold. As the purest metal, gold's ability to store the otherwise volatile quicksilver allowed for safe and effective transport of a highly-sought reagent in alchemical processes. Before this, it was far more typical for alchemists to produce their own gold as needed, but now House Soria intends to provide this directly, leaving alchemists to transform the gold into their desired products as required.
 
