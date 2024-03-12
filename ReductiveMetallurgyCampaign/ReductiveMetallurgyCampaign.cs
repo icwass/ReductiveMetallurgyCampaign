@@ -30,8 +30,9 @@ using Texture = class_256;
 
 public class MainClass : QuintessentialMod
 {
+	public static MethodInfo PublicMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
 	public static MethodInfo PrivateMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
-	private static IDetour hook_Sim_method_1835;
+	private static IDetour hook_Sim_method_1835, hook_QuintessentialLoader_LoadJournals;
 
 	static Texture iconSolitaire, iconSolitaireSmall;
 	public static List<class_259> customSolitaires = new(); // SOLITAIRE_ICON_DEBUG
@@ -78,6 +79,7 @@ public class MainClass : QuintessentialMod
 
 		//------------------------- HOOKING -------------------------//
 		hook_Sim_method_1835 = new Hook(PrivateMethod<Sim>("method_1835"), OnSimMethod1835);
+		hook_QuintessentialLoader_LoadJournals = new Hook(PublicMethod<QuintessentialLoader>("LoadJournals"), ModifyCampaignAfterLoading);
 	}
 
 	private delegate void orig_Sim_method_1835(Sim self);
@@ -87,8 +89,17 @@ public class MainClass : QuintessentialMod
 		orig(sim_self);
 	}
 
-	public override void Unload() {
+	public delegate void orig_QuintessentialLoader_LoadJournals();
+	public static void ModifyCampaignAfterLoading(orig_QuintessentialLoader_LoadJournals orig)
+	{
+		orig();
+		CampaignLoader.modifyCampaign();
+	}
+
+	public override void Unload()
+	{
 		hook_Sim_method_1835.Dispose();
+		hook_QuintessentialLoader_LoadJournals.Dispose();
 		SigmarGardenPatcher.Unload();
 		Amalgamate.Unload();
 		JournalLoader.Unload();
@@ -107,7 +118,6 @@ public class MainClass : QuintessentialMod
 
 	public override void PostLoad()
 	{
-		CampaignLoader.modifyCampaign();
 		SigmarGardenPatcher.PostLoad();
 		Amalgamate.PostLoad();
 		ProductionManager.PostLoad();

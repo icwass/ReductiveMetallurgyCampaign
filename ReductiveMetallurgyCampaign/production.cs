@@ -63,7 +63,7 @@ public static class ProductionManager
 		{
 			Logger.Log("[ReductiveMetallurgyCampaign] fetchProductionTexture: Couldn't load '" + filePath + ".png', will use the generic vial texture instead.");
 		}
-		productionTextureBank.Add(filePath, ret);
+		productionTextureBank[filePath] = ret;
 		return ret;
 	}
 
@@ -78,7 +78,7 @@ public static class ProductionManager
 				list.Add(Tuple.Create(overlay.Texture, position));
 			}
 		}
-		productionOverlays.Add(puzzleID, list);
+		productionOverlays[puzzleID] = list;
 		Logger.Log("Added overlays for " + puzzleID);
 	}
 

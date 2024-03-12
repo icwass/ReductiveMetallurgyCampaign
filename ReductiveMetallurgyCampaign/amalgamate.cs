@@ -130,7 +130,7 @@ public static class Amalgamate
 		// add entry to the volume dictionary
 		var field = typeof(class_11).GetField("field_52", BindingFlags.Static | BindingFlags.NonPublic);
 		var dictionary = (Dictionary<string, float>)field.GetValue(null);
-		dictionary.Add(soundName, 0.5f);
+		dictionary[soundName] = 0.5f;
 
 		// modify the method that reenables sounds after they are triggered
 		void Method_540(On.class_201.orig_method_540 orig, class_201 class201_self)

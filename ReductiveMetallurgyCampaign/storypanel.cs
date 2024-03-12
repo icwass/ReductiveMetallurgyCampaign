@@ -75,7 +75,7 @@ public static class StoryPanelPatcher
 		// add the new characters
 		foreach (CharacterModelRMC character in CampaignLoader.getModel().Characters)
 		{
-			class_172.field_1670.Add(character.ID, character.FromModel());
+			class_172.field_1670[character.ID] = character.FromModel();
 		}
 	}
 

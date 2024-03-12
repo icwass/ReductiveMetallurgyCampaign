@@ -39,7 +39,7 @@ public class Document
 		this.ID = documentID;
 		this.baseTexture = documentBaseTexture;
 		this.drawFunction = documentDrawFunction;
-		documentDatabase.Add(this.ID, this);
+		documentDatabase[this.ID] = this;
 	}
 	public Document(string documentID, Texture documentBaseTexture, Action<Language, Vector2, string[]> draw)
 	: this(documentID, documentBaseTexture, makeDocumentDrawFunction(documentBaseTexture, draw))

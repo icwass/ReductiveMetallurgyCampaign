@@ -59,13 +59,13 @@ public class CutscenePatcher
 		Dictionary<string, Texture> TextureBank = new Dictionary<string, Texture>();
 		foreach (var cutscene in Cutscenes)
 		{
-			Locations.Add(cutscene.ID, cutscene.Location);
+			Locations[cutscene.ID] = cutscene.Location;
 
 			if (!TextureBank.ContainsKey(cutscene.Background))
 			{
 				TextureBank.Add(cutscene.Background, class_235.method_615(cutscene.Background));
 			}
-			Backgrounds.Add(cutscene.ID, TextureBank[cutscene.Background]);
+			Backgrounds[cutscene.ID] = TextureBank[cutscene.Background];
 		}
 	}
 

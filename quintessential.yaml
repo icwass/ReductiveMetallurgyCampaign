@@ -6,6 +6,6 @@ Desc: "A campaign for the Reductive Metallurgy mod.\n "
 DLL: "ReductiveMetallurgyCampaign/bin/Debug/net452/ReductiveMetallurgyCampaign.dll"
 Dependencies:
 - Name: Quintessential
-  Version: 0.4.0
+  Version: 0.5.1
 - Name: ReductiveMetallurgy
   Version: 1.0.0
