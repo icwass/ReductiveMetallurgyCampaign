@@ -331,13 +331,7 @@ public static class CampaignLoader
 						// change item into a document
 						campaignItem.field_2324 = typeDocument;
 					}
-					else if (sigmarsGardensIDList.Contains(puzzleID))
-					{
-						// change item into a Sigmars Garden
-						campaignItem.field_2324 = typeSolitaire;
-						MainClass.customSolitaires.Add(campaignItem.field_2326); // SOLITAIRE_ICON_TEMP
-					}
-					else // keep it as a puzzle
+					else // keep it as a puzzle or a solitaire or whatever it is
 					{
 						if (puzzleDictionary.ContainsKey(puzzleID))
 						{

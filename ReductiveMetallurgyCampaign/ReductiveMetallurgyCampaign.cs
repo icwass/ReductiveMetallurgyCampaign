@@ -26,16 +26,11 @@ using Texture = class_256;
 //using Tip = class_215;
 //using Font = class_1;
 
-// SOLITAIRE_ICON_TEMP - these lines will be removed once custom campaign icons are actually implemented in quintessential
-
 public class MainClass : QuintessentialMod
 {
 	public static MethodInfo PublicMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
 	public static MethodInfo PrivateMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
 	private static IDetour hook_Sim_method_1835, hook_QuintessentialLoader_LoadJournals;
-
-	static Texture iconSolitaire, iconSolitaireSmall;
-	public static List<class_259> customSolitaires = new(); // SOLITAIRE_ICON_DEBUG
 
 	// settings
 	public static bool DisplayMetalsRemaining = true;
@@ -72,10 +67,6 @@ public class MainClass : QuintessentialMod
 		PolymerInput.LoadContent();
 		StoryPanelPatcher.LoadContent();
 		ProductionManager.initializeProductionTextureBank();
-
-		string path = "textures/puzzle_select/"; // SOLITAIRE_ICON_TEMP
-		iconSolitaire = class_235.method_615(path + "icon_rmc_solitaire"); // SOLITAIRE_ICON_TEMP
-		iconSolitaireSmall = class_235.method_615(path + "icon_rmc_solitaire_small"); // SOLITAIRE_ICON_TEMP
 
 		//------------------------- HOOKING -------------------------//
 		hook_Sim_method_1835 = new Hook(PrivateMethod<Sim>("method_1835"), OnSimMethod1835);
@@ -122,16 +113,5 @@ public class MainClass : QuintessentialMod
 		Amalgamate.PostLoad();
 		ProductionManager.PostLoad();
 		StoryPanelPatcher.PostLoad();
-		On.CampaignItem.method_826 += ChooseCustomIconLarge; // SOLITAIRE_ICON_TEMP
-		On.CampaignItem.method_827 += ChooseCustomIconSmall; // SOLITAIRE_ICON_TEMP
-	}
-
-	public static Texture ChooseCustomIconLarge(On.CampaignItem.orig_method_826 orig, CampaignItem item_self) // SOLITAIRE_ICON_TEMP
-	{
-		return item_self.field_2324 == CampaignLoader.typeSolitaire && customSolitaires.Contains(item_self.field_2326) ? iconSolitaire : orig(item_self);
-	}
-	public static Texture ChooseCustomIconSmall(On.CampaignItem.orig_method_827 orig, CampaignItem item_self) // SOLITAIRE_ICON_TEMP
-	{
-		return item_self.field_2324 == CampaignLoader.typeSolitaire && customSolitaires.Contains(item_self.field_2326) ? iconSolitaireSmall : orig(item_self);
 	}
 }
