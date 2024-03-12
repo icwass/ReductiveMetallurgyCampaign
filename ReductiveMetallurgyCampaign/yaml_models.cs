@@ -183,7 +183,6 @@ public class PuzzleModelRMC
 {
 	public string ID, Music;
 	public bool NoStoryPanel = false;
-	public int OutputMultiplier = 1;
 	public TipModelRMC Tip = null;
 	public CabinetModelRMC Cabinet;
 }

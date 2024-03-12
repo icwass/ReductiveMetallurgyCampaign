@@ -353,8 +353,6 @@ public static class CampaignLoader
 							LoadPolymerOutputs(puzzle);
 							PuzzleModelRMC puzzleModel = puzzleDictionary[puzzleID];
 
-							puzzle.field_2780 = puzzleModel.OutputMultiplier;
-
 							if (puzzleModel.NoStoryPanel)
 							{
 								campaignItem.field_2327 = (Maybe<class_264>) struct_18.field_1431;
