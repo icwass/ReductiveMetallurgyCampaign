@@ -343,11 +343,6 @@ public static class CampaignLoader
 						{
 							PuzzleModelRMC puzzleModel = puzzleDictionary[puzzleID];
 
-							if (puzzleModel.NoStoryPanel)
-							{
-								campaignItem.field_2327 = (Maybe<class_264>) struct_18.field_1431;
-							}
-
 							if (!string.IsNullOrEmpty(puzzleModel.Music) && songList.Keys.Contains(puzzleModel.Music))
 							{
 								campaignItem.field_2328 = songList[puzzleModel.Music];

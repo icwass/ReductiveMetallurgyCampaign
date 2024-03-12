@@ -207,6 +207,7 @@ Chapters:
     Title: "Welded Elements"
     Puzzle: rmc-j01-welded-elements
     Requires: ""
+    NoStoryPanel: true
   - ID: rmc-j01-reactive-litharge
     Title: "Reactive Litharge"
     Puzzle: rmc-j01-reactive-litharge
@@ -232,19 +233,24 @@ Chapters:
     Title: "Golden Bauble"
     Puzzle: rmc-j02-golden-bauble
     Requires: ""
+    NoStoryPanel: true
   - ID: rmc-j02-leadstorm
     Title: "Leadstorm"
     Puzzle: rmc-j02-leadstorm
     Requires: ""
+    NoStoryPanel: true
   - ID: rmc-j02-luminiscent-compound
     Title: "Luminiscent Compound"
     Puzzle: rmc-j02-luminiscent-compound
     Requires: ""
+    NoStoryPanel: true
   - ID: rmc-j02-ex-nihilo
     Title: "Ex Nihilo"
     Puzzle: rmc-j02-ex-nihilo
     Requires: ""
+    NoStoryPanel: true
   - ID: rmc-j02-solder-paste
     Title: "Solder Paste"
     Puzzle: rmc-j02-solder-paste
     Requires: ""
+    NoStoryPanel: true

@@ -182,7 +182,6 @@ public class DrawItemModelRMC
 public class PuzzleModelRMC
 {
 	public string ID, Music;
-	public bool NoStoryPanel = false;
 	public TipModelRMC Tip = null;
 	public CabinetModelRMC Cabinet;
 }
