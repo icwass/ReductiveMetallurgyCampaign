@@ -114,16 +114,7 @@ public static class CampaignLoader
 
 	static void LoadRejectionTutorialPuzzle(Puzzle puzzle) => StoryPanelPatcher.setOptionsUnlock(puzzle);
 
-	#region polymer input/output puzzle loaders
-
-	static void LoadPolymerOutputs(Puzzle puzzle) // REMOVE THIS ONCE QUINTESSENTIAL FIXES THE BUG
-	{
-		for (int i = 0; i < puzzle.field_2771.Length; i++)
-		{
-			var output = puzzle.field_2771[i];
-			output.field_2813 = MoleculeEditorScreen.method_1133(output.field_2813, class_181.field_1716);
-		}
-	}
+	#region polymer-input puzzle loaders
 
 	static void LoadPolymerInputPuzzle(Puzzle puzzle)
 	{
@@ -350,7 +341,6 @@ public static class CampaignLoader
 					{
 						if (puzzleDictionary.ContainsKey(puzzleID))
 						{
-							LoadPolymerOutputs(puzzle);
 							PuzzleModelRMC puzzleModel = puzzleDictionary[puzzleID];
 
 							if (puzzleModel.NoStoryPanel)
