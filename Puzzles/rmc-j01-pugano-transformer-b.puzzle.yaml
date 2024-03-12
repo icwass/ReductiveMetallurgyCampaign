@@ -47,4 +47,26 @@ ProductionInfo:
   - ChamberType: Large
     Position:
       Pos: 0,0
+  Conduits:
+  - PosA:
+      Pos: -2, 0
+    PosB:
+      Pos: 2, 0
+    Shape:
+    - Pos: 0, 0
+  Vials:
+  - Position:
+      Pos: -8, 3
+    Top: true
+    Sprites:
+    - Left: "textures/pipelines/vials/elemental_quicksilver/full"
+      Right: "textures/pipelines/vials/elemental_quicksilver/draining"
+  - Position:
+      Pos: -5, -3
+    Top: false
+    Sprites:
+    - Left: "textures/pipelines/vials/elemental_lead/empty"
+      Right: "textures/pipelines/vials/elemental_lead/filling"
   Isolation: false
+  ShrinkLeft: false
+  ShrinkRight: false

@@ -263,25 +263,9 @@ Puzzles:
 - ID: rmc-ch1-saverio-transformer
   Music: Solving5
   Cabinet:
-    ExpandRight: true
-    Conduits:
-    - Position1: -2, 0
-      Position2: 2, 0
-      Hexes:
-      - 0, 0
     Overlays:
     - Texture: "textures/pipelines/aether_overlay_middle"
       Position: 321.0, -31.0
-    VialHolders:
-      - Position: 2, 3
-        TopSide: true
-        Vials:
-          - TextureSim: "textures/pipelines/vials/elemental_lead/full"
-            TextureGif: "textures/pipelines/vials/elemental_lead/draining"
-      - Position: 5, -3
-        Vials:
-          - TextureSim: "textures/pipelines/vials/elemental_quicksilver/empty"
-            TextureGif: "textures/pipelines/vials/elemental_quicksilver/filling"
 - ID: rmc-ch1-galena-separation
   Music: Solving1
 ##########
@@ -356,52 +340,16 @@ Puzzles:
   Music: Solving5
 - ID: rmc-j01-pugano-transformer-b
   Music: Solving4
-  OutputMultiplier: 4
   Cabinet:
-    ExpandLeft: true
-    Conduits:
-    - Position1: -2, 0
-      Position2: 2, 0
-      Hexes:
-      - 0, 0
     Overlays:
     - Texture: "textures/pipelines/aether_overlay_middle"
       Position: -499.0, -31.0
-    VialHolders:
-      - Position: -8, 3
-        TopSide: true
-        Vials:
-          - TextureSim: "textures/pipelines/vials/elemental_quicksilver/full"
-            TextureGif: "textures/pipelines/vials/elemental_quicksilver/draining"
-      - Position: -5, -3
-        Vials:
-          - TextureSim: "textures/pipelines/vials/elemental_lead/empty"
-            TextureGif: "textures/pipelines/vials/elemental_lead/filling"
 - ID: rmc-j01-precision-machine-oil-cabinet
   Music: Solving6
   Cabinet:
-    ExpandRight: true
-    Conduits:
-    - Position1: -11, -1
-      Position2: -2, 0
-      Hexes:
-      - 0, 0
-      - 1, 0
     Overlays:
     - Texture: "textures/pipelines/solvent_overlay"
       Position: -529.0, -277.0
-    VialHolders:
-      - Position: -10, 3
-        TopSide: true
-        Vials:
-          - TextureSim: "textures/pipelines/vials/elemental_iron/full"
-            TextureGif: "textures/pipelines/vials/elemental_iron/draining"
-          - TextureSim: "textures/pipelines/vials/elemental_water/full"
-            TextureGif: "textures/pipelines/vials/elemental_water/draining"
-      - Position: -7, -3
-        Vials:
-          - TextureSim: "textures/pipelines/vials/precision_machine_oil/empty"
-            TextureGif: "textures/pipelines/vials/precision_machine_oil/filling"
 - ID: rmc-j01-golden-thread-recycling
   Music: Solving6
   Tip:

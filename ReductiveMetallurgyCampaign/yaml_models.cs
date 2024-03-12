@@ -218,9 +218,6 @@ public class TipModelRMC
 
 public class CabinetModelRMC
 {
-	public bool ExpandLeft, ExpandRight;
-	public List<ConduitModelRMC> Conduits;
-	public List<VialHolderModelRMC> VialHolders;
 	public List<OverlayModelRMC> Overlays;
 
 	public void ModifyCabinet(Puzzle puzzle)
@@ -232,81 +229,12 @@ public class CabinetModelRMC
 			return;
 		}
 
-		var productionData = puzzle.field_2779.method_1087();
-		productionData.field_2075 = !this.ExpandLeft;
-		productionData.field_2076 = !this.ExpandRight;
-
-		if (this.Conduits != null)
-		{
-			productionData.field_2072 = new class_117[this.Conduits.Count];
-			for (int i = 0; i < this.Conduits.Count; i++)
-			{
-				productionData.field_2072[i] = this.Conduits[i].FromModel();
-			}
-		}
-
 		if (this.Overlays != null)
 		{
 			ProductionManager.AddOverlaysForPuzzle(puzzleID, this.Overlays);
 		}
-
-		if (this.VialHolders != null)
-		{
-			productionData.field_2073 = new class_128[this.VialHolders.Count];
-			for (int i = 0; i < this.VialHolders.Count; i++)
-			{
-				productionData.field_2073[i] = this.VialHolders[i].FromModel();
-			}
-		}
-
-		// fix and update the cabinet bounding box
-		puzzle.method_1247();
 	}
 
-
-	public class ConduitModelRMC
-	{
-		public string Position1, Position2;
-		public List<string> Hexes;
-
-		public class_117 FromModel()
-		{
-			int Q1 = int.Parse(this.Position1.Split(',')[0]);
-			int R1 = int.Parse(this.Position1.Split(',')[1]);
-			int Q2 = int.Parse(this.Position2.Split(',')[0]);
-			int R2 = int.Parse(this.Position2.Split(',')[1]);
-			var hexList = new HexIndex[this.Hexes.Count];
-			for (int j = 0; j < this.Hexes.Count; j++)
-			{
-				var hex = this.Hexes[j];
-				hexList[j] = new HexIndex(int.Parse(hex.Split(',')[0]), int.Parse(hex.Split(',')[1]));
-			}
-			return new class_117(Q1, R1, Q2, R2, hexList);
-		}
-	}
-	public class VialHolderModelRMC
-	{
-		public string Position;
-		public bool TopSide;
-		public List<VialModelRMC> Vials;
-
-		public class_128 FromModel()
-		{
-			var vials = new Tuple<Texture, Texture>[this.Vials.Count];
-
-			for (int j = 0; j < this.Vials.Count; j++)
-			{
-				var vial = this.Vials[j];
-				vials[j] = Tuple.Create(ProductionManager.fetchTexture(vial.TextureSim), ProductionManager.fetchTexture(vial.TextureGif));
-			}
-
-			return new class_128(int.Parse(this.Position.Split(',')[0]), int.Parse(this.Position.Split(',')[1]), this.TopSide, vials);
-		}
-	}
-	public class VialModelRMC
-	{
-		public string TextureSim, TextureGif;
-	}
 	public class OverlayModelRMC
 	{
 		public string Texture, Position;
