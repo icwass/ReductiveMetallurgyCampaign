@@ -68,9 +68,13 @@ public static class StoryPanelPatcher
 		orig();
 		Logger.Log("[ReductiveMetallurgyCampaign] Adding vignette actors.");
 		// hardcode the characters that are already present
-		Texture ravariLarge = class_238.field_1989.field_93.field_693;
+		var ravariActor = class_172.field_1670["Verrin Ravari"];
+		LocString ravariLoc = ravariActor.field_1954;
+		Texture ravariLarge = ravariActor.field_1955;
 		Texture ravariSmall = class_235.method_615("portraits/verrin_small");
-		class_172.field_1670["Verrin Ravari"] = new class_230(class_134.method_253("Verrin Ravari", string.Empty), ravariLarge, ravariSmall, Color.FromHex(6691857), false);
+		Color ravariColor = ravariActor.field_1957;
+		bool ravariSide = ravariActor.field_1958;
+		class_172.field_1670["Verrin Ravari"] = new class_230(ravariLoc, ravariLarge, ravariSmall, ravariColor, ravariSide);
 
 		// add the new characters
 		foreach (CharacterModelRMC character in CampaignLoader.getModel().Characters)
