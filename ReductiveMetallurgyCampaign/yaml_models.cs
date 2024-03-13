@@ -65,7 +65,6 @@ public class CampaignModelRMC
 {
 	public CreditsModelRMC Credits;
 	public List<int> SigmarStoryUnlocks;
-	public List<string> SigmarsGardens;
 	public List<CharacterModelRMC> Characters;
 	public List<CutsceneModelRMC> Cutscenes;
 	public List<DocumentModelRMC> Documents;

@@ -262,7 +262,6 @@ public static class CampaignLoader
 		Dictionary<string, PuzzleModelRMC> puzzleDictionary = new Dictionary<string, PuzzleModelRMC>();
 		List<string> documentIDList = new List<string>();
 		Dictionary<string, string> cutsceneIDList = new Dictionary<string, string>();
-		List<string> sigmarsGardensIDList = new List<string>();
 		StoryPanelPatcher.CreateSigmarStoryUnlocks(campaign_model.SigmarStoryUnlocks);
 
 		foreach (PuzzleModelRMC puzzle in campaign_model.Puzzles)
@@ -281,10 +280,6 @@ public static class CampaignLoader
 		{
 			bool blank = string.IsNullOrEmpty(cutscene.Music);
 			cutsceneIDList.Add(cutscene.ID, blank ? "Story1" : cutscene.Music);
-		}
-		foreach (var garden in campaign_model.SigmarsGardens)
-		{
-			sigmarsGardensIDList.Add(garden);
 		}
 		////////////////////////////////////////
 		// modify the campaign using the data //
