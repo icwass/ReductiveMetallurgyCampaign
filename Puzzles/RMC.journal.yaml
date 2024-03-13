@@ -1,0 +1,20 @@
+Title: "Acta Alchimia Metallurgicae"
+# Maybe "Acta Reductiva Metallurgicae" instead?
+#but then the Volume number shouldn't be LXV, it should be I
+Chapters:
+- Title: "Volume LXV, Issue I: Developmental Prototypes from Reductive Metallurgy"
+  Description: "In the course of any sort of development, it is inevitable some work will be deemed unsuited for prime consumption, and instead remain permanently shelved. It is not in the spirit of Reductive Metallurgy to leave such materials in disuse, however, so they are provided here as reference. For prototypes where communication documents were available, the drafts have been provided, though they may not reflect reality."
+  Puzzles:
+  - "rmc-j01-welded-elements"
+  - "rmc-j01-reactive-litharge"
+  - "rmc-j01-pugano-transformer-b"
+  - "rmc-j01-precision-machine-oil-cabinet"
+  - "rmc-j01-golden-thread-recycling"
+- Title: "Volume LXV, Issue II: Conceptual Exploration and Interoperation"
+  Description: "No nascent alchemical process could ever be truly established without industrious alchemists finding every which way to creatively subvert the expected behavior of the process, stretching the new materials to their limits. Presented here are conceptual designs which explore the ambiguous corners of reductive metallurgy, in addition to combining its capabilities with other alchemical processes, teasing out every nuance to its glyph and mechanical design."
+  Puzzles:
+  - "rmc-j02-golden-bauble"
+  - "rmc-j02-leadstorm"
+  - "rmc-j02-luminiscent-compound"
+  - "rmc-j02-ex-nihilo"
+  - "rmc-j02-solder-paste"

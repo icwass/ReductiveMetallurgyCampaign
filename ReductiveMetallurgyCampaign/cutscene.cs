@@ -42,31 +42,12 @@ public class CutscenePatcher
 		"intro-3",
 	};
 
-	static Dictionary<string, string> Locations = new Dictionary<string, string>();
-	static Dictionary<string, Texture> Backgrounds = new Dictionary<string, Texture>();
-
-	public static Texture creditsBackground => Backgrounds["rmc-cutscene-hubris"];
+	public static Texture creditsBackground => MainClass.AdvancedContent.Cutscenes.Where(x => x.ID == "rmc-cutscene-hubris").First().FromModel().Item2;
 
 
 	public static void Load()
 	{
 		On.class_252.method_50 += class_252_Method_50;
-	}
-
-	public static void LoadCutscenes(List<CutsceneModelRMC> Cutscenes)
-	{
-		// texture bank is temporary
-		Dictionary<string, Texture> TextureBank = new Dictionary<string, Texture>();
-		foreach (var cutscene in Cutscenes)
-		{
-			Locations[cutscene.ID] = cutscene.Location;
-
-			if (!TextureBank.ContainsKey(cutscene.Background))
-			{
-				TextureBank.Add(cutscene.Background, class_235.method_615(cutscene.Background));
-			}
-			Backgrounds[cutscene.ID] = TextureBank[cutscene.Background];
-		}
 	}
 
 	static bool method_678() => class_115.field_1433.X < 1600f || class_115.field_1433.Y < 900f;
@@ -140,13 +121,11 @@ public class CutscenePatcher
 
 		Texture background = class_238.field_1989.field_73; // transparent background
 		string location = string.Empty;
-		if (Locations.ContainsKey(cutsceneID))
+
+		foreach (var cutscene in MainClass.AdvancedContent.Cutscenes.Where(x => x.ID == cutsceneID))
 		{
-			location = (string)class_134.method_253(Locations[cutsceneID], string.Empty);
-		}
-		if (Backgrounds.ContainsKey(cutsceneID))
-		{
-			background = Backgrounds[cutsceneID];
+			location = cutscene.FromModel().Item1;
+			background = cutscene.FromModel().Item2;
 		}
 
 		Texture class256_1 = background;

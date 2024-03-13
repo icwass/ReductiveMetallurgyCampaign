@@ -7,7 +7,7 @@ using Quintessential;
 using Quintessential.Settings;
 //using SDL2;
 using System;
-//using System.IO;
+using System.IO;
 //using System.Linq;
 using System.Collections.Generic;
 //using System.Globalization;
@@ -31,6 +31,8 @@ public class MainClass : QuintessentialMod
 	public static MethodInfo PublicMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
 	public static MethodInfo PrivateMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
 	private static IDetour hook_Sim_method_1835, hook_QuintessentialLoader_LoadJournals;
+
+	public static AdvancedContentModelRMC AdvancedContent;
 
 	// settings
 	public static bool DisplayMetalsRemaining = true;
@@ -66,11 +68,10 @@ public class MainClass : QuintessentialMod
 	{
 		PolymerInput.LoadContent();
 		StoryPanelPatcher.LoadContent();
-		ProductionManager.initializeProductionTextureBank();
 
 		//------------------------- HOOKING -------------------------//
 		hook_Sim_method_1835 = new Hook(PrivateMethod<Sim>("method_1835"), OnSimMethod1835);
-		hook_QuintessentialLoader_LoadJournals = new Hook(PublicMethod<QuintessentialLoader>("LoadJournals"), ModifyCampaignAfterLoading);
+		hook_QuintessentialLoader_LoadJournals = new Hook(PublicMethod<QuintessentialLoader>("LoadJournals"), HotReloadCampaignAndJournal);
 	}
 
 	private delegate void orig_Sim_method_1835(Sim self);
@@ -81,11 +82,26 @@ public class MainClass : QuintessentialMod
 	}
 
 	public delegate void orig_QuintessentialLoader_LoadJournals();
-	public static void ModifyCampaignAfterLoading(orig_QuintessentialLoader_LoadJournals orig)
+	public static void HotReloadCampaignAndJournal(orig_QuintessentialLoader_LoadJournals orig)
 	{
 		orig();
+		LoadAdvancedContent();
 		CampaignLoader.modifyCampaign();
 	}
+	static void LoadAdvancedContent()
+	{
+		string filepath;
+		if (!findModMetaFilepath("ReductiveMetallurgyCampaign", out filepath) || !File.Exists(filepath + "/Puzzles/RMC.advanced.yaml"))
+		{
+			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'RMC.advanced.yaml' in the folder '" + filepath + "/Puzzles/'");
+			throw new Exception("modifyCampaignRMC: Content is missing.");
+		}
+		using (StreamReader streamReader = new StreamReader(filepath + "/Puzzles/RMC.advanced.yaml"))
+		{
+			AdvancedContent = YamlHelper.Deserializer.Deserialize<AdvancedContentModelRMC>(streamReader);
+		}
+	}
+
 
 	public override void Unload()
 	{
@@ -99,6 +115,7 @@ public class MainClass : QuintessentialMod
 	public override void Load()
 	{
 		Settings = new MySettings();
+		LoadAdvancedContent();
 		CampaignLoader.Load();
 		JournalLoader.loadJournalModel();
 		Document.Load();

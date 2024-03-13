@@ -198,59 +198,59 @@ Chapters:
     Title: "Epilogue"
     Puzzle: empty
     Requires: "rmc-cutscene-hubris"
-- Title: Journal
-  Subtitle: Journal
-  Place: "Journal"
-  Background: backgrounds/saverio_atelier
-  Entries:
-  - ID: rmc-j01-welded-elements
-    Title: "Welded Elements"
-    Puzzle: rmc-j01-welded-elements
-    Requires: ""
-    NoStoryPanel: true
-  - ID: rmc-j01-reactive-litharge
-    Title: "Reactive Litharge"
-    Puzzle: rmc-j01-reactive-litharge
-    Requires: ""
-  - ID: rmc-j01-pugano-transformer-b
-    Title: "Pugano's Transformer"
-    Puzzle: rmc-j01-pugano-transformer-b
-    Requires: ""
-  - ID: rmc-j01-precision-machine-oil-cabinet
-    Title: "Precision Machine Oil Cabinet"
-    Puzzle: rmc-j01-precision-machine-oil-cabinet
-    Requires: ""
-  - ID: rmc-j01-golden-thread-recycling
-    Title: "Golden Thread Recycling"
-    Puzzle: rmc-j01-golden-thread-recycling
-    Requires: ""
-- Title: Journal2
-  Subtitle: Electric Boogaloo
-  Place: "Journal"
-  Background: backgrounds/saverio_atelier
-  Entries:
-  - ID: rmc-j02-golden-bauble
-    Title: "Golden Bauble"
-    Puzzle: rmc-j02-golden-bauble
-    Requires: ""
-    NoStoryPanel: true
-  - ID: rmc-j02-leadstorm
-    Title: "Leadstorm"
-    Puzzle: rmc-j02-leadstorm
-    Requires: ""
-    NoStoryPanel: true
-  - ID: rmc-j02-luminiscent-compound
-    Title: "Luminiscent Compound"
-    Puzzle: rmc-j02-luminiscent-compound
-    Requires: ""
-    NoStoryPanel: true
-  - ID: rmc-j02-ex-nihilo
-    Title: "Ex Nihilo"
-    Puzzle: rmc-j02-ex-nihilo
-    Requires: ""
-    NoStoryPanel: true
-  - ID: rmc-j02-solder-paste
-    Title: "Solder Paste"
-    Puzzle: rmc-j02-solder-paste
-    Requires: ""
-    NoStoryPanel: true
+#- Title: Journal
+#  Subtitle: Journal
+#  Place: "Journal"
+#  Background: backgrounds/saverio_atelier
+#  Entries:
+#  - ID: rmc-j01-welded-elements
+#    Title: "Welded Elements"
+#    Puzzle: rmc-j01-welded-elements
+#    Requires: ""
+#    NoStoryPanel: true
+#  - ID: rmc-j01-reactive-litharge
+#    Title: "Reactive Litharge"
+#    Puzzle: rmc-j01-reactive-litharge
+#    Requires: ""
+#  - ID: rmc-j01-pugano-transformer-b
+#    Title: "Pugano's Transformer"
+#    Puzzle: rmc-j01-pugano-transformer-b
+#    Requires: ""
+#  - ID: rmc-j01-precision-machine-oil-cabinet
+#    Title: "Precision Machine Oil Cabinet"
+#    Puzzle: rmc-j01-precision-machine-oil-cabinet
+#    Requires: ""
+#  - ID: rmc-j01-golden-thread-recycling
+#    Title: "Golden Thread Recycling"
+#    Puzzle: rmc-j01-golden-thread-recycling
+#    Requires: ""
+#- Title: Journal2
+#  Subtitle: Electric Boogaloo
+#  Place: "Journal"
+#  Background: backgrounds/saverio_atelier
+#  Entries:
+#  - ID: rmc-j02-golden-bauble
+#    Title: "Golden Bauble"
+#    Puzzle: rmc-j02-golden-bauble
+#    Requires: ""
+#    NoStoryPanel: true
+#  - ID: rmc-j02-leadstorm
+#    Title: "Leadstorm"
+#    Puzzle: rmc-j02-leadstorm
+#    Requires: ""
+#    NoStoryPanel: true
+#  - ID: rmc-j02-luminiscent-compound
+#    Title: "Luminiscent Compound"
+#    Puzzle: rmc-j02-luminiscent-compound
+#    Requires: ""
+#    NoStoryPanel: true
+#  - ID: rmc-j02-ex-nihilo
+#    Title: "Ex Nihilo"
+#    Puzzle: rmc-j02-ex-nihilo
+#    Requires: ""
+#    NoStoryPanel: true
+#  - ID: rmc-j02-solder-paste
+#    Title: "Solder Paste"
+#    Puzzle: rmc-j02-solder-paste
+#    Requires: ""
+#    NoStoryPanel: true

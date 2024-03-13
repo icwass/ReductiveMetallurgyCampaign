@@ -8,7 +8,7 @@ using Quintessential;
 //using SDL2;
 using System;
 //using System.IO;
-//using System.Linq;
+using System.Linq;
 using System.Collections.Generic;
 //using System.Globalization;
 //using System.Reflection;
@@ -28,11 +28,6 @@ using Texture = class_256;
 
 public static class ProductionManager
 {
-	static Dictionary<string, List<Tuple<string, Vector2>>> productionOverlays = new();
-	static Dictionary<string, Texture> productionTextureBank = null;
-
-	public static IReadOnlyDictionary<string, Texture> ProductionTextures => productionTextureBank;
-
 	public static void PostLoad()
 	{
 		IL.SolutionEditorBase.method_1984 += drawCustomProductionOverlays;
@@ -40,46 +35,16 @@ public static class ProductionManager
 
 	public static void DrawProductionOverlays(string puzzleID, Vector2 class423_field_3959)
 	{
-		if (!productionOverlays.ContainsKey(puzzleID)) return;
-		
-		foreach (var overlay in productionOverlays[puzzleID])
+		foreach (var puzzleM in MainClass.AdvancedContent.Puzzles.Where(x => x.ID == puzzleID))
 		{
-			class_135.method_272(fetchTexture(overlay.Item1), class423_field_3959 + overlay.Item2);
-		}
-	}
+			puzzleM.ensureTextureBankExists();
 
-	/////////////////////////////////////////////////////////////////////////////////////////////////
-
-	public static Texture fetchTexture(string filePath)
-	{
-		Texture ret = class_238.field_1989.field_92.field_391; // aether_overlay_middle
-		if (string.IsNullOrEmpty(filePath)) return ret;
-		if (productionTextureBank.ContainsKey(filePath)) return productionTextureBank[filePath];
-		try
-		{
-			ret = class_235.method_615(filePath);
-		}
-		catch
-		{
-			Logger.Log("[ReductiveMetallurgyCampaign] fetchProductionOverlayTexture: Couldn't load '" + filePath + ".png', will use 'aether_overlay_middle' instead.");
-		}
-		productionTextureBank[filePath] = ret;
-		return ret;
-	}
-
-	public static void AddOverlaysForPuzzle(string puzzleID, List<CabinetModelRMC.OverlayModelRMC> overlays)
-	{
-		List<Tuple<string, Vector2>> list = new();
-		foreach (var overlay in overlays)
-		{
-			if (!string.IsNullOrEmpty(overlay.Texture))
+			if (puzzleM.Cabinet == null) continue;
+			foreach (var overlay in puzzleM.Cabinet.fetchOverlays())
 			{
-				var position = ModelHelpersRMC.Vector2FromString(overlay.Position);
-				list.Add(Tuple.Create(overlay.Texture, position));
+				class_135.method_272(overlay.Item1, class423_field_3959 + overlay.Item2);
 			}
 		}
-		productionOverlays[puzzleID] = list;
-		Logger.Log("Added overlays for " + puzzleID);
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,22 +67,5 @@ public static class ProductionManager
 			var puzzleID = seb_self.method_502().method_1934().field_2766;
 			DrawProductionOverlays(puzzleID, class423.field_3959);
 		});
-	}
-
-	public static void initializeProductionTextureBank()
-	{
-		string prodPath = "textures/pipelines/";
-		var prods = class_238.field_1989.field_92;
-		productionTextureBank ??= new()
-		{
-			{prodPath + "aether_overlay_bottom",    prods.field_390},
-			{prodPath + "aether_overlay_middle",    prods.field_391},
-			{prodPath + "aether_overlay_top",       prods.field_392},
-			{prodPath + "amaro_overlay_bottom",     prods.field_393},
-			{prodPath + "amaro_overlay_top",        prods.field_394},
-			{prodPath + "edge_overlay_left",        prods.field_395},
-			{prodPath + "edge_overlay_right",       prods.field_396},
-			{prodPath + "solvent_overlay",          prods.field_397},
-		};
 	}
 }

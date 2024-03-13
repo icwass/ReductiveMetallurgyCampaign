@@ -28,7 +28,7 @@ using Font = class_1;
 
 public sealed class JournalLoader
 {
-	private static JournalModelRMC journal_model;
+	private static oldJournalModelRMC journal_model;
 
 	private static IDetour hook_JournalScreen_method_1040;
 
@@ -50,7 +50,7 @@ public sealed class JournalLoader
 		}
 		using (StreamReader streamReader = new StreamReader(filepath + "/Puzzles/RMC.journal_RMC.yaml"))
 		{
-			journal_model = YamlHelper.Deserializer.Deserialize<JournalModelRMC>(streamReader);
+			journal_model = YamlHelper.Deserializer.Deserialize<oldJournalModelRMC>(streamReader);
 		}
 
 		customPreviewPositions = journal_model.GetPreviewPositions();

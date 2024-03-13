@@ -27,8 +27,18 @@ SigmarStoryUnlocks:
 - 10
 - 25
 ##################################################
+LeftHandedChapters:
+- 1
+##################################################
 Characters:
 ##########
+## existing characters
+- ID: "Verrin Ravari"
+  Name: "Verrin Ravari"
+  SmallPortrait: portraits/verrin_small
+  LargePortrait: textures/portraits/verrin_large
+  Color: 6691857
+## new characters
 - ID: "Saverio (Left)"
   Name: "Saverio Daas"
   SmallPortrait: portraits/saverio_small
@@ -332,6 +342,7 @@ Puzzles:
 ##########
 - ID: rmc-j01-welded-elements
   Music: Solving1
+  NoStoryPanel: true
 - ID: rmc-j01-reactive-litharge
   Music: Solving5
 - ID: rmc-j01-pugano-transformer-b
@@ -355,12 +366,17 @@ Puzzles:
     Texture: tips/polymer_inputs_alt
 - ID: rmc-j02-ex-nihilo
   Music: Solving4
+  NoStoryPanel: true
 - ID: rmc-j02-leadstorm
   Music: Solving4
+  NoStoryPanel: true
 - ID: rmc-j02-golden-bauble
   Music: Solving4
+  NoStoryPanel: true
 - ID: rmc-j02-luminiscent-compound
   Music: Solving4
+  NoStoryPanel: true
 - ID: rmc-j02-solder-paste
   Music: Solving4
+  NoStoryPanel: true
 ##########
