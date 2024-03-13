@@ -44,7 +44,6 @@ public class CutscenePatcher
 
 	public static Texture creditsBackground => MainClass.AdvancedContent.Cutscenes.Where(x => x.ID == "rmc-cutscene-hubris").First().FromModel().Item2;
 
-
 	public static void Load()
 	{
 		On.class_252.method_50 += class_252_Method_50;

@@ -3,13 +3,13 @@
 using MonoMod.RuntimeDetour;
 //using MonoMod.Utils;
 using Quintessential;
-//using Quintessential.Serialization;
+using Quintessential.Serialization;
 using Quintessential.Settings;
 //using SDL2;
 using System;
 using System.IO;
 //using System.Linq;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 //using System.Globalization;
 using System.Reflection;
 
@@ -21,7 +21,7 @@ namespace ReductiveMetallurgyCampaign;
 //using BondSite = class_222;
 //using AtomTypes = class_175;
 //using PartTypes = class_191;
-using Texture = class_256;
+//using Texture = class_256;
 //using Song = class_186;
 //using Tip = class_215;
 //using Font = class_1;
@@ -87,6 +87,22 @@ public class MainClass : QuintessentialMod
 		orig();
 		LoadAdvancedContent();
 		CampaignLoader.modifyCampaign();
+		JournalLoader.modifyJournal();
+		StoryPanelPatcher.CreateSigmarStoryUnlocks(AdvancedContent.SigmarStoryUnlocks);
+
+		// manually load the puzzle file needed for tips
+		string subpath = "/Puzzles/rmc-sandbox.puzzle.yaml";
+		string filepath;
+		if (!MainClass.findModMetaFilepath("ReductiveMetallurgyCampaign", out filepath) || !File.Exists(filepath + subpath))
+		{
+			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'rmc-sandbox.puzzle.yaml' in the folder '" + filepath + "/Puzzles/'");
+			throw new Exception("LoadPuzzleContent: Tip data is missing.");
+		}
+		var tipsPuzzle = PuzzleModel.FromModel(YamlHelper.Deserializer.Deserialize<PuzzleModel>(File.ReadAllText(filepath + subpath)));
+
+		Array.Resize(ref Puzzles.field_2816, Puzzles.field_2816.Length + 1);
+		Puzzles.field_2816[Puzzles.field_2816.Length - 1] = tipsPuzzle;
+
 	}
 	static void LoadAdvancedContent()
 	{
@@ -117,7 +133,6 @@ public class MainClass : QuintessentialMod
 		Settings = new MySettings();
 		LoadAdvancedContent();
 		CampaignLoader.Load();
-		JournalLoader.loadJournalModel();
 		Document.Load();
 		CutscenePatcher.Load();
 		JournalLoader.Load();

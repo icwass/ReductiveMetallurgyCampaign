@@ -93,7 +93,7 @@ public static class StoryPanelPatcher
 			string storyPanelID = new DynamicData(panel_self).Get<Maybe<class_264>>("field_4090").method_1087().field_2090;
 			if (storyPanelID == SigmarGardenPatcher.solitaireID) return false;
 			if (storyPanelID == optionsID) return false;
-			if (JournalLoader.journalItems().Select(x => x.field_2322).Contains(storyPanelID)) return false;
+			if (JournalLoader.journal_puzzles.Any(x => x.ID == storyPanelID)) return false;
 
 			return isOptionsScreen;
 		});

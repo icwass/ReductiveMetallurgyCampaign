@@ -28,107 +28,90 @@ using Font = class_1;
 
 public sealed class JournalLoader
 {
-	private static oldJournalModelRMC journal_model;
-
 	private static IDetour hook_JournalScreen_method_1040;
 
-	private static List<CampaignItem> journal_items = new();
-
-	public static IEnumerable<CampaignItem> journalItems() => journal_items;
-
-	static Dictionary<string, Dictionary<int, Vector2>> customPreviewPositions = new();
+	public static List<PuzzleModelRMC> journal_puzzles = new();
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// journal stuff
-	public static void loadJournalModel()
+
+	public static void modifyJournal()
 	{
-		string filepath;
-		if (!MainClass.findModMetaFilepath("ReductiveMetallurgyCampaign", out filepath) || !File.Exists(filepath + "/Puzzles/RMC.journal_RMC.yaml"))
+		// find THIS campaign
+		var thing1 = QuintessentialLoader.AllJournals;
+		var thing2 = QuintessentialLoader.ModJournalModels;
+
+		Quintessential.Serialization.JournalChapterModel comparandModel = null;
+
+		foreach (var JModel in QuintessentialLoader.ModJournalModels)
 		{
-			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'RMC.journal_RMC.yaml' in the folder '" + filepath + "/Puzzles/'");
-			throw new Exception("modifyCampaignRMC: Journal data is missing.");
-		}
-		using (StreamReader streamReader = new StreamReader(filepath + "/Puzzles/RMC.journal_RMC.yaml"))
-		{
-			journal_model = YamlHelper.Deserializer.Deserialize<oldJournalModelRMC>(streamReader);
-		}
-
-		customPreviewPositions = journal_model.GetPreviewPositions();
-	}
-
-	public static void modifyJournals(Campaign campaign_self)
-	{
-		CampaignChapter[] campaignChapters = campaign_self.field_2309;
-		int maxChapter = campaignChapters.Length-1;
-
-		HashSet<int> chaptersToRemove = new();
-
-		foreach (var volume in journal_model.Volumes)
-		{
-			var volumeIndex = volume.FromChapter;
-			if (volumeIndex > maxChapter || volumeIndex < 0)
+			if (File.Exists(JModel.Path + "/RMC.journal.yaml"))
 			{
-				Logger.Log("[ReductiveMetallurgyCampaign] Invalid FromChapter value for journal page '" + volume.Title + "', ignoring.'");
-				continue;
+				comparandModel = JModel.Chapters.First();
+				break;
 			}
-			if (chaptersToRemove.Contains(volumeIndex))
+		}
+
+		if (comparandModel == null)
+		{
+			Logger.Log("[ReductiveMetallurgyCampaign] Could not find the 'RMC.journal.yaml' filepath amongst the loaded ModJournalModels:");
+			foreach (var JModel in QuintessentialLoader.ModJournalModels)
 			{
-				Logger.Log("[ReductiveMetallurgyCampaign] Already consumed chapter '" + volumeIndex + "' for the journal, ignoring.'");
-				continue;
+				Logger.Log("    " + JModel.Path);
 			}
+			throw new Exception("modifyJournalRMC: Content is missing.");
+		}
 
-			var chapter = campaignChapters[volumeIndex];
-			var items = chapter.field_2314;
+		List<JournalVolume> journal_self = new();
 
-			List<CampaignItem> itemForJournal = new();
-
-			for (int i = 0; i < items.Count; i++)
+		foreach (var Journal in QuintessentialLoader.AllJournals)
+		{
+			if (Journal.First().field_2569 == comparandModel.Title && Journal.First().field_2570 == comparandModel.Description)
 			{
-				var item = items[i];
-				if (item.field_2324 == CampaignLoader.typePuzzle && item.field_2325.method_1085())
+				journal_self = Journal;
+				break;
+			}
+		}
+		if (journal_self.Count() == 0) return;
+
+		// modify the journal puzzles
+		Logger.Log("[ReductiveMetallurgyCampaign] Modifying journal items.");
+		foreach (var volume in journal_self)
+		{
+			foreach (var puzzle in volume.field_2571)
+			{
+				// journal puzzles were manually added before, so Quintessential loaded them like campaign puzzles
+				// however, Quintessential loads journal puzzles differently, it seems
+				// (that, or campaign puzzles are inherently different from journal puzzles)
+				// *shrug*
+				// to maintain consistency with the campaign puzzles
+				// (and to not force everyone to merge their solution files),
+				// we rewrite the puzzleID
+				var puzzleID = puzzle.field_2766;
+				if (MainClass.AdvancedContent.JournalRemappings.ContainsKey(puzzleID))
 				{
-					itemForJournal.Add(item);
+					puzzleID = MainClass.AdvancedContent.JournalRemappings[puzzleID];
+					puzzle.field_2766 = puzzleID;
+				}
+
+				// Quintessential doesn't load journal puzzles correctly yet,
+				// so we manually add the puzzles to the collection of campaign puzzles
+				// this way, solutions for these puzzles will be loaded correctly
+				Array.Resize(ref Puzzles.field_2816, Puzzles.field_2816.Length + 1);
+				Puzzles.field_2816[Puzzles.field_2816.Length - 1] = puzzle;
+
+				// run hard-coded stuff
+				if (CampaignLoader.LevelLoaders.ContainsKey(puzzleID)) CampaignLoader.LevelLoaders[puzzleID](puzzle);
+
+				// add to journalPuzzle list, for other classes to use
+				foreach (var puzzleModel in MainClass.AdvancedContent.Puzzles.Where(x => x.ID == puzzleID))
+				{
+					puzzleModel.modifyCampaignItem(puzzle);
+					journal_puzzles.Add(puzzleModel);
+					break;
 				}
 			}
-			if (itemForJournal.Count < 5)
-			{
-				Logger.Log("[ReductiveMetallurgyCampaign] Insufficient puzzles in chapter '" + volumeIndex + "' to make a journal page, ignoring.'");
-				continue;
-			}
-
-			var newJournalVolume = new JournalVolume()
-			{
-				field_2569 = volume.Title,
-				field_2570 = volume.Description,
-				field_2571 = new Puzzle[5]
-			};
-
-			for (int i = 0; i < 5; i++)
-			{
-				journal_items.Add(itemForJournal[i]);
-				newJournalVolume.field_2571[i] = itemForJournal[i].field_2325.method_1087();
-			}
-
-			Array.Resize(ref JournalVolumes.field_2572, JournalVolumes.field_2572.Length + 1);
-			JournalVolumes.field_2572[JournalVolumes.field_2572.Length - 1] = newJournalVolume;
-
-			chaptersToRemove.Add(volumeIndex);
-			Logger.Log("[ReductiveMetallurgyCampaign] Converted chapter " + volumeIndex + " into a journal page.");
 		}
-
-		CampaignChapter[] newCampaignChapters = new CampaignChapter[campaignChapters.Length - chaptersToRemove.Count];
-		
-		int j = 0;
-		for (int i = 0; i < campaignChapters.Length; i++)
-		{
-			if (!chaptersToRemove.Contains(i))
-			{
-				newCampaignChapters[j] = campaignChapters[i];
-				j++;
-			}
-		}
-		
-		campaign_self.field_2309 = newCampaignChapters;
 	}
 
 	public static void Load()
@@ -145,12 +128,14 @@ public sealed class JournalLoader
 
 	private static void OnJournalScreen_Method_1040(orig_JournalScreen_method_1040 orig, JournalScreen screen_self, Puzzle puzzle, Vector2 basePosition, bool isLargePuzzle)
 	{
-		if (!journal_items.Select(x => x.field_2325.method_1087()).Contains(puzzle))
+		var puzzleID = puzzle.field_2766;
+		if (!MainClass.AdvancedContent.Puzzles.Any(x => x.ID == puzzleID))
 		{
 			orig(screen_self, puzzle, basePosition, isLargePuzzle);
 			return;
 		}
-		var item = journal_items.Where(x => x.field_2325.method_1087() == puzzle).First();
+		var puzzleModel = MainClass.AdvancedContent.Puzzles.Where(x => x.ID == puzzleID).First();
+
 		bool puzzleSolved = GameLogic.field_2434.field_2451.method_573(puzzle);
 		Font crimson_15 = class_238.field_1990.field_2144;
 		bool authorExists = puzzle.field_2768.method_1085();
@@ -168,15 +153,14 @@ public sealed class JournalLoader
 
 		Bounds2 bounds2 = Bounds2.WithSize(basePosition, moleculeBackdrop.field_2056.ToVector2());
 		bool mouseHover = bounds2.Contains(Input.MousePos());
-		var puzzleID = puzzle.field_2766;
 
 		Vector2 moleculeOffset = isLargePuzzle ? new Vector2(470f, 365f) : new Vector2(280f, 200f);
 		Texture textureFromMolecule(Molecule molecule, Vector2 offset) => Editor.method_928(molecule, false, mouseHover, offset, isLargePuzzle, (Maybe<float>)struct_18.field_1431).method_1351().field_937;
 		Texture textureFromIndex(int i, Vector2 offset) => textureFromMolecule(puzzle.field_2771[i].field_2813, offset);
 
-		if (customPreviewPositions.ContainsKey(puzzleID))
+		if (puzzleModel.getJournalPreview().Count() > 0)
 		{
-			foreach (var kvp in customPreviewPositions[puzzleID])
+			foreach (var kvp in puzzleModel.getJournalPreview())
 			{
 				class_135.method_272(textureFromIndex(kvp.Key, moleculeOffset), bounds2.Min + kvp.Value);
 			}
@@ -190,14 +174,13 @@ public sealed class JournalLoader
 		}
 		if (mouseHover && Input.IsLeftClickPressed())
 		{
-			Song song = item.field_2328;
-			Sound fanfare = item.field_2329;
-			Maybe<class_264> maybeStoryPanel = item.field_2327;
+			Song song = ModelWithResourcesRMC.fetchSong(puzzleModel.Music);
+			Sound fanfare = ModelWithResourcesRMC.fetchSound(puzzleModel.Music);
+			Maybe<class_264> maybeStoryPanel = puzzleModel.NoStoryPanel ? struct_18.field_1431 : new class_264(puzzleModel.ID);
 
 			GameLogic.field_2434.method_946(new PuzzleInfoScreen(puzzle, song, fanfare, maybeStoryPanel));
 			class_238.field_1991.field_1821.method_28(1f);
 		}
-		
 	}
 }
 

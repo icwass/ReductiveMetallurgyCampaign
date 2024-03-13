@@ -2,12 +2,12 @@
 //using MonoMod.Cil;
 //using MonoMod.RuntimeDetour;
 //using MonoMod.Utils;
-using Quintessential;
+//using Quintessential;
 //using Quintessential.Serialization;
 //using Quintessential.Settings;
 //using SDL2;
 using System;
-using System.IO;
+//using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
@@ -27,7 +27,7 @@ using Tip = class_215;
 //using Font = class_1;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
-// advanced.yaml
+// helpers
 
 public abstract class ModelWithResourcesRMC
 {
@@ -95,11 +95,15 @@ public static class ModelHelpersRMC
 	public static Color ColorWhite => Color.White;
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
+// advanced.yaml
+
 public class AdvancedContentModelRMC
 {
 	public CreditsModelRMC Credits;
 	public List<int> SigmarStoryUnlocks;
 	public List<int> LeftHandedChapters;
+	public Dictionary<string, string> JournalRemappings;
 	public List<CharacterModelRMC> Characters;
 	public List<CutsceneModelRMC> Cutscenes;
 	public List<DocumentModelRMC> Documents;
@@ -188,7 +192,7 @@ public class CharacterModelRMC : ModelWithResourcesRMC
 	}
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
 public class CutsceneModelRMC : ModelWithResourcesRMC
 {
 	public string ID, Location, Background, Music;
@@ -319,7 +323,7 @@ public class DocumentModelRMC : ModelWithResourcesRMC
 		}
 	}
 }
-//////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
 public class PuzzleModelRMC : ModelWithResourcesRMC
 {
@@ -353,24 +357,22 @@ public class PuzzleModelRMC : ModelWithResourcesRMC
 		campaignItem.field_2329 = fetchSound(this.Music);
 
 		Puzzle puzzle = campaignItem.field_2325.method_1087();
-
-		if (this.Tip != null)
-		{
-			puzzle.field_2769 = this.Tip.FromModel();
-		}
-		if (this.Cabinet != null)
-		{
-			//functionality?/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			//puzzle.field_2769 = this.Tip.FromModel();
-		}
+		modifyCampaignItem(puzzle);
+	}
+	public void modifyCampaignItem(Puzzle puzzle)
+	{
+		if (this.Tip != null) puzzle.field_2769 = this.Tip.FromModel();
 	}
 
 	public Dictionary<int, Vector2> getJournalPreview()
 	{
 		Dictionary<int, Vector2> ret = new();
-		foreach (var kvp in JournalPreview)
+		if (this.JournalPreview != null)
 		{
-			ret.Add(kvp.Key, ModelHelpersRMC.Vector2FromString(kvp.Value));
+			foreach (var kvp in this.JournalPreview)
+			{
+				ret.Add(kvp.Key, ModelHelpersRMC.Vector2FromString(kvp.Value));
+			}
 		}
 		return ret;
 	}
@@ -407,7 +409,6 @@ public class PuzzleModelRMC : ModelWithResourcesRMC
 			{
 				ret.Add(overlay.FromModel());
 			}
-
 			return ret;
 		}
 
@@ -420,96 +421,5 @@ public class PuzzleModelRMC : ModelWithResourcesRMC
 				return Tuple.Create(fetchTexture(this.Texture), ModelHelpersRMC.Vector2FromString(this.Position));
 			}
 		}
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////
-// O L D    S T U F F
-
-
-
-public class oldJournalModelRMC
-{
-	public List<oldJournalVolumeModelRMC> Volumes;
-	public List<oldJournalPreviewModelRMC> Previews;
-
-	public Dictionary<string, Dictionary<int, Vector2>> GetPreviewPositions()
-	{
-		Dictionary<string, Dictionary<int, Vector2>> dict = new();
-
-		foreach (var preview in Previews)
-		{
-			var tuple = preview.FromModel();
-			dict.Add(tuple.Item1, tuple.Item2);
-		}
-
-		return dict;
-	}
-}
-public class oldJournalVolumeModelRMC
-{
-	public int FromChapter;
-	public string Title, Description;
-}
-
-public class oldJournalPreviewModelRMC
-{
-	public string ID;
-	public List<oldJournalPreviewItemModelRMC> Items;
-
-	public Tuple<string, Dictionary<int, Vector2>> FromModel()
-	{
-		Dictionary<int, Vector2> items = new();
-		foreach (var item in Items)
-		{
-			var tuple = item.FromModel();
-			items.Add(tuple.Item1, tuple.Item2);
-		}
-		
-		return Tuple.Create(ID, items);
-	}
-}
-
-public class oldJournalPreviewItemModelRMC
-{
-	public int Index;
-	public string Position;
-
-	public Tuple<int, Vector2> FromModel()
-	{
-		return Tuple.Create(Index, ModelHelpersRMC.Vector2FromString(Position));
 	}
 }

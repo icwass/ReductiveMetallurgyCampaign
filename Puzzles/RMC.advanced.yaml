@@ -30,6 +30,18 @@ SigmarStoryUnlocks:
 LeftHandedChapters:
 - 1
 ##################################################
+JournalRemappings:
+  rmc-welded-elements: rmc-j01-welded-elements
+  rmc-reactive-litharge: rmc-j01-reactive-litharge
+  rmc-pugano-transformer-b: rmc-j01-pugano-transformer-b
+  rmc-precision-machine-oil-cabinet: rmc-j01-precision-machine-oil-cabinet
+  rmc-golden-thread-recycling: rmc-j01-golden-thread-recycling
+  rmc-golden-bauble: rmc-j02-golden-bauble
+  rmc-leadstorm: rmc-j02-leadstorm
+  rmc-luminiscent-compound: rmc-j02-luminiscent-compound
+  rmc-ex-nihilo: rmc-j02-ex-nihilo
+  rmc-solder-paste: rmc-j02-solder-paste
+##################################################
 Characters:
 ##########
 ## existing characters
@@ -343,6 +355,11 @@ Puzzles:
 - ID: rmc-j01-welded-elements
   Music: Solving1
   NoStoryPanel: true
+  JournalPreview:
+    0: 46, 197
+    1: 261, 197
+    2: 46, 57
+    3: 261, 57
 - ID: rmc-j01-reactive-litharge
   Music: Solving5
 - ID: rmc-j01-pugano-transformer-b
@@ -370,6 +387,10 @@ Puzzles:
 - ID: rmc-j02-leadstorm
   Music: Solving4
   NoStoryPanel: true
+  JournalPreview:
+    0: 21, 121
+    1: 163, 121
+    2: 93, 27
 - ID: rmc-j02-golden-bauble
   Music: Solving4
   NoStoryPanel: true
