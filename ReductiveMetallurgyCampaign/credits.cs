@@ -37,6 +37,7 @@ public sealed class RMCCreditsScreen : IScreen
 		field_1460 = Transitions.field_4108.field_1460
 	};
 	private static bool transitioningBackToMenu;
+	public static Vector2 screenResolution => class_115.field_1433;
 	private static void setCreditsSeen_RMC() => GameLogic.field_2434.field_2451.field_1929.method_858("RMC-CreditsSeen", true.method_453());
 	private static bool getCreditsSeen_RMC() => GameLogic.field_2434.field_2451.field_1929.method_862(new delegate_384<bool>(bool.TryParse), "RMC-CreditsSeen").method_1090(false);
 	private static void exitCredits()
@@ -75,14 +76,14 @@ public sealed class RMCCreditsScreen : IScreen
 		timer += timeDelta;
 
 		Texture background = CutscenePatcher.creditsBackground;
-		float scalar = class_115.field_1433.Y / background.field_2056.Y;
+		float scalar = screenResolution.Y / background.field_2056.Y;
 		Vector2 normedSize = background.field_2056.ToVector2() * scalar;
-		class_135.method_279(Color.Black, Vector2.Zero, class_115.field_1433);
-		class_135.method_263(background, Color.White, class_115.field_1433 / 2 - normedSize / 2, normedSize);
+		class_135.method_279(Color.Black, Vector2.Zero, screenResolution);
+		class_135.method_263(background, Color.White, screenResolution / 2 - normedSize / 2, normedSize);
 
 		var creditsModel = MainClass.AdvancedContent.Credits;
-		scalar = class_115.field_1433.Y / 2160f;
-		Vector2 textPosition = class_115.field_1433 / 2 + ModelHelpersRMC.Vector2FromString(creditsModel.PositionOffset) * scalar;
+		scalar = screenResolution.Y / 2160f;
+		Vector2 textPosition = screenResolution / 2 + ModelHelpersRMC.Vector2FromString(creditsModel.PositionOffset) * scalar;
 
 		class_310 class310 = new class_310();
 		class310.incrementTimer(2f);

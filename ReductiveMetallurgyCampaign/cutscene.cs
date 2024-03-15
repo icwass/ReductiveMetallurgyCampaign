@@ -43,13 +43,14 @@ public class CutscenePatcher
 	};
 
 	public static Texture creditsBackground => MainClass.AdvancedContent.Cutscenes.Where(x => x.ID == "rmc-cutscene-hubris").First().FromModel().Item2;
+	public static Vector2 screenResolution => class_115.field_1433;
 
 	public static void Load()
 	{
 		On.class_252.method_50 += class_252_Method_50;
 	}
 
-	static bool method_678() => class_115.field_1433.X < 1600f || class_115.field_1433.Y < 900f;
+	static bool method_678() => screenResolution.X < 1600f || screenResolution.Y < 900f;
 
 	static private float method_679() => !method_678() ? 1f : 0.76f;
 
@@ -67,7 +68,7 @@ public class CutscenePatcher
 	static private Vector2 method_683(int param_4174, int param_4175)
 	{
 		int field_2044 = -10; // static readonly variable from class_252
-		return new Vector2((float)(class_115.field_1433.X / 2 - ((param_4175 * method_680() + (param_4175 - 1) * field_2044) / 2) + (double)(param_4174 * (method_680() + field_2044))), (float)(!method_678() ? (class_115.field_1433.Y >= 1000 ? class_115.field_1433.Y / 2 - 175 : class_115.field_1433.Y / 2 - 200) : class_115.field_1433.Y / 2 - 140));
+		return new Vector2((float)(screenResolution.X / 2 - ((param_4175 * method_680() + (param_4175 - 1) * field_2044) / 2) + (double)(param_4174 * (method_680() + field_2044))), (float)(!method_678() ? (screenResolution.Y >= 1000 ? screenResolution.Y / 2 - 175 : screenResolution.Y / 2 - 200) : screenResolution.Y / 2 - 140));
 	}
 
 
@@ -76,7 +77,7 @@ public class CutscenePatcher
 		var class252_dyn = new DynamicData(class252_self);
 		var class264 = class252_dyn.Get<class_264>("field_2038");
 		string cutsceneID = class264.field_2090;
-		if (vanillaCutscenes.Contains(cutsceneID))
+		if (vanillaCutscenes.Contains(cutsceneID) || !MainClass.AdvancedContent.Cutscenes.Any(x => x.ID == cutsceneID))
 		{
 			orig(class252_self, timeDelta);
 			return;
@@ -130,13 +131,13 @@ public class CutscenePatcher
 		Texture class256_1 = background;
 		string str = location;
 
-		class_135.method_279(Color.Black, Vector2.Zero, class_115.field_1433);
-		float num = class_115.field_1433.Y / class256_1.field_2056.Y;
+		class_135.method_279(Color.Black, Vector2.Zero, screenResolution);
+		float num = screenResolution.Y / class256_1.field_2056.Y;
 		Vector2 vector2_1 = class256_1.field_2056.ToVector2() * num;
-		class_135.method_263(class256_1, Color.White, class_115.field_1433 / 2 - vector2_1 / 2, vector2_1);
-		Vector2 vector2_2 = new Vector2(class_115.field_1433.X / 2f - (class_238.field_1989.field_84.field_531.field_2056.X / 2), class_115.field_1433.Y - 87f);
+		class_135.method_263(class256_1, Color.White, screenResolution / 2 - vector2_1 / 2, vector2_1);
+		Vector2 vector2_2 = new Vector2(screenResolution.X / 2f - (class_238.field_1989.field_84.field_531.field_2056.X / 2), screenResolution.Y - 87f);
 		class_135.method_272(class_238.field_1989.field_84.field_531, vector2_2.Rounded());
-		class_135.method_290(str, new Vector2(class_115.field_1433.X / 2f, class_115.field_1433.Y - 68f), class_238.field_1990.field_2146, class_181.field_1718, (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, 0, new Color(), null, int.MaxValue, false, true);
+		class_135.method_290(str, new Vector2(screenResolution.X / 2f, screenResolution.Y - 68f), class_238.field_1990.field_2146, class_181.field_1718, (enum_0)1, 1f, 0.6f, float.MaxValue, float.MaxValue, 0, new Color(), null, int.MaxValue, false, true);
 
 		class_252.class_254 class254 = new class_252.class_254();
 		class254.field_2050 = class252_self;
@@ -177,7 +178,7 @@ public class CutscenePatcher
 		void method_685(VignetteEvent.LineFields param_4177)
 		{
 			float field_2045 = 0.005f; // static readonly float in class_252
-			Vector2 vector2 = class_115.field_1433 / 2 + new Vector2((-class_238.field_1989.field_84.field_534.field_2056.X / 2), -424f);
+			Vector2 vector2 = screenResolution / 2 + new Vector2((-class_238.field_1989.field_84.field_534.field_2056.X / 2), -424f);
 			if (method_678())
 				vector2.Y += 58f;
 			int num = (int)(getField2043() / field_2045);
@@ -220,7 +221,7 @@ public class CutscenePatcher
 					field_2054 = class253.field_2047
 				};
 			Vector2 vector2 = method_683(0, 1);
-			vector2.X = class_115.field_1433.X;
+			vector2.X = screenResolution.X;
 			getField2039().Add(new class_252.class_253()
 			{
 				field_2046 = param_4178.field_4133,

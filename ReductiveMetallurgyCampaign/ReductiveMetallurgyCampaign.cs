@@ -33,9 +33,9 @@ public class MainClass : QuintessentialMod
 	private static IDetour hook_Sim_method_1835, hook_QuintessentialLoader_LoadJournals;
 
 	public static AdvancedContentModelRMC AdvancedContent;
+	public static string FilePath = "";
 
 	// settings
-	public static bool DisplayMetalsRemaining = true;
 	public override Type SettingsType => typeof(MySettings);
 	public class MySettings
 	{
@@ -47,27 +47,73 @@ public class MainClass : QuintessentialMod
 		base.ApplySettings();
 
 		var SET = (MySettings)Settings;
-		DisplayMetalsRemaining = SET.DisplayMetalsRemaining;
+		SigmarGardenPatcher.DisplayMetalsRemaining = SET.DisplayMetalsRemaining;
 	}
 
-	public static bool findModMetaFilepath(string name, out string filepath)
+	public static void checkIfFileExists(string subpath, string file, string error)
 	{
-		filepath = "<missing mod directory>";
+		if (!File.Exists(FilePath + subpath + file))
+		{
+			Logger.Log("[ReductiveMetallurgyCampaign] Could not find '" + file + "' in the folder '" + FilePath + subpath + "'");
+			throw new Exception(error);
+		}
+	}
+
+	static void LoadAdvancedContent()
+	{
+		string subpath = "/Puzzles/";
+		string file = "RMC.advanced.yaml";
+		checkIfFileExists(subpath, file, "LoadAdvancedContent: Advanced content is missing.");
+		using (StreamReader streamReader = new StreamReader(FilePath + subpath + file))
+		{
+			AdvancedContent = YamlHelper.Deserializer.Deserialize<AdvancedContentModelRMC>(streamReader);
+		}
+	}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+	public override void Load()
+	{
+		// fetch the mod's filepath
+		bool foundSelf = false;
+		string name = "ReductiveMetallurgyCampaign";
 		foreach (ModMeta mod in QuintessentialLoader.Mods)
 		{
 			if (mod.Name == name)
 			{
-				filepath = mod.PathDirectory;
-				return true;
+				FilePath = mod.PathDirectory;
+				foundSelf = true;
+				break;
 			}
 		}
-		return false;
+		if (!foundSelf)
+		{
+			Logger.Log("[ReductiveMetallurgyCampaign] Could not find... myself?' QuintessentialLoader.Mods doesn't have a mod called '" + name + "'.");
+			throw new Exception("Load: Failed to find the expected mod.");
+		}
+
+		// load other stuff
+		Settings = new MySettings();
+		LoadAdvancedContent();
+		CampaignLoader.Load();
+		Document.Load();
+		CutscenePatcher.Load();
+		JournalLoader.Load();
+		StoryPanelPatcher.Load();
 	}
 
 	public override void LoadPuzzleContent()
 	{
 		PolymerInput.LoadContent();
 		StoryPanelPatcher.LoadContent();
+
+		// manually load the puzzle file needed for tips
+		string subpath = "/Puzzles/";
+		string file = "rmc-sandbox.puzzle.yaml";
+		checkIfFileExists(subpath, file, "LoadAdvancedContent: Tip data is missing.");
+		var tipsPuzzle = PuzzleModel.FromModel(YamlHelper.Deserializer.Deserialize<PuzzleModel>(File.ReadAllText(FilePath + subpath + file)));
+
+		Array.Resize(ref Puzzles.field_2816, Puzzles.field_2816.Length + 1);
+		Puzzles.field_2816[Puzzles.field_2816.Length - 1] = tipsPuzzle;
 
 		//------------------------- HOOKING -------------------------//
 		hook_Sim_method_1835 = new Hook(PrivateMethod<Sim>("method_1835"), OnSimMethod1835);
@@ -90,34 +136,7 @@ public class MainClass : QuintessentialMod
 		JournalLoader.modifyJournal();
 		StoryPanelPatcher.CreateSigmarStoryUnlocks(AdvancedContent.SigmarStoryUnlocks);
 
-		// manually load the puzzle file needed for tips
-		string subpath = "/Puzzles/rmc-sandbox.puzzle.yaml";
-		string filepath;
-		if (!MainClass.findModMetaFilepath("ReductiveMetallurgyCampaign", out filepath) || !File.Exists(filepath + subpath))
-		{
-			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'rmc-sandbox.puzzle.yaml' in the folder '" + filepath + "/Puzzles/'");
-			throw new Exception("LoadPuzzleContent: Tip data is missing.");
-		}
-		var tipsPuzzle = PuzzleModel.FromModel(YamlHelper.Deserializer.Deserialize<PuzzleModel>(File.ReadAllText(filepath + subpath)));
-
-		Array.Resize(ref Puzzles.field_2816, Puzzles.field_2816.Length + 1);
-		Puzzles.field_2816[Puzzles.field_2816.Length - 1] = tipsPuzzle;
-
 	}
-	static void LoadAdvancedContent()
-	{
-		string filepath;
-		if (!findModMetaFilepath("ReductiveMetallurgyCampaign", out filepath) || !File.Exists(filepath + "/Puzzles/RMC.advanced.yaml"))
-		{
-			Logger.Log("[ReductiveMetallurgyCampaign] Could not find 'RMC.advanced.yaml' in the folder '" + filepath + "/Puzzles/'");
-			throw new Exception("modifyCampaignRMC: Content is missing.");
-		}
-		using (StreamReader streamReader = new StreamReader(filepath + "/Puzzles/RMC.advanced.yaml"))
-		{
-			AdvancedContent = YamlHelper.Deserializer.Deserialize<AdvancedContentModelRMC>(streamReader);
-		}
-	}
-
 
 	public override void Unload()
 	{
@@ -126,17 +145,6 @@ public class MainClass : QuintessentialMod
 		SigmarGardenPatcher.Unload();
 		Amalgamate.Unload();
 		JournalLoader.Unload();
-	}
-
-	public override void Load()
-	{
-		Settings = new MySettings();
-		LoadAdvancedContent();
-		CampaignLoader.Load();
-		Document.Load();
-		CutscenePatcher.Load();
-		JournalLoader.Load();
-		StoryPanelPatcher.Load();
 	}
 
 	public override void PostLoad()
