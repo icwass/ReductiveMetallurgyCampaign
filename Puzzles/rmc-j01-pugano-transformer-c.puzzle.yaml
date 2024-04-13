@@ -1,5 +1,5 @@
 Name: Pugano's Transformer
-ID: rmc-pugano-transformer-b
+ID: rmc-pugano-transformer-c
 Author: 'Pugano, J.'
 Inputs:
 - Molecule:
@@ -36,6 +36,7 @@ Outputs:
     Bonds: []
     Name: Elemental Lead
   Amount: -1
+OutputMultiplier: 4
 PermissionFlags: Projection, Purification, CoreTools
 CustomPermissions:
 - ReductiveMetallurgy:deposition
