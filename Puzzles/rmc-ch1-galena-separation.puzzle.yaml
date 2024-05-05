@@ -85,11 +85,11 @@ Inputs:
 Outputs:
 - Molecule:
     Atoms:
-    - AtomType: iron
+    - AtomType: tin
       Position:
         Pos: 0,0
     Bonds: []
-    Name: Elemental Iron
+    Name: Elemental Tin
   Amount: -1
 - Molecule:
     Atoms:

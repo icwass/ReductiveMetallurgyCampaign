@@ -115,15 +115,7 @@ Inputs:
       BondTypes:
       - standard
     Name: Energetic Capacitor, Depleted
-  Amount: -1
-- Molecule:
-    Atoms:
-    - AtomType: copper
-      Position:
-        Pos: 0,0
-    Bonds: []
-    Name: Elemental Copper
-  Amount: -1
+  AmountOverride: 0
 Outputs:
 - Molecule:
     Atoms:
@@ -238,19 +230,12 @@ Outputs:
       - triplex_1
       - triplex_2
     Name: Energetic Capacitor, Filled
-  Amount: -1
-- Molecule:
-    Atoms:
-    - AtomType: lead
-      Position:
-        Pos: 0,0
-    Bonds: []
-    Name: Elemental Lead
-  Amount: -1
-PermissionFlags: Projection, CoreTools
+  AmountOverride: 0
+OutputMultiplier: 1
+PermissionFlags: Projection, Disposal, CoreTools
 CustomPermissions:
 - ReductiveMetallurgy:rejection
 - ReductiveMetallurgy:ravari
-PartQuotas: {}
+- ReductiveMetallurgy:proliferation
 Highlights: []
 ProductionInfo: 

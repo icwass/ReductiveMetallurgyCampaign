@@ -4,7 +4,7 @@ Author: ''
 Inputs:
 - Molecule:
     Atoms:
-    - AtomType: air
+    - AtomType: earth
       Position:
         Pos: 0,0
     Bonds: []
@@ -12,7 +12,7 @@ Inputs:
   Amount: -1
 - Molecule:
     Atoms:
-    - AtomType: air
+    - AtomType: earth
       Position:
         Pos: 0,0
     Bonds: []
@@ -37,13 +37,13 @@ Inputs:
 Outputs:
 - Molecule:
     Atoms:
-    - AtomType: air
+    - AtomType: earth
       Position:
         Pos: 0,0
-    - AtomType: air
+    - AtomType: salt
       Position:
         Pos: -1,-1
-    - AtomType: air
+    - AtomType: salt
       Position:
         Pos: 2,-1
     - AtomType: silver

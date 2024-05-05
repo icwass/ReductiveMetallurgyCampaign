@@ -10,6 +10,7 @@ Inputs:
     Bonds: []
     Name: Elemental Gold
   Amount: -1
+Outputs:
 - Molecule:
     Atoms:
     - AtomType: silver
@@ -26,7 +27,6 @@ Inputs:
     Bonds: []
     Name: Elemental Copper
   Amount: -1
-Outputs:
 - Molecule:
     Atoms:
     - AtomType: iron
@@ -51,7 +51,7 @@ Outputs:
     Bonds: []
     Name: Elemental Lead
   Amount: -1
-PermissionFlags: CoreTools
+PermissionFlags: Purification, CoreTools
 CustomPermissions:
 - ReductiveMetallurgy:deposition
 PartQuotas: {}

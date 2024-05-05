@@ -1,0 +1,266 @@
+Name: EXPERIMENTAL CATALYST
+ID: rmc-experimental-catalyst
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: salt
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Salt
+  AmountOverride: 0
+- Molecule:
+    Atoms:
+    - AtomType: quicksilver
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Quicksilver
+  AmountOverride: 0
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: vitae
+      Position:
+        Pos: -1,2
+    - AtomType: mors
+      Position:
+        Pos: 1,-2
+    - AtomType: gold
+      Position:
+        Pos: -1,0
+    - AtomType: quintessence
+      Position:
+        Pos: 0,0
+    - AtomType: iron
+      Position:
+        Pos: 1,0
+    - AtomType: silver
+      Position:
+        Pos: 1,-1
+    - AtomType: lead
+      Position:
+        Pos: 0,-1
+    - AtomType: copper
+      Position:
+        Pos: 0,1
+    - AtomType: tin
+      Position:
+        Pos: -1,1
+    Bonds:
+    - A:
+        Pos: -1,0
+      B:
+        Pos: -1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,1
+      B:
+        Pos: -1,2
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,2
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,1
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 1,-2
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-2
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-1
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    Name: Experimental Catalyst
+  AmountOverride: 0
+- Molecule:
+    Atoms:
+    - AtomType: copper
+      Position:
+        Pos: -1,0
+    - AtomType: gold
+      Position:
+        Pos: 0,1
+    - AtomType: silver
+      Position:
+        Pos: 1,-1
+    - AtomType: iron
+      Position:
+        Pos: 1,0
+    - AtomType: tin
+      Position:
+        Pos: -1,1
+    - AtomType: lead
+      Position:
+        Pos: 0,-1
+    - AtomType: vitae
+      Position:
+        Pos: -1,2
+    - AtomType: mors
+      Position:
+        Pos: 1,-2
+    - AtomType: fire
+      Position:
+        Pos: -2,1
+    - AtomType: earth
+      Position:
+        Pos: -1,-1
+    - AtomType: water
+      Position:
+        Pos: 2,-1
+    - AtomType: air
+      Position:
+        Pos: 1,1
+    - AtomType: salt
+      Position:
+        Pos: 0,0
+    Bonds:
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 1,-2
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-2
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,1
+      B:
+        Pos: -1,2
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,2
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -2,1
+      B:
+        Pos: -1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -2,1
+      B:
+        Pos: -1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,-1
+      B:
+        Pos: -1,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,-1
+      B:
+        Pos: 0,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,1
+      B:
+        Pos: 1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,0
+      B:
+        Pos: 1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,0
+      B:
+        Pos: 2,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 1,-1
+      B:
+        Pos: 2,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    Name: ''
+  AmountOverride: 0
+OutputMultiplier: 1
+PermissionFlags: Duplication, LifeAndDeath, Quintessence, CoreTools, BaronWheel
+CustomPermissions:
+- ReductiveMetallurgy:proliferation
+- ReductiveMetallurgy:ravari
+Highlights: []
+ProductionInfo: 

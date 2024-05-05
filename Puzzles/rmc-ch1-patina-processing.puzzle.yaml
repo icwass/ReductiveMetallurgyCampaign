@@ -33,10 +33,10 @@ Outputs:
     - AtomType: tin
       Position:
         Pos: 0,0
-    - AtomType: vitae
+    - AtomType: salt
       Position:
         Pos: 1,0
-    - AtomType: mors
+    - AtomType: salt
       Position:
         Pos: 0,-1
     Bonds:

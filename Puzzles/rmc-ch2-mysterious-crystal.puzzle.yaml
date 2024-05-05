@@ -20,15 +20,7 @@ Inputs:
   Amount: -1
 - Molecule:
     Atoms:
-    - AtomType: earth
-      Position:
-        Pos: 0,0
-    Bonds: []
-    Name: Elemental Earth
-  Amount: -1
-- Molecule:
-    Atoms:
-    - AtomType: quintessence
+    - AtomType: water
       Position:
         Pos: 0,0
     Bonds: []
@@ -46,16 +38,16 @@ Outputs:
     - AtomType: tin
       Position:
         Pos: 0,-1
-    - AtomType: earth
+    - AtomType: water
       Position:
         Pos: -1,0
-    - AtomType: earth
+    - AtomType: water
       Position:
         Pos: 0,1
-    - AtomType: quintessence
+    - AtomType: salt
       Position:
         Pos: 0,0
-    - AtomType: earth
+    - AtomType: water
       Position:
         Pos: 1,-1
     - AtomType: tin
@@ -149,7 +141,7 @@ Outputs:
         Pos: 1,0
       BondTypes:
       - standard
-    Name: Mysterious Crystal
+    Name: Armor Polish
   Amount: -1
 PermissionFlags: Purification, CoreTools
 CustomPermissions:
