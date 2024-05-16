@@ -123,10 +123,6 @@ Chapters:
     Title: Ravari's Renewal
     Puzzle: rmc-ch3-ravari-renewal
     Requires: ""
-  - ID: rmc-ch3-energetic-capacitor
-    Title: Energetic Capacitor
-    Puzzle: rmc-ch3-energetic-capacitor
-    Requires: ""  
   - Type: solitaire
     Icon: textures/puzzle_select/icon_rmc_solitaire
     IconSmall: textures/puzzle_select/icon_rmc_solitaire_small
@@ -142,6 +138,10 @@ Chapters:
     Title: "Experimental Catalyst"
     Puzzle: rmc-ch3-experimental-catalyst
     Requires: ""
+  - ID: rmc-ch3-energetic-capacitor
+    Title: Energetic Capacitor
+    Puzzle: rmc-ch3-energetic-capacitor
+    Requires: ""  
   - ID: rmc-ch3-metallurgist-opus
     Title: "Metallurgist's Opus"
     Puzzle: rmc-ch3-metallurgist-opus
