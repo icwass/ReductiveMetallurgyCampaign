@@ -123,6 +123,14 @@ Chapters:
     Title: Ravari's Renewal
     Puzzle: rmc-ch3-ravari-renewal
     Requires: ""
+  - ID: rmc-ch3-temp1
+    Title: test
+    Puzzle: rmc-ch3-temp1
+    Requires: ""
+  - ID: rmc-ch3-temp2
+    Title: testtest
+    Puzzle: rmc-ch3-temp2
+    Requires: ""
   - Type: solitaire
     Icon: textures/puzzle_select/icon_rmc_solitaire
     IconSmall: textures/puzzle_select/icon_rmc_solitaire_small
@@ -133,6 +141,10 @@ Chapters:
   - ID: rmc-cutscene-reveal
     Title: "The Reveal"
     Puzzle: empty
+    Requires: ""
+  - ID: rmc-ch3-amalgam-wire
+    Title: testtest
+    Puzzle: rmc-ch3-amalgam-wire
     Requires: ""
   - ID: rmc-ch3-experimental-catalyst
     Title: "Experimental Catalyst"
