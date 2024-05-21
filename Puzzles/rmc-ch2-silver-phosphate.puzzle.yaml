@@ -43,9 +43,9 @@ Outputs:
     - AtomType: salt
       Position:
         Pos: -1,-1
-    - AtomType: salt
+    - AtomType: tin
       Position:
-        Pos: 2,-1
+        Pos: 0,2
     - AtomType: silver
       Position:
         Pos: -1,0
@@ -55,9 +55,9 @@ Outputs:
     - AtomType: tin
       Position:
         Pos: 0,-2
-    - AtomType: tin
+    - AtomType: salt
       Position:
-        Pos: 2,-2
+        Pos: 1,1
     Bonds:
     - A:
         Pos: -1,-1
@@ -78,25 +78,25 @@ Outputs:
       BondTypes:
       - standard
     - A:
-        Pos: 1,0
-      B:
-        Pos: 2,-1
-      BondTypes:
-      - standard
-    - A:
         Pos: -1,-1
       B:
         Pos: 0,-2
       BondTypes:
       - standard
     - A:
-        Pos: 2,-2
+        Pos: 1,0
       B:
-        Pos: 2,-1
+        Pos: 1,1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,2
+      B:
+        Pos: 1,1
       BondTypes:
       - standard
     Name: Silver Phosphate
-  Amount: -1
+  AmountOverride: 0
 PermissionFlags: Purification, CoreTools
 CustomPermissions:
 - ReductiveMetallurgy:deposition
