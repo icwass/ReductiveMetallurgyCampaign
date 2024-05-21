@@ -13,22 +13,6 @@ Inputs:
 Outputs:
 - Molecule:
     Atoms:
-    - AtomType: silver
-      Position:
-        Pos: 0,0
-    Bonds: []
-    Name: Elemental Silver
-  Amount: -1
-- Molecule:
-    Atoms:
-    - AtomType: copper
-      Position:
-        Pos: 0,0
-    Bonds: []
-    Name: Elemental Copper
-  Amount: -1
-- Molecule:
-    Atoms:
     - AtomType: iron
       Position:
         Pos: 0,0
@@ -51,7 +35,7 @@ Outputs:
     Bonds: []
     Name: Elemental Lead
   Amount: -1
-PermissionFlags: Purification, CoreTools
+PermissionFlags: CoreTools
 CustomPermissions:
 - ReductiveMetallurgy:deposition
 PartQuotas: {}

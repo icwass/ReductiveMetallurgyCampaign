@@ -4,19 +4,19 @@ Author: ''
 Inputs:
 - Molecule:
     Atoms:
-    - AtomType: tin
+    - AtomType: gold
       Position:
         Pos: 0,0
     Bonds: []
-    Name: Elemental Tin
+    Name: Elemental Gold
   Amount: -1
 - Molecule:
     Atoms:
-    - AtomType: tin
+    - AtomType: gold
       Position:
         Pos: 0,0
     Bonds: []
-    Name: Elemental Tin
+    Name: Elemental Gold
   Amount: -1
 Outputs:
 - Molecule:

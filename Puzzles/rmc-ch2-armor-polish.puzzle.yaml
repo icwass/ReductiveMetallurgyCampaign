@@ -20,12 +20,39 @@ Inputs:
   Amount: -1
 - Molecule:
     Atoms:
-    - AtomType: water
+    - AtomType: salt
       Position:
         Pos: 0,0
-    Bonds: []
+    - AtomType: water
+      Position:
+        Pos: 0,1
+    - AtomType: water
+      Position:
+        Pos: 1,-1
+    - AtomType: water
+      Position:
+        Pos: -1,0
+    Bonds:
+    - A:
+        Pos: -1,0
+      B:
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,-1
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 0,1
+      BondTypes:
+      - standard
     Name: Mysterious Core
-  Amount: -1
+  AmountOverride: 0
 Outputs:
 - Molecule:
     Atoms:

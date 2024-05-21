@@ -87,8 +87,8 @@ Chapters:
     Puzzle: rmc-ch2-armor-polish
     Requires: ""
   - ID: rmc-ch2-plumbous-wheel
-    Title: Plumbous Wheel
-    Puzzle: rmc-ch2-plumbous-wheel
+    Title: Quicksilver Bullet
+    Puzzle: rmc-ch2-quicksilver-bullet
     Requires: ""
   - ID: rmc-ch2-sanitizing-dust
     Title: Sanitizing Dust
@@ -108,7 +108,7 @@ Chapters:
     Requires: ""
   - ID: rmc-ch3-invariant-metal
     Title: Invariant Metal
-    Puzzle: rmc-ch3-invariant-metal
+    Puzzle: rmc-ch2-invariant-metal
     Requires: ""
 - Title: Chapter III
   Subtitle: The Alchemical Symposium
