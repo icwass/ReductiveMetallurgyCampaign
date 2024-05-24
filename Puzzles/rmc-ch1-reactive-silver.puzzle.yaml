@@ -1,0 +1,36 @@
+Name: REACTIVE SILVER
+ID: c663613400691497
+Author: ''
+Inputs:
+- Molecule:
+    Atoms:
+    - AtomType: copper
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: ''
+  AmountOverride: 0
+Outputs:
+- Molecule:
+    Atoms:
+    - AtomType: silver
+      Position:
+        Pos: 0,0
+    - AtomType: quicksilver
+      Position:
+        Pos: 1,0
+    Bonds:
+    - A:
+        Pos: 0,0
+      B:
+        Pos: 1,0
+      BondTypes:
+      - standard
+    Name: Reactive Silver
+  AmountOverride: 0
+OutputMultiplier: 1
+PermissionFlags: Purification, CoreTools
+CustomPermissions:
+- ReductiveMetallurgy:rejection
+Highlights: []
+ProductionInfo: 

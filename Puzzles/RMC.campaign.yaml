@@ -42,17 +42,21 @@ Chapters:
     Title: Sigmar's Garden
     Puzzle: empty
     Requires: ""
+  - ID: rmc-ch1-reactive-silver
+    Title: Reactive Silver
+    Puzzle: rmc-ch1-reactive-silver
+    Requires: ""
   - ID: rmc-ch1-ring-oscillator
     Title: Ring Oscillator
     Puzzle: rmc-ch1-ring-oscillator
     Requires: ""
-  - ID: rmc-ch1-patina-processing
-    Title: Patina Processing
-    Puzzle: rmc-ch1-patina-processing
-    Requires: ""
   - ID: rmc-ch1-saverio-transformer
     Title: "Saverio's Transformer"
     Puzzle: rmc-ch1-saverio-transformer
+    Requires: ""
+  - ID: rmc-ch1-patina-processing
+    Title: Patina Processing
+    Puzzle: rmc-ch1-patina-processing
     Requires: ""
   - ID: rmc-ch1-galena-separation
     Title: Galena Separation
@@ -123,13 +127,17 @@ Chapters:
     Title: Ravari's Renewal
     Puzzle: rmc-ch3-ravari-renewal
     Requires: ""
-  - ID: rmc-ch3-temp1
-    Title: test
-    Puzzle: rmc-ch3-temp1
+  - ID: rmc-ch3-ex-materia
+    Title: Ex Materia
+    Puzzle: rmc-ch3-ex-materia
     Requires: ""
-  - ID: rmc-ch3-temp2
-    Title: testtest
-    Puzzle: rmc-ch3-temp2
+  - ID: rmc-ch3-glauber-salve
+    Title: Glauber's Salve
+    Puzzle: rmc-ch3-glauber-salve
+    Requires: ""
+  - ID: rmc-ch3-tempered-iron
+    Title: Tempered Iron
+    Puzzle: rmc-ch3-tempered-iron
     Requires: ""
   - Type: solitaire
     Icon: textures/puzzle_select/icon_rmc_solitaire
@@ -143,7 +151,7 @@ Chapters:
     Puzzle: empty
     Requires: ""
   - ID: rmc-ch3-amalgam-wire
-    Title: testtest
+    Title: Amalgam Wire
     Puzzle: rmc-ch3-amalgam-wire
     Requires: ""
   - ID: rmc-ch3-experimental-catalyst
