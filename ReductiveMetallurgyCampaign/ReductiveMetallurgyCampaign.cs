@@ -1,14 +1,14 @@
 ﻿//using Mono.Cecil.Cil;
 //using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
-//using MonoMod.Utils;
+using MonoMod.Utils;
 using Quintessential;
 using Quintessential.Serialization;
 using Quintessential.Settings;
 //using SDL2;
 using System;
 using System.IO;
-//using System.Linq;
+using System.Linq;
 //using System.Collections.Generic;
 //using System.Globalization;
 using System.Reflection;
@@ -116,8 +116,21 @@ public class MainClass : QuintessentialMod
 		Puzzles.field_2816[Puzzles.field_2816.Length - 1] = tipsPuzzle;
 
 		//------------------------- HOOKING -------------------------//
+		On.SolutionEditorScreen.method_50 += temp_hotswapProliferationAvailability;
 		hook_Sim_method_1835 = new Hook(PrivateMethod<Sim>("method_1835"), OnSimMethod1835);
 		hook_QuintessentialLoader_LoadJournals = new Hook(PublicMethod<QuintessentialLoader>("LoadJournals"), HotReloadCampaignAndJournal);
+	}
+	public static void temp_hotswapProliferationAvailability(On.SolutionEditorScreen.orig_method_50 orig, SolutionEditorScreen screen_self, float timeDelta)
+	{
+		// hotswap availability
+		var puzzleID = screen_self.method_502().method_1934().field_2766;
+		bool puzzleNeedsFiniteProliferations = (puzzleID != Amalgamate.levelID);
+		var prolifPartType = class_191.field_1785.ToList().First(x => x.field_1528 == "reductive-metallurgy-proliferation");
+
+		prolifPartType.field_1552 = puzzleNeedsFiniteProliferations;
+
+		// do normal stuff
+		orig(screen_self, timeDelta);
 	}
 
 	private delegate void orig_Sim_method_1835(Sim self);
