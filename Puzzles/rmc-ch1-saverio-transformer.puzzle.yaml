@@ -19,7 +19,8 @@ Outputs:
     Bonds: []
     Name: Elemental Quicksilver
   Amount: -1
-PermissionFlags: Projection, Purification, Disposal, CoreTools
+OutputMultiplier: 4
+PermissionFlags: Purification, CoreTools
 CustomPermissions:
 - ReductiveMetallurgy:rejection
 PartQuotas: {}

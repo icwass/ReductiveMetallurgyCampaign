@@ -42,6 +42,10 @@ Chapters:
     Title: Sigmar's Garden
     Puzzle: empty
     Requires: ""
+  - ID: rmc-ch1-saverio-transformer
+    Title: "Saverio's Transformer"
+    Puzzle: rmc-ch1-saverio-transformer
+    Requires: ""
   - ID: rmc-ch1-reactive-silver
     Title: Reactive Silver
     Puzzle: rmc-ch1-reactive-silver
@@ -49,10 +53,6 @@ Chapters:
   - ID: rmc-ch1-ring-oscillator
     Title: Ring Oscillator
     Puzzle: rmc-ch1-ring-oscillator
-    Requires: ""
-  - ID: rmc-ch1-saverio-transformer
-    Title: "Saverio's Transformer"
-    Puzzle: rmc-ch1-saverio-transformer
     Requires: ""
   - ID: rmc-ch1-patina-processing
     Title: Patina Processing
@@ -86,13 +86,9 @@ Chapters:
     Title: Solder Wire
     Puzzle: rmc-ch2-solder-wire
     Requires: ""
-  - ID: rmc-ch2-armor-polish
-    Title: "Armor Polish"
-    Puzzle: rmc-ch2-armor-polish
-    Requires: ""
-  - ID: rmc-ch2-plumbous-wheel
-    Title: Quicksilver Bullet
-    Puzzle: rmc-ch2-quicksilver-bullet
+  - ID: rmc-ch2-toxic-shards
+    Title: Toxic Shards
+    Puzzle: rmc-ch2-toxic-shards
     Requires: ""
   - ID: rmc-ch2-sanitizing-dust
     Title: Sanitizing Dust
@@ -105,6 +101,10 @@ Chapters:
   - ID: rmc-ch2-silver-phosphate
     Title: Silver Phosphate
     Puzzle: rmc-ch2-silver-phosphate
+    Requires: ""
+  - ID: rmc-ch2-armor-polish
+    Title: "Armor Polish"
+    Puzzle: rmc-ch2-armor-polish
     Requires: ""
   - ID: rmc-ch2-you-drive-me-to-drink
     Title: You Drive Me To Drink
