@@ -98,9 +98,9 @@ Chapters:
     Title: "Meeting with the Great House"
     Puzzle: empty
     Requires: ""
-  - ID: rmc-ch2-silver-phosphate
-    Title: Silver Phosphate
-    Puzzle: rmc-ch2-silver-phosphate
+  - ID: rmc-ch2-silvered-glass
+    Title: Silvered Glass
+    Puzzle: rmc-ch2-silvered-glass
     Requires: ""
   - ID: rmc-ch2-armor-polish
     Title: "Armor Polish"

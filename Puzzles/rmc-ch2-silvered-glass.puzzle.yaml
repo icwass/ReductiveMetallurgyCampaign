@@ -1,5 +1,5 @@
-Name: SILVER PHOSPHATE
-ID: rmc-silver-phosphate
+Name: SILVERED GLASS
+ID: rmc-silvered-glass
 Author: ''
 Inputs:
 - Molecule:
@@ -95,7 +95,7 @@ Outputs:
         Pos: 1,1
       BondTypes:
       - standard
-    Name: Silver Phosphate
+    Name: Silvered Glass
   AmountOverride: 0
 PermissionFlags: Purification, CoreTools
 CustomPermissions:

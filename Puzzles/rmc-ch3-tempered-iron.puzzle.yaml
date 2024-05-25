@@ -40,60 +40,54 @@ Outputs:
     Atoms:
     - AtomType: fire
       Position:
-        Pos: 1,1
+        Pos: -1,1
     - AtomType: fire
       Position:
-        Pos: 2,0
-    - AtomType: fire
-      Position:
-        Pos: 2,-1
-    - AtomType: iron
-      Position:
-        Pos: 0,1
+        Pos: 0,-1
     - AtomType: iron
       Position:
         Pos: 0,0
     - AtomType: iron
       Position:
-        Pos: 1,-1
+        Pos: 1,1
+    - AtomType: iron
+      Position:
+        Pos: 2,-1
+    - AtomType: fire
+      Position:
+        Pos: 1,0
     Bonds:
     - A:
-        Pos: 1,-1
+        Pos: -1,1
       B:
-        Pos: 2,-1
+        Pos: 0,0
+      BondTypes:
+      - standard
+    - A:
+        Pos: 0,-1
+      B:
+        Pos: 0,0
       BondTypes:
       - standard
     - A:
         Pos: 0,0
       B:
-        Pos: 1,-1
+        Pos: 1,0
       BondTypes:
       - standard
     - A:
-        Pos: 0,0
-      B:
-        Pos: 0,1
-      BondTypes:
-      - standard
-    - A:
-        Pos: 0,1
+        Pos: 1,0
       B:
         Pos: 1,1
       BondTypes:
       - standard
     - A:
-        Pos: 1,1
+        Pos: 1,0
       B:
-        Pos: 2,0
-      BondTypes:
-      - standard
-    - A:
         Pos: 2,-1
-      B:
-        Pos: 2,0
       BondTypes:
       - standard
-    Name: ''
+    Name: Tempered Iron
   AmountOverride: 0
 OutputMultiplier: 1
 PermissionFlags: AllMechanisms, Bonder, SpeedBonder, Calcification, Duplication, BasicSymbols, ResetSymbol, RepeatSymbol, PivotSymbols
