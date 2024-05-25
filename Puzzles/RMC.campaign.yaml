@@ -131,10 +131,6 @@ Chapters:
     Title: Ex Materia
     Puzzle: rmc-ch3-ex-materia
     Requires: ""
-  - ID: rmc-ch3-glauber-salve
-    Title: Glauber's Salve
-    Puzzle: rmc-ch3-glauber-salve
-    Requires: ""
   - ID: rmc-ch3-tempered-iron
     Title: Tempered Iron
     Puzzle: rmc-ch3-tempered-iron
