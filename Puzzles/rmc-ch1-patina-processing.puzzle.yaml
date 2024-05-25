@@ -33,7 +33,7 @@ Outputs:
     - AtomType: tin
       Position:
         Pos: 0,0
-    - AtomType: salt
+    - AtomType: earth
       Position:
         Pos: 1,0
     - AtomType: salt
