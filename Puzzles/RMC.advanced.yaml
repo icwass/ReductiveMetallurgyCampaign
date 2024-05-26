@@ -293,7 +293,7 @@ Puzzles:
   Tip:
     ID: RMCT002
     Title: "Glyph of Deposition"
-    Description: "The *glyph of deposition* transmutes one atom of metal into two atoms of a lower form.\n\nNote that the resulting metals together have the same 'metallicity' as the original."
+    Description: "The *glyph of deposition* transmutes one atom of metal into two atoms of a lower form.\n\nNote that this is not simply the inverse of a glyph of purification."
     Solution: RMCdeposition
     SolutionOffset: 0, 0
 - ID: rmc-ch2-mysterious-crystal
@@ -317,19 +317,8 @@ Puzzles:
     SolutionOffset: 126, 0
 - ID: rmc-ch3-energetic-capacitor
   Music: Solving3
-  Tip:
-    ID: RMCT005
-    Title: "Direct Quicksilver Transfer"
-    Description: "It is possible to use *Ravari's wheel* without manually handling the quicksilver.\n\nBy placing the wheel above the _quicksilver_ port of the glyphs of projection or rejection, one can directly transfer the quicksilver in and out of the wheel."
-    Solution: RMCravari2
-    SolutionOffset: -126, 0
 - ID: rmc-ch3-synthesis-via-chain
   Music: Solving4
-  Tip:
-    ID: RMCT000
-    Title: "Repeating Reagents"
-    Description: "Some reagents repeat infinitely, and must be fed into the transmutation engine with the help of a guiding rail.\n\nArms can be mounted on the rail, but atoms are not allowed to pass through it."
-    Texture: tips/polymer_inputs
 - ID: rmc-ch3-sanitizing-dust
   Music: Solving3
 - ID: rmc-ch3-invariant-metal
@@ -376,11 +365,6 @@ Puzzles:
       Position: -529.0, -277.0
 - ID: rmc-j01-golden-thread-recycling
   Music: Solving6
-  Tip:
-    ID: RMCT000
-    Title: "Repeating Reagents"
-    Description: "Some reagents repeat infinitely, and must be fed into the transmutation engine with the help of a guiding rail.\n\nArms can be mounted on the rail, but atoms are not allowed to pass through it."
-    Texture: tips/polymer_inputs_alt
 - ID: rmc-j02-ex-nihilo
   Music: Solving4
   NoStoryPanel: true
