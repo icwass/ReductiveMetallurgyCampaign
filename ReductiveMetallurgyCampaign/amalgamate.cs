@@ -29,7 +29,7 @@ using Texture = class_256;
 public static class Amalgamate
 {
 	private static IDetour hook_SolutionEditorBase_method_2021;
-	const string levelID = "rmc-ch4-metallurgist-opus";
+	public const string levelID = "rmc-ch4-metallurgist-opus";
 	const string soundName = "rmc_sim_crash";
 	const string Amalgamate_ErrorTimerField = "ReductiveMetallurgyCampaign_Amalgamate_ErrorTimerField";
 	const string Amalgamate_ErrorGraphicsField = "ReductiveMetallurgyCampaign_Amalgamate_ErrorGraphicsField";

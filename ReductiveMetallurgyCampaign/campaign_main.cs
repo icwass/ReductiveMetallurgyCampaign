@@ -29,9 +29,6 @@ namespace ReductiveMetallurgyCampaign;
 public static partial class CampaignLoader
 {
 	const string rejectionTutorialID = "rmc-ch1-practical-test";
-	const string polymerInputTutorialID = "rmc-ch3-synthesis-via-chain";
-	const string oldPolymerInputTutorialID = "rmc-j01-golden-thread-recycling";
-
 	private static Campaign campaign_self;
 
 	public const enum_129 typePuzzle = (enum_129)0;
@@ -48,17 +45,6 @@ public static partial class CampaignLoader
 		// hooking
 		On.Solution.method_1958 += LookThroughModDirectoriesForTipSolutionFiles;
 	}
-
-	/////////////////////////////////////////////////////////////////////////////////////////////////
-	// puzzle-loader functions
-	public static Dictionary<string, Action<Puzzle>> LevelLoaders = new ()
-	{
-		{rejectionTutorialID, LoadRejectionTutorialPuzzle },
-		{polymerInputTutorialID, LoadPolymerInputPuzzle },
-		{oldPolymerInputTutorialID, LoadOldPolymerInputPuzzle },
-	};
-
-	static void LoadRejectionTutorialPuzzle(Puzzle puzzle) => StoryPanelPatcher.setOptionsUnlock(puzzle);
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// main functions
@@ -101,7 +87,7 @@ public static partial class CampaignLoader
 					string puzzleID = puzzle.field_2766;
 
 					// run hard-coded stuff
-					if (LevelLoaders.ContainsKey(puzzleID)) LevelLoaders[puzzleID](puzzle);
+					if (puzzleID == rejectionTutorialID) StoryPanelPatcher.setOptionsUnlock(puzzle);
 
 					// modify using stuff in advanced.yaml
 					MainClass.AdvancedContent.modifyCampaignItem(campaignItem);

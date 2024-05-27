@@ -35,7 +35,7 @@ JournalRemappings:
   rmc-reactive-litharge: rmc-j01-reactive-litharge
   rmc-pugano-transformer-c: rmc-j01-pugano-transformer-c
   rmc-precision-machine-oil-cabinet: rmc-j01-precision-machine-oil-cabinet
-  rmc-golden-thread-recycling: rmc-j01-golden-thread-recycling
+  rmc-ravari-requiescence: rmc-j01-ravari-requiescence
   rmc-golden-bauble: rmc-j02-golden-bauble
   rmc-leadstorm: rmc-j02-leadstorm
   rmc-luminiscent-compound: rmc-j02-luminiscent-compound
@@ -354,7 +354,14 @@ Puzzles:
     Overlays:
     - Texture: "textures/pipelines/solvent_overlay"
       Position: -529.0, -277.0
-- ID: rmc-j01-golden-thread-recycling
+- ID: rmc-j01-ravari-requiescence
+  Music: Solving6
+  Tip:
+    ID: RMCT004
+    Title: "Ravari's Wheel"
+    Description: "By using *Ravari's wheel* with the glyphs of projection and rejection, quicksilver can be stored or discharged.\n\nBecause it has metals with differing amounts of available quicksilver, Ravari's wheel could be called \"the metallurgist’s buffer.\""
+    Solution: RMCravari
+    SolutionOffset: 126, 0
   Music: Solving6
 - ID: rmc-j02-ex-nihilo
   Music: Solving4
@@ -375,13 +382,3 @@ Puzzles:
 - ID: rmc-j02-solder-paste
   Music: Solving4
   NoStoryPanel: true
-########## UNUSED
-- ID: rmc-ch3-ravari-requiescence
-  Music: Solving5
-  Tip:
-    ID: RMCT004
-    Title: "Ravari's Wheel"
-    Description: "By using *Ravari's wheel* with the glyphs of projection and rejection, quicksilver can be stored or discharged.\n\nBecause it has metals with differing amounts of available quicksilver, Ravari's wheel could be called \"the metallurgist’s buffer.\""
-    Solution: RMCravari
-    SolutionOffset: 126, 0
-##########

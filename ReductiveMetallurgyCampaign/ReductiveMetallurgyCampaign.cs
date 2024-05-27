@@ -1,7 +1,7 @@
 ﻿//using Mono.Cecil.Cil;
 //using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
-using MonoMod.Utils;
+//using MonoMod.Utils;
 using Quintessential;
 using Quintessential.Serialization;
 using Quintessential.Settings;
@@ -30,7 +30,7 @@ public class MainClass : QuintessentialMod
 {
 	public static MethodInfo PublicMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
 	public static MethodInfo PrivateMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
-	private static IDetour hook_Sim_method_1835, hook_QuintessentialLoader_LoadJournals;
+	private static IDetour hook_QuintessentialLoader_LoadJournals;
 
 	public static AdvancedContentModelRMC AdvancedContent;
 	public static string FilePath = "";
@@ -103,7 +103,6 @@ public class MainClass : QuintessentialMod
 
 	public override void LoadPuzzleContent()
 	{
-		PolymerInput.LoadContent();
 		StoryPanelPatcher.LoadContent();
 
 		// manually load the puzzle file needed for tips
@@ -117,7 +116,6 @@ public class MainClass : QuintessentialMod
 
 		//------------------------- HOOKING -------------------------//
 		On.SolutionEditorScreen.method_50 += temp_hotswapProliferationAvailability;
-		hook_Sim_method_1835 = new Hook(PrivateMethod<Sim>("method_1835"), OnSimMethod1835);
 		hook_QuintessentialLoader_LoadJournals = new Hook(PublicMethod<QuintessentialLoader>("LoadJournals"), HotReloadCampaignAndJournal);
 	}
 	public static void temp_hotswapProliferationAvailability(On.SolutionEditorScreen.orig_method_50 orig, SolutionEditorScreen screen_self, float timeDelta)
@@ -133,13 +131,6 @@ public class MainClass : QuintessentialMod
 		orig(screen_self, timeDelta);
 	}
 
-	private delegate void orig_Sim_method_1835(Sim self);
-	private static void OnSimMethod1835(orig_Sim_method_1835 orig, Sim sim_self)
-	{
-		PolymerInput.My_Method_1835(sim_self);
-		orig(sim_self);
-	}
-
 	public delegate void orig_QuintessentialLoader_LoadJournals();
 	public static void HotReloadCampaignAndJournal(orig_QuintessentialLoader_LoadJournals orig)
 	{
@@ -153,7 +144,6 @@ public class MainClass : QuintessentialMod
 
 	public override void Unload()
 	{
-		hook_Sim_method_1835.Dispose();
 		hook_QuintessentialLoader_LoadJournals.Dispose();
 		SigmarGardenPatcher.Unload();
 		Amalgamate.Unload();

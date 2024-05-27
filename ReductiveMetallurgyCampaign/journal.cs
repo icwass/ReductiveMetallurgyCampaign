@@ -101,7 +101,7 @@ public sealed class JournalLoader
 				Puzzles.field_2816[Puzzles.field_2816.Length - 1] = puzzle;
 
 				// run hard-coded stuff
-				if (CampaignLoader.LevelLoaders.ContainsKey(puzzleID)) CampaignLoader.LevelLoaders[puzzleID](puzzle);
+				// NO HARD-CODED STUFF TO RUN
 
 				// add to journalPuzzle list, for other classes to use
 				foreach (var puzzleModel in MainClass.AdvancedContent.Puzzles.Where(x => x.ID == puzzleID))
