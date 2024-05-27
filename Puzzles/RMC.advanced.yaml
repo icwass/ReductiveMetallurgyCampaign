@@ -296,35 +296,22 @@ Puzzles:
     Description: "The *glyph of deposition* transmutes one atom of metal into two atoms of a lower form.\n\nNote that this is not simply the inverse of a glyph of purification."
     Solution: RMCdeposition
     SolutionOffset: 0, 0
-- ID: rmc-ch2-mysterious-crystal
-  Music: Solving6
 - ID: rmc-ch2-solder-wire
   Music: Solving4
-- ID: rmc-ch2-plumbous-wheel
+- ID: rmc-ch2-toxic-shards
   Music: Solving3
-- ID: rmc-ch2-silver-phosphate
-  Music: Solving5
-- ID: rmc-ch2-you-drive-me-to-drink
-  Music: Solving2
-##########
-- ID: rmc-ch3-ravari-requiescence
-  Music: Solving5
-  Tip:
-    ID: RMCT004
-    Title: "Ravari's Wheel"
-    Description: "By using *Ravari's wheel* with the glyphs of projection and rejection, quicksilver can be stored or discharged.\n\nBecause it has metals with differing amounts of available quicksilver, Ravari's wheel could be called \"the metallurgist’s buffer.\""
-    Solution: RMCravari
-    SolutionOffset: 126, 0
-- ID: rmc-ch3-energetic-capacitor
-  Music: Solving3
-- ID: rmc-ch3-synthesis-via-chain
-  Music: Solving4
 - ID: rmc-ch3-sanitizing-dust
   Music: Solving3
-- ID: rmc-ch3-invariant-metal
+- ID: rmc-ch2-silvered-glass
+  Music: Solving5
+- ID: rmc-ch2-armor-polish
+  Music: Solving6
+- ID: rmc-ch2-you-drive-me-to-drink
+  Music: Solving2
+- ID: rmc-ch2-invariant-metal
   Music: Solving5
 ##########
-- ID: rmc-ch4-ravari-renewal
+- ID: rmc-ch3-ravari-renewal
   Music: Solving6
   Tip:
     ID: RMCT003
@@ -332,13 +319,17 @@ Puzzles:
     Description: "By using *Ravari's wheel* with the *glyph of proliferation*, quicksilver can be exchanged for any of the six planetary metals.\n\nOur current understanding of metallurgic theory will be completely revolutionized, once it is determined how this exchange actually occurs."
     Solution: RMCproliferation
     SolutionOffset: 0, -40
-- ID: rmc-ch4-amalgam-wire
-  Music: Solving2
-- ID: rmc-ch4-wood-preservative
+- ID: rmc-ch3-ex-materia
   Music: Solving3
-- ID: rmc-ch4-experimental-catalyst
+- ID: rmc-ch3-tempered-iron
   Music: Solving4
-- ID: rmc-ch4-metallurgist-opus
+- ID: rmc-ch3-amalgam-wire
+  Music: Solving2
+- ID: rmc-ch3-experimental-catalyst
+  Music: Solving4
+- ID: rmc-ch3-energetic-capacitor
+  Music: Solving3
+- ID: rmc-ch3-metallurgist-opus
   Music: Solving1
 ##########
 - ID: rmc-j01-welded-elements
@@ -384,4 +375,13 @@ Puzzles:
 - ID: rmc-j02-solder-paste
   Music: Solving4
   NoStoryPanel: true
+########## UNUSED
+- ID: rmc-ch3-ravari-requiescence
+  Music: Solving5
+  Tip:
+    ID: RMCT004
+    Title: "Ravari's Wheel"
+    Description: "By using *Ravari's wheel* with the glyphs of projection and rejection, quicksilver can be stored or discharged.\n\nBecause it has metals with differing amounts of available quicksilver, Ravari's wheel could be called \"the metallurgist’s buffer.\""
+    Solution: RMCravari
+    SolutionOffset: 126, 0
 ##########

@@ -42,6 +42,10 @@ Chapters:
     Title: Sigmar's Garden
     Puzzle: empty
     Requires: ""
+  - ID: rmc-ch1-ring-oscillator
+    Title: Ring Oscillator
+    Puzzle: rmc-ch1-ring-oscillator
+    Requires: ""
   - ID: rmc-ch1-saverio-transformer
     Title: "Saverio's Transformer"
     Puzzle: rmc-ch1-saverio-transformer
@@ -49,10 +53,6 @@ Chapters:
   - ID: rmc-ch1-reactive-silver
     Title: Reactive Silver
     Puzzle: rmc-ch1-reactive-silver
-    Requires: ""
-  - ID: rmc-ch1-ring-oscillator
-    Title: Ring Oscillator
-    Puzzle: rmc-ch1-ring-oscillator
     Requires: ""
   - ID: rmc-ch1-patina-processing
     Title: Patina Processing
@@ -110,14 +110,14 @@ Chapters:
     Title: You Drive Me To Drink
     Puzzle: rmc-ch2-you-drive-me-to-drink
     Requires: ""
-  - ID: rmc-ch3-invariant-metal
+  - ID: rmc-ch2-invariant-metal
     Title: Invariant Metal
     Puzzle: rmc-ch2-invariant-metal
     Requires: ""
 - Title: Chapter III
-  Subtitle: The Alchemical Symposium
-  Place: "Imperial University"
-  Background: textures/puzzle_select/background_0
+  Subtitle: Breaking Laws
+  Place: "Saverio's Office"
+  Background: backgrounds/saverio_office
   Entries:
   - ID: rmc-document-symposium-agenda
     Title: "Symposium Agenda"
@@ -157,7 +157,7 @@ Chapters:
   - ID: rmc-ch3-energetic-capacitor
     Title: Energetic Capacitor
     Puzzle: rmc-ch3-energetic-capacitor
-    Requires: ""  
+    Requires: ""
   - ID: rmc-ch3-metallurgist-opus
     Title: "Metallurgist's Opus"
     Puzzle: rmc-ch3-metallurgist-opus
