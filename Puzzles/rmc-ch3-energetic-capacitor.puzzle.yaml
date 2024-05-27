@@ -235,7 +235,6 @@ OutputMultiplier: 1
 PermissionFlags: Projection, Disposal, CoreTools
 CustomPermissions:
 - ReductiveMetallurgy:rejection
-- ReductiveMetallurgy:ravari
 - ReductiveMetallurgy:proliferation
 Highlights: []
 ProductionInfo: 

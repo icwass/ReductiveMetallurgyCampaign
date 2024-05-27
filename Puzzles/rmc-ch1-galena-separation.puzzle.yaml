@@ -99,6 +99,7 @@ Outputs:
     Bonds: []
     Name: Elemental Salt
   Amount: -1
+OutputMultiplier: 3
 PermissionFlags: Projection, Purification, Disposal, CoreTools
 CustomPermissions:
 - ReductiveMetallurgy:rejection

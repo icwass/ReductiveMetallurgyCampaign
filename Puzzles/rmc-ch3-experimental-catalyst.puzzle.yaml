@@ -21,22 +21,22 @@ Inputs:
 Outputs:
 - Molecule:
     Atoms:
-    - AtomType: copper
+    - AtomType: tin
       Position:
         Pos: -1,0
     - AtomType: gold
       Position:
         Pos: 0,1
-    - AtomType: silver
+    - AtomType: copper
       Position:
         Pos: 1,-1
-    - AtomType: iron
+    - AtomType: silver
       Position:
         Pos: 1,0
-    - AtomType: tin
+    - AtomType: lead
       Position:
         Pos: -1,1
-    - AtomType: lead
+    - AtomType: iron
       Position:
         Pos: 0,-1
     - AtomType: vitae

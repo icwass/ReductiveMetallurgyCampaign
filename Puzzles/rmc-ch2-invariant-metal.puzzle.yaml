@@ -99,7 +99,7 @@ Outputs:
       - standard
     Name: Invariant Metal
   Amount: -1
-PermissionFlags: Projection, Purification, CoreTools
+PermissionFlags: Projection, CoreTools
 CustomPermissions:
 - ReductiveMetallurgy:rejection
 - ReductiveMetallurgy:deposition

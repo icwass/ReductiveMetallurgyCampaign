@@ -51,7 +51,7 @@ Outputs:
         Pos: 1,0
       BondTypes:
       - standard
-    Name: Quickiron
+    Name: Rust
   Amount: -1
 PermissionFlags: CoreTools
 CustomPermissions:

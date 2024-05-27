@@ -162,6 +162,22 @@ Outputs:
     Bonds: []
     Name: Elemental Tin
   Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: tin
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Tin
+  Amount: -1
+- Molecule:
+    Atoms:
+    - AtomType: tin
+      Position:
+        Pos: 0,0
+    Bonds: []
+    Name: Elemental Tin
+  Amount: -1
 PermissionFlags: Duplication, Disposal, CoreTools, BaronWheel
 CustomPermissions:
 - ReductiveMetallurgy:deposition
