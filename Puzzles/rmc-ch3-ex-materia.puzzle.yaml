@@ -59,35 +59,39 @@ CustomPermissions:
 Highlights: []
 ProductionInfo:
   Chambers:
-  - ChamberType: MediumWide
+  - ChamberType: Large
     Position:
       Pos: 0,0
   Conduits: []
   Vials:
   - Position:
-      Pos: 5,-3
-    Top: false
-    Sprites:
-    - Left: textures/pipelines/vials/generic/empty
-      Right: textures/pipelines/vials/generic/empty
-  - Position:
-      Pos: -4,-3
-    Top: false
-    Sprites:
-    - Left: textures/pipelines/vials/generic/empty
-      Right: textures/pipelines/vials/generic/empty
-  - Position:
-      Pos: -7,3
+      Pos: -8,3
     Top: true
     Sprites:
-    - Left: textures/pipelines/vials/generic/empty
-      Right: textures/pipelines/vials/generic/empty
+    - Left: "textures/pipelines/vials/elemental_gold/full"
+      Right: "textures/pipelines/vials/elemental_gold/draining"
   - Position:
       Pos: 2,3
     Top: true
     Sprites:
-    - Left: textures/pipelines/vials/generic/empty
-      Right: textures/pipelines/vials/generic/empty
+    - Left: "textures/pipelines/vials/elemental_silver/empty"
+      Right: "textures/pipelines/vials/elemental_silver/filling"
+    - Left: "textures/pipelines/vials/elemental_copper/empty"
+      Right: "textures/pipelines/vials/elemental_copper/filling"
+  - Position:
+      Pos: -5,-3
+    Top: false
+    Sprites:
+    - Left: "textures/pipelines/vials/elemental_lead/empty"
+      Right: "textures/pipelines/vials/elemental_lead/filling"
+  - Position:
+      Pos: 5,-3
+    Top: false
+    Sprites:
+    - Left: "textures/pipelines/vials/elemental_tin/empty"
+      Right: "textures/pipelines/vials/elemental_tin/filling"
+    - Left: "textures/pipelines/vials/elemental_iron/empty"
+      Right: "textures/pipelines/vials/elemental_iron/filling"
   Isolation: false
   ShrinkLeft: false
   ShrinkRight: false
