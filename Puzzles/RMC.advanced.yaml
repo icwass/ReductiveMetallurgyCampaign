@@ -115,10 +115,10 @@ Cutscenes:
   Location: Conference Hall, House Soria
   Background: textures/puzzle_select/background_4
   Music: Story1
-- ID: rmc-cutscene-presentation
+- ID: rmc-cutscene-symposium
   Location: Alchemical Symposium
   Background: backgrounds/symposium
-  Music: Story2
+  Music: Story1
 - ID: rmc-cutscene-symposium-end
   Location: Alchemical Symposium
   Background: backgrounds/symposium

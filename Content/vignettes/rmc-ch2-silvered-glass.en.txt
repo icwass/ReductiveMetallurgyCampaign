@@ -1,11 +1,11 @@
-Pugano (Left): Time to work on another order.
-Pugano (Left): And with Saverio gone at the moment, I can work in peace.
-Pugano (Right): No interruptions, no eccentric rants.
-Pugano (Left): Maybe I'll be a little subversive and purify metal for once.
-Pugano (Left): This assignment would be awful otherwise.
+[DO NOT PARSE]
 
------------
+Saverio's Research Notes
 
-Pugano (Left): Well, at least that gets the job done.
-Pugano (Left): Even if I could, I wouldn't dare try to reject the copper, it'd be awful.
-Pugano (Left): He's miles away, yet I can still imagine his response...
+#Silvered Glass
+
+#It is a little known fact that, despite what is shown in alchemical prototyping boards, there are length variations in the bonds of actual alchemical compounds. This fact remains obscure due to the relatively low impact these variations have on typical applications. The cardinal elements, for example, hardly experience quiescent conditions when deployed in the field, with the chaos of the real world far eclipsing the variation in the bond lengths. Similarly, alloys of planetary metals experience consistent deviation from the expected bond length, so it does not tend to be a concern here either.
+
+However, there are applications where this is a significant matter - the biological sciences, for one. Another is in high-pressure scenarios where precision is demanded. Under pressure, the bonds of an alloy can lengthen or contract in response to forces on the constituent compound. When a tight tolerance needs to be maintained, this response can be catastrophic.
+
+The purpose of this test is to ascertain which pair of metals experience the smallest variation in bond length. Hopefully this will hint at the composition of a so-called invariant metal. Shown here is test 100 of 105, the transmutation of a combined copper-gold ring into a silver ring.

@@ -114,6 +114,10 @@ Chapters:
     Title: Invariant Metal
     Puzzle: rmc-ch2-invariant-metal
     Requires: ""
+  - ID: rmc-cutscene-symposium
+    Title: "Off to the Symposium"
+    Puzzle: empty
+    Requires: ""
 - Title: Chapter III
   Subtitle: Breaking Laws
   Place: "Saverio's Office"

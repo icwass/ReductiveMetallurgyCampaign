@@ -1,5 +1,6 @@
-Portraits: Clara, Saverio (Left)
+Portraits: Clara
 
+Action: Enter, Saverio (Left)
 Clara: Welcome to House Soria, I hope the day has brought you good fortune. Your name was?
 Saverio (Left): My name is Saverio Daas, madam. My entreaty today is for House Soria to act as my patron for this year's Alchemical Symposium.
 Saverio (Left): I have in my possession a new alchemical glyph, one that is able to reject quicksilver from higher metals, allowing for a positive cornucopia of possibilities.

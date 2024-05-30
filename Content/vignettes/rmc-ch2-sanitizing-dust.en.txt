@@ -1,13 +1,6 @@
-Saverio (Left): Good morning, Jay!
-Pugano (Right): Ow ow ow, keep quiet, I've a nasty headache.
-Saverio (Left): And a nasty odor about you, too, like a drunk.
-Saverio (Left): Ah, you are drunk!
-Pugano (Right): _Was_ drunk. Can you be clever somewhere else, please?
-Saverio (Left): That is my plan. I will be in my study, finalizing my latest research. Please don't bother me unless it is important.
-Saverio (Left): And for goodness sake, get yourself cleaned up! Go find my schematics for sanitizing dust or something.
-Pugano (Right): _burp_, sure thing. Watch your step, there may be tin strewn all over the floor.
-Saverio (Left): I... am going to choose to not ask questions.
-Pugano (Right): Alright, let's see those schematics...
+Saverio (Left): So this used to be after the drinking puzzle
+Saverio (Left): But rephrasing it as a fireworks puzzle
+Saverio (Left): Sample for alchemical symposium?
 
 -----------
 

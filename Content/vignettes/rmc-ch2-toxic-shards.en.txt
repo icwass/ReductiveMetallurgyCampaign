@@ -1,13 +1,6 @@
-Pugano (Left): So is this a new plumbing sealant, or...?
-Saverio (Right): No, consider this a demonstration machine.
-Saverio (Right): I have found myself an audience with one of the Great Houses, and I think this will serve to present our inventions so far.
-Saverio (Right): This is important, so put together something that'll catch their interest.
-Pugano (Left): I'll be sure to give it a good effort.
+Pugano (Left): So it's a bullet? Made of quicksilver?
 
 -----------
 
-Pugano (Left): That turned out to be quite pleasant.
-Pugano (Left): The stoichiometry is nicely balanced.
-Saverio (Right): Perfect. It's not exactly what I expected, but it'll suit the purpose nonetheless.
-Saverio (Right): I will need to take the glyphs of rejection with me when I'm away, so try not to design yourself into a corner.
-
+Pugano (Left): Doesn't seem like it'd fly very far.
+Nils: So many bullets... so many people

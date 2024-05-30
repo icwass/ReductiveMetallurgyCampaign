@@ -6,7 +6,7 @@ Saverio (Right): You know that new glyph I gave you, that you've just started wo
 Pugano (Left): You mean the one _I_ got working just recently?
 Saverio (Right): Ancient history, my friend. A customer placed a bulk order for solder wire, so I'll need you to make quite a bit, and quite quickly.
 Pugano (Left): What, bu-... how do you suppose we find the material for this much wire?
-Saverio (Right): They _did_ give us an advance, use that. It should provide plenty of material.
+Saverio (Right): They _did_ give us like 50 iron bars, use that. It should provide plenty of material.
 
 -----------
 
